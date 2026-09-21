@@ -137,7 +137,7 @@ export function normalizeNumberText(raw: unknown): string {
   if (isMissingCell(text)) return '';
   const negativeParentheses = /^\((.*)\)$/.exec(text);
   if (negativeParentheses) text = `-${negativeParentheses[1]}`;
-  text = text.replace(/[$,%\s*\u2020\u2021]/g, '');
+  text = text.replace(/[$,%\s*\u2020\u2021\u2022]/g, '');
   text = text.replace(/([eE])([+-]?\d+)$/, (_m, e: string, exp: string) => `E${exp}`);
   if (/^-?\d*\.?\d+[eE][+-]?\d+$/.test(text)) {
     const parsed = Number(text);
@@ -764,6 +764,14 @@ export type NeosFundDetails = {
   marketPriceText: string | null;
   marketPriceDailyChangeValue: number | null;
   marketPriceDailyChangePercent: number | null;
+  /** The fund page's own `Premium Discount (%)` row (published, not derived). */
+  premiumDiscount: number | null;
+  premiumDiscountText: string | null;
+  /** `30-Day Median Bid-Ask Spread (%)`, published by the quote tables. */
+  bidAskSpread: number | null;
+  bidAskSpreadText: string | null;
+  /** `Acquired Fund Fees & Expenses` when the panel itemizes it. */
+  acquiredFundFeesText: string | null;
   asOfDate: string;
 };
 
@@ -776,33 +784,61 @@ function moneyOrNull(raw: string | null | undefined): number | null {
   return Number.isFinite(parsed) ? parsed : null;
 }
 
+/**
+ * The labels the `Fund Details` panel uses. Only these can start a label/value
+ * pair, which keeps the reader aligned even when the provider drops a `<tr>`.
+ */
+const FUND_DETAIL_LABELS = new Set([
+  'fund inception',
+  'fund ticker',
+  'cusip',
+  'isin',
+  'management fee',
+  'acquired fund fees & expenses',
+  'total annual fund operating expenses',
+  'net assets',
+  'shares outstanding',
+  'primary exchange',
+  'underlying exposure',
+  'distribution frequency',
+  'net asset value',
+  'market price',
+  'premium discount (%)',
+  'premium / discount',
+  '30-day median bid-ask spread (%)',
+  'daily change ($)',
+  'daily change (%)',
+]);
+
 /** The `Fund Details` panel: CUSIP, ISIN, NAV, market price, exchange, share count. */
 export function parseNeosFundDetails(html: string): NeosFundDetails {
   const index = html.search(/Fund Details/i);
-  const section = index >= 0 ? html.slice(index, index + 12000) : html;
+  const section = index >= 0 ? html.slice(index, index + 20000) : html;
   const asOfMatch = /As of:\s*(\d{1,2}\/\d{1,2}\/\d{4})/i.exec(section);
-  // The panel is two-column label/value rows; the raw <tr> list is scanned
-  // directly so the duplicate "Daily Change" labels keep their NAV-before-
-  // Market-Price order (the panel ships no closing </td> in its first row).
-  const labels: string[] = [];
-  const values: string[] = [];
-  for (const row of section.matchAll(/<tr\b[^>]*>([\s\S]*?)<\/tr>/gi)) {
-    const cells = splitRowCells(row[1]);
-    if (cells.length >= 2) {
-      labels.push(cleanText(cells[0]));
-      values.push(cleanText(cells[1]));
-    }
+  // The panel's markup is unreliable: one row per page ships without its
+  // opening `<tr>` (the `Primary Exchange` row) and the first row of the panel
+  // ships without a `</td>`, so label/value pairs are read from the cell
+  // stream itself instead of from `<tr>` blocks.
+  const pairs: Array<{ label: string; value: string }> = [];
+  const cells = [...section.matchAll(/<(td|th)\b[^>]*>([\s\S]*?)(?=<\/?(?:t[dhr]|tbody|thead|table)\b|$)/gi)];
+  for (let at = 0; at < cells.length; at += 1) {
+    if (cells[at][1].toLowerCase() === 'th') continue; // header cells are not labels
+    const label = cleanText(cells[at][2]).replace(/\s*[*\u2020\u2021]+$/, '');
+    if (!FUND_DETAIL_LABELS.has(label.toLowerCase())) continue;
+    const next = cells[at + 1];
+    if (!next || next[1].toLowerCase() === 'th') continue;
+    pairs.push({ label, value: stripTags(next[2]) });
   }
   const valueOf = (label: string): string | null => {
-    const at = labels.findIndex((candidate) => candidate.toLowerCase() === label.toLowerCase());
-    return at >= 0 ? values[at] : null;
+    const pair = pairs.find((candidate) => candidate.label.toLowerCase() === label.toLowerCase());
+    return pair ? pair.value : null;
   };
 
-  const navAt = labels.findIndex((label) => /^Net Asset Value$/i.test(label));
-  const marketAt = labels.findIndex((label) => /^Market Price$/i.test(label));
-  const changeValues = labels
-    .map((label, at) => (/^daily change/i.test(label) ? values[at] : null))
-    .filter((value): value is string => value !== null);
+  const nav = pairs.find((pair) => /^net asset value$/i.test(pair.label));
+  const market = pairs.find((pair) => /^market price$/i.test(pair.label));
+  const changeValues = pairs
+    .filter((pair) => /^daily change/i.test(pair.label))
+    .map((pair) => pair.value);
   const navChange = changeValues.slice(0, 2);
   const marketChange = changeValues.slice(2, 4);
 
@@ -811,8 +847,8 @@ export function parseNeosFundDetails(html: string): NeosFundDetails {
     ticker: sanitizeTicker(valueOf('Fund Ticker') || ''),
     cusip: valueOf('CUSIP'),
     isin: valueOf('ISIN'),
-    managementFeeText: valueOf('Management Fee')?.replace(/\s*\*+$/, '') ?? null,
-    totalOperatingExpensesText: valueOf('Total Annual Fund Operating Expenses')?.replace(/\s*\*+$/, '') ?? null,
+    managementFeeText: valueOf('Management Fee'),
+    totalOperatingExpensesText: valueOf('Total Annual Fund Operating Expenses'),
     netAssets: moneyOrNull(valueOf('Net Assets')),
     netAssetsText: valueOf('Net Assets'),
     sharesOutstanding: moneyOrNull(valueOf('Shares Outstanding')),
@@ -820,14 +856,19 @@ export function parseNeosFundDetails(html: string): NeosFundDetails {
     primaryExchange: valueOf('Primary Exchange'),
     underlyingExposure: valueOf('Underlying Exposure'),
     distributionFrequency: valueOf('Distribution Frequency'),
-    netAssetValue: navAt >= 0 ? moneyOrNull(values[navAt]) : null,
-    netAssetValueText: navAt >= 0 ? values[navAt] : null,
+    netAssetValue: nav ? moneyOrNull(nav.value) : null,
+    netAssetValueText: nav ? nav.value : null,
     navDailyChangeValue: navChange[0] ? moneyOrNull(navChange[0]) : null,
     navDailyChangePercent: navChange[1] ? numberOrNull(navChange[1]) : null,
-    marketPrice: marketAt >= 0 ? moneyOrNull(values[marketAt]) : null,
-    marketPriceText: marketAt >= 0 ? values[marketAt] : null,
+    marketPrice: market ? moneyOrNull(market.value) : null,
+    marketPriceText: market ? market.value : null,
     marketPriceDailyChangeValue: marketChange[0] ? moneyOrNull(marketChange[0]) : null,
     marketPriceDailyChangePercent: marketChange[1] ? numberOrNull(marketChange[1]) : null,
+    premiumDiscount: numberOrNull(valueOf('Premium Discount (%)') || valueOf('Premium / Discount')),
+    premiumDiscountText: valueOf('Premium Discount (%)') || valueOf('Premium / Discount'),
+    bidAskSpread: numberOrNull(valueOf('30-Day Median Bid-Ask Spread (%)')),
+    bidAskSpreadText: valueOf('30-Day Median Bid-Ask Spread (%)'),
+    acquiredFundFeesText: valueOf('Acquired Fund Fees & Expenses'),
     asOfDate: asOfMatch ? toIsoDate(asOfMatch[1]) : '',
   };
 }
@@ -940,6 +981,13 @@ export function parseNeosDistributionHistory(html: string): NeosDistributionRow[
     const right = toIsoDate(b['Declaration Date']);
     return left < right ? 1 : left > right ? -1 : 0;
   });
+  // The page groups rows by year and lists each year oldest-first; the feed
+  // publishes the whole history newest-first so row 1 is the latest payout.
+  rows.sort((a, b) => {
+    const left = toIsoDate(a['Declaration Date']);
+    const right = toIsoDate(b['Declaration Date']);
+    return left < right ? 1 : left > right ? -1 : 0;
+  });
   return rows;
 }
 
@@ -1012,8 +1060,10 @@ export function parseNeosPerformanceSection(html: string, sectionId: string): Ne
       !/post-tax|pre-liquidation|after-tax|^cumulative$|^annualized$/i.test(label)
     ) {
       const candidate = readRow(rows[index]);
-      // A grouping row ("Cumulative | Annualized") carries no figures at all.
-      if (Object.values(candidate).filter((value) => value !== null).length >= 3) {
+      // The column-grouping row ("Cumulative | Annualized") carries no figures,
+      // so only a row with at least three readings can be the benchmark.
+      const readings = Object.values(candidate).filter((value) => value !== null).length;
+      if (readings >= 3) {
         benchmarkName = label;
         benchmark = candidate;
       }
@@ -1670,7 +1720,13 @@ async function updateFund(
   const navKind = details.netAssetValue !== null ? 'official (fund page Fund Details)' : 'derived (Net Assets / Shares Outstanding)';
   const marketPriceValue = details.marketPrice
     ?? (historyRows.length ? numberOrNull(historyRows[0].Close) : null);
-  const premiumDiscount = navValue && marketPriceValue !== null ? round(((marketPriceValue - navValue) / navValue) * 100, 2) : null;
+  const derivedPremiumDiscount = navValue && marketPriceValue !== null ? round(((marketPriceValue - navValue) / navValue) * 100, 2) : null;
+  // NEOS prints its own `Premium Discount (%)`; the quotient is only the guard
+  // for the day a panel omits the row.
+  const premiumDiscount = details.premiumDiscount ?? derivedPremiumDiscount;
+  const premiumDiscountKind = details.premiumDiscount !== null
+    ? 'official (fund page Fund Details "Premium Discount (%)")'
+    : 'derived (Market Price - NAV) / NAV';
 
   const monthEndValues = monthly?.nav || {};
   const quarterEndValues = quarterly?.nav || {};
@@ -1747,6 +1803,8 @@ async function updateFund(
       nportDoc: `https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=${NEOS_ETF_TRUST_CIK}&type=NPORT-P&dateb=&owner=include&count=10`,
       exchangeSource: 'NEOS fund page Fund Details "Primary Exchange"',
       navSource: `NEOS fund page Fund Details "Net Asset Value" (${navKind})`,
+      premiumDiscountSource: premiumDiscountKind,
+      bidAskSpreadSource: 'NEOS fund page Fund Details "30-Day Median Bid-Ask Spread (%)"',
     },
     identifiers: {
       cusip: details.cusip || null,
@@ -1782,7 +1840,14 @@ async function updateFund(
     premiumDiscount: {
       display: formatPercentText(premiumDiscount),
       value: premiumDiscount,
-      kind: 'derived (Market Price - NAV) / NAV',
+      derivedValue: derivedPremiumDiscount,
+      kind: premiumDiscountKind,
+    },
+    bidAskSpread: {
+      display: details.bidAskSpreadText || null,
+      value: details.bidAskSpread,
+      asOfDate: details.asOfDate ? formatNeosDate(details.asOfDate) : null,
+      kind: 'official (fund page Fund Details "30-Day Median Bid-Ask Spread (%)")',
     },
     aum: {
       display: netAssets === null ? null : formatAumDisplay(netAssets),
@@ -1944,6 +2009,11 @@ async function updateFund(
     closePriceValue: marketPriceValue,
     premiumDiscount: formatPercentText(premiumDiscount),
     premiumDiscountValue: premiumDiscount,
+    premiumDiscountDerivedValue: derivedPremiumDiscount,
+    premiumDiscountKind,
+    bidAskSpread: details.bidAskSpreadText || null,
+    bidAskSpreadValue: details.bidAskSpread,
+    acquiredFundFeesText: details.acquiredFundFeesText,
     totalNetAssets: netAssets,
     sharesOutstanding,
     netAssetsAsOf: details.asOfDate ? formatNeosDate(details.asOfDate) : (holdings.asOfDate ? formatNeosDate(holdings.asOfDate) : ''),

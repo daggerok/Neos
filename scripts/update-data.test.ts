@@ -590,6 +590,48 @@ describe("parseNeosFundDetails", () => {
     expect(details.managementFeeText).toBe("0.68%");
     expect(details.totalOperatingExpensesText).toBe("0.68%");
   });
+
+  // The panel of the hedged/alternatives funds ships the `Primary Exchange` row
+  // without its opening `<tr>`, and their quote tables publish the official
+  // premium/discount instead of an index row.
+  const ORPHAN_ROW_HTML = `
+    <h2>Fund Details</h2>
+    <table class="table fund-details-font">
+      <thead><tr><th class="fund-details-table-sizing-th">Fund Details</th><th class="text-right fund-details-table-sizing-th">As of: 09/18/2026</th></tr></thead>
+      <tbody>
+        <tr>
+          <td class="fund-details-table-sizing">Shares Outstanding</td>
+          <td class="fund-details-table-sizing" style="text-align: right;"> 6,924,981                            </td>
+        </tr>
+        <td class="fund-details-table-sizing">Primary Exchange</td> <td class="fund-details-table-sizing" style="text-align: right;">NASDAQ</td>
+        <tr>
+          <td class="fund-details-table-sizing">Distribution Frequency</td>
+          <td class="fund-details-table-sizing" style="text-align: right;">Monthly</td>
+        </tr>
+      </tbody>
+    </table>
+    <table class="table fund-details-font">
+      <thead><tr><th class="th-dark-blue-style">Premium / Discount</th><th class="th-dark-blue-style"><span class="neos-sr-only">Spacer column</span></th></tr></thead>
+      <tbody>
+        <tr><td class="bg-f7f7f7">Premium Discount (%)</td><td class="bg-f7f7f7 text-right">-0.15%</td></tr>
+        <tr><td class="bg-f7f7f7">30-Day Median Bid-Ask Spread (%)</td><td class="bg-f7f7f7 text-right">0.29%</td></tr>
+      </tbody>
+    </table>`;
+
+  test("a row that lost its `<tr>` still pairs its label with its value", () => {
+    const orphaned = parseNeosFundDetails(ORPHAN_ROW_HTML);
+    expect(orphaned.primaryExchange).toBe("NASDAQ");
+    expect(orphaned.sharesOutstanding).toBe(6_924_981);
+    expect(orphaned.distributionFrequency).toBe("Monthly");
+  });
+
+  test("the panel's own premium/discount and bid-ask spread are read, not derived", () => {
+    const orphaned = parseNeosFundDetails(ORPHAN_ROW_HTML);
+    expect(orphaned.premiumDiscount).toBe(-0.15);
+    expect(orphaned.premiumDiscountText).toBe("-0.15%");
+    expect(orphaned.bidAskSpread).toBe(0.29);
+    expect(orphaned.bidAskSpreadText).toBe("0.29%");
+  });
 });
 
 // ---------------------------------------------------------------------------
@@ -1209,7 +1251,7 @@ describe("published index.json", () => {
     expect(index.counts.funds).toBe(19);
     expect(Object.keys(byTicker).sort()).toEqual([
       "BNDI", "BTCI", "CSHI", "HYBI", "IAUI", "IWMI", "IYRI", "MLPI", "NEHI", "NIHI",
-      "NLSI", "QQQI", "QQQH", "SPYH", "SPYI", "TLTI", "XBCI", "XQQI", "XSPI",
+      "NLSI", "QQQH", "QQQI", "SPYH", "SPYI", "TLTI", "XBCI", "XQQI", "XSPI",
     ]);
   });
 
@@ -1286,7 +1328,16 @@ describe("published fund files", () => {
       expect(meta.ticker).toBe(fund.ticker);
       expect(meta.identifiers.cusip).toBeTruthy();
       expect(meta.identifiers.isin).toBeTruthy();
-      expect(meta.identifiers.indexName).toBeTruthy();
+      // Five funds' pages carry an Investment Objective paragraph instead of an
+      // `Underlying Exposure` row; for them the feed publishes null and the app
+      // renders an em dash rather than inventing an index.
+      const WITHOUT_EXPOSURE_ROW = ["HYBI", "IAUI", "NIHI", "QQQH", "SPYH"];
+      if (WITHOUT_EXPOSURE_ROW.includes(fund.ticker)) {
+        expect(meta.identifiers.underlyingExposure).toBeNull();
+        expect(meta.identifiers.indexName).toBeNull();
+      } else {
+        expect(meta.identifiers.indexName).toBeTruthy();
+      }
       expect(meta.expenseRatio.managementFeeDisplay).toBeTruthy();
       expect(meta.expenseRatio.display).toBeTruthy();
       expect(meta.nav.display).toMatch(/^\$/);
@@ -1298,6 +1349,13 @@ describe("published fund files", () => {
       expect(meta.yields.distributionRateText).toMatch(/%$/);
       expect(meta.yields.secYieldText).toMatch(/%$/);
       expect(meta.returns.derivedFrom).toContain("NEOS fund page");
+      // Every fund page publishes its own premium/discount and bid-ask spread.
+      expect(meta.premiumDiscount.kind).toBe(
+        'official (fund page Fund Details "Premium Discount (%)")',
+      );
+      expect(meta.premiumDiscount.value).toBe(fund.premiumDiscountValue);
+      expect(meta.bidAskSpread.display).toMatch(/%$/);
+      expect(meta.source.premiumDiscountSource).toContain("official");
       expect(meta.distributions.paymentsPerYear).toBeGreaterThan(0);
       expect(meta.distributions.rows.length).toBeGreaterThan(0);
       expect(meta.holdings.asOfDate).toBeTruthy();
