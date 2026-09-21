@@ -1,108 +1,199 @@
-=================== FULL etf-pages.js ===================
-/**
- * Sortable columns for Distributions table
- */
-document.addEventListener("DOMContentLoaded", function() {
-    // Select all tables with the class "distribution-table-sortable"
-    const tables = document.querySelectorAll(".distribution-table-sortable");
+=================== 1. OFFICIAL HOLDINGS CSV ===================
+ok 200 68993 recon-request/artifacts/holdings-SPYI.csv
+--- SPYI bytes=68993 lines=509
+Date,Account,StockTicker,Cusip,SecurityName,Shares,Price,MarketValue,Weightings,NetAssets,SharesOutstanding,CreationUnits,MoneyMarketFlag
+09/21/2026,SPYI,003654100CVR,003654100CVR,"ABIOMED INC",2,$0.00,$0.00,0.00%,"$12,192,173,280.00","229,600,000","22,960",
+09/21/2026,SPYI,2602335D,BBG01Y2F01K3,"TPG Inc","30,983",$0.00,$0.00,0.00%,"$12,192,173,280.00","229,600,000","22,960",
+09/21/2026,SPYI,A,00846U101,"Agilent Technologies Inc","50,995",$156.47,"$7,979,187.65",0.07%,"$12,192,173,280.00","229,600,000","22,960",
+09/21/2026,SPYI,AAPL,037833100,"Apple Inc","2,693,204",$336.13,"$905,266,660.52",7.42%,"$12,192,173,280.00","229,600,000","22,960",
+09/21/2026,SPYI,ABBV,00287Y109,"AbbVie Inc","325,064",$263.96,"$85,803,893.44",0.70%,"$12,192,173,280.00","229,600,000","22,960",
+09/21/2026,SPYI,ABNB,009066101,"Airbnb Inc","75,766",$166.22,"$12,593,824.52",0.10%,"$12,192,173,280.00","229,600,000","22,960",
+09/21/2026,SPYI,ABT,002824100,"Abbott Laboratories","317,319",$102.61,"$32,560,102.59",0.27%,"$12,192,173,280.00","229,600,000","22,960",
+09/21/2026,SPYI,ACGL,G0450A105,"Arch Capital Group Ltd","62,938",$96.89,"$6,098,062.82",0.05%,"$12,192,173,280.00","229,600,000","22,960",
+09/21/2026,SPYI,ACN,G1151C101,"Accenture PLC","111,232",$181.29,"$20,165,249.28",0.17%,"$12,192,173,280.00","229,600,000","22,960",
+   ...tail:
+09/21/2026,SPYI,ZBRA,989207105,"Zebra Technologies Corp","7,921",$346.63,"$2,745,656.23",0.02%,"$12,192,173,280.00","229,600,000","22,960",
+09/21/2026,SPYI,ZTS,98978V103,"Zoetis Inc","76,575",$71.40,"$5,467,455.00",0.04%,"$12,192,173,280.00","229,600,000","22,960",
+09/21/2026,SPYI,Cash&Other,Cash&Other,"Cash & Other","162,387,743",$1.00,"$162,387,742.50",1.33%,"$12,192,173,280.00","229,600,000","22,960",Y
+ok 200 3869 recon-request/artifacts/holdings-CSHI.csv
+--- CSHI bytes=3869 lines=24
+Date,Account,StockTicker,Cusip,SecurityName,Shares,Price,MarketValue,Weightings,NetAssets,SharesOutstanding,CreationUnits,MoneyMarketFlag
+09/21/2026,CSHI,912797SA6,912797SA6,"United States Treasury Bill 10/01/2026","133,628,000",$99.90,"$133,488,247.83",7.15%,"$1,865,831,968.00","37,580,000","3,758",
+09/21/2026,CSHI,912797SK4,912797SK4,"United States Treasury Bill 10/29/2026","127,596,000",$99.60,"$127,082,598.35",6.81%,"$1,865,831,968.00","37,580,000","3,758",
+09/21/2026,CSHI,912797SU2,912797SU2,"United States Treasury Bill 11/27/2026","125,000,000",$99.27,"$124,085,583.75",6.65%,"$1,865,831,968.00","37,580,000","3,758",
+09/21/2026,CSHI,912797UH8,912797UH8,"United States Treasury Bill 09/24/2026","131,000,000",$99.97,"$130,958,898.75",7.02%,"$1,865,831,968.00","37,580,000","3,758",
+09/21/2026,CSHI,912797UJ4,912797UJ4,"United States Treasury Bill 10/08/2026","126,913,000",$99.82,"$126,685,771.16",6.79%,"$1,865,831,968.00","37,580,000","3,758",
+09/21/2026,CSHI,912797UL9,912797UL9,"United States Treasury Bill 10/22/2026","128,974,000",$99.67,"$128,550,858.23",6.89%,"$1,865,831,968.00","37,580,000","3,758",
+09/21/2026,CSHI,912797UY1,912797UY1,"United States Treasury Bill 11/12/2026","132,609,000",$99.44,"$131,864,838.07",7.07%,"$1,865,831,968.00","37,580,000","3,758",
+09/21/2026,CSHI,912797UZ8,912797UZ8,"United States Treasury Bill 11/19/2026","134,806,000",$99.36,"$133,947,679.41",7.18%,"$1,865,831,968.00","37,580,000","3,758",
+09/21/2026,CSHI,912797VA2,912797VA2,"United States Treasury Bill 12/03/2026","138,360,000",$99.20,"$137,257,575.19",7.36%,"$1,865,831,968.00","37,580,000","3,758",
+   ...tail:
+09/21/2026,CSHI,"SPXW  261001P07075000","SPXW  261001P07075000","SPXW US 10/01/26 P7075",-611,$3.30,"$-201,630.00",-0.01%,"$1,865,831,968.00","37,580,000","3,758",
+09/21/2026,CSHI,"SPXW  261001P07175000","SPXW  261001P07175000","SPXW US 10/01/26 P7175",-611,$4.40,"$-268,840.00",-0.01%,"$1,865,831,968.00","37,580,000","3,758",
+09/21/2026,CSHI,Cash&Other,Cash&Other,"Cash & Other","22,344,900",$1.00,"$22,344,900.34",1.20%,"$1,865,831,968.00","37,580,000","3,758",Y
+ok 200 1474 recon-request/artifacts/holdings-BNDI.csv
+--- BNDI bytes=1474 lines=10
+Date,Account,StockTicker,Cusip,SecurityName,Shares,Price,MarketValue,Weightings,NetAssets,SharesOutstanding,CreationUnits,MoneyMarketFlag
+09/21/2026,BNDI,AGG,464287226,"iShares Core U.S. Aggregate Bond ETF","988,933",$95.96,"$94,898,010.68",49.62%,"$191,241,120.00","4,200,000",420,
+09/21/2026,BNDI,BND,921937835,"Vanguard Total Bond Market ETF","1,333,233",$71.20,"$94,926,189.60",49.64%,"$191,241,120.00","4,200,000",420,
+09/21/2026,BNDI,"SPXW  261001P06800000","SPXW  261001P06800000","SPXW US 10/01/26 P6800",83,$1.70,"$14,110.00",0.01%,"$191,241,120.00","4,200,000",420,
+09/21/2026,BNDI,"SPXW  261001P06875000","SPXW  261001P06875000","SPXW US 10/01/26 P6875",83,$1.98,"$16,392.50",0.01%,"$191,241,120.00","4,200,000",420,
+09/21/2026,BNDI,"SPXW  261001P06950000","SPXW  261001P06950000","SPXW US 10/01/26 P6950",83,$2.38,"$19,712.50",0.01%,"$191,241,120.00","4,200,000",420,
+09/21/2026,BNDI,"SPXW  261001P07100000","SPXW  261001P07100000","SPXW US 10/01/26 P7100",-83,$3.50,"$-29,050.00",-0.02%,"$191,241,120.00","4,200,000",420,
+09/21/2026,BNDI,"SPXW  261001P07180000","SPXW  261001P07180000","SPXW US 10/01/26 P7180",-83,$4.50,"$-37,350.00",-0.02%,"$191,241,120.00","4,200,000",420,
+09/21/2026,BNDI,"SPXW  261001P07250000","SPXW  261001P07250000","SPXW US 10/01/26 P7250",-83,$5.85,"$-48,555.00",-0.03%,"$191,241,120.00","4,200,000",420,
+09/21/2026,BNDI,Cash&Other,Cash&Other,"Cash & Other","1,478,923",$1.00,"$1,478,923.36",0.77%,"$191,241,120.00","4,200,000",420,Y
+   ...tail:
+09/21/2026,BNDI,"SPXW  261001P07180000","SPXW  261001P07180000","SPXW US 10/01/26 P7180",-83,$4.50,"$-37,350.00",-0.02%,"$191,241,120.00","4,200,000",420,
+09/21/2026,BNDI,"SPXW  261001P07250000","SPXW  261001P07250000","SPXW US 10/01/26 P7250",-83,$5.85,"$-48,555.00",-0.03%,"$191,241,120.00","4,200,000",420,
+09/21/2026,BNDI,Cash&Other,Cash&Other,"Cash & Other","1,478,923",$1.00,"$1,478,923.36",0.77%,"$191,241,120.00","4,200,000",420,Y
+ok 200 1407 recon-request/artifacts/holdings-BTCI.csv
+--- BTCI bytes=1407 lines=9
+Date,Account,StockTicker,Cusip,SecurityName,Shares,Price,MarketValue,Weightings,NetAssets,SharesOutstanding,CreationUnits,MoneyMarketFlag
+09/21/2026,BTCI,912797VP9,912797VP9,"United States Treasury Bill 11/03/2026","784,377,000",$99.54,"$780,781,666.83",58.75%,"$1,328,971,775.00","40,570,000","4,057",
+09/21/2026,BTCI,"CBTX  261016C01390000","CBTX  261016C01390000","CBTX US 10/16/26 C1390","5,706",$532.55,"$303,873,030.00",22.87%,"$1,328,971,775.00","40,570,000","4,057",
+09/21/2026,BTCI,"CBTX  261016C01980000","CBTX  261016C01980000","CBTX US 10/16/26 C1980","-1,585",$52.65,"$-8,345,025.00",-0.63%,"$1,328,971,775.00","40,570,000","4,057",
+09/21/2026,BTCI,"CBTX  261016C02060000","CBTX  261016C02060000","CBTX US 10/16/26 C2060","-1,585",$30.75,"$-4,873,875.00",-0.37%,"$1,328,971,775.00","40,570,000","4,057",
+09/21/2026,BTCI,"CBTX  261016P01390000","CBTX  261016P01390000","CBTX US 10/16/26 P1390","-5,706",$4.15,"$-2,367,990.03",-0.18%,"$1,328,971,775.00","40,570,000","4,057",
+09/21/2026,BTCI,HODL,92189K105,"VanEck Bitcoin ETF/US","1,159,957",$22.96,"$26,632,612.72",2.00%,"$1,328,971,775.00","40,570,000","4,057",
+09/21/2026,BTCI,IBIT,46438F101,"iShares Bitcoin Trust ETF","4,985,396",$46.02,"$229,427,923.92",17.26%,"$1,328,971,775.00","40,570,000","4,057",
+09/21/2026,BTCI,Cash&Other,Cash&Other,"Cash & Other","3,808,195",$1.00,"$3,808,195.46",0.29%,"$1,328,971,775.00","40,570,000","4,057",Y
+   ...tail:
+09/21/2026,BTCI,HODL,92189K105,"VanEck Bitcoin ETF/US","1,159,957",$22.96,"$26,632,612.72",2.00%,"$1,328,971,775.00","40,570,000","4,057",
+09/21/2026,BTCI,IBIT,46438F101,"iShares Bitcoin Trust ETF","4,985,396",$46.02,"$229,427,923.92",17.26%,"$1,328,971,775.00","40,570,000","4,057",
+09/21/2026,BTCI,Cash&Other,Cash&Other,"Cash & Other","3,808,195",$1.00,"$3,808,195.46",0.29%,"$1,328,971,775.00","40,570,000","4,057",Y
+ok 200 757 recon-request/artifacts/holdings-IWMI.csv
+--- IWMI bytes=757 lines=5
+Date,Account,StockTicker,Cusip,SecurityName,Shares,Price,MarketValue,Weightings,NetAssets,SharesOutstanding,CreationUnits,MoneyMarketFlag
+09/21/2026,IWMI,"RUT   261016C03005000","RUT   261016C03005000","RUT US 10/16/26 C3005","-1,318",$6.35,"$-836,930.00",-0.07%,"$1,281,166,530.00","25,620,000","2,562",
+09/21/2026,IWMI,"RUT   261016C03050000","RUT   261016C03050000","RUT US 10/16/26 C3050","-1,318",$2.73,"$-359,155.00",-0.03%,"$1,281,166,530.00","25,620,000","2,562",
+09/21/2026,IWMI,VTWO,92206C664,"Vanguard Russell 2000 ETF","11,063,867",$115.16,"$1,274,114,923.72",99.45%,"$1,281,166,530.00","25,620,000","2,562",
+09/21/2026,IWMI,Cash&Other,Cash&Other,"Cash & Other","8,226,858",$1.00,"$8,226,857.68",0.64%,"$1,281,166,530.00","25,620,000","2,562",Y
+   ...tail:
+09/21/2026,IWMI,"RUT   261016C03050000","RUT   261016C03050000","RUT US 10/16/26 C3050","-1,318",$2.73,"$-359,155.00",-0.03%,"$1,281,166,530.00","25,620,000","2,562",
+09/21/2026,IWMI,VTWO,92206C664,"Vanguard Russell 2000 ETF","11,063,867",$115.16,"$1,274,114,923.72",99.45%,"$1,281,166,530.00","25,620,000","2,562",
+09/21/2026,IWMI,Cash&Other,Cash&Other,"Cash & Other","8,226,858",$1.00,"$8,226,857.68",0.64%,"$1,281,166,530.00","25,620,000","2,562",Y
+=================== 2. CATALOG #etf-table (all rows) ===================
+ok 200 201429 recon-request/artifacts/home.html
+=== table ids inside explore-etfs ===
+['etf-table']
+=== data-targets ===
+['average-annual-returns', 'fund-overview']
+=== TABLE etf-table ===
+Ticker	Fund Name	Distribution Frequency	Distribution Rate	30-Day SEC Yield	Management Fee	Net Assets	Inception Date
+SPYI	S&P 500® High Income ETF	Monthly	12.15%	0.46%	0.68%	$12,151,808,030	08/29/2022
+QQQI	Nasdaq-100® High Income ETF	Monthly	14.39%	-0.05%	0.68%	$14,803,183,640	01/29/2024
+IWMI	Russell 2000® High Income ETF	Monthly	14.51%	0.52%	0.68%*	$1,279,666,480	06/24/2024
+NIHI	MSCI EAFE High Income ETF	Monthly	9.71%	2.73%	0.68%*	$204,498,643	09/16/2025
+XSPI	Boosted S&P 500® High Income ETF	Monthly	16.78%                                0.18%                                0.98%	$113,242,709	02/02/2026
+XQQI	Boosted Nasdaq-100® High Income ETF	Monthly	20.15%                                -0.32%                                0.98%	$351,450,111	02/02/2026
+XBCI	Boosted Bitcoin High Income ETF	Monthly	38.83%                                1.12%                                0.98%	$179,468,557	02/02/2026
+BTCI	Bitcoin High Income ETF	Monthly	25.61%	1.35%	0.98%*	$1,328,970,822	10/16/2024
+NEHI	Ethereum High Income ETF	Monthly	30.24%                                1.13%                                0.98%	$110,310,296	12/02/2025
+IYRI	Real Estate High income ETF	Monthly	10.84%	3.05%	0.68%	$307,297,304	01/14/2025
+IAUI	Gold High Income ETF	Monthly	11.98%	1.87%	0.78%*	$634,724,933	06/04/2025
+MLPI	MLP & Energy Infrastructure High Income ETF	Monthly	14.19%                                3.47%                                0.68%	$956,867,166	12/17/2025
+QQQH	Nasdaq-100® Hedged Equity Income ETF	Monthly	9.02%	-0.01%	0.68%	$381,173,027	12/19/2019
+SPYH	S&P 500® Hedged Equity Income ETF	Monthly	7.84%	0.50%	0.68%	$44,647,064	04/02/2025
+NLSI	Long/Short Equity Income ETF	Monthly	5.27%                                -0.37%                                0.98%*	$4,634,398	12/09/2025
+HYBI	Enhanced Income Credit Select ETF	Monthly	8.08%	6.13%	0.68%*	$222,429,045	09/30/2014
+BNDI	Enhanced Income Aggregate Bond ETF	Monthly	5.78%	3.53%	0.58%*	$191,696,446	08/29/2022
+CSHI	Enhanced Income 1-3 Month T-Bill ETF	Monthly	5.00%	3.30%	0.38%	$1,864,838,475	08/29/2022
+TLTI	Enhanced Income 20+ Year Treasury Bond ETF	Monthly	6.27%	4.71%	0.58%	$17,165,496	12/10/2024
+=================== 3. FUND PAGE surface ===================
+ok 200 294370 recon-request/artifacts/spyi.html
+page bytes 294325
+=== all element ids ===
+['1', '10', '15', '16', '17', '2', '20', '2655', '27', '28', '3', '4', '5', '6', '8', '9', '988', 'annual-returns-info', 'back-top', 'brokerModal', 'classic-theme-styles-inline-css', 'contact', 'dc-year-2022', 'dc-year-2023', 'dc-year-2024', 'dc-year-2025', 'dc-year-2026', 'distribution-info', 'distributions', 'etf-pages-script-js', 'etf-pages-script-js-extra', 'exampleModalLabel', 'fund-material', 'fund_documents', 'global-script-js', 'global-styles-inline-css', 'holdings', 'imagesloaded-js', 'invest-modal-js', 'invest-modal-js-extra', 'invest-modal-overlay', 'jquery-core-js', 'jquery-migrate-js', 'masonry-js', 'menu-center', 'monthly-performance', 'monthly-performance-bar-chart', 'navIndexChart', 'neos-pop', 'neos-pop-btns', 'neos-pop-cta', 'neos-pop-img', 'neos-pop-over', 'neos-pop-over-close', 'neos-vote-banner', 'neos-vote-banner-close', 'neos-vote-banner-spacer', 'overview', 'performance', 'quarterly-performance', 'quarterly-performance-tax', 'subscribe-modal-js', 'subscribe-modal-overlay', 'tab-19a1-notices', 'tab-distribution-history', 'tab-form-8937', 'wp-block-library-inline-css', 'wp-emoji-settings', 'wp-emoji-styles-inline-css', 'wp-img-auto-sizes-contain-inline-css', 'wpforms-2655', 'wpforms-2655-field_1', 'wpforms-2655-field_1-container', 'wpforms-2655-field_2', 'wpforms-2655-field_2-container', 'wpforms-2655-field_3', 'wpforms-2655-field_3-container', 'wpforms-2655-field_4', 'wpforms-2655-field_4-container', 'wpforms-2655-field_5', 'wpforms-2655-field_5-container', 'wpforms-2655-field_5_1', 'wpforms-2655-field_5_2', 'wpforms-2655-field_6', 'wpforms-2655-field_6-container', 'wpforms-2655-field_8-container', 'wpforms-988', 'wpforms-988-field_1', 'wpforms-988-field_1-container', 'wpforms-988-field_10', 'wpforms-988-field_10-container', 'wpforms-988-field_15', 'wpforms-988-field_15-container', 'wpforms-988-field_16', 'wpforms-988-field_16-container', 'wpforms-988-field_17', 'wpforms-988-field_17-container', 'wpforms-988-field_20', 'wpforms-988-field_20-container', 'wpforms-988-field_27', 'wpforms-988-field_27-container', 'wpforms-988-field_28', 'wpforms-988-field_28-container', 'wpforms-988-field_8', 'wpforms-988-field_8-container', 'wpforms-988-field_9', 'wpforms-988-field_9-container', 'wpforms-address-field-js', 'wpforms-analytics-js', 'wpforms-analytics-pro-js', 'wpforms-form-2655', 'wpforms-form-988', 'wpforms-generic-utils-js', 'wpforms-js', 'wpforms-mailcheck-js', 'wpforms-maskedinput-js', 'wpforms-punycode-js', 'wpforms-recaptcha-js', 'wpforms-recaptcha-js-after', 'wpforms-smart-phone-field-core-js', 'wpforms-submit-2655', 'wpforms-submit-988', 'wpforms-validation-js']
+=== onclick handlers ===
+["downloadHoldingsCSV('SPYI');"]
+=== canvas ids ===
+['monthly-performance-bar-chart', 'navIndexChart']
+=== navIndexChart context ===
+ 11.20% </td> <td class="bg-f7f7f7"> 11.59% </td> <td class="bg-f7f7f7"> - </td> <td class="bg-f7f7f7"> 11.25% </td> </tr> </tbody> </table> </div> <!-- <canvas height="100vh" id="monthly-performance-bar-chart"></canvas> --> <p class="performance-table-disclosure-text">Past performance is no guarantee of future results. The performance data quoted here represents past performance. Current performance may be lower or higher than the performance data quoted above. Investment return and principal value will fluctuate, so that shares, when redeemed, may be worth more or less than their original cost. For performance data current to the most recent month end, please call (866) 498-5677.</p> <p class="performance-table-disclosure-text">SPYI is bought and sold at market price (not NAV) and are not individually redeemed from the fund. Brokerage commissions will reduce returns. Market Price returns are based upon the official closing price on the listing exchange (CBOE) at 4:00 p.m. ET when NAV is normally determined for SPYI, and do not represent the returns you would receive if you traded shares at other times. A fund’s NAV is the sum of all its assets less any liabilities, divided by the number of shares outstanding. </p> <p class="performance-table-disclosure-text">After-tax returns are calculated using the highest individual federal income tax rates in effect at the time of each distribution, and do not reflect the impact of state and local taxes. After-tax returns for most funds are calculated using the tax liability implied by each of their respective declared distributions. However, the exact tax characteristics of many distributions aren't known until after the close of the calendar year. When accounting for the return of capital, the system uses the pro-rata method to reduce cost basis. The pre-liquidation return is identical to a standard rate of return except when reinvesting the distributions, we must first reduce the reinvestment amount of each component of the distribution by the appropriate tax rate. Post-liquidation returns may be adversely impacted by an investor's deferred tax liabilities.</p> </div> </div> </div> <!-- panel --> </div> </div> </div> </div> </div> </section> </div> <!-- Chart Section --> <section style="overflow-x: hidden; background: #f2f3f6;"> <div class="container"> <div class="row mb-4"> <h2 class="color-primary right-line">Growth of $10,000 at NAV Since Inception</h2> <style> #navIndexChart { width: 100%; max-width: 90%; margin-left: auto; margin-right: auto; float: none; } </style> <canvas id="navIndexChart"></canvas> <script> document.addEventListener("DOMContentLoaded", function() { const dates = ["2022-08-29","2022-08-30","2022-08-31","2022-09-01","2022-09-02","2022-09-03","2022-09-04","2022-09-05","2022-09-06","2022-09-07","2022-09-08","2022-09-09","2022-09-10","2022-09-11","2022-09-12","2022-09-13","2022-09-14","2022-09-15","2022-09-16","2022-09-17","2022-09-18","2022-09-19","2022-09-20","2022-09-21","2022-09-22","2022-09-23","2022-09-24","2022-09-25","2022-09-26","2022-09-27","2022-09-28","2022-09-29","2022-09-30","2022-10-01","2022-10-02","2022-10-03","2022-10-04","2022-10-05","2022-10-06","2022-10-07","2022-10-08","2022-10-09","2022-10-10","2022-10-11","2022-10-12","2022-10-13","2022-10-14","2022-10-15","2022-10-16","2022-10-17","2022-10-18","2022-10-19","2022-10-20","2022-10-21","2022-10-22","2022-10-23","2022-10-24","2022-10-25","2022-10-26","2022-10-27","2022-10-28","2022-10-29","2022-10-30","2022-10-31","2022-11-01","2022-11-02","2022-11-03","2022-11-04","2022-11-05","2022-11-06","2022-11-07","2022-11-08","2022-11-09","2022-11-10","2022-11-11","2022-11-12","2022-11-13","2022-11-14","2022-11-15","2022-11-16","2022-11-17","2022-11-18","2022-11-19","2022-11-20","2022-11-21","2022-11-22","2022-11-23","2022-11-24",
+=== distribution history table (first 3000 chars) ===
+>
+								
+    <div class="distribution-calendar">
+                    <button class="dc-year-btn active" data-year="2026">
+                2026            </button>
 
-    // Loop through each table to set up independent sorting functionality
-    tables.forEach((table) => {
-        const tbody = table.querySelector("tbody");
-        const headers = table.querySelectorAll(".distribution-table-th");
-        let sortDirections = Array(headers.length).fill(false); // Track sort direction for each column within each table
-
-        headers.forEach((header, index) => {
-            header.addEventListener("click", () => {
-                // Toggle the sort direction for the clicked column in this specific table
-                sortDirections[index] = !sortDirections[index];
-                sortTableByColumn(tbody, index, sortDirections[index]);
-
-                // Update arrow direction for the current table's headers
-                headers.forEach((hdr, i) => {
-                    const arrow = hdr.querySelector(".sort-arrow");
-                    if (arrow) arrow.innerHTML = i === index ? (sortDirections[index] ? '&#x25B2;' : '&#x25BC;') : '&#x25BC;';
-                });
-            });
-        });
-    });
-
-    /**
-     * Sorts rows in the specified table body based on the given column index and sort direction
-     * @param {HTMLElement} tableBody - The tbody element of the table to sort
-     * @param {number} columnIndex - The index of the column to sort by
-     * @param {boolean} ascending - Sort direction; true for ascending, false for descending
-     */
-    function sortTableByColumn(tableBody, columnIndex, ascending = true) {
-        const rows = Array.from(tableBody.querySelectorAll("tr"));
-
-        const sortedRows = rows.sort((a, b) => {
-            if (!a.cells[columnIndex] || !b.cells[columnIndex]) {
-                console.error(`Row is missing the column at index ${columnIndex}`);
-                return 0;
-            }
-
-            const aText = a.cells[columnIndex].textContent.trim();
-            const bText = b.cells[columnIndex].textContent.trim();
-            let comparison = 0;
-
-            if (columnIndex === 4) { // Assuming column 4 contains numeric data
-                const aAmount = parseFloat(aText.replace("$", "")) || 0;
-                const bAmount = parseFloat(bText.replace("$", "")) || 0;
-                comparison = aAmount - bAmount;
-            } else { // Assuming other columns contain date data
-                const aDate = new Date(aText);
-                const bDate = new Date(bText);
-
-                if (!isNaN(aDate) && !isNaN(bDate)) {
-                    comparison = aDate - bDate;
-                } else {
-                    console.error(`Invalid date detected: "${aText}" or "${bText}"`);
-                    return 0;
-                }
-            }
-
-            return ascending ? comparison : -comparison;
-        });
-
-        // Clear the table body and re-append sorted rows
-        while (tableBody.firstChild) {
-            tableBody.removeChild(tableBody.firstChild);
-        }
-        tableBody.append(...sortedRows);
-    }
-});
-
-/**
- * AJAX request to the download endpoint with ticker parameter
- */
-function downloadHoldingsCSV(ticker) {
-    const xhr = new XMLHttpRequest();
-    xhr.open("GET", `${etf_ajax.ajax_url}?action=download_holdings_csv&ticker=${ticker}`, true);
-    xhr.responseType = 'blob'; // Important for file download
-
-    xhr.onload = function () {
-        if (xhr.status === 200) {
-            // Create a link element, set it as the download URL, and click it programmatically
-            const blob = new Blob([xhr.response], { type: 'text/csv' });
-            const link = document.createElement('a');
-            link.href = window.URL.createObjectURL(blob);
-            link.download = `NEOS Holdings - ${ticker} Holdings.csv`;
-            link.click();
-            window.URL.revokeObjectURL(link.href); // Clean up URL object
-        } else {
-            alert("Error downloading file.");
-        }
-    };
-
-    xhr.send();
-}
-
-=================== FULL portfolio.js ===================
-$(function(){$("#Container").mixItUp(),$("#Cols1").click(function(){$(".mix").removeClass("col-md-4"),$(".mix").removeClass("col-md-3"),$(".mix").removeClass("col-md-6"),$(".mix").addClass("col-md-12"),$("#Cols1").addClass("active"),$("#Cols2").removeClass("active"),$("#Cols3").removeClass("active"),$("#Cols4").removeClass("active")}),$("#Cols2").click(function(){$(".mix").removeClass("col-md-4"),$(".mix").removeClass("col-md-3"),$(".mix").addClass("col-md-6"),$(".mix").removeClass("col-md-12"),$("#Cols1").removeClass("active"),$("#Cols2").addClass("active"),$("#Cols3").removeClass("active"),$("#Cols4").removeClass("active")}),$("#Cols3").click(function(){$(".mix").addClass("col-md-4"),$(".mix").removeClass("col-md-3"),$(".mix").removeClass("col-md-6"),$(".mix").removeClass("col-md-12"),$("#Cols1").removeClass("active"),$("#Cols2").removeClass("active"),$("#Cols3").addClass("active"),$("#Cols4").removeClass("active")}),$("#Cols4").click(function(){$(".mix").removeClass("col-md-4"),$(".mix").addClass("col-md-3"),$(".mix").removeClass("col-md-6"),$(".mix").removeClass("col-md-12"),$("#Cols1").removeClass("active"),$("#Cols2").removeClass("active"),$("#Cols3").removeClass("active"),$("#Cols4").addClass("active")}),$("#portShow").click(function(){$(".portfolio-item-caption").removeClass("hidden")}),$("#portHide").click(function(){$(".portfolio-item-caption").addClass("hidden")}),$("#port-show").click(function(){this.checked?$(".portfolio-item-caption").removeClass("hidden"):$(".portfolio-item-caption").addClass("hidden")})});
-=================== etf_ajax + localized vars (extracted) ===================
-var etf_ajax = {"ajax_url":"https://neosfunds.com/wp-admin/admin-ajax.php"};
---- all wp_localize_script objects ---
-var etf_ajax = {"ajax_url":"https://neosfunds.com/wp-admin/admin-ajax.php"}
-var InvestModalData = {"fundSlugs":["spyi","qqqi","iwmi","nihi","xspi","xqqi","xbci","qqqh","spyh","nlsi","btci","nehi","iyri","iaui","mlpi","hybi","bndi","cshi","tlti"]}
-var wpforms_settings = {"val_required":"This field is required.","val_email":"Please enter a valid email address.","val_email_suggestion":"Did you mean {suggestion}?","val_email_suggestion_title":"Click to accept this suggestion.","val_email_restricted":"This email address is not allowed.","val_number":"Please enter a valid number.","val_number_positive":"Please enter a valid positive number.","val_minimum_price":"Amount entered is less than the required minimum.","val_confirm":"Field values do not match.","val_checklimit":"You have exceeded the number of allowed selections: {#}.","val_limit_characters":"{count} of {limit} max characters.","val_limit_words":"{count} of {limit} max words.","val_min":"Please enter a value greater than or equal to {0}.","val_max":"Please enter a value less than or equal to {0}.","val
+            <div class="dc-year-table visible" id="dc-year-2026">
+                <div class="table-responsive">
+                    <table class="table fund-details-font dc-table">
+                        <thead>
+                            <tr>
+                                <th>Declaration Date</th>
+                                <th>Ex-Div Date</th>
+                                <th>Record Date</th>
+                                <th>Payable Date</th>
+                                <th>Amount ($)</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                                                    <tr>
+                                <td class="bg-f7f7f7">01/20/2026</td>
+                                <td class="bg-f7f7f7">01/21/2026</td>
+                                <td class="bg-f7f7f7">01/21/2026</td>
+                                <td class="bg-f7f7f7">01/23/2026</td>
+                                <td class="bg-f7f7f7">$0.5309</td>
+                            </tr>
+                                                    <tr>
+                                <td class="bg-f7f7f7">02/17/2026</td>
+                                <td class="bg-f7f7f7">02/18/2026</td>
+                                <td class="bg-f7f7f7">02/18/2026</td>
+                                <td class="bg-f7f7f7">02/20/2026</td>
+                                <td class="bg-f7f7f7">$0.5219</td>
+                            </tr>
+                                                    <tr>
+                                <td class="bg-f7f7f7">03/17/2026</td>
+                                <td class="bg-f7f7f7">03/18/2026</td>
+                                <td class="bg-f7f7f7">03/18/2026</td>
+                                <td class="bg-f7f7f7">03/20/2026</td>
+                                <td class="bg-f7f7f7">$0.5104</td>
+                            </tr>
+                                                    <tr>
+                                <td class="bg-f7f7f7">04/21/2026</td>
+                                <td class="bg-f7f7f7">04/22/2026</td>
+                                <td class="bg-f7f7f7">04/22/2026</td>
+                                <td class="bg-f7f7f7">04/24/2026</td>
+                                <td class="bg-f7f7f7">$0.5247</td>
+                            </tr>
+                                                    <tr>
+                                <td class="bg-f7f7f7">05/19/2026</td>
+                                <td class="bg-f7f7f7">05/20/2026</td>
+                                <td class="bg-f7f7f7">05/20/2026</td>
+                                <td class="bg-f7f7f7">05/22/2026</td>
+                                <td class="bg-f7f7f7">$0.5353</td>
+                            </tr>
+                           
+=== distribution-info block ===
+id="distribution-info" class="fund-page-tab-pane active"> <div class="distribution-info"> <div class="row"> <small class="as-of-date"><i class="zmdi zmdi-calendar-note"></i>As of 08/31/2026</small> </div> <div class="row"> <div class="col"> <div class="block"> <small>Distribution Frequency</small> <div class="stat">Monthly</div> </div> </div> <div class="col"> <div class="block"> <small>Management Fee</small> <div class="stat">0.68%</div> </div> </div> </div> <div class="row"> <div class="col"> <div class="block"> <small data-container="body" data-toggle="popover" data-placement="left" title="Distribution Rate" data-content="The annual rate an investor would receive if the most recent fund distribution remained the same going forward. The distribution rate represents a single distribution from the Fund and is not a representation of the Fund's total return. The distribution rate is calculated by multiplying the most recent distribution by 12 in order to annualize it, and then dividing by the Fund's most recent ex-date NAV."> Distribution Rate <img src="/wp-content/uploads/info-1.svg" style="margin-left: 7px; max-width: 15px;" alt="Distribution Rate Info Icon"> </small> <div class="stat">12.15%</div> </div> </div> <div class="col"> <div class="block"> <small data-container="body" data-toggle="popover" data-placement="left" title="30-Day SEC Yield" data-content="30-day SEC Yield is based on a formula mandated by the Securities and Exchange Commission (SEC) that calculates a fund's hypothetical annualized income, as a percentage of its assets. A security's income, for the purposes of this calculation, is based on the current market yield to maturity (in the case of bonds) or projected dividend yield (for stocks) of the fund's holdings over a trailing 30-day period. This hypothetical income will differ (at times, significantly) from the fund's actual experience; as a result, income distributions from the fund may be higher or lower than implied by the SEC yield."> 30-Day SEC Yield<img src="/wp-content/uploads/info-1.svg" style="margin-left: 7px; max-width: 15px;" alt="30-Day SEC Yield Info Icon"> </small> <div class="stat">0.46%</div> 
+=== anchors mentioning csv/json/nav/history/pdf ===
+   #tab-distribution-history
+   https://shpetf-data.com/neos/NEOS_Web1.40ZZ.OZ_PremiumDiscount_SPYI.pdf
+=== inline script vars (first 40) ===
+---
+(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start': new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0], j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src= 'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f); })(window,document,'script','dataLayer','GTM-P8RCLG4C');
+---
+ (function () { 'use strict'; var banner = document.getElementById('neos-vote-banner'); var closeButton = document.getElementById('neos-vote-banner-close'); var root = document.documentElement; if (!banner) { return; } function updateBannerHeight() { var height = banner.hidden ? 0 : banner.offsetHeight; root.style.setProperty('--neos-vote-banner-height', height + 'px'); } updateBannerHeight(); window.addEventListener('load', updateBannerHeight); window.addEventListener('resize', updateBannerHeight); if ('ResizeObserver' in window) { var resizeObserver = new ResizeObserver(updateBannerHeight); resizeObserver.observe(banner); } if (closeButton) { closeButton.addEventListener('click', function () { banner.hidden = true; updateBannerHeight(); }); } })(); 
+---
+ piAId = '939763'; piCId = ''; piHostname = 'www2.neosfunds.com'; (function() { function async_load(){ var s = document.createElement('script'); s.type = 'text/javascript'; s.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + piHostname + '/pd.js'; var c = document.getElementsByTagName('script')[0]; c.parentNode.insertBefore(s, c); } if(window.attachEvent) { window.attachEvent('onload', async_load); } else { window.addEventListener('load', async_load, false); } })(); 
+---
+ var etf_ajax = {"ajax_url":"https://neosfunds.com/wp-admin/admin-ajax.php"}; //# sourceURL=etf-pages-script-js-extra 
+---
+ var InvestModalData = {"fundSlugs":["spyi","qqqi","iwmi","nihi","xspi","xqqi","xbci","qqqh","spyh","nlsi","btci","nehi","iyri","iaui","mlpi","hybi","bndi","cshi","tlti"]}; //# sourceURL=invest-modal-js-extra 
+---
+ /*! This file is auto-generated */ var e="script#wp-emoji-settings",t=document.querySelector(e);if(!(t instanceof HTMLScriptElement))throw new Error("Element missing: "+e);const r=JSON.parse(t.text),s=(window._wpemojiSettings=r,"wpEmojiSettingsSupports"),o=["flag","emoji"];function i(e){try{var t={supportTests:e,timestamp:(new Date).valueOf()};sessionStorage.setItem(s,JSON.stringify(t))}catch(e){}}function c(e,t,n){e.clearRect(0,0,e.canvas.width,e.canvas.height),e.fillText(t,0,0);t=new Uint32Array(e.getImageData(0,0,e.canvas.width,e.canvas.height).data);e.clearRect(0,0,e.canvas.width,e.canvas.height),e.fillText(n,0,0);const r=new Uint32Array(e.getImageData(0,0,e.canvas.width,e.canvas.height).data);return t.every((e,t)=>e===r[t])}function p(e,t){e.clearRect(0,0,e.canvas.width,e.canvas.height),e.fillText(t,0,0);var n=e.getImageData(16,16,1,1);for(let e=0;e<n.data.length;e++)if(0!==n.data[e])return!1;return!0}function u(e,t,n,r){switch(t){case"flag":return n(e,"\ud83c\udff3\ufe0f\u200d\u26a7\ufe0f","\ud83c\udff3\ufe0f\u200b\u26a7\ufe0f")?!1:!n(e,"\ud83c\udde8\ud83c\uddf6","\ud83c\udde8\u200b\ud83c\uddf6")&&!n(e,"\ud83c\udff4\udb40\udc67\udb40\udc62\udb40\udc65\udb40\udc6e\udb40\udc67\udb40\udc7f","\ud83c\udff4\u200b\udb40\udc67\u200b\udb40\udc62\u200b\udb40\udc65\u200b\udb40\udc6e\u200b\udb40\udc67\u200b\udb40\udc7f");case"emoji":return!r(e,"\ud83e\u1fac8")}return!1}function f(e,t,n,r){let a;const s=(a="undefined"!=typeof WorkerGlobalScope&&self instanceof WorkerGlobalScope?new
+=================== 4. shpetf-data.com premium/discount ===================
+404 bytes=1699 ct=<!DOCTYPE html><html><head><title>File Not Found</title><meta http-equiv="content-type" content="text/html; charset= https://shpetf-data.com/neos/NEOS_Web1.40ZZ.OZ_PremiumDiscount_SPYI.csv
+200 bytes=59214 ct=%PDF-1.3 %���� 1 0 obj << /Type /Catalog /Pages 2 0 R /PageMode /UseNone /ViewerPreferences << /FitWindow true  https://shpetf-data.com/neos/NEOS_Web1.40ZZ.OZ_PremiumDiscount_SPYI.pdf
+403 bytes=13 ct=403 Forbidden https://shpetf-data.com/neos/
+=================== 5. other admin-ajax actions ===================
+200 bytes=68993 action=download_holdings_csv :: Date,Account,StockTicker,Cusip,SecurityName,Shares,Price,MarketValue,Weightings,NetAssets,SharesOutstanding,CreationUnits,MoneyMarketFlag09
+400 bytes=1 action=download_nav_csv :: 0
+400 bytes=1 action=download_nav_history :: 0
+400 bytes=1 action=download_distributions_csv :: 0
+400 bytes=1 action=download_premium_discount :: 0
+400 bytes=1 action=get_holdings :: 0
+400 bytes=1 action=get_nav_history :: 0
