@@ -1162,10 +1162,12 @@ export function parseNeosDocuments(html: string): NeosDocuments {
     } else if (/supplemental tax information/i.test(label)) set('taxInfo');
   }
   // Form 8937 filings live in their own tab as a list of period-labelled links.
+  // The filing is matched on its own filename, so a fund whose 8937 tab is
+  // empty never picks up the first PDF of the tab that follows it.
   const formStart = html.search(/id=["']tab-form-8937["']/i);
   if (formStart >= 0) {
     const formSection = html.slice(formStart, formStart + 12000);
-    const pdf = /href=["'](https?:\/\/[^"']+\.pdf)["']/i.exec(formSection);
+    const pdf = /href=["'](https?:\/\/[^"']*8937[^"']*\.pdf)["']/i.exec(formSection);
     if (pdf) documents.form8937 = pdf[1];
   }
   return documents;
@@ -2042,6 +2044,10 @@ async function updateFund(
         yr5: monthEndValues.yr5 ?? null,
         yr10: monthEndValues.yr10 ?? null,
         sinceInception: monthEndValues.sinceInception ?? null,
+        // The page's own "Inception (Cumulative)" cell, which the app's
+        // Overview tab renders beside the annualized figure.
+        sinceInceptionCumulative: monthEndValues.sinceInceptionCumulative ?? null,
+        sinceInceptionCumulativeText: formatPercentText(monthEndValues.sinceInceptionCumulative ?? null),
       },
       quarterEnd: {
         asOfDate: formatNeosDate(quarterEndDate),
@@ -2051,6 +2057,8 @@ async function updateFund(
         yr5: quarterEndValues.yr5 ?? null,
         yr10: quarterEndValues.yr10 ?? null,
         sinceInception: quarterEndValues.sinceInception ?? null,
+        sinceInceptionCumulative: quarterEndValues.sinceInceptionCumulative ?? null,
+        sinceInceptionCumulativeText: formatPercentText(quarterEndValues.sinceInceptionCumulative ?? null),
       },
     },
     metrics,

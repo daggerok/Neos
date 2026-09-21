@@ -934,6 +934,9 @@ const DOCUMENTS_HTML = `
 <div id="tab-form-8937" class="tab-pane">
   <p>Form 8937</p>
   <a href="https://neosfunds.com/wp-content/uploads/NEOS-SP-500-R-High-Income-ETF-Form-8937-12.31.25.pdf">12/31/2025</a>
+</div>
+<div id="tab-19a1-notices" class="tab-pane">
+  <a href="https://neosfunds.com/wp-content/uploads/SPYI-Prospectus.pdf">Prospectus</a>
 </div>`;
 
 describe("parseNeosDocuments", () => {
@@ -955,6 +958,14 @@ describe("parseNeosDocuments", () => {
   test("tax inserts and the Form 8937 tab are both covered", () => {
     expect(documents.taxInfo).toContain("NEOS-Tax-Insert-2025.pdf");
     expect(documents.form8937).toContain("Form-8937");
+  });
+
+  test("an empty 8937 tab does not borrow the next tab's PDF", () => {
+    const withoutForm = parseNeosDocuments(
+      `<div id="tab-form-8937"></div><div id="tab-19a1">` +
+        `<a href="https://neosfunds.com/wp-content/uploads/XSPI-Prospectus.pdf">Prospectus</a></div>`,
+    );
+    expect(withoutForm.form8937).toBeNull();
   });
 
   test("a fund with no documents table leaves every field null", () => {
@@ -1556,5 +1567,100 @@ describe("the app's meta.json field contract", () => {
     // And the funds old enough do report them.
     expect(byTicker["HYBI"].returns.monthEnd.ytd).not.toBeNull();
     expect(byTicker["SPYI"].returns.monthEnd.yr3).not.toBeNull();
+  });
+});
+
+// ---------------------------------------------------------------------------
+// 19. Rendering the app's Overview tab from the published feed
+// ---------------------------------------------------------------------------
+
+// The Overview tab is a literal array of { section, metric, value } rows inside
+// app.tsx, so the guard reads that array out of the file and evaluates each row
+// against every published fund. A cell that comes back empty is a feed gap
+// (the field is missing) or a provider limitation (the field is null); only the
+// limitations may ever show `—`, and only for the funds listed here. A new
+// dash anywhere fails this suite instead of shipping a blank cell.
+const DOCUMENTED_DASHES: Record<string, string[]> = {
+  "YTD (ME)": ["XBCI", "XQQI", "XSPI"],
+  "YTD (QE)": ["XBCI", "XQQI", "XSPI"],
+  "1Y (ME)": ["MLPI", "NEHI", "NIHI", "NLSI", "XBCI", "XQQI", "XSPI"],
+  "1Y (QE)": ["MLPI", "NEHI", "NIHI", "NLSI", "XBCI", "XQQI", "XSPI"],
+  "3Y CAGR (ME)": ["BTCI", "IAUI", "IWMI", "IYRI", "MLPI", "NEHI", "NIHI", "NLSI", "QQQI", "SPYH", "TLTI", "XBCI", "XQQI", "XSPI"],
+  "3Y CAGR (QE)": ["BTCI", "IAUI", "IWMI", "IYRI", "MLPI", "NEHI", "NIHI", "NLSI", "QQQI", "SPYH", "TLTI", "XBCI", "XQQI", "XSPI"],
+  "5Y CAGR (ME)": ["BNDI", "BTCI", "CSHI", "IAUI", "IWMI", "IYRI", "MLPI", "NEHI", "NIHI", "NLSI", "QQQI", "SPYH", "SPYI", "TLTI", "XBCI", "XQQI", "XSPI"],
+  "5Y CAGR (QE)": ["BNDI", "BTCI", "CSHI", "IAUI", "IWMI", "IYRI", "MLPI", "NEHI", "NIHI", "NLSI", "QQQI", "SPYH", "SPYI", "TLTI", "XBCI", "XQQI", "XSPI"],
+  "10Y CAGR (ME)": ["BNDI", "BTCI", "CSHI", "IAUI", "IWMI", "IYRI", "MLPI", "NEHI", "NIHI", "NLSI", "QQQH", "QQQI", "SPYH", "SPYI", "TLTI", "XBCI", "XQQI", "XSPI"],
+  "10Y CAGR (QE)": ["BNDI", "BTCI", "CSHI", "IAUI", "IWMI", "IYRI", "MLPI", "NEHI", "NIHI", "NLSI", "QQQH", "QQQI", "SPYH", "SPYI", "TLTI", "XBCI", "XQQI", "XSPI"],
+  "SI Ann. (ME)": ["MLPI", "NEHI", "NIHI", "NLSI", "XBCI", "XQQI", "XSPI"],
+  "SI Ann. (QE)": ["MLPI", "NEHI", "NIHI", "NLSI", "XBCI", "XQQI", "XSPI"],
+  "Underlying Exposure": ["HYBI", "IAUI", "NIHI", "QQQH", "SPYH"],
+  "Fiscal Year Q3 Portfolio Holdings": ["IAUI", "MLPI", "NEHI", "NIHI", "NLSI", "SPYH", "XBCI", "XQQI", "XSPI"],
+  "Annual Report": ["XBCI", "XQQI", "XSPI"],
+  "Supplemental Tax Information": ["XBCI", "XQQI", "XSPI"],
+  "12-Month Trailing Distribution Rate": ["IAUI", "MLPI", "NEHI", "NIHI", "NLSI", "SPYH", "XBCI", "XQQI", "XSPI"],
+};
+
+/** The `const overview: Array<...> = [...]` rows of renderOverviewTable(). */
+function overviewRows(): Array<{ section: string; metric: string; expression: string }> {
+  const app = readFileSync(path.join(REPO_ROOT, "app.tsx"), "utf8");
+  const marker = "const overview: Array<{ section: string; metric: string; value: unknown }> = [";
+  const start = app.indexOf(marker);
+  expect(start).toBeGreaterThan(0);
+  const end = app.indexOf("  ];", start);
+  const body = app.slice(start + marker.length, end);
+  return [...body.matchAll(/\{ section: '([^']+)', metric: '([^']+)', value: ([\s\S]*?) \},/g)].map(
+    ([, section, metric, expression]) => ({ section, metric, expression }),
+  );
+}
+
+describe("the Overview tab renders from the feed", () => {
+  const index = feedJson("index.json");
+  const rows = overviewRows();
+  const dashes = new Map<string, string[]>();
+
+  test("every Overview row evaluates against every fund", () => {
+    expect(rows.length).toBeGreaterThan(60);
+    const formatMoney = (value: number | null) => (value === null || value === undefined ? "\u2014" : `$${Number(value).toFixed(2)}`);
+    const formatPercent = (value: number | null) => (value === null || value === undefined ? "\u2014" : `${Number(value).toFixed(2)}%`);
+    for (const fund of index.funds) {
+      const meta = feedJson(`funds/${fund.ticker}/meta.json`);
+      const monthEnd = (fund.returns && fund.returns.monthEnd) || {};
+      const quarterEnd = (fund.returns && fund.returns.quarterEnd) || {};
+      for (const row of rows) {
+        // The same expression the app renders, evaluated against the feed.
+        const render = new Function(
+          "meta",
+          "fund",
+          "monthEnd",
+          "quarterEnd",
+          "formatMoney",
+          "formatPercent",
+          "categoryLabel",
+          `return (${row.expression});`,
+        );
+        const value = render(meta, fund, monthEnd, quarterEnd, formatMoney, formatPercent, (label: string) => label || "ETF");
+        const empty = value === null || value === undefined || value === "" || value === "\u2014";
+        if (empty) dashes.set(row.metric, [...(dashes.get(row.metric) || []), fund.ticker]);
+      }
+    }
+    expect(dashes.size).toBeGreaterThan(0);
+  });
+
+  test("only the documented provider limitations render as `—`", () => {
+    for (const [metric, tickers] of dashes) {
+      expect(Object.keys(DOCUMENTED_DASHES)).toContain(metric);
+      expect(DOCUMENTED_DASHES[metric]).toContain(tickers[0]);
+      // A fund outside the documented set means a cell went blank.
+      for (const ticker of tickers) expect(`${metric} ${ticker}`).toBe(`${metric} ${DOCUMENTED_DASHES[metric].includes(ticker) ? ticker : `${ticker} UNEXPECTED`}`);
+    }
+  });
+
+  test("the catalog row carries the figures the Overview tab reads", () => {
+    const spyi = Object.fromEntries(index.funds.map((fund: any) => [fund.ticker, fund]))["SPYI"] as any;
+    expect(spyi.returns.monthEnd.sinceInceptionCumulative).toBe(75.14);
+    expect(spyi.returns.monthEnd.sinceInceptionCumulativeText).toBe("75.14%");
+    expect(spyi.returns.monthEnd.sinceInception).toBe(15.02);
+    expect(spyi.returns.quarterEnd.sinceInceptionCumulative).toBe(70.14);
+    expect(spyi.returns.quarterEnd.asOfDate).toBe("Jun 30 2026");
   });
 });
