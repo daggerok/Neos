@@ -1,0 +1,83 @@
+name: Recon (temporary)
+
+on:
+  push:
+    paths:
+      - 'recon-request/**'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  recon:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Fund page - find holdings download URL
+        run: |
+          set -x
+          curl -sSL -A 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0 Safari/537.36' \
+            -o /tmp/spyi.html -w 'page http=%{http_code} size=%{size_download}\n' 'https://neosfunds.com/spyi/'
+          wc -c /tmp/spyi.html
+          echo '--- context around Full Holdings ---'
+          grep -o -i -E '.{600}Full Holdings.{600}' /tmp/spyi.html | head -5
+          echo '--- all csv/xlsx hrefs on the page ---'
+          grep -o -i -E 'href="[^"]*\.(csv|xlsx|xls)[^"]*"' /tmp/spyi.html | sort -u | head -40
+          echo '--- any download attr ---'
+          grep -o -i -E '<a[^>]*download[^>]*>' /tmp/spyi.html | head -20
+          echo '--- admin-ajax / api endpoints referenced ---'
+          grep -o -E 'https?://[^"'"'"' ]*admin-ajax[^"'"'"' ]*' /tmp/spyi.html | sort -u | head -20
+          grep -o -E 'wp-json[^"'"'"' ]*' /tmp/spyi.html | sort -u | head -30
+          echo '--- script srcs ---'
+          grep -o -E '<script[^>]*src="[^"]*"' /tmp/spyi.html | sed 's/.*src="//' | sort -u | head -40
+
+      - name: Candidate holdings files
+        run: |
+          for u in \
+            "https://neosfunds.com/wp-content/uploads/SPYI-Holdings.xlsx" \
+            "https://neosfunds.com/wp-content/uploads/SPYI-Daily-Holdings.csv" \
+            "https://neosfunds.com/wp-content/uploads/SPYI-Full-Holdings.csv" \
+            "https://neosfunds.com/wp-content/uploads/SPYI-Full-Holdings.xlsx" \
+            "https://neosfunds.com/wp-content/uploads/SPYI-Holdings.csv" \
+            "https://neosfunds.com/wp-content/uploads/holdings/SPYI.csv" \
+            "https://neosfunds.com/wp-content/uploads/NEOS-Holdings.csv" \
+            "https://neosfunds.com/wp-content/uploads/SPYI-holdings.xlsx" \
+            ; do
+            code=$(curl -sS -o /tmp/probe.out -w '%{http_code}' -A 'Mozilla/5.0' -L "$u")
+            echo "$code  $(wc -c < /tmp/probe.out)  $u"
+          done
+
+      - name: SEC - NEOS trust + series mapping
+        env:
+          SEC_UA: 'daggerok Neos data updater (contact: daggerok@github)'
+        run: |
+          curl -sS -A "$SEC_UA" -o /tmp/mf.json -w 'mf http=%{http_code} size=%{size_download}\n' \
+            'https://www.sec.gov/files/company_tickers_mf.json'
+          python3 - <<'PY'
+          import json
+          d=json.load(open('/tmp/mf.json'))
+          rows=d['fields']
+          print('fields', rows[:6])
+          idx={k:i for i,k in enumerate(rows)}
+          hits=[r for r in d['data'] if 'NEOS' in str(r).upper()]
+          print('NEOS rows:', len(hits))
+          for r in hits:
+              print(' ', r)
+          PY
+
+      - name: Yahoo probe
+        run: |
+          for t in SPYI QQQI IWMI BTCI CSHI; do
+            curl -sS -A 'Mozilla/5.0' -o /tmp/y.json -w "$t http=%{http_code} " \
+              "https://query1.finance.yahoo.com/v8/finance/chart/$t?period1=0&period2=9999999999&interval=1d&events=div%7Csplit&includeAdjustedClose=true"
+            python3 -c "
+import json,sys
+try:
+    d=json.load(open('/tmp/y.json'))
+    r=d['chart']['result'][0]
+    print('rows',len(r['timestamp']),'divs',len(r.get('events',{}).get('dividends',{})),'first',r['timestamp'][0])
+except Exception as e: print('ERR',e)
+"
+          done
