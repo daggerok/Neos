@@ -74,7 +74,7 @@ Date,Account,StockTicker,Cusip,SecurityName,Shares,Price,MarketValue,Weightings,
 09/21/2026,IWMI,VTWO,92206C664,"Vanguard Russell 2000 ETF","11,063,867",$115.16,"$1,274,114,923.72",99.45%,"$1,281,166,530.00","25,620,000","2,562",
 09/21/2026,IWMI,Cash&Other,Cash&Other,"Cash & Other","8,226,858",$1.00,"$8,226,857.68",0.64%,"$1,281,166,530.00","25,620,000","2,562",Y
 =================== 2. CATALOG #etf-table (all rows) ===================
-ok 200 201429 recon-request/artifacts/home.html
+ok 200 201385 recon-request/artifacts/home.html
 === table ids inside explore-etfs ===
 ['etf-table']
 === data-targets ===
@@ -101,8 +101,8 @@ BNDI	Enhanced Income Aggregate Bond ETF	Monthly	5.78%	3.53%	0.58%*	$191,696,446	
 CSHI	Enhanced Income 1-3 Month T-Bill ETF	Monthly	5.00%	3.30%	0.38%	$1,864,838,475	08/29/2022
 TLTI	Enhanced Income 20+ Year Treasury Bond ETF	Monthly	6.27%	4.71%	0.58%	$17,165,496	12/10/2024
 =================== 3. FUND PAGE surface ===================
-ok 200 294370 recon-request/artifacts/spyi.html
-page bytes 294325
+ok 200 294371 recon-request/artifacts/spyi.html
+page bytes 294326
 === all element ids ===
 ['1', '10', '15', '16', '17', '2', '20', '2655', '27', '28', '3', '4', '5', '6', '8', '9', '988', 'annual-returns-info', 'back-top', 'brokerModal', 'classic-theme-styles-inline-css', 'contact', 'dc-year-2022', 'dc-year-2023', 'dc-year-2024', 'dc-year-2025', 'dc-year-2026', 'distribution-info', 'distributions', 'etf-pages-script-js', 'etf-pages-script-js-extra', 'exampleModalLabel', 'fund-material', 'fund_documents', 'global-script-js', 'global-styles-inline-css', 'holdings', 'imagesloaded-js', 'invest-modal-js', 'invest-modal-js-extra', 'invest-modal-overlay', 'jquery-core-js', 'jquery-migrate-js', 'masonry-js', 'menu-center', 'monthly-performance', 'monthly-performance-bar-chart', 'navIndexChart', 'neos-pop', 'neos-pop-btns', 'neos-pop-cta', 'neos-pop-img', 'neos-pop-over', 'neos-pop-over-close', 'neos-vote-banner', 'neos-vote-banner-close', 'neos-vote-banner-spacer', 'overview', 'performance', 'quarterly-performance', 'quarterly-performance-tax', 'subscribe-modal-js', 'subscribe-modal-overlay', 'tab-19a1-notices', 'tab-distribution-history', 'tab-form-8937', 'wp-block-library-inline-css', 'wp-emoji-settings', 'wp-emoji-styles-inline-css', 'wp-img-auto-sizes-contain-inline-css', 'wpforms-2655', 'wpforms-2655-field_1', 'wpforms-2655-field_1-container', 'wpforms-2655-field_2', 'wpforms-2655-field_2-container', 'wpforms-2655-field_3', 'wpforms-2655-field_3-container', 'wpforms-2655-field_4', 'wpforms-2655-field_4-container', 'wpforms-2655-field_5', 'wpforms-2655-field_5-container', 'wpforms-2655-field_5_1', 'wpforms-2655-field_5_2', 'wpforms-2655-field_6', 'wpforms-2655-field_6-container', 'wpforms-2655-field_8-container', 'wpforms-988', 'wpforms-988-field_1', 'wpforms-988-field_1-container', 'wpforms-988-field_10', 'wpforms-988-field_10-container', 'wpforms-988-field_15', 'wpforms-988-field_15-container', 'wpforms-988-field_16', 'wpforms-988-field_16-container', 'wpforms-988-field_17', 'wpforms-988-field_17-container', 'wpforms-988-field_20', 'wpforms-988-field_20-container', 'wpforms-988-field_27', 'wpforms-988-field_27-container', 'wpforms-988-field_28', 'wpforms-988-field_28-container', 'wpforms-988-field_8', 'wpforms-988-field_8-container', 'wpforms-988-field_9', 'wpforms-988-field_9-container', 'wpforms-address-field-js', 'wpforms-analytics-js', 'wpforms-analytics-pro-js', 'wpforms-form-2655', 'wpforms-form-988', 'wpforms-generic-utils-js', 'wpforms-js', 'wpforms-mailcheck-js', 'wpforms-maskedinput-js', 'wpforms-punycode-js', 'wpforms-recaptcha-js', 'wpforms-recaptcha-js-after', 'wpforms-smart-phone-field-core-js', 'wpforms-submit-2655', 'wpforms-submit-988', 'wpforms-validation-js']
 === onclick handlers ===
