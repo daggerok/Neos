@@ -1426,3 +1426,135 @@ describe("published fund files", () => {
     expect(payload.rows.every((row: any) => /^\d{4}-\d{2}-\d{2}$/.test(row.Date))).toBe(true);
   });
 });
+
+// ---------------------------------------------------------------------------
+// 18. The app's field contract — no empty cells unless the provider has none
+// ---------------------------------------------------------------------------
+
+// The single-file app reads these straight out of a fund's meta.json. The list
+// is scanned out of app.tsx itself rather than transcribed, so renaming a field
+// on either side of the feed contract fails this suite instead of blanking a
+// cell in the published site.
+function metaPathsReadByApp(): string[] {
+  const app = readFileSync(path.join(REPO_ROOT, "app.tsx"), "utf8");
+  const chains = [...app.matchAll(/\bmeta\.([A-Za-z0-9_.]+)/g)].map((match) => match[1]);
+  return [...new Set(chains)]
+    // `meta.json` in prose and comments is not a field read.
+    .filter((chain) => !chain.includes("json"))
+    .map((chain) => chain.replace(/\.$/, ""))
+    .sort();
+}
+
+/** Walks a dotted field path, so the app's own reads can be checked verbatim. */
+const fieldAt = (value: any, dotted: string): any =>
+  dotted.split(".").reduce((node: any, key: string) => (node === null || node === undefined ? undefined : node[key]), value);
+
+// The only cells the page may show as `—`, each with the provider reason, and
+// the tickers it applies to. Anything else must be filled in.
+const DOCUMENTED_NULLS: Record<string, { reason: string; tickers: string[] }> = {
+  "documents.fiscalQ3Holdings": {
+    reason: "NEOS has not published the fiscal-year Q3 portfolio-holdings PDF for every fund yet",
+    tickers: ["IAUI", "MLPI", "NEHI", "NIHI", "NLSI", "SPYH", "XBCI", "XQQI", "XSPI"],
+  },
+  "documents.annualReport": {
+    reason: "the three February-2026 funds have not filed a first annual report yet",
+    tickers: ["XBCI", "XQQI", "XSPI"],
+  },
+  "documents.taxInfo": {
+    reason: "no supplemental tax insert published for the three February-2026 funds yet",
+    tickers: ["XBCI", "XQQI", "XSPI"],
+  },
+  "identifiers.indexName": {
+    reason: "these five fund pages carry an Investment Objective paragraph instead of an Underlying Exposure row",
+    tickers: ["HYBI", "IAUI", "NIHI", "QQQH", "SPYH"],
+  },
+};
+
+describe("the app's meta.json field contract", () => {
+  const index = feedJson("index.json");
+  const paths = metaPathsReadByApp();
+
+  test("the reader picks up the app's own meta.json field reads", () => {
+    expect(paths.length).toBeGreaterThan(40);
+    expect(paths).toContain("identifiers.cusip");
+    expect(paths).toContain("nav.dailyChangeText");
+    expect(paths).toContain("yields.secYieldText");
+    expect(paths).toContain("distributions.paymentsPerYear");
+    expect(paths.some((chain) => chain.startsWith("documents."))).toBe(true);
+  });
+
+  test("every field the app renders exists in every published meta.json", () => {
+    for (const fund of index.funds) {
+      const meta = feedJson(`funds/${fund.ticker}/meta.json`);
+      for (const chain of paths) {
+        const value = fieldAt(meta, chain);
+        // `undefined` means the app would render a blank cell: a contract break.
+        expect(`${fund.ticker} meta.${chain} = ${value}`).not.toStartWith(`${fund.ticker} meta.${chain} = undefined`);
+      }
+    }
+  });
+
+  test("a null field is one of the documented provider limitations, and only for its own funds", () => {
+    const observed = new Map<string, string[]>();
+    for (const fund of index.funds) {
+      const meta = feedJson(`funds/${fund.ticker}/meta.json`);
+      for (const chain of paths) {
+        const value = fieldAt(meta, chain);
+        if (value === null) observed.set(chain, [...(observed.get(chain) || []), fund.ticker]);
+      }
+    }
+    for (const [chain, tickers] of observed) {
+      expect(Object.keys(DOCUMENTED_NULLS)).toContain(chain);
+      expect(tickers.sort()).toEqual(DOCUMENTED_NULLS[chain].tickers);
+    }
+    // The other direction: a limitation that no longer applies must be dropped
+    // from the list, so the table in the README cannot rot.
+    for (const chain of Object.keys(DOCUMENTED_NULLS)) {
+      expect(observed.has(chain)).toBe(true);
+    }
+  });
+
+  test("every catalog field the app's table derivation reads is published", () => {
+    const catalogs = [
+      ["returns.monthEnd.asOfDate", (fund: any) => fund.returns.monthEnd.asOfDate],
+      ["returns.quarterEnd.asOfDate", (fund: any) => fund.returns.quarterEnd.asOfDate],
+      ["metrics.dividendYieldText", (fund: any) => fund.metrics.dividendYieldText],
+      ["metrics.secYieldText", (fund: any) => fund.metrics.secYieldText],
+      ["metrics.siAnn", (fund: any) => fund.metrics.siAnn],
+      ["metrics.tr1y", (fund: any) => fund.metrics.tr1y],
+      ["metrics.tr3y", (fund: any) => fund.metrics.tr3y],
+      ["metrics.tr5y", (fund: any) => fund.metrics.tr5y],
+      ["metrics.tr10y", (fund: any) => fund.metrics.tr10y],
+      ["metrics.cagr3y", (fund: any) => fund.metrics.cagr3y],
+      ["metrics.cagr5y", (fund: any) => fund.metrics.cagr5y],
+      ["metrics.cagr10y", (fund: any) => fund.metrics.cagr10y],
+      ["distributions.frequency", (fund: any) => fund.distributions.frequency],
+      ["distributions.paymentsPerYear", (fund: any) => fund.distributions.paymentsPerYear],
+      ["premiumDiscountKind", (fund: any) => fund.premiumDiscountKind],
+      ["bidAskSpread", (fund: any) => fund.bidAskSpread],
+    ] as const;
+    for (const fund of index.funds) {
+      for (const [label, read] of catalogs) {
+        expect(`${fund.ticker} ${label} = ${read(fund)}`).not.toStartWith(`${fund.ticker} ${label} = undefined`);
+      }
+    }
+  });
+
+  test("a return the fund is too young to report is null, never zero", () => {
+    const tooYoung: Record<string, string[]> = {
+      ytd: ["XBCI", "XQQI", "XSPI"],
+      yr1: ["MLPI", "NEHI", "NIHI", "NLSI", "XBCI", "XQQI", "XSPI"],
+      yr3: ["BTCI", "IAUI", "IWMI", "IYRI", "MLPI", "NEHI", "NIHI", "NLSI", "QQQI", "SPYH", "TLTI", "XBCI", "XQQI", "XSPI"],
+    };
+    const byTicker = Object.fromEntries(index.funds.map((fund: any) => [fund.ticker, fund]));
+    for (const [tenor, tickers] of Object.entries(tooYoung)) {
+      for (const ticker of tickers) {
+        expect(`${ticker} ${tenor}`).toBe(`${ticker} ${tenor}`);
+        expect(byTicker[ticker].returns.monthEnd[tenor]).toBeNull();
+      }
+    }
+    // And the funds old enough do report them.
+    expect(byTicker["HYBI"].returns.monthEnd.ytd).not.toBeNull();
+    expect(byTicker["SPYI"].returns.monthEnd.yr3).not.toBeNull();
+  });
+});
