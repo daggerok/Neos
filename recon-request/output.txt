@@ -1,90 +1,97 @@
-=================== 1. fund page HTML ===================
-spyi http=200 size=294373
-294373 /tmp/spyi.html
---- context around 'Full Holdings' ---
---- any csv/xlsx hrefs ---
-https://neosfunds.com/wp-content/uploads/NEOS-ETF-Trust-Proxy-Voting-Records.xlsx
---- anchors with download attribute ---
-<a href="javascript:void(0);" onclick="downloadHoldingsCSV('SPYI');" class="btn btn-default quick-buttons" style="color: #333 !important;">Download Full Holdings
---- admin-ajax references ---
-https://neosfunds.com/wp-admin/admin-ajax.php
-https:\/\/neosfunds.com\/wp-admin\/admin-ajax.php
---- wp-json references ---
-wp-json/
-wp-json/oembed/1.0/embed?url=https%3A%2F%2Fneosfunds.com%2Fspyi%2F
-wp-json/oembed/1.0/embed?url=https%3A%2F%2Fneosfunds.com%2Fspyi%2F&#038;format=xml
-wp-json/wp/v2/pages/1073
---- script srcs ---
-/wp-content/themes/HVM-ALTERA/js/app.min.js
-/wp-content/themes/HVM-ALTERA/js/dynamic-text.js
-/wp-content/themes/HVM-ALTERA/js/plugins.min.js
-/wp-content/themes/HVM-ALTERA/js/portfolio.js
-assets/js/html5shiv.min.js
-assets/js/respond.min.js
-https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js
-https://app.advizorpro.com/i/goS2B2.ap.js
-https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js
-https://hcaptcha.com/1/api.js?onload=wpformsRecaptchaLoad&#038;render=explicit&#038;recaptchacompat=off
-https://neosfunds.com/wp-content/plugins/wpforms/assets/js/frontend/analytics.min.js?ver=2.0.2
-https://neosfunds.com/wp-content/plugins/wpforms/assets/js/frontend/fields/address.min.js?ver=2.0.2
-https://neosfunds.com/wp-content/plugins/wpforms/assets/js/frontend/wpforms.min.js?ver=2.0.2
-https://neosfunds.com/wp-content/plugins/wpforms/assets/js/share/utils.min.js?ver=2.0.2
-https://neosfunds.com/wp-content/plugins/wpforms/assets/lib/jquery.inputmask.min.js?ver=5.0.9
-https://neosfunds.com/wp-content/plugins/wpforms/assets/lib/jquery.validate.min.js?ver=1.21.0
-https://neosfunds.com/wp-content/plugins/wpforms/assets/lib/mailcheck.min.js?ver=1.1.2
-https://neosfunds.com/wp-content/plugins/wpforms/assets/lib/punycode.min.js?ver=1.0.0
-https://neosfunds.com/wp-content/plugins/wpforms/assets/pro/js/frontend/analytics-pro.min.js?ver=2.0.2
-https://neosfunds.com/wp-content/plugins/wpforms/assets/pro/js/frontend/fields/phone.min.js?ver=2.0.2
-https://neosfunds.com/wp-content/themes/HVM-ALTERA/js/accessibility.js?v=1783629896
-https://neosfunds.com/wp-content/themes/HVM-ALTERA/js/etf-pages.js?ver=1.0.4
-https://neosfunds.com/wp-content/themes/HVM-ALTERA/js/global.js?ver=1783629896
-https://neosfunds.com/wp-content/themes/HVM-ALTERA/js/invest-modal.js?ver=1.0.3
-https://neosfunds.com/wp-content/themes/HVM-ALTERA/js/subscribe-modal.js?ver=1783629896
-https://neosfunds.com/wp-includes/js/imagesloaded.min.js?ver=5.0.0
-https://neosfunds.com/wp-includes/js/jquery/jquery-migrate.min.js?ver=3.4.1
-https://neosfunds.com/wp-includes/js/jquery/jquery.min.js?ver=3.7.1
-https://neosfunds.com/wp-includes/js/masonry.min.js?ver=4.2.2
-https://www.googletagmanager.com/gtag/js?id=AW-10997989022
-https://www.googletagmanager.com/gtag/js?id=G-KGZK2HYG26
---- theme js/css ---
-href="https://neosfunds.com/wp-content/themes/HVM-ALTERA/css/custom-styles.css"
-href="https://neosfunds.com/wp-content/themes/HVM-ALTERA/css/plugins.min.css"
-href="https://neosfunds.com/wp-content/themes/HVM-ALTERA/css/style.HVM-blue.min.css"
-href="https://neosfunds.com/wp-content/themes/HVM-ALTERAhttps://fonts.googleapis.com/icon?family=Material+Icons"
-=================== 2. candidate holdings files ===================
-404  548  https://neosfunds.com/wp-content/uploads/SPYI-Holdings.xlsx
-404  204039  https://neosfunds.com/wp-content/uploads/SPYI-Daily-Holdings.csv
-404  204030  https://neosfunds.com/wp-content/uploads/SPYI-Full-Holdings.csv
-404  548  https://neosfunds.com/wp-content/uploads/SPYI-Full-Holdings.xlsx
-404  204007  https://neosfunds.com/wp-content/uploads/SPYI-Holdings.csv
-404  204026  https://neosfunds.com/wp-content/uploads/holdings/SPYI.csv
-404  204016  https://neosfunds.com/wp-content/uploads/NEOS-Holdings.csv
-404  204021  https://neosfunds.com/wp-content/uploads/spyi-holdings.csv
-404  204009  https://neosfunds.com/wp-content/uploads/SPYI_Holdings.csv
-=================== 3. SEC company_tickers_mf.json ===================
-mf http=403 size=1925
-Traceback (most recent call last):
-  File "<stdin>", line 2, in <module>
-  File "/usr/lib/python3.12/json/__init__.py", line 293, in load
-    return loads(fp.read(),
-           ^^^^^^^^^^^^^^^^
-  File "/usr/lib/python3.12/json/__init__.py", line 346, in loads
-    return _default_decoder.decode(s)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/usr/lib/python3.12/json/decoder.py", line 337, in decode
-    obj, end = self.raw_decode(s, idx=_w(s, 0).end())
-               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/usr/lib/python3.12/json/decoder.py", line 355, in raw_decode
-    raise JSONDecodeError("Expecting value", s, err.value) from None
-json.decoder.JSONDecodeError: Expecting value: line 1 column 1 (char 0)
-=================== 4. Yahoo probe ===================
-SPYI http=200 rows 1017 divs 48 meta 53.09
-QQQI http=200 rows 662 divs 32 meta 54.39
-IWMI http=200 rows 561 divs 28 meta 50.0
-BTCI http=200 rows 481 divs 24 meta 32.81
-CSHI http=200 rows 1017 divs 49 meta 49.65
-=================== 5. SEC N-PORT for NEOS trust ===================
-nport http=403 size=4819
+=================== 1. theme JS ===================
+200 4238 recon-request/artifacts/etf-pages.js
+200 1547 recon-request/artifacts/portfolio.js
+200 21052 recon-request/artifacts/global.js
+200 13482 recon-request/artifacts/app.min.js
+--- downloadHoldingsCSV definition ---
+function downloadHoldingsCSV(ticker) {
+--- all ajax actions / endpoints in etf-pages.js ---
+.csv
+--- portfolio.js endpoints ---
+=================== 2. inline JSON in fund page ===================
+spyi 200 294373
+--- ajaxurl / localized vars ---
+var etf_ajax = {"ajax_url":"https://neosfunds.com/wp-admin/admin-ajax.php"
+var InvestModalData = {"fundSlugs":["spyi","qqqi","iwmi","nihi","xspi","xqqi","xbci","qqqh","spyh","nlsi","btci","nehi","iyri","iaui","mlpi","hybi","bndi","cshi","tlti"]
+var t={supportTests:e,timestamp:(new Date).valueOf()
+var wpforms_settings = {"val_required":"This field is required.","val_email":"Please enter a valid email address.","val_email_suggestion":"Did you mean {suggestion
+ajaxurl":"https:\/\/neosfunds.com\/wp-admin\/admin-ajax.php"
+--- admin-ajax actions in page ---
+--- data-* attributes with urls ---
+--- chart data / growth series ---
+		  <p style="padding-top: 20px;" class="performance-table-disclosure-text">The hypothetical growth of $10,000 chart reflects a hypothetical investment and assumes reinvestment of dividends and capital gains. Fund expenses, including management fees and other expenses were deducted.</p>
+=================== 3. probe admin-ajax ===================
+400 1 action=get_holdings :: 0
+400 1 action=get_fund_holdings :: 0
+400 1 action=download_holdings :: 0
+400 1 action=holdings :: 0
+400 1 action=neos_holdings :: 0
+400 1 action=get_holdings_csv :: 0
+400 1 action=fund_holdings :: 0
+400 1 action=get_nav_history :: 0
+400 1 action=nav_history :: 0
+=================== 4. explore-etfs section ===================
+home 200 201364
+explore-etfs offset 114949
+ng" alt="2025 Wealth Management Industry Awards Finalist New Product Development"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<section id="explore-etfs">
+    <div class="container-fluid">
+        <div class="row explore-etfs-table">
+            <div class="row etf-tab-nav">
+                <div id="tab-fund-overview" class="col-sm-6 col-md-4 col-md-offset-2 col-lg-3 col-lg-offset-3 text-center etf-tab-active" data-target="fund-overview">
+                    <span class="etf-tab-title">Fund Overview</span>
+                </div>
+                <div id="tab-average-annual-returns" class="col-sm-6 col-md-4 col-lg-3 text-center" data-target="average-annual-returns">
+                    <span class="etf-tab-title">Average Annual Returns</span>
+                </div>
+            </div>
+            <div id="fund-overview" class="col-md-12 etf-tab-content etf-tab-active">
+                <div class="as-of-date">
+                    <i class="zmdi zmdi-calendar-note"></i>As of 09/18/2026                </div>
+                <div class="table-responsive">
+                    <table class="table" id="etf-table">
+                        <thead>
+                            <tr>
+                                <th>Ticker</th>
+                                <th>Fund Name</th>
+                                <th>Distribution Frequency</th>
+                                <th data-sort-col="distribution-rate" class="sortable">Distribution Rate<span class="sort-caret"><i class="zmdi zmdi-triangle-down"></i></span></th>
+                                <th data-sort-col="sec-yield" class="sortable">30-Day SEC Yield<span class="sort-caret"><i class="zmdi zmdi-triangle-down"></i></span></th>
+                                <th data-sort-col="expense-ratio" class="sortable">Management Fee<span class="sort-caret"><i class="zmdi zmdi-triangle-down"></i></span></th>
+                                <th data-sort-col="net-assets" class="sortable">Net Assets<span class="sort-caret"><i class="zmdi zmdi-triangle-down"></i></span></th>
+                                <th data-sort-col="inception-date" class="sortable">Inception Date<span class="sort-caret"><i class="zmdi zmdi-triangle-down"></i></span></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><span class="ticker ticker-equity-high-income">SPYI</span></td>
+                                <td><a href="https://neosfunds.com/spyi/">S&amp;P 500<sup>&reg;</sup> High Income ETF</a></td>
+                                <td>Monthly</td>
+                                <td>12.15%                                </td>
+                                <td>0.46%                                </td>
+                                <td>0.68%</td>
+                                <td>$12,151,808,030</td>
+                                <td>08/29/2022
+=================== 5. SEC with declared UA ===================
+mf 403 1925
+mf ERR Expecting value: line 1 column 1 (char 0)
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>SEC.gov | Request Rate Threshold Exceeded</title>
+<style>
+html {height: 100%}
+body {height: 100%; margin:0; padding:0;}
+#header {background-color:#003968; color:#fff; padding:15px 20px 10px 20px;font-family:Arial, Helvetica, sans-serif; font-size:20px; border-bottom:solid 5px #000;}
+#footer {background-color:#003968; color:#fff; padding:15px 20px;f
+nport 403 4819
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -99,32 +106,6 @@ body {height: 100%; margin:0; padding:0;}
 h1 {font-family:Georgia, Times, serif; font-size:20px;}
 h2 {text-align:center; font-family:Georgia, Times, serif; font-size:20px; width:100%; border-bottom:solid #999 1px;padding-bottom:10px; margin-bottom:20px;}
 h3 {font-family:Georgia, Times, serif; font-size:16px; margin:25px 0 0 0;}
-p {font-family:Verdana, Geneva, sans-serif;font-size:14px;line-height:1.3;}
-.grey_box {background-color:#eee; padding:5px 40px 20px 40px;margin-top:75px;}
-.grey_box p {font-size:12px;line-height:1.5}
-.note {padding: 0 40px; font-style: italic;}
-</style>
-</head>
-
-<body>
-<div id="header">U.S. Securities and Exchange Commission</div>
-<div id="content">
-<h1>Your Request Originates from an Undeclared Automated Tool</h1>
-<p>To allow for equitable access to all users, SEC reserves the right to limit requests originating from undeclared automated tools. Your request has been identified as part of a network of automated tools outside of the acceptable policy and will be managed until action is taken to declare your traffic.</p>
-
-<p>Please declare your traffic by updating your user agent to include company specific information.</p>
-
-
-<p>For best practices on eff
-=================== 6. explore-etfs catalog source ===================
-home http=200 size=201364
-<section id="explore-etfs">
-#explore-etfs
-<h3>Explore
->Explore
-explore
-explore-ETFs
-explore-btn
-explore-etfs
-explore-etfs-table
-https://neosfunds.com/#explore-etfs
+p {font-family:Verdana, Geneva, sans-serif;font-size:14px;line-h
+submissions 403 4819
+submissions ERR Expecting value: line 1 column 1 (char 0)
