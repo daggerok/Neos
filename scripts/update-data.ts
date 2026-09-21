@@ -1946,6 +1946,42 @@ async function updateFund(
     (meta.distributions as Record<string, unknown>).source = 'Yahoo Finance dividend history (NEOS published no distribution rows)';
   }
 
+  // --- write pages -------------------------------------------------------
+  // Every page file is written before `meta.json`, because the manifest it
+  // carries lists exactly the files that were just published.
+  const holdingsPages = splitPages(holdings.rows, config.holdingsPageSize);
+  for (let index = 0; index < holdingsPages.length; index += 1) {
+    const file = path.join(fundDir, 'holdings', pageFileName(index + 1));
+    const envelope = {
+      ticker,
+      page: index + 1,
+      pageSize: config.holdingsPageSize,
+      totalRows: holdings.rows.length,
+      headers: holdings.headers,
+      rows: holdingsPages[index],
+    };
+    if (await writeIfChanged(file, stableStringify(envelope)) === 'written') changed = true;
+    holdingsMeta.pages.push(`./holdings/${pageFileName(index + 1)}`);
+  }
+  // Drop stale page files when a fund's row count shrinks.
+  await prunePages(path.join(fundDir, 'holdings'), holdingsPages.length);
+
+  const historyPages = splitPages(historyRows, config.historyPageSize);
+  for (let index = 0; index < historyPages.length; index += 1) {
+    const file = path.join(fundDir, 'history', pageFileName(index + 1));
+    const envelope = {
+      ticker,
+      page: index + 1,
+      pageSize: config.historyPageSize,
+      totalRows: historyRows.length,
+      headers: [...HISTORY_HEADERS],
+      rows: historyPages[index],
+    };
+    if (await writeIfChanged(file, stableStringify(envelope)) === 'written') changed = true;
+    historyMeta.pages.push(`./history/${pageFileName(index + 1)}`);
+  }
+  await prunePages(path.join(fundDir, 'history'), historyPages.length);
+
   // --- catalog entry -----------------------------------------------------
   // The catalog row is built first: `meta.json` mirrors it (the sibling feeds
   // publish the same fields in both files) and `index.json` collects it.
