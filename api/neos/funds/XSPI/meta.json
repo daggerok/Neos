@@ -236,7 +236,11 @@
   "distributionFrequency": "01 - Monthly",
   "providerCategory": "Boosted High Income",
   "holdings": {
-    "pages": [],
+    "pages": [
+      "./holdings/001.json",
+      "./holdings/002.json",
+      "./holdings/003.json"
+    ],
     "pageSize": 250,
     "totalRows": 509,
     "asOfDate": "Sep 21 2026",
@@ -245,7 +249,9 @@
     "sourceKind": "official NEOS daily holdings CSV (download_holdings_csv)"
   },
   "history": {
-    "pages": [],
+    "pages": [
+      "./history/001.json"
+    ],
     "pageSize": 1000,
     "totalRows": 158,
     "asOfDate": "Sep 18 2026",
