@@ -1,4 +1,3 @@
-=================== FULL etf-pages.js ===================
 /**
  * Sortable columns for Distributions table
  */
@@ -97,12 +96,3 @@ function downloadHoldingsCSV(ticker) {
 
     xhr.send();
 }
-
-=================== FULL portfolio.js ===================
-$(function(){$("#Container").mixItUp(),$("#Cols1").click(function(){$(".mix").removeClass("col-md-4"),$(".mix").removeClass("col-md-3"),$(".mix").removeClass("col-md-6"),$(".mix").addClass("col-md-12"),$("#Cols1").addClass("active"),$("#Cols2").removeClass("active"),$("#Cols3").removeClass("active"),$("#Cols4").removeClass("active")}),$("#Cols2").click(function(){$(".mix").removeClass("col-md-4"),$(".mix").removeClass("col-md-3"),$(".mix").addClass("col-md-6"),$(".mix").removeClass("col-md-12"),$("#Cols1").removeClass("active"),$("#Cols2").addClass("active"),$("#Cols3").removeClass("active"),$("#Cols4").removeClass("active")}),$("#Cols3").click(function(){$(".mix").addClass("col-md-4"),$(".mix").removeClass("col-md-3"),$(".mix").removeClass("col-md-6"),$(".mix").removeClass("col-md-12"),$("#Cols1").removeClass("active"),$("#Cols2").removeClass("active"),$("#Cols3").addClass("active"),$("#Cols4").removeClass("active")}),$("#Cols4").click(function(){$(".mix").removeClass("col-md-4"),$(".mix").addClass("col-md-3"),$(".mix").removeClass("col-md-6"),$(".mix").removeClass("col-md-12"),$("#Cols1").removeClass("active"),$("#Cols2").removeClass("active"),$("#Cols3").removeClass("active"),$("#Cols4").addClass("active")}),$("#portShow").click(function(){$(".portfolio-item-caption").removeClass("hidden")}),$("#portHide").click(function(){$(".portfolio-item-caption").addClass("hidden")}),$("#port-show").click(function(){this.checked?$(".portfolio-item-caption").removeClass("hidden"):$(".portfolio-item-caption").addClass("hidden")})});
-=================== etf_ajax + localized vars (extracted) ===================
-var etf_ajax = {"ajax_url":"https://neosfunds.com/wp-admin/admin-ajax.php"};
---- all wp_localize_script objects ---
-var etf_ajax = {"ajax_url":"https://neosfunds.com/wp-admin/admin-ajax.php"}
-var InvestModalData = {"fundSlugs":["spyi","qqqi","iwmi","nihi","xspi","xqqi","xbci","qqqh","spyh","nlsi","btci","nehi","iyri","iaui","mlpi","hybi","bndi","cshi","tlti"]}
-var wpforms_settings = {"val_required":"This field is required.","val_email":"Please enter a valid email address.","val_email_suggestion":"Did you mean {suggestion}?","val_email_suggestion_title":"Click to accept this suggestion.","val_email_restricted":"This email address is not allowed.","val_number":"Please enter a valid number.","val_number_positive":"Please enter a valid positive number.","val_minimum_price":"Amount entered is less than the required minimum.","val_confirm":"Field values do not match.","val_checklimit":"You have exceeded the number of allowed selections: {#}.","val_limit_characters":"{count} of {limit} max characters.","val_limit_words":"{count} of {limit} max words.","val_min":"Please enter a value greater than or equal to {0}.","val_max":"Please enter a value less than or equal to {0}.","val
