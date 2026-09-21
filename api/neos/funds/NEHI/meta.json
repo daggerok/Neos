@@ -2,42 +2,14 @@
   "ticker": "NEHI",
   "name": "Ethereum High Income ETF",
   "category": "High Income Alternatives",
-  "categoryClass": "ticker-high-income-alternatives",
-  "dataFile": "./funds/NEHI/meta.json",
   "fundPage": "https://neosfunds.com/nehi/",
-  "source": {
-    "provider": "NEOS Investment Management LLC (NEOS ETFs)",
-    "site": "https://neosfunds.com",
-    "lineup": "https://neosfunds.com/#explore-etfs",
-    "fundPage": "https://neosfunds.com/nehi/",
-    "holdingsDownload": "https://neosfunds.com/wp-admin/admin-ajax.php?action=download_holdings_csv&ticker=NEHI",
-    "holdingsSource": "official NEOS daily holdings CSV (download_holdings_csv)",
-    "historySource": "Yahoo Finance public chart API (daily Close / Adj Close / Volume)",
-    "historyUrl": "https://query1.finance.yahoo.com/v8/finance/chart/NEHI?period1=0&period2=9999999999&interval=1d&events=div%7Csplit&includeAdjustedClose=true",
-    "returnsSource": "NEOS fund page performance tables (NAV Performance)",
-    "distributionsSource": "NEOS fund page Distribution History table",
-    "distributionInfoSource": "NEOS fund page Distribution Information block",
-    "documentsSource": "NEOS fund page Documents table",
-    "registrant": "NEOS ETF Trust (Investment Company Act file 811-23645)",
-    "nportDoc": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0001848758&type=NPORT-P&dateb=&owner=include&count=10",
-    "exchangeSource": "NEOS fund page Fund Details \"Primary Exchange\"",
-    "navSource": "NEOS fund page Fund Details \"Net Asset Value\" (official (fund page Fund Details))",
-    "premiumDiscountSource": "official (fund page Fund Details \"Premium Discount (%)\")",
-    "bidAskSpreadSource": "NEOS fund page Fund Details \"30-Day Median Bid-Ask Spread (%)\""
-  },
-  "identifiers": {
-    "cusip": "78433H535",
-    "isin": "US78433H5357",
-    "underlyingExposure": "Ethereum ETPs",
-    "indexName": "Ethereum ETPs",
-    "benchmarkIndexName": "S&P Ethereum Index"
-  },
-  "expenseRatio": {
-    "display": "0.98%",
-    "value": 0.98,
-    "managementFeeDisplay": "0.98%",
-    "managementFeeValue": 0.98
-  },
+  "dataFile": "./funds/NEHI/meta.json",
+  "cusip": "78433H535",
+  "isin": "US78433H5357",
+  "ter": "0.98%",
+  "terValue": 0.98,
+  "terGross": "0.98%",
+  "terGrossValue": 0.98,
   "nav": {
     "display": "$33.13",
     "value": 33.13,
@@ -45,117 +17,45 @@
     "dailyChangeText": "$2.09 (6.75%)",
     "kind": "official (fund page Fund Details)"
   },
-  "marketPrice": {
-    "display": "$33.14",
-    "value": 33.14,
-    "asOfDate": "Sep 18 2026",
-    "dailyChangeText": "$2.11 (6.78%)",
-    "source": "NEOS fund page Fund Details \"Market Price\""
-  },
-  "premiumDiscount": {
-    "display": "0.03%",
-    "value": 0.03,
-    "derivedValue": 0.03,
-    "kind": "official (fund page Fund Details \"Premium Discount (%)\")"
-  },
-  "bidAskSpread": {
-    "display": "0.31%",
-    "value": 0.31,
-    "asOfDate": "Sep 18 2026",
-    "kind": "official (fund page Fund Details \"30-Day Median Bid-Ask Spread (%)\")"
-  },
+  "navValue": 33.13,
   "aum": {
     "display": "$110.31M",
     "value": 110310246,
     "asOfDate": "Sep 18 2026",
     "source": "official NEOS daily holdings CSV (download_holdings_csv)"
   },
+  "aumValue": 110310246,
+  "asOfDate": "Sep 18 2026",
+  "inceptionDate": "Dec 2 2025",
+  "inceptionDateFundPage": "Dec 2 2025",
+  "exchange": "Cboe",
+  "closePrice": "$33.14",
+  "closePriceValue": 33.14,
+  "premiumDiscount": {
+    "display": "0.03%",
+    "value": 0.03,
+    "derivedValue": 0.03,
+    "kind": "official (fund page Fund Details \"Premium Discount (%)\")"
+  },
+  "premiumDiscountValue": 0.03,
+  "premiumDiscountDerivedValue": 0.03,
+  "premiumDiscountKind": "official (fund page Fund Details \"Premium Discount (%)\")",
+  "bidAskSpread": {
+    "display": "0.31%",
+    "value": 0.31,
+    "asOfDate": "Sep 18 2026",
+    "kind": "official (fund page Fund Details \"30-Day Median Bid-Ask Spread (%)\")"
+  },
+  "bidAskSpreadValue": 0.31,
+  "acquiredFundFeesText": null,
+  "totalNetAssets": 110310246,
   "sharesOutstanding": {
     "display": "3,330,000",
     "value": 3330000,
     "asOfDate": "Sep 21 2026"
   },
-  "yields": {
-    "dividendYield": 30.24,
-    "dividendYieldText": "30.24%",
-    "dividendYieldKind": "official NEOS Distribution Rate (latest distribution annualized / ex-date NAV)",
-    "distributionRate": 30.24,
-    "distributionRateText": "30.24%",
-    "yield12M": null,
-    "yield12MText": "—",
-    "secYield": 1.13,
-    "secYieldText": "1.13%",
-    "secYieldKind": "official NEOS 30-Day SEC Yield",
-    "distributionAmountText": "$0.7184",
-    "distributionAmountPercentText": "2.52%",
-    "distributionInfoAsOfDate": "Aug 31 2026"
-  },
-  "returns": {
-    "derivedFrom": "official NEOS fund page performance tables (NAV Performance series)",
-    "monthEnd": {
-      "asOfDate": "Aug 31 2026",
-      "raw": "2026-08-31",
-      "mo1": 24.63,
-      "mo3": 13.74,
-      "mo6": 21.27,
-      "ytd": -18.58,
-      "yr1": null,
-      "yr3": null,
-      "yr5": null,
-      "yr10": null,
-      "sinceInception": null,
-      "sinceInceptionCumulative": -17.83,
-      "market": {
-        "mo1": 24.23,
-        "mo3": 13.64,
-        "mo6": 20.91,
-        "ytd": -18.6,
-        "sinceInceptionCumulative": -17.65,
-        "yr1": null,
-        "yr3": null,
-        "yr5": null,
-        "sinceInception": null
-      },
-      "benchmarkName": "S&P Ethereum Index",
-      "benchmark": {
-        "mo1": 32.95,
-        "mo3": 23.15,
-        "mo6": 29.06,
-        "ytd": -16.49,
-        "sinceInceptionCumulative": -16.74,
-        "yr1": null,
-        "yr3": null,
-        "yr5": null,
-        "sinceInception": null
-      }
-    },
-    "quarterEnd": {
-      "asOfDate": "Jun 30 2026",
-      "raw": "2026-06-30",
-      "mo1": -20.93,
-      "mo3": -22.69,
-      "mo6": -43.39,
-      "ytd": -43.39,
-      "yr1": null,
-      "yr3": null,
-      "yr5": null,
-      "yr10": null,
-      "sinceInception": null,
-      "sinceInceptionCumulative": -42.87,
-      "market": {
-        "mo1": -20.52,
-        "mo3": -22.28,
-        "mo6": -43.06,
-        "ytd": -43.06,
-        "sinceInceptionCumulative": -42.4,
-        "yr1": null,
-        "yr3": null,
-        "yr5": null,
-        "sinceInception": null
-      }
-    }
-  },
-  "navIndex": null,
+  "netAssetsAsOf": "Sep 18 2026",
+  "secYieldAsOf": "Aug 31 2026",
   "distributions": {
     "frequency": "Monthly",
     "paymentsPerYear": 12,
@@ -262,6 +162,168 @@
     "fallback": false,
     "source": "NEOS fund page Distribution History table"
   },
+  "returns": {
+    "derivedFrom": "official NEOS fund page performance tables (NAV Performance series)",
+    "monthEnd": {
+      "asOfDate": "Aug 31 2026",
+      "raw": "2026-08-31",
+      "mo1": 24.63,
+      "mo3": 13.74,
+      "mo6": 21.27,
+      "ytd": -18.58,
+      "yr1": null,
+      "yr3": null,
+      "yr5": null,
+      "yr10": null,
+      "sinceInception": null,
+      "sinceInceptionCumulative": -17.83,
+      "market": {
+        "mo1": 24.23,
+        "mo3": 13.64,
+        "mo6": 20.91,
+        "ytd": -18.6,
+        "sinceInceptionCumulative": -17.65,
+        "yr1": null,
+        "yr3": null,
+        "yr5": null,
+        "sinceInception": null
+      },
+      "benchmarkName": "S&P Ethereum Index",
+      "benchmark": {
+        "mo1": 32.95,
+        "mo3": 23.15,
+        "mo6": 29.06,
+        "ytd": -16.49,
+        "sinceInceptionCumulative": -16.74,
+        "yr1": null,
+        "yr3": null,
+        "yr5": null,
+        "sinceInception": null
+      }
+    },
+    "quarterEnd": {
+      "asOfDate": "Jun 30 2026",
+      "raw": "2026-06-30",
+      "mo1": -20.93,
+      "mo3": -22.69,
+      "mo6": -43.39,
+      "ytd": -43.39,
+      "yr1": null,
+      "yr3": null,
+      "yr5": null,
+      "yr10": null,
+      "sinceInception": null,
+      "sinceInceptionCumulative": -42.87,
+      "market": {
+        "mo1": -20.52,
+        "mo3": -22.28,
+        "mo6": -43.06,
+        "ytd": -43.06,
+        "sinceInceptionCumulative": -42.4,
+        "yr1": null,
+        "yr3": null,
+        "yr5": null,
+        "sinceInception": null
+      }
+    }
+  },
+  "metrics": {
+    "ytd": -18.58,
+    "tr1y": null,
+    "tr3y": null,
+    "tr5y": null,
+    "tr10y": null,
+    "cagr3y": null,
+    "cagr5y": null,
+    "cagr10y": null,
+    "siAnn": null,
+    "dividendYield": 30.24,
+    "dividendYieldText": "30.24%",
+    "distributionYield": 30.24,
+    "distributionYieldText": "30.24%",
+    "yield12M": null,
+    "yield12MText": "—",
+    "secYield": 1.13,
+    "secYieldText": "1.13%",
+    "returnsBasis": "official NEOS fund page NAV Performance (monthly series)"
+  },
+  "distributionFrequency": "01 - Monthly",
+  "providerCategory": "High Income Alternatives",
+  "holdings": {
+    "pages": [],
+    "pageSize": 250,
+    "totalRows": 7,
+    "asOfDate": "Sep 21 2026",
+    "asOf": "2026-09-21",
+    "source": "https://neosfunds.com/wp-admin/admin-ajax.php?action=download_holdings_csv&ticker=NEHI",
+    "sourceKind": "official NEOS daily holdings CSV (download_holdings_csv)"
+  },
+  "history": {
+    "pages": [],
+    "pageSize": 1000,
+    "totalRows": 199,
+    "asOfDate": "Sep 18 2026",
+    "asOf": "2026-09-18",
+    "source": "https://query1.finance.yahoo.com/v8/finance/chart/NEHI?period1=0&period2=9999999999&interval=1d&events=div%7Csplit&includeAdjustedClose=true",
+    "sourceKind": "Yahoo Finance public chart API (daily Close / Adj Close / Volume)"
+  },
+  "navKind": "official (fund page Fund Details)",
+  "source": {
+    "provider": "NEOS Investment Management LLC (NEOS ETFs)",
+    "site": "https://neosfunds.com",
+    "lineup": "https://neosfunds.com/#explore-etfs",
+    "fundPage": "https://neosfunds.com/nehi/",
+    "holdingsDownload": "https://neosfunds.com/wp-admin/admin-ajax.php?action=download_holdings_csv&ticker=NEHI",
+    "holdingsSource": "official NEOS daily holdings CSV (download_holdings_csv)",
+    "historySource": "Yahoo Finance public chart API (daily Close / Adj Close / Volume)",
+    "historyUrl": "https://query1.finance.yahoo.com/v8/finance/chart/NEHI?period1=0&period2=9999999999&interval=1d&events=div%7Csplit&includeAdjustedClose=true",
+    "returnsSource": "NEOS fund page performance tables (NAV Performance)",
+    "distributionsSource": "NEOS fund page Distribution History table",
+    "distributionInfoSource": "NEOS fund page Distribution Information block",
+    "documentsSource": "NEOS fund page Documents table",
+    "registrant": "NEOS ETF Trust (Investment Company Act file 811-23645)",
+    "nportDoc": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0001848758&type=NPORT-P&dateb=&owner=include&count=10",
+    "exchangeSource": "NEOS fund page Fund Details \"Primary Exchange\"",
+    "navSource": "NEOS fund page Fund Details \"Net Asset Value\" (official (fund page Fund Details))",
+    "premiumDiscountSource": "official (fund page Fund Details \"Premium Discount (%)\")",
+    "bidAskSpreadSource": "NEOS fund page Fund Details \"30-Day Median Bid-Ask Spread (%)\""
+  },
+  "identifiers": {
+    "cusip": "78433H535",
+    "isin": "US78433H5357",
+    "underlyingExposure": "Ethereum ETPs",
+    "indexName": "Ethereum ETPs",
+    "benchmarkIndexName": "S&P Ethereum Index"
+  },
+  "expenseRatio": {
+    "display": "0.98%",
+    "value": 0.98,
+    "managementFeeDisplay": "0.98%",
+    "managementFeeValue": 0.98
+  },
+  "marketPrice": {
+    "display": "$33.14",
+    "value": 33.14,
+    "asOfDate": "Sep 18 2026",
+    "dailyChangeText": "$2.11 (6.78%)",
+    "source": "NEOS fund page Fund Details \"Market Price\""
+  },
+  "yields": {
+    "dividendYield": 30.24,
+    "dividendYieldText": "30.24%",
+    "dividendYieldKind": "official NEOS Distribution Rate (latest distribution annualized / ex-date NAV)",
+    "distributionRate": 30.24,
+    "distributionRateText": "30.24%",
+    "yield12M": null,
+    "yield12MText": "—",
+    "secYield": 1.13,
+    "secYieldText": "1.13%",
+    "secYieldKind": "official NEOS 30-Day SEC Yield",
+    "distributionAmountText": "$0.7184",
+    "distributionAmountPercentText": "2.52%",
+    "distributionInfoAsOfDate": "Aug 31 2026"
+  },
+  "navIndex": null,
   "documents": {
     "prospectus": "https://neosfunds.com/wp-content/uploads/NEHI-Prospectus.pdf",
     "summaryProspectus": "https://neosfunds.com/wp-content/uploads/NEHI-Sumpro.pdf",
@@ -273,26 +335,5 @@
     "taxInfo": "https://neosfunds.com/wp-content/uploads/NEOS-Tax-Insert-2025.pdf",
     "form8937": "https://neosfunds.com/wp-content/uploads/NEOS-Ethereum-High-Income-ETF-Form-8937-12.31.25.pdf"
   },
-  "holdings": {
-    "pages": [
-      "./holdings/001.json"
-    ],
-    "pageSize": 250,
-    "totalRows": 7,
-    "asOfDate": "Sep 21 2026",
-    "asOf": "2026-09-21",
-    "source": "https://neosfunds.com/wp-admin/admin-ajax.php?action=download_holdings_csv&ticker=NEHI",
-    "sourceKind": "official NEOS daily holdings CSV (download_holdings_csv)"
-  },
-  "history": {
-    "pages": [
-      "./history/001.json"
-    ],
-    "pageSize": 1000,
-    "totalRows": 199,
-    "asOfDate": "Sep 18 2026",
-    "asOf": "2026-09-18",
-    "source": "https://query1.finance.yahoo.com/v8/finance/chart/NEHI?period1=0&period2=9999999999&interval=1d&events=div%7Csplit&includeAdjustedClose=true",
-    "sourceKind": "Yahoo Finance public chart API (daily Close / Adj Close / Volume)"
-  }
+  "inceptionNote": null
 }

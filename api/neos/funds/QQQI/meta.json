@@ -2,42 +2,14 @@
   "ticker": "QQQI",
   "name": "Nasdaq-100 High Income ETF",
   "category": "Equity High Income",
-  "categoryClass": "ticker-equity-high-income",
-  "dataFile": "./funds/QQQI/meta.json",
   "fundPage": "https://neosfunds.com/qqqi/",
-  "source": {
-    "provider": "NEOS Investment Management LLC (NEOS ETFs)",
-    "site": "https://neosfunds.com",
-    "lineup": "https://neosfunds.com/#explore-etfs",
-    "fundPage": "https://neosfunds.com/qqqi/",
-    "holdingsDownload": "https://neosfunds.com/wp-admin/admin-ajax.php?action=download_holdings_csv&ticker=QQQI",
-    "holdingsSource": "official NEOS daily holdings CSV (download_holdings_csv)",
-    "historySource": "Yahoo Finance public chart API (daily Close / Adj Close / Volume)",
-    "historyUrl": "https://query1.finance.yahoo.com/v8/finance/chart/QQQI?period1=0&period2=9999999999&interval=1d&events=div%7Csplit&includeAdjustedClose=true",
-    "returnsSource": "NEOS fund page performance tables (NAV Performance)",
-    "distributionsSource": "NEOS fund page Distribution History table",
-    "distributionInfoSource": "NEOS fund page Distribution Information block",
-    "documentsSource": "NEOS fund page Documents table",
-    "registrant": "NEOS ETF Trust (Investment Company Act file 811-23645)",
-    "nportDoc": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0001848758&type=NPORT-P&dateb=&owner=include&count=10",
-    "exchangeSource": "NEOS fund page Fund Details \"Primary Exchange\"",
-    "navSource": "NEOS fund page Fund Details \"Net Asset Value\" (official (fund page Fund Details))",
-    "premiumDiscountSource": "official (fund page Fund Details \"Premium Discount (%)\")",
-    "bidAskSpreadSource": "NEOS fund page Fund Details \"30-Day Median Bid-Ask Spread (%)\""
-  },
-  "identifiers": {
-    "cusip": "78433H675",
-    "isin": "US78433H6751",
-    "underlyingExposure": "Nasdaq-100 ® Index",
-    "indexName": "Nasdaq-100 ® Index",
-    "benchmarkIndexName": "Cboe Nasdaq-100 BuyWrite Monthly Index"
-  },
-  "expenseRatio": {
-    "display": "0.68%",
-    "value": 0.68,
-    "managementFeeDisplay": "0.68%",
-    "managementFeeValue": 0.68
-  },
+  "dataFile": "./funds/QQQI/meta.json",
+  "cusip": "78433H675",
+  "isin": "US78433H6751",
+  "ter": "0.68%",
+  "terValue": 0.68,
+  "terGross": "0.68%",
+  "terGrossValue": 0.68,
   "nav": {
     "display": "$54.42",
     "value": 54.42,
@@ -45,123 +17,45 @@
     "dailyChangeText": "$0.32 (0.60%)",
     "kind": "official (fund page Fund Details)"
   },
-  "marketPrice": {
-    "display": "$54.39",
-    "value": 54.39,
-    "asOfDate": "Sep 18 2026",
-    "dailyChangeText": "$0.29 (0.54%)",
-    "source": "NEOS fund page Fund Details \"Market Price\""
-  },
-  "premiumDiscount": {
-    "display": "-0.06%",
-    "value": -0.06,
-    "derivedValue": -0.06,
-    "kind": "official (fund page Fund Details \"Premium Discount (%)\")"
-  },
-  "bidAskSpread": {
-    "display": "0.02%",
-    "value": 0.02,
-    "asOfDate": "Sep 18 2026",
-    "kind": "official (fund page Fund Details \"30-Day Median Bid-Ask Spread (%)\")"
-  },
+  "navValue": 54.42,
   "aum": {
     "display": "$14.80B",
     "value": 14803192215,
     "asOfDate": "Sep 18 2026",
     "source": "official NEOS daily holdings CSV (download_holdings_csv)"
   },
+  "aumValue": 14803192215,
+  "asOfDate": "Sep 18 2026",
+  "inceptionDate": "Jan 29 2024",
+  "inceptionDateFundPage": "Jan 29 2024",
+  "exchange": "NASDAQ",
+  "closePrice": "$54.39",
+  "closePriceValue": 54.39,
+  "premiumDiscount": {
+    "display": "-0.06%",
+    "value": -0.06,
+    "derivedValue": -0.06,
+    "kind": "official (fund page Fund Details \"Premium Discount (%)\")"
+  },
+  "premiumDiscountValue": -0.06,
+  "premiumDiscountDerivedValue": -0.06,
+  "premiumDiscountKind": "official (fund page Fund Details \"Premium Discount (%)\")",
+  "bidAskSpread": {
+    "display": "0.02%",
+    "value": 0.02,
+    "asOfDate": "Sep 18 2026",
+    "kind": "official (fund page Fund Details \"30-Day Median Bid-Ask Spread (%)\")"
+  },
+  "bidAskSpreadValue": 0.02,
+  "acquiredFundFeesText": null,
+  "totalNetAssets": 14803192215,
   "sharesOutstanding": {
     "display": "272,010,000",
     "value": 272010000,
     "asOfDate": "Sep 21 2026"
   },
-  "yields": {
-    "dividendYield": 14.39,
-    "dividendYieldText": "14.39%",
-    "dividendYieldKind": "official NEOS Distribution Rate (latest distribution annualized / ex-date NAV)",
-    "distributionRate": 14.39,
-    "distributionRateText": "14.39%",
-    "yield12M": 14.08,
-    "yield12MText": "14.08%",
-    "secYield": -0.05,
-    "secYieldText": "-0.05%",
-    "secYieldKind": "official NEOS 30-Day SEC Yield",
-    "distributionAmountText": "$0.6518",
-    "distributionAmountPercentText": "1.20%",
-    "distributionInfoAsOfDate": "Aug 31 2026"
-  },
-  "returns": {
-    "derivedFrom": "official NEOS fund page performance tables (NAV Performance series)",
-    "monthEnd": {
-      "asOfDate": "Aug 31 2026",
-      "raw": "2026-08-31",
-      "mo1": 4.18,
-      "mo3": -1.19,
-      "mo6": 11.69,
-      "ytd": 11.37,
-      "yr1": 19.21,
-      "yr3": null,
-      "yr5": null,
-      "yr10": null,
-      "sinceInception": 19.25,
-      "sinceInceptionCumulative": 57.74,
-      "market": {
-        "mo1": 4.18,
-        "mo3": -1.14,
-        "mo6": 11.78,
-        "ytd": 11.38,
-        "sinceInceptionCumulative": 57.72,
-        "yr1": 19.21,
-        "yr3": null,
-        "yr5": null,
-        "sinceInception": 19.24
-      },
-      "benchmarkName": "Cboe Nasdaq-100 BuyWrite Monthly Index",
-      "benchmark": {
-        "mo1": 3.39,
-        "mo3": 2.44,
-        "mo6": 9,
-        "ytd": 10.37,
-        "sinceInceptionCumulative": 43.58,
-        "yr1": 22.31,
-        "yr3": null,
-        "yr5": null,
-        "sinceInception": 14.99
-      }
-    },
-    "quarterEnd": {
-      "asOfDate": "Jun 30 2026",
-      "raw": "2026-06-30",
-      "mo1": 0.58,
-      "mo3": 18.45,
-      "mo6": 13.37,
-      "ytd": 13.37,
-      "yr1": 25.99,
-      "yr3": null,
-      "yr5": null,
-      "yr10": null,
-      "sinceInception": 21.63,
-      "sinceInceptionCumulative": 60.58,
-      "market": {
-        "mo1": 0.4,
-        "mo3": 18.33,
-        "mo6": 13.11,
-        "ytd": 13.11,
-        "sinceInceptionCumulative": 60.17,
-        "yr1": 25.7,
-        "yr3": null,
-        "yr5": null,
-        "sinceInception": 21.5
-      }
-    }
-  },
-  "navIndex": {
-    "startDate": "2024-01-29",
-    "endDate": "2026-09-18",
-    "points": 964,
-    "benchmarkName": "Cboe Nasdaq-100 BuyWrite Monthly Index",
-    "source": "NEOS fund page \"Growth of $10,000 at NAV Since Inception\" chart series"
-  },
+  "netAssetsAsOf": "Sep 18 2026",
+  "secYieldAsOf": "Aug 31 2026",
   "distributions": {
     "frequency": "Monthly",
     "paymentsPerYear": 12,
@@ -422,6 +316,174 @@
     "fallback": false,
     "source": "NEOS fund page Distribution History table"
   },
+  "returns": {
+    "derivedFrom": "official NEOS fund page performance tables (NAV Performance series)",
+    "monthEnd": {
+      "asOfDate": "Aug 31 2026",
+      "raw": "2026-08-31",
+      "mo1": 4.18,
+      "mo3": -1.19,
+      "mo6": 11.69,
+      "ytd": 11.37,
+      "yr1": 19.21,
+      "yr3": null,
+      "yr5": null,
+      "yr10": null,
+      "sinceInception": 19.25,
+      "sinceInceptionCumulative": 57.74,
+      "market": {
+        "mo1": 4.18,
+        "mo3": -1.14,
+        "mo6": 11.78,
+        "ytd": 11.38,
+        "sinceInceptionCumulative": 57.72,
+        "yr1": 19.21,
+        "yr3": null,
+        "yr5": null,
+        "sinceInception": 19.24
+      },
+      "benchmarkName": "Cboe Nasdaq-100 BuyWrite Monthly Index",
+      "benchmark": {
+        "mo1": 3.39,
+        "mo3": 2.44,
+        "mo6": 9,
+        "ytd": 10.37,
+        "sinceInceptionCumulative": 43.58,
+        "yr1": 22.31,
+        "yr3": null,
+        "yr5": null,
+        "sinceInception": 14.99
+      }
+    },
+    "quarterEnd": {
+      "asOfDate": "Jun 30 2026",
+      "raw": "2026-06-30",
+      "mo1": 0.58,
+      "mo3": 18.45,
+      "mo6": 13.37,
+      "ytd": 13.37,
+      "yr1": 25.99,
+      "yr3": null,
+      "yr5": null,
+      "yr10": null,
+      "sinceInception": 21.63,
+      "sinceInceptionCumulative": 60.58,
+      "market": {
+        "mo1": 0.4,
+        "mo3": 18.33,
+        "mo6": 13.11,
+        "ytd": 13.11,
+        "sinceInceptionCumulative": 60.17,
+        "yr1": 25.7,
+        "yr3": null,
+        "yr5": null,
+        "sinceInception": 21.5
+      }
+    }
+  },
+  "metrics": {
+    "ytd": 11.37,
+    "tr1y": 19.21,
+    "tr3y": null,
+    "tr5y": null,
+    "tr10y": null,
+    "cagr3y": null,
+    "cagr5y": null,
+    "cagr10y": null,
+    "siAnn": 19.25,
+    "dividendYield": 14.39,
+    "dividendYieldText": "14.39%",
+    "distributionYield": 14.39,
+    "distributionYieldText": "14.39%",
+    "yield12M": 14.08,
+    "yield12MText": "14.08%",
+    "secYield": -0.05,
+    "secYieldText": "-0.05%",
+    "returnsBasis": "official NEOS fund page NAV Performance (monthly series)"
+  },
+  "distributionFrequency": "01 - Monthly",
+  "providerCategory": "Equity High Income",
+  "holdings": {
+    "pages": [],
+    "pageSize": 250,
+    "totalRows": 104,
+    "asOfDate": "Sep 21 2026",
+    "asOf": "2026-09-21",
+    "source": "https://neosfunds.com/wp-admin/admin-ajax.php?action=download_holdings_csv&ticker=QQQI",
+    "sourceKind": "official NEOS daily holdings CSV (download_holdings_csv)"
+  },
+  "history": {
+    "pages": [],
+    "pageSize": 1000,
+    "totalRows": 662,
+    "asOfDate": "Sep 18 2026",
+    "asOf": "2026-09-18",
+    "source": "https://query1.finance.yahoo.com/v8/finance/chart/QQQI?period1=0&period2=9999999999&interval=1d&events=div%7Csplit&includeAdjustedClose=true",
+    "sourceKind": "Yahoo Finance public chart API (daily Close / Adj Close / Volume)"
+  },
+  "navKind": "official (fund page Fund Details)",
+  "source": {
+    "provider": "NEOS Investment Management LLC (NEOS ETFs)",
+    "site": "https://neosfunds.com",
+    "lineup": "https://neosfunds.com/#explore-etfs",
+    "fundPage": "https://neosfunds.com/qqqi/",
+    "holdingsDownload": "https://neosfunds.com/wp-admin/admin-ajax.php?action=download_holdings_csv&ticker=QQQI",
+    "holdingsSource": "official NEOS daily holdings CSV (download_holdings_csv)",
+    "historySource": "Yahoo Finance public chart API (daily Close / Adj Close / Volume)",
+    "historyUrl": "https://query1.finance.yahoo.com/v8/finance/chart/QQQI?period1=0&period2=9999999999&interval=1d&events=div%7Csplit&includeAdjustedClose=true",
+    "returnsSource": "NEOS fund page performance tables (NAV Performance)",
+    "distributionsSource": "NEOS fund page Distribution History table",
+    "distributionInfoSource": "NEOS fund page Distribution Information block",
+    "documentsSource": "NEOS fund page Documents table",
+    "registrant": "NEOS ETF Trust (Investment Company Act file 811-23645)",
+    "nportDoc": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0001848758&type=NPORT-P&dateb=&owner=include&count=10",
+    "exchangeSource": "NEOS fund page Fund Details \"Primary Exchange\"",
+    "navSource": "NEOS fund page Fund Details \"Net Asset Value\" (official (fund page Fund Details))",
+    "premiumDiscountSource": "official (fund page Fund Details \"Premium Discount (%)\")",
+    "bidAskSpreadSource": "NEOS fund page Fund Details \"30-Day Median Bid-Ask Spread (%)\""
+  },
+  "identifiers": {
+    "cusip": "78433H675",
+    "isin": "US78433H6751",
+    "underlyingExposure": "Nasdaq-100 ® Index",
+    "indexName": "Nasdaq-100 ® Index",
+    "benchmarkIndexName": "Cboe Nasdaq-100 BuyWrite Monthly Index"
+  },
+  "expenseRatio": {
+    "display": "0.68%",
+    "value": 0.68,
+    "managementFeeDisplay": "0.68%",
+    "managementFeeValue": 0.68
+  },
+  "marketPrice": {
+    "display": "$54.39",
+    "value": 54.39,
+    "asOfDate": "Sep 18 2026",
+    "dailyChangeText": "$0.29 (0.54%)",
+    "source": "NEOS fund page Fund Details \"Market Price\""
+  },
+  "yields": {
+    "dividendYield": 14.39,
+    "dividendYieldText": "14.39%",
+    "dividendYieldKind": "official NEOS Distribution Rate (latest distribution annualized / ex-date NAV)",
+    "distributionRate": 14.39,
+    "distributionRateText": "14.39%",
+    "yield12M": 14.08,
+    "yield12MText": "14.08%",
+    "secYield": -0.05,
+    "secYieldText": "-0.05%",
+    "secYieldKind": "official NEOS 30-Day SEC Yield",
+    "distributionAmountText": "$0.6518",
+    "distributionAmountPercentText": "1.20%",
+    "distributionInfoAsOfDate": "Aug 31 2026"
+  },
+  "navIndex": {
+    "startDate": "2024-01-29",
+    "endDate": "2026-09-18",
+    "points": 964,
+    "benchmarkName": "Cboe Nasdaq-100 BuyWrite Monthly Index",
+    "source": "NEOS fund page \"Growth of $10,000 at NAV Since Inception\" chart series"
+  },
   "documents": {
     "prospectus": "https://neosfunds.com/wp-content/uploads/QQQI-Prospectus.pdf",
     "summaryProspectus": "https://neosfunds.com/wp-content/uploads/qqqi_sumpro.pdf",
@@ -433,26 +495,5 @@
     "taxInfo": "https://neosfunds.com/wp-content/uploads/NEOS-Tax-Insert-2025.pdf",
     "form8937": "https://neosfunds.com/wp-content/uploads/NEOS-Nasdaq-100-High-Income-ETF-Form-8937-12.31.25.pdf"
   },
-  "holdings": {
-    "pages": [
-      "./holdings/001.json"
-    ],
-    "pageSize": 250,
-    "totalRows": 104,
-    "asOfDate": "Sep 21 2026",
-    "asOf": "2026-09-21",
-    "source": "https://neosfunds.com/wp-admin/admin-ajax.php?action=download_holdings_csv&ticker=QQQI",
-    "sourceKind": "official NEOS daily holdings CSV (download_holdings_csv)"
-  },
-  "history": {
-    "pages": [
-      "./history/001.json"
-    ],
-    "pageSize": 1000,
-    "totalRows": 662,
-    "asOfDate": "Sep 18 2026",
-    "asOf": "2026-09-18",
-    "source": "https://query1.finance.yahoo.com/v8/finance/chart/QQQI?period1=0&period2=9999999999&interval=1d&events=div%7Csplit&includeAdjustedClose=true",
-    "sourceKind": "Yahoo Finance public chart API (daily Close / Adj Close / Volume)"
-  }
+  "inceptionNote": null
 }

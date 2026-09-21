@@ -2,42 +2,14 @@
   "ticker": "IYRI",
   "name": "Real Estate High income ETF",
   "category": "High Income Alternatives",
-  "categoryClass": "ticker-high-income-alternatives",
-  "dataFile": "./funds/IYRI/meta.json",
   "fundPage": "https://neosfunds.com/iyri/",
-  "source": {
-    "provider": "NEOS Investment Management LLC (NEOS ETFs)",
-    "site": "https://neosfunds.com",
-    "lineup": "https://neosfunds.com/#explore-etfs",
-    "fundPage": "https://neosfunds.com/iyri/",
-    "holdingsDownload": "https://neosfunds.com/wp-admin/admin-ajax.php?action=download_holdings_csv&ticker=IYRI",
-    "holdingsSource": "official NEOS daily holdings CSV (download_holdings_csv)",
-    "historySource": "Yahoo Finance public chart API (daily Close / Adj Close / Volume)",
-    "historyUrl": "https://query1.finance.yahoo.com/v8/finance/chart/IYRI?period1=0&period2=9999999999&interval=1d&events=div%7Csplit&includeAdjustedClose=true",
-    "returnsSource": "NEOS fund page performance tables (NAV Performance)",
-    "distributionsSource": "NEOS fund page Distribution History table",
-    "distributionInfoSource": "NEOS fund page Distribution Information block",
-    "documentsSource": "NEOS fund page Documents table",
-    "registrant": "NEOS ETF Trust (Investment Company Act file 811-23645)",
-    "nportDoc": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0001848758&type=NPORT-P&dateb=&owner=include&count=10",
-    "exchangeSource": "NEOS fund page Fund Details \"Primary Exchange\"",
-    "navSource": "NEOS fund page Fund Details \"Net Asset Value\" (official (fund page Fund Details))",
-    "premiumDiscountSource": "official (fund page Fund Details \"Premium Discount (%)\")",
-    "bidAskSpreadSource": "NEOS fund page Fund Details \"30-Day Median Bid-Ask Spread (%)\""
-  },
-  "identifiers": {
-    "cusip": "78433H618",
-    "isin": "US78433H6181",
-    "underlyingExposure": "Dow Jones U.S. Real Estate Capped Index",
-    "indexName": "Dow Jones U.S. Real Estate Capped Index",
-    "benchmarkIndexName": "Dow Jones U.S. Real Estate Capped Index"
-  },
-  "expenseRatio": {
-    "display": "0.68%",
-    "value": 0.68,
-    "managementFeeDisplay": "0.68%",
-    "managementFeeValue": 0.68
-  },
+  "dataFile": "./funds/IYRI/meta.json",
+  "cusip": "78433H618",
+  "isin": "US78433H6181",
+  "ter": "0.68%",
+  "terValue": 0.68,
+  "terGross": "0.68%",
+  "terGrossValue": 0.68,
   "nav": {
     "display": "$46.56",
     "value": 46.56,
@@ -45,123 +17,45 @@
     "dailyChangeText": "$-0.39 (-0.84%)",
     "kind": "official (fund page Fund Details)"
   },
-  "marketPrice": {
-    "display": "$46.66",
-    "value": 46.66,
-    "asOfDate": "Sep 18 2026",
-    "dailyChangeText": "$-0.29 (-0.62%)",
-    "source": "NEOS fund page Fund Details \"Market Price\""
-  },
-  "premiumDiscount": {
-    "display": "0.21%",
-    "value": 0.21,
-    "derivedValue": 0.21,
-    "kind": "official (fund page Fund Details \"Premium Discount (%)\")"
-  },
-  "bidAskSpread": {
-    "display": "0.16%",
-    "value": 0.16,
-    "asOfDate": "Sep 18 2026",
-    "kind": "official (fund page Fund Details \"30-Day Median Bid-Ask Spread (%)\")"
-  },
+  "navValue": 46.56,
   "aum": {
     "display": "$307.30M",
     "value": 307297320,
     "asOfDate": "Sep 18 2026",
     "source": "official NEOS daily holdings CSV (download_holdings_csv)"
   },
+  "aumValue": 307297320,
+  "asOfDate": "Sep 18 2026",
+  "inceptionDate": "Jan 14 2025",
+  "inceptionDateFundPage": "Jan 14 2025",
+  "exchange": "Cboe",
+  "closePrice": "$46.66",
+  "closePriceValue": 46.66,
+  "premiumDiscount": {
+    "display": "0.21%",
+    "value": 0.21,
+    "derivedValue": 0.21,
+    "kind": "official (fund page Fund Details \"Premium Discount (%)\")"
+  },
+  "premiumDiscountValue": 0.21,
+  "premiumDiscountDerivedValue": 0.21,
+  "premiumDiscountKind": "official (fund page Fund Details \"Premium Discount (%)\")",
+  "bidAskSpread": {
+    "display": "0.16%",
+    "value": 0.16,
+    "asOfDate": "Sep 18 2026",
+    "kind": "official (fund page Fund Details \"30-Day Median Bid-Ask Spread (%)\")"
+  },
+  "bidAskSpreadValue": 0.16,
+  "acquiredFundFeesText": null,
+  "totalNetAssets": 307297320,
   "sharesOutstanding": {
     "display": "6,600,000",
     "value": 6600000,
     "asOfDate": "Sep 21 2026"
   },
-  "yields": {
-    "dividendYield": 10.84,
-    "dividendYieldText": "10.84%",
-    "dividendYieldKind": "official NEOS Distribution Rate (latest distribution annualized / ex-date NAV)",
-    "distributionRate": 10.84,
-    "distributionRateText": "10.84%",
-    "yield12M": 10.93,
-    "yield12MText": "10.93%",
-    "secYield": 3.05,
-    "secYieldText": "3.05%",
-    "secYieldKind": "official NEOS 30-Day SEC Yield",
-    "distributionAmountText": "$0.4461",
-    "distributionAmountPercentText": "0.90%",
-    "distributionInfoAsOfDate": "Aug 31 2026"
-  },
-  "returns": {
-    "derivedFrom": "official NEOS fund page performance tables (NAV Performance series)",
-    "monthEnd": {
-      "asOfDate": "Aug 31 2026",
-      "raw": "2026-08-31",
-      "mo1": -1.77,
-      "mo3": 2.14,
-      "mo6": 1.49,
-      "ytd": 7.25,
-      "yr1": 6.78,
-      "yr3": null,
-      "yr5": null,
-      "yr10": null,
-      "sinceInception": 9.99,
-      "sinceInceptionCumulative": 16.76,
-      "market": {
-        "mo1": -1.83,
-        "mo3": 2.27,
-        "mo6": 1.52,
-        "ytd": 7.5,
-        "sinceInceptionCumulative": 16.98,
-        "yr1": 6.57,
-        "yr3": null,
-        "yr5": null,
-        "sinceInception": 10.11
-      },
-      "benchmarkName": "Dow Jones U.S. Real Estate Capped Index",
-      "benchmark": {
-        "mo1": -2.3,
-        "mo3": 1.76,
-        "mo6": 2.27,
-        "ytd": 10.35,
-        "sinceInceptionCumulative": 16.55,
-        "yr1": 7.93,
-        "yr3": null,
-        "yr5": null,
-        "sinceInception": 9.87
-      }
-    },
-    "quarterEnd": {
-      "asOfDate": "Jun 30 2026",
-      "raw": "2026-06-30",
-      "mo1": 1.55,
-      "mo3": 6.7,
-      "mo6": 6.62,
-      "ytd": 6.62,
-      "yr1": 9.68,
-      "yr3": null,
-      "yr5": null,
-      "yr10": null,
-      "sinceInception": 10.77,
-      "sinceInceptionCumulative": 16.07,
-      "market": {
-        "mo1": 1.55,
-        "mo3": 6.72,
-        "mo6": 6.74,
-        "ytd": 6.74,
-        "sinceInceptionCumulative": 16.15,
-        "yr1": 9.54,
-        "yr3": null,
-        "yr5": null,
-        "sinceInception": 10.82
-      }
-    }
-  },
-  "navIndex": {
-    "startDate": "2025-01-14",
-    "endDate": "2026-09-18",
-    "points": 613,
-    "benchmarkName": "Dow Jones U.S. Real Estate Capped Index",
-    "source": "NEOS fund page \"Growth of $10,000 at NAV Since Inception\" chart series"
-  },
+  "netAssetsAsOf": "Sep 18 2026",
+  "secYieldAsOf": "Aug 31 2026",
   "distributions": {
     "frequency": "Monthly",
     "paymentsPerYear": 12,
@@ -345,6 +239,174 @@
     "fallback": false,
     "source": "NEOS fund page Distribution History table"
   },
+  "returns": {
+    "derivedFrom": "official NEOS fund page performance tables (NAV Performance series)",
+    "monthEnd": {
+      "asOfDate": "Aug 31 2026",
+      "raw": "2026-08-31",
+      "mo1": -1.77,
+      "mo3": 2.14,
+      "mo6": 1.49,
+      "ytd": 7.25,
+      "yr1": 6.78,
+      "yr3": null,
+      "yr5": null,
+      "yr10": null,
+      "sinceInception": 9.99,
+      "sinceInceptionCumulative": 16.76,
+      "market": {
+        "mo1": -1.83,
+        "mo3": 2.27,
+        "mo6": 1.52,
+        "ytd": 7.5,
+        "sinceInceptionCumulative": 16.98,
+        "yr1": 6.57,
+        "yr3": null,
+        "yr5": null,
+        "sinceInception": 10.11
+      },
+      "benchmarkName": "Dow Jones U.S. Real Estate Capped Index",
+      "benchmark": {
+        "mo1": -2.3,
+        "mo3": 1.76,
+        "mo6": 2.27,
+        "ytd": 10.35,
+        "sinceInceptionCumulative": 16.55,
+        "yr1": 7.93,
+        "yr3": null,
+        "yr5": null,
+        "sinceInception": 9.87
+      }
+    },
+    "quarterEnd": {
+      "asOfDate": "Jun 30 2026",
+      "raw": "2026-06-30",
+      "mo1": 1.55,
+      "mo3": 6.7,
+      "mo6": 6.62,
+      "ytd": 6.62,
+      "yr1": 9.68,
+      "yr3": null,
+      "yr5": null,
+      "yr10": null,
+      "sinceInception": 10.77,
+      "sinceInceptionCumulative": 16.07,
+      "market": {
+        "mo1": 1.55,
+        "mo3": 6.72,
+        "mo6": 6.74,
+        "ytd": 6.74,
+        "sinceInceptionCumulative": 16.15,
+        "yr1": 9.54,
+        "yr3": null,
+        "yr5": null,
+        "sinceInception": 10.82
+      }
+    }
+  },
+  "metrics": {
+    "ytd": 7.25,
+    "tr1y": 6.78,
+    "tr3y": null,
+    "tr5y": null,
+    "tr10y": null,
+    "cagr3y": null,
+    "cagr5y": null,
+    "cagr10y": null,
+    "siAnn": 9.99,
+    "dividendYield": 10.84,
+    "dividendYieldText": "10.84%",
+    "distributionYield": 10.84,
+    "distributionYieldText": "10.84%",
+    "yield12M": 10.93,
+    "yield12MText": "10.93%",
+    "secYield": 3.05,
+    "secYieldText": "3.05%",
+    "returnsBasis": "official NEOS fund page NAV Performance (monthly series)"
+  },
+  "distributionFrequency": "01 - Monthly",
+  "providerCategory": "High Income Alternatives",
+  "holdings": {
+    "pages": [],
+    "pageSize": 250,
+    "totalRows": 63,
+    "asOfDate": "Sep 21 2026",
+    "asOf": "2026-09-21",
+    "source": "https://neosfunds.com/wp-admin/admin-ajax.php?action=download_holdings_csv&ticker=IYRI",
+    "sourceKind": "official NEOS daily holdings CSV (download_holdings_csv)"
+  },
+  "history": {
+    "pages": [],
+    "pageSize": 1000,
+    "totalRows": 421,
+    "asOfDate": "Sep 18 2026",
+    "asOf": "2026-09-18",
+    "source": "https://query1.finance.yahoo.com/v8/finance/chart/IYRI?period1=0&period2=9999999999&interval=1d&events=div%7Csplit&includeAdjustedClose=true",
+    "sourceKind": "Yahoo Finance public chart API (daily Close / Adj Close / Volume)"
+  },
+  "navKind": "official (fund page Fund Details)",
+  "source": {
+    "provider": "NEOS Investment Management LLC (NEOS ETFs)",
+    "site": "https://neosfunds.com",
+    "lineup": "https://neosfunds.com/#explore-etfs",
+    "fundPage": "https://neosfunds.com/iyri/",
+    "holdingsDownload": "https://neosfunds.com/wp-admin/admin-ajax.php?action=download_holdings_csv&ticker=IYRI",
+    "holdingsSource": "official NEOS daily holdings CSV (download_holdings_csv)",
+    "historySource": "Yahoo Finance public chart API (daily Close / Adj Close / Volume)",
+    "historyUrl": "https://query1.finance.yahoo.com/v8/finance/chart/IYRI?period1=0&period2=9999999999&interval=1d&events=div%7Csplit&includeAdjustedClose=true",
+    "returnsSource": "NEOS fund page performance tables (NAV Performance)",
+    "distributionsSource": "NEOS fund page Distribution History table",
+    "distributionInfoSource": "NEOS fund page Distribution Information block",
+    "documentsSource": "NEOS fund page Documents table",
+    "registrant": "NEOS ETF Trust (Investment Company Act file 811-23645)",
+    "nportDoc": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0001848758&type=NPORT-P&dateb=&owner=include&count=10",
+    "exchangeSource": "NEOS fund page Fund Details \"Primary Exchange\"",
+    "navSource": "NEOS fund page Fund Details \"Net Asset Value\" (official (fund page Fund Details))",
+    "premiumDiscountSource": "official (fund page Fund Details \"Premium Discount (%)\")",
+    "bidAskSpreadSource": "NEOS fund page Fund Details \"30-Day Median Bid-Ask Spread (%)\""
+  },
+  "identifiers": {
+    "cusip": "78433H618",
+    "isin": "US78433H6181",
+    "underlyingExposure": "Dow Jones U.S. Real Estate Capped Index",
+    "indexName": "Dow Jones U.S. Real Estate Capped Index",
+    "benchmarkIndexName": "Dow Jones U.S. Real Estate Capped Index"
+  },
+  "expenseRatio": {
+    "display": "0.68%",
+    "value": 0.68,
+    "managementFeeDisplay": "0.68%",
+    "managementFeeValue": 0.68
+  },
+  "marketPrice": {
+    "display": "$46.66",
+    "value": 46.66,
+    "asOfDate": "Sep 18 2026",
+    "dailyChangeText": "$-0.29 (-0.62%)",
+    "source": "NEOS fund page Fund Details \"Market Price\""
+  },
+  "yields": {
+    "dividendYield": 10.84,
+    "dividendYieldText": "10.84%",
+    "dividendYieldKind": "official NEOS Distribution Rate (latest distribution annualized / ex-date NAV)",
+    "distributionRate": 10.84,
+    "distributionRateText": "10.84%",
+    "yield12M": 10.93,
+    "yield12MText": "10.93%",
+    "secYield": 3.05,
+    "secYieldText": "3.05%",
+    "secYieldKind": "official NEOS 30-Day SEC Yield",
+    "distributionAmountText": "$0.4461",
+    "distributionAmountPercentText": "0.90%",
+    "distributionInfoAsOfDate": "Aug 31 2026"
+  },
+  "navIndex": {
+    "startDate": "2025-01-14",
+    "endDate": "2026-09-18",
+    "points": 613,
+    "benchmarkName": "Dow Jones U.S. Real Estate Capped Index",
+    "source": "NEOS fund page \"Growth of $10,000 at NAV Since Inception\" chart series"
+  },
   "documents": {
     "prospectus": "https://neosfunds.com/wp-content/uploads/IYRI-Prospectus.pdf",
     "summaryProspectus": "https://neosfunds.com/wp-content/uploads/IYRI-Summary-Prospectus.pdf",
@@ -356,26 +418,5 @@
     "taxInfo": "https://neosfunds.com/wp-content/uploads/NEOS-Tax-Insert-2025.pdf",
     "form8937": "https://neosfunds.com/wp-content/uploads/NEOS-Real-Estate-High-Income-ETF-Form-8937-12.31.25.pdf"
   },
-  "holdings": {
-    "pages": [
-      "./holdings/001.json"
-    ],
-    "pageSize": 250,
-    "totalRows": 63,
-    "asOfDate": "Sep 21 2026",
-    "asOf": "2026-09-21",
-    "source": "https://neosfunds.com/wp-admin/admin-ajax.php?action=download_holdings_csv&ticker=IYRI",
-    "sourceKind": "official NEOS daily holdings CSV (download_holdings_csv)"
-  },
-  "history": {
-    "pages": [
-      "./history/001.json"
-    ],
-    "pageSize": 1000,
-    "totalRows": 421,
-    "asOfDate": "Sep 18 2026",
-    "asOf": "2026-09-18",
-    "source": "https://query1.finance.yahoo.com/v8/finance/chart/IYRI?period1=0&period2=9999999999&interval=1d&events=div%7Csplit&includeAdjustedClose=true",
-    "sourceKind": "Yahoo Finance public chart API (daily Close / Adj Close / Volume)"
-  }
+  "inceptionNote": null
 }

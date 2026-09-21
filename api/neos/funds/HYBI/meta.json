@@ -2,42 +2,14 @@
   "ticker": "HYBI",
   "name": "Enhanced Income Credit Select ETF",
   "category": "Enhanced Fixed Income",
-  "categoryClass": "ticker-enhanced-income-treasuries",
-  "dataFile": "./funds/HYBI/meta.json",
   "fundPage": "https://neosfunds.com/hybi/",
-  "source": {
-    "provider": "NEOS Investment Management LLC (NEOS ETFs)",
-    "site": "https://neosfunds.com",
-    "lineup": "https://neosfunds.com/#explore-etfs",
-    "fundPage": "https://neosfunds.com/hybi/",
-    "holdingsDownload": "https://neosfunds.com/wp-admin/admin-ajax.php?action=download_holdings_csv&ticker=HYBI",
-    "holdingsSource": "official NEOS daily holdings CSV (download_holdings_csv)",
-    "historySource": "Yahoo Finance public chart API (daily Close / Adj Close / Volume)",
-    "historyUrl": "https://query1.finance.yahoo.com/v8/finance/chart/HYBI?period1=0&period2=9999999999&interval=1d&events=div%7Csplit&includeAdjustedClose=true",
-    "returnsSource": "NEOS fund page performance tables (NAV Performance)",
-    "distributionsSource": "NEOS fund page Distribution History table",
-    "distributionInfoSource": "NEOS fund page Distribution Information block",
-    "documentsSource": "NEOS fund page Documents table",
-    "registrant": "NEOS ETF Trust (Investment Company Act file 811-23645)",
-    "nportDoc": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0001848758&type=NPORT-P&dateb=&owner=include&count=10",
-    "exchangeSource": "NEOS fund page Fund Details \"Primary Exchange\"",
-    "navSource": "NEOS fund page Fund Details \"Net Asset Value\" (official (fund page Fund Details))",
-    "premiumDiscountSource": "official (fund page Fund Details \"Premium Discount (%)\")",
-    "bidAskSpreadSource": "NEOS fund page Fund Details \"30-Day Median Bid-Ask Spread (%)\""
-  },
-  "identifiers": {
-    "cusip": "78433H584",
-    "isin": "US78433H5845",
-    "underlyingExposure": null,
-    "indexName": null,
-    "benchmarkIndexName": "Bloomberg U.S. Corporate High Yield Index"
-  },
-  "expenseRatio": {
-    "display": "0.72%",
-    "value": 0.72,
-    "managementFeeDisplay": "0.65%",
-    "managementFeeValue": 0.65
-  },
+  "dataFile": "./funds/HYBI/meta.json",
+  "cusip": "78433H584",
+  "isin": "US78433H5845",
+  "ter": "0.72%",
+  "terValue": 0.72,
+  "terGross": "0.65%",
+  "terGrossValue": 0.65,
   "nav": {
     "display": "$48.21",
     "value": 48.21,
@@ -45,126 +17,45 @@
     "dailyChangeText": "$-0.04 (-0.09%)",
     "kind": "official (fund page Fund Details)"
   },
-  "marketPrice": {
-    "display": "$48.23",
-    "value": 48.23,
-    "asOfDate": "Sep 18 2026",
-    "dailyChangeText": "$-0.04 (-0.07%)",
-    "source": "NEOS fund page Fund Details \"Market Price\""
-  },
-  "premiumDiscount": {
-    "display": "0.05%",
-    "value": 0.05,
-    "derivedValue": 0.04,
-    "kind": "official (fund page Fund Details \"Premium Discount (%)\")"
-  },
-  "bidAskSpread": {
-    "display": "0.04%",
-    "value": 0.04,
-    "asOfDate": "Sep 18 2026",
-    "kind": "official (fund page Fund Details \"30-Day Median Bid-Ask Spread (%)\")"
-  },
+  "navValue": 48.21,
   "aum": {
     "display": "$222.43M",
     "value": 222429260.38,
     "asOfDate": "Sep 18 2026",
     "source": "official NEOS daily holdings CSV (download_holdings_csv)"
   },
+  "aumValue": 222429260.38,
+  "asOfDate": "Sep 18 2026",
+  "inceptionDate": "Sep 30 2014",
+  "inceptionDateFundPage": "Sep 30 2024",
+  "exchange": "NASDAQ",
+  "closePrice": "$48.23",
+  "closePriceValue": 48.23,
+  "premiumDiscount": {
+    "display": "0.05%",
+    "value": 0.05,
+    "derivedValue": 0.04,
+    "kind": "official (fund page Fund Details \"Premium Discount (%)\")"
+  },
+  "premiumDiscountValue": 0.05,
+  "premiumDiscountDerivedValue": 0.04,
+  "premiumDiscountKind": "official (fund page Fund Details \"Premium Discount (%)\")",
+  "bidAskSpread": {
+    "display": "0.04%",
+    "value": 0.04,
+    "asOfDate": "Sep 18 2026",
+    "kind": "official (fund page Fund Details \"30-Day Median Bid-Ask Spread (%)\")"
+  },
+  "bidAskSpreadValue": 0.04,
+  "acquiredFundFeesText": "0.07%",
+  "totalNetAssets": 222429260.38,
   "sharesOutstanding": {
     "display": "4,613,997",
     "value": 4613997,
     "asOfDate": "Sep 21 2026"
   },
-  "yields": {
-    "dividendYield": 8.08,
-    "dividendYieldText": "8.08%",
-    "dividendYieldKind": "official NEOS Distribution Rate (latest distribution annualized / ex-date NAV)",
-    "distributionRate": 8.08,
-    "distributionRateText": "8.08%",
-    "yield12M": 8.27,
-    "yield12MText": "8.27%",
-    "secYield": 6.13,
-    "secYieldText": "6.13%",
-    "secYieldKind": "official NEOS 30-Day SEC Yield",
-    "distributionAmountText": "$0.3291",
-    "distributionAmountPercentText": "0.67%",
-    "distributionInfoAsOfDate": "Aug 31 2026"
-  },
-  "returns": {
-    "derivedFrom": "official NEOS fund page performance tables (NAV Performance series)",
-    "monthEnd": {
-      "asOfDate": "Aug 31 2026",
-      "raw": "2026-08-31",
-      "mo1": 0.9,
-      "mo3": 1.08,
-      "mo6": 1.94,
-      "ytd": 2.91,
-      "yr1": 5.21,
-      "yr3": 6.34,
-      "yr5": 3.61,
-      "yr10": 4.11,
-      "sinceInception": 4.19,
-      "sinceInceptionCumulative": 63.17,
-      "market": {
-        "mo1": 0.8,
-        "mo3": 1.03,
-        "mo6": 1.81,
-        "ytd": 2.82,
-        "sinceInceptionCumulative": 63.16,
-        "yr1": 5.14,
-        "yr3": 6.34,
-        "yr5": 3.61,
-        "yr10": 4.11,
-        "sinceInception": 4.19
-      },
-      "benchmarkName": "Bloomberg U.S. Corporate High Yield Index",
-      "benchmark": {
-        "mo1": 0.97,
-        "mo3": 0.99,
-        "mo6": 1.98,
-        "ytd": 2.69,
-        "sinceInceptionCumulative": 82.78,
-        "yr1": 4.88,
-        "yr3": 8.52,
-        "yr5": 4.13,
-        "yr10": 5.39,
-        "sinceInception": 5.19
-      }
-    },
-    "quarterEnd": {
-      "asOfDate": "Jun 30 2026",
-      "raw": "2026-06-30",
-      "mo1": 0.19,
-      "mo3": 1.7,
-      "mo6": 2,
-      "ytd": 2,
-      "yr1": 5.87,
-      "yr3": 6.13,
-      "yr5": 3.47,
-      "yr10": 4.36,
-      "sinceInception": 4.18,
-      "sinceInceptionCumulative": 61.73,
-      "market": {
-        "mo1": 0.12,
-        "mo3": 1.56,
-        "mo6": 1.88,
-        "ytd": 1.88,
-        "sinceInceptionCumulative": 61.69,
-        "yr1": 5.92,
-        "yr3": 6.12,
-        "yr5": 3.46,
-        "yr10": 4.35,
-        "sinceInception": 4.17
-      }
-    }
-  },
-  "navIndex": {
-    "startDate": "2014-09-30",
-    "endDate": "2026-09-18",
-    "points": 4372,
-    "benchmarkName": "Bloomberg U.S. Corporate High Yield Index",
-    "source": "NEOS fund page \"Growth of $10,000 at NAV Since Inception\" chart series"
-  },
+  "netAssetsAsOf": "Sep 18 2026",
+  "secYieldAsOf": "Aug 31 2026",
   "distributions": {
     "frequency": "Monthly",
     "paymentsPerYear": 12,
@@ -369,6 +260,177 @@
     "fallback": false,
     "source": "NEOS fund page Distribution History table"
   },
+  "returns": {
+    "derivedFrom": "official NEOS fund page performance tables (NAV Performance series)",
+    "monthEnd": {
+      "asOfDate": "Aug 31 2026",
+      "raw": "2026-08-31",
+      "mo1": 0.9,
+      "mo3": 1.08,
+      "mo6": 1.94,
+      "ytd": 2.91,
+      "yr1": 5.21,
+      "yr3": 6.34,
+      "yr5": 3.61,
+      "yr10": 4.11,
+      "sinceInception": 4.19,
+      "sinceInceptionCumulative": 63.17,
+      "market": {
+        "mo1": 0.8,
+        "mo3": 1.03,
+        "mo6": 1.81,
+        "ytd": 2.82,
+        "sinceInceptionCumulative": 63.16,
+        "yr1": 5.14,
+        "yr3": 6.34,
+        "yr5": 3.61,
+        "yr10": 4.11,
+        "sinceInception": 4.19
+      },
+      "benchmarkName": "Bloomberg U.S. Corporate High Yield Index",
+      "benchmark": {
+        "mo1": 0.97,
+        "mo3": 0.99,
+        "mo6": 1.98,
+        "ytd": 2.69,
+        "sinceInceptionCumulative": 82.78,
+        "yr1": 4.88,
+        "yr3": 8.52,
+        "yr5": 4.13,
+        "yr10": 5.39,
+        "sinceInception": 5.19
+      }
+    },
+    "quarterEnd": {
+      "asOfDate": "Jun 30 2026",
+      "raw": "2026-06-30",
+      "mo1": 0.19,
+      "mo3": 1.7,
+      "mo6": 2,
+      "ytd": 2,
+      "yr1": 5.87,
+      "yr3": 6.13,
+      "yr5": 3.47,
+      "yr10": 4.36,
+      "sinceInception": 4.18,
+      "sinceInceptionCumulative": 61.73,
+      "market": {
+        "mo1": 0.12,
+        "mo3": 1.56,
+        "mo6": 1.88,
+        "ytd": 1.88,
+        "sinceInceptionCumulative": 61.69,
+        "yr1": 5.92,
+        "yr3": 6.12,
+        "yr5": 3.46,
+        "yr10": 4.35,
+        "sinceInception": 4.17
+      }
+    }
+  },
+  "metrics": {
+    "ytd": 2.91,
+    "tr1y": 5.21,
+    "tr3y": 20.25,
+    "tr5y": 19.4,
+    "tr10y": 49.6,
+    "cagr3y": 6.34,
+    "cagr5y": 3.61,
+    "cagr10y": 4.11,
+    "siAnn": 4.19,
+    "dividendYield": 8.08,
+    "dividendYieldText": "8.08%",
+    "distributionYield": 8.08,
+    "distributionYieldText": "8.08%",
+    "yield12M": 8.27,
+    "yield12MText": "8.27%",
+    "secYield": 6.13,
+    "secYieldText": "6.13%",
+    "returnsBasis": "official NEOS fund page NAV Performance (monthly series)"
+  },
+  "distributionFrequency": "01 - Monthly",
+  "providerCategory": "Enhanced Fixed Income",
+  "holdings": {
+    "pages": [],
+    "pageSize": 250,
+    "totalRows": 10,
+    "asOfDate": "Sep 21 2026",
+    "asOf": "2026-09-21",
+    "source": "https://neosfunds.com/wp-admin/admin-ajax.php?action=download_holdings_csv&ticker=HYBI",
+    "sourceKind": "official NEOS daily holdings CSV (download_holdings_csv)"
+  },
+  "history": {
+    "pages": [],
+    "pageSize": 1000,
+    "totalRows": 494,
+    "asOfDate": "Sep 18 2026",
+    "asOf": "2026-09-18",
+    "source": "https://query1.finance.yahoo.com/v8/finance/chart/HYBI?period1=0&period2=9999999999&interval=1d&events=div%7Csplit&includeAdjustedClose=true",
+    "sourceKind": "Yahoo Finance public chart API (daily Close / Adj Close / Volume)"
+  },
+  "navKind": "official (fund page Fund Details)",
+  "source": {
+    "provider": "NEOS Investment Management LLC (NEOS ETFs)",
+    "site": "https://neosfunds.com",
+    "lineup": "https://neosfunds.com/#explore-etfs",
+    "fundPage": "https://neosfunds.com/hybi/",
+    "holdingsDownload": "https://neosfunds.com/wp-admin/admin-ajax.php?action=download_holdings_csv&ticker=HYBI",
+    "holdingsSource": "official NEOS daily holdings CSV (download_holdings_csv)",
+    "historySource": "Yahoo Finance public chart API (daily Close / Adj Close / Volume)",
+    "historyUrl": "https://query1.finance.yahoo.com/v8/finance/chart/HYBI?period1=0&period2=9999999999&interval=1d&events=div%7Csplit&includeAdjustedClose=true",
+    "returnsSource": "NEOS fund page performance tables (NAV Performance)",
+    "distributionsSource": "NEOS fund page Distribution History table",
+    "distributionInfoSource": "NEOS fund page Distribution Information block",
+    "documentsSource": "NEOS fund page Documents table",
+    "registrant": "NEOS ETF Trust (Investment Company Act file 811-23645)",
+    "nportDoc": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0001848758&type=NPORT-P&dateb=&owner=include&count=10",
+    "exchangeSource": "NEOS fund page Fund Details \"Primary Exchange\"",
+    "navSource": "NEOS fund page Fund Details \"Net Asset Value\" (official (fund page Fund Details))",
+    "premiumDiscountSource": "official (fund page Fund Details \"Premium Discount (%)\")",
+    "bidAskSpreadSource": "NEOS fund page Fund Details \"30-Day Median Bid-Ask Spread (%)\""
+  },
+  "identifiers": {
+    "cusip": "78433H584",
+    "isin": "US78433H5845",
+    "underlyingExposure": null,
+    "indexName": null,
+    "benchmarkIndexName": "Bloomberg U.S. Corporate High Yield Index"
+  },
+  "expenseRatio": {
+    "display": "0.72%",
+    "value": 0.72,
+    "managementFeeDisplay": "0.65%",
+    "managementFeeValue": 0.65
+  },
+  "marketPrice": {
+    "display": "$48.23",
+    "value": 48.23,
+    "asOfDate": "Sep 18 2026",
+    "dailyChangeText": "$-0.04 (-0.07%)",
+    "source": "NEOS fund page Fund Details \"Market Price\""
+  },
+  "yields": {
+    "dividendYield": 8.08,
+    "dividendYieldText": "8.08%",
+    "dividendYieldKind": "official NEOS Distribution Rate (latest distribution annualized / ex-date NAV)",
+    "distributionRate": 8.08,
+    "distributionRateText": "8.08%",
+    "yield12M": 8.27,
+    "yield12MText": "8.27%",
+    "secYield": 6.13,
+    "secYieldText": "6.13%",
+    "secYieldKind": "official NEOS 30-Day SEC Yield",
+    "distributionAmountText": "$0.3291",
+    "distributionAmountPercentText": "0.67%",
+    "distributionInfoAsOfDate": "Aug 31 2026"
+  },
+  "navIndex": {
+    "startDate": "2014-09-30",
+    "endDate": "2026-09-18",
+    "points": 4372,
+    "benchmarkName": "Bloomberg U.S. Corporate High Yield Index",
+    "source": "NEOS fund page \"Growth of $10,000 at NAV Since Inception\" chart series"
+  },
   "documents": {
     "prospectus": "https://neosfunds.com/wp-content/uploads/HYBI-Prospectus.pdf",
     "summaryProspectus": "https://neosfunds.com/wp-content/uploads/HYBI-Summary-Prospectus.pdf",
@@ -380,26 +442,5 @@
     "taxInfo": "https://neosfunds.com/wp-content/uploads/NEOS-Tax-Insert-2025.pdf",
     "form8937": "https://neosfunds.com/wp-content/uploads/NEOS-Enhanced-Income-Credit-Select-ETF-Form-8937-12.31.25.pdf"
   },
-  "holdings": {
-    "pages": [
-      "./holdings/001.json"
-    ],
-    "pageSize": 250,
-    "totalRows": 10,
-    "asOfDate": "Sep 21 2026",
-    "asOf": "2026-09-21",
-    "source": "https://neosfunds.com/wp-admin/admin-ajax.php?action=download_holdings_csv&ticker=HYBI",
-    "sourceKind": "official NEOS daily holdings CSV (download_holdings_csv)"
-  },
-  "history": {
-    "pages": [
-      "./history/001.json"
-    ],
-    "pageSize": 1000,
-    "totalRows": 494,
-    "asOfDate": "Sep 18 2026",
-    "asOf": "2026-09-18",
-    "source": "https://query1.finance.yahoo.com/v8/finance/chart/HYBI?period1=0&period2=9999999999&interval=1d&events=div%7Csplit&includeAdjustedClose=true",
-    "sourceKind": "Yahoo Finance public chart API (daily Close / Adj Close / Volume)"
-  }
+  "inceptionNote": "neosfunds.com publishes Sep 30 2014 in the ETF lineup table and Sep 30 2024 in the Fund Details panel (the date the fund's predecessor converted into the ETF); the catalog shows the lineup figure, which is the basis of the published 5Y and 10Y returns."
 }

@@ -2,42 +2,14 @@
   "ticker": "SPYI",
   "name": "S&P 500 High Income ETF",
   "category": "Equity High Income",
-  "categoryClass": "ticker-equity-high-income",
-  "dataFile": "./funds/SPYI/meta.json",
   "fundPage": "https://neosfunds.com/spyi/",
-  "source": {
-    "provider": "NEOS Investment Management LLC (NEOS ETFs)",
-    "site": "https://neosfunds.com",
-    "lineup": "https://neosfunds.com/#explore-etfs",
-    "fundPage": "https://neosfunds.com/spyi/",
-    "holdingsDownload": "https://neosfunds.com/wp-admin/admin-ajax.php?action=download_holdings_csv&ticker=SPYI",
-    "holdingsSource": "official NEOS daily holdings CSV (download_holdings_csv)",
-    "historySource": "Yahoo Finance public chart API (daily Close / Adj Close / Volume)",
-    "historyUrl": "https://query1.finance.yahoo.com/v8/finance/chart/SPYI?period1=0&period2=9999999999&interval=1d&events=div%7Csplit&includeAdjustedClose=true",
-    "returnsSource": "NEOS fund page performance tables (NAV Performance)",
-    "distributionsSource": "NEOS fund page Distribution History table",
-    "distributionInfoSource": "NEOS fund page Distribution Information block",
-    "documentsSource": "NEOS fund page Documents table",
-    "registrant": "NEOS ETF Trust (Investment Company Act file 811-23645)",
-    "nportDoc": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0001848758&type=NPORT-P&dateb=&owner=include&count=10",
-    "exchangeSource": "NEOS fund page Fund Details \"Primary Exchange\"",
-    "navSource": "NEOS fund page Fund Details \"Net Asset Value\" (official (fund page Fund Details))",
-    "premiumDiscountSource": "official (fund page Fund Details \"Premium Discount (%)\")",
-    "bidAskSpreadSource": "NEOS fund page Fund Details \"30-Day Median Bid-Ask Spread (%)\""
-  },
-  "identifiers": {
-    "cusip": "78433H303",
-    "isin": "US78433H3030",
-    "underlyingExposure": "S&P 500 Index",
-    "indexName": "S&P 500 Index",
-    "benchmarkIndexName": "Cboe S&P 500 BuyWrite Monthly Index"
-  },
-  "expenseRatio": {
-    "display": "0.68%",
-    "value": 0.68,
-    "managementFeeDisplay": "0.68%",
-    "managementFeeValue": 0.68
-  },
+  "dataFile": "./funds/SPYI/meta.json",
+  "cusip": "78433H303",
+  "isin": "US78433H3030",
+  "ter": "0.68%",
+  "terValue": 0.68,
+  "terGross": "0.68%",
+  "terGrossValue": 0.68,
   "nav": {
     "display": "$53.10",
     "value": 53.1,
@@ -45,123 +17,45 @@
     "dailyChangeText": "$0.10 (0.19%)",
     "kind": "official (fund page Fund Details)"
   },
-  "marketPrice": {
-    "display": "$53.09",
-    "value": 53.09,
-    "asOfDate": "Sep 18 2026",
-    "dailyChangeText": "$0.09 (0.17%)",
-    "source": "NEOS fund page Fund Details \"Market Price\""
-  },
-  "premiumDiscount": {
-    "display": "-0.02%",
-    "value": -0.02,
-    "derivedValue": -0.02,
-    "kind": "official (fund page Fund Details \"Premium Discount (%)\")"
-  },
-  "bidAskSpread": {
-    "display": "0.02%",
-    "value": 0.02,
-    "asOfDate": "Sep 18 2026",
-    "kind": "official (fund page Fund Details \"30-Day Median Bid-Ask Spread (%)\")"
-  },
+  "navValue": 53.1,
   "aum": {
     "display": "$12.19B",
     "value": 12192173280,
     "asOfDate": "Sep 18 2026",
     "source": "official NEOS daily holdings CSV (download_holdings_csv)"
   },
+  "aumValue": 12192173280,
+  "asOfDate": "Sep 18 2026",
+  "inceptionDate": "Aug 29 2022",
+  "inceptionDateFundPage": "Aug 29 2022",
+  "exchange": "CBOE",
+  "closePrice": "$53.09",
+  "closePriceValue": 53.09,
+  "premiumDiscount": {
+    "display": "-0.02%",
+    "value": -0.02,
+    "derivedValue": -0.02,
+    "kind": "official (fund page Fund Details \"Premium Discount (%)\")"
+  },
+  "premiumDiscountValue": -0.02,
+  "premiumDiscountDerivedValue": -0.02,
+  "premiumDiscountKind": "official (fund page Fund Details \"Premium Discount (%)\")",
+  "bidAskSpread": {
+    "display": "0.02%",
+    "value": 0.02,
+    "asOfDate": "Sep 18 2026",
+    "kind": "official (fund page Fund Details \"30-Day Median Bid-Ask Spread (%)\")"
+  },
+  "bidAskSpreadValue": 0.02,
+  "acquiredFundFeesText": null,
+  "totalNetAssets": 12192173280,
   "sharesOutstanding": {
     "display": "229,600,000",
     "value": 229600000,
     "asOfDate": "Sep 21 2026"
   },
-  "yields": {
-    "dividendYield": 12.15,
-    "dividendYieldText": "12.15%",
-    "dividendYieldKind": "official NEOS Distribution Rate (latest distribution annualized / ex-date NAV)",
-    "distributionRate": 12.15,
-    "distributionRateText": "12.15%",
-    "yield12M": 11.82,
-    "yield12MText": "11.82%",
-    "secYield": 0.46,
-    "secYieldText": "0.46%",
-    "secYieldKind": "official NEOS 30-Day SEC Yield",
-    "distributionAmountText": "$0.5423",
-    "distributionAmountPercentText": "1.01%",
-    "distributionInfoAsOfDate": "Aug 31 2026"
-  },
-  "returns": {
-    "derivedFrom": "official NEOS fund page performance tables (NAV Performance series)",
-    "monthEnd": {
-      "asOfDate": "Aug 31 2026",
-      "raw": "2026-08-31",
-      "mo1": 2.47,
-      "mo3": 2.55,
-      "mo6": 9.33,
-      "ytd": 10.72,
-      "yr1": 17.65,
-      "yr3": 16.04,
-      "yr5": null,
-      "yr10": null,
-      "sinceInception": 15.02,
-      "sinceInceptionCumulative": 75.14,
-      "market": {
-        "mo1": 2.52,
-        "mo3": 2.6,
-        "mo6": 9.41,
-        "ytd": 10.68,
-        "sinceInceptionCumulative": 75.12,
-        "yr1": 17.63,
-        "yr3": 16.02,
-        "yr5": null,
-        "sinceInception": 15.01
-      },
-      "benchmarkName": "Cboe S&P 500 BuyWrite Monthly Index",
-      "benchmark": {
-        "mo1": 1.6,
-        "mo3": 4.76,
-        "mo6": 7.79,
-        "ytd": 10.01,
-        "sinceInceptionCumulative": 57.92,
-        "yr1": 19.31,
-        "yr3": 13.43,
-        "yr5": null,
-        "sinceInception": 12.08
-      }
-    },
-    "quarterEnd": {
-      "asOfDate": "Jun 30 2026",
-      "raw": "2026-06-30",
-      "mo1": -0.38,
-      "mo3": 10.96,
-      "mo6": 7.56,
-      "ytd": 7.56,
-      "yr1": 19.02,
-      "yr3": 15.5,
-      "yr5": null,
-      "yr10": null,
-      "sinceInception": 14.86,
-      "sinceInceptionCumulative": 70.14,
-      "market": {
-        "mo1": -0.5,
-        "mo3": 10.8,
-        "mo6": 7.34,
-        "ytd": 7.34,
-        "sinceInceptionCumulative": 69.83,
-        "yr1": 18.97,
-        "yr3": 15.41,
-        "yr5": null,
-        "sinceInception": 14.81
-      }
-    }
-  },
-  "navIndex": {
-    "startDate": "2022-08-29",
-    "endDate": "2026-09-18",
-    "points": 1482,
-    "benchmarkName": "Cboe S&P 500 BuyWrite Monthly Index",
-    "source": "NEOS fund page \"Growth of $10,000 at NAV Since Inception\" chart series"
-  },
+  "netAssetsAsOf": "Sep 18 2026",
+  "secYieldAsOf": "Aug 31 2026",
   "distributions": {
     "frequency": "Monthly",
     "paymentsPerYear": 12,
@@ -541,6 +435,174 @@
     "fallback": false,
     "source": "NEOS fund page Distribution History table"
   },
+  "returns": {
+    "derivedFrom": "official NEOS fund page performance tables (NAV Performance series)",
+    "monthEnd": {
+      "asOfDate": "Aug 31 2026",
+      "raw": "2026-08-31",
+      "mo1": 2.47,
+      "mo3": 2.55,
+      "mo6": 9.33,
+      "ytd": 10.72,
+      "yr1": 17.65,
+      "yr3": 16.04,
+      "yr5": null,
+      "yr10": null,
+      "sinceInception": 15.02,
+      "sinceInceptionCumulative": 75.14,
+      "market": {
+        "mo1": 2.52,
+        "mo3": 2.6,
+        "mo6": 9.41,
+        "ytd": 10.68,
+        "sinceInceptionCumulative": 75.12,
+        "yr1": 17.63,
+        "yr3": 16.02,
+        "yr5": null,
+        "sinceInception": 15.01
+      },
+      "benchmarkName": "Cboe S&P 500 BuyWrite Monthly Index",
+      "benchmark": {
+        "mo1": 1.6,
+        "mo3": 4.76,
+        "mo6": 7.79,
+        "ytd": 10.01,
+        "sinceInceptionCumulative": 57.92,
+        "yr1": 19.31,
+        "yr3": 13.43,
+        "yr5": null,
+        "sinceInception": 12.08
+      }
+    },
+    "quarterEnd": {
+      "asOfDate": "Jun 30 2026",
+      "raw": "2026-06-30",
+      "mo1": -0.38,
+      "mo3": 10.96,
+      "mo6": 7.56,
+      "ytd": 7.56,
+      "yr1": 19.02,
+      "yr3": 15.5,
+      "yr5": null,
+      "yr10": null,
+      "sinceInception": 14.86,
+      "sinceInceptionCumulative": 70.14,
+      "market": {
+        "mo1": -0.5,
+        "mo3": 10.8,
+        "mo6": 7.34,
+        "ytd": 7.34,
+        "sinceInceptionCumulative": 69.83,
+        "yr1": 18.97,
+        "yr3": 15.41,
+        "yr5": null,
+        "sinceInception": 14.81
+      }
+    }
+  },
+  "metrics": {
+    "ytd": 10.72,
+    "tr1y": 17.65,
+    "tr3y": 56.25,
+    "tr5y": null,
+    "tr10y": null,
+    "cagr3y": 16.04,
+    "cagr5y": null,
+    "cagr10y": null,
+    "siAnn": 15.02,
+    "dividendYield": 12.15,
+    "dividendYieldText": "12.15%",
+    "distributionYield": 12.15,
+    "distributionYieldText": "12.15%",
+    "yield12M": 11.82,
+    "yield12MText": "11.82%",
+    "secYield": 0.46,
+    "secYieldText": "0.46%",
+    "returnsBasis": "official NEOS fund page NAV Performance (monthly series)"
+  },
+  "distributionFrequency": "01 - Monthly",
+  "providerCategory": "Equity High Income",
+  "holdings": {
+    "pages": [],
+    "pageSize": 250,
+    "totalRows": 508,
+    "asOfDate": "Sep 21 2026",
+    "asOf": "2026-09-21",
+    "source": "https://neosfunds.com/wp-admin/admin-ajax.php?action=download_holdings_csv&ticker=SPYI",
+    "sourceKind": "official NEOS daily holdings CSV (download_holdings_csv)"
+  },
+  "history": {
+    "pages": [],
+    "pageSize": 1000,
+    "totalRows": 1017,
+    "asOfDate": "Sep 18 2026",
+    "asOf": "2026-09-18",
+    "source": "https://query1.finance.yahoo.com/v8/finance/chart/SPYI?period1=0&period2=9999999999&interval=1d&events=div%7Csplit&includeAdjustedClose=true",
+    "sourceKind": "Yahoo Finance public chart API (daily Close / Adj Close / Volume)"
+  },
+  "navKind": "official (fund page Fund Details)",
+  "source": {
+    "provider": "NEOS Investment Management LLC (NEOS ETFs)",
+    "site": "https://neosfunds.com",
+    "lineup": "https://neosfunds.com/#explore-etfs",
+    "fundPage": "https://neosfunds.com/spyi/",
+    "holdingsDownload": "https://neosfunds.com/wp-admin/admin-ajax.php?action=download_holdings_csv&ticker=SPYI",
+    "holdingsSource": "official NEOS daily holdings CSV (download_holdings_csv)",
+    "historySource": "Yahoo Finance public chart API (daily Close / Adj Close / Volume)",
+    "historyUrl": "https://query1.finance.yahoo.com/v8/finance/chart/SPYI?period1=0&period2=9999999999&interval=1d&events=div%7Csplit&includeAdjustedClose=true",
+    "returnsSource": "NEOS fund page performance tables (NAV Performance)",
+    "distributionsSource": "NEOS fund page Distribution History table",
+    "distributionInfoSource": "NEOS fund page Distribution Information block",
+    "documentsSource": "NEOS fund page Documents table",
+    "registrant": "NEOS ETF Trust (Investment Company Act file 811-23645)",
+    "nportDoc": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0001848758&type=NPORT-P&dateb=&owner=include&count=10",
+    "exchangeSource": "NEOS fund page Fund Details \"Primary Exchange\"",
+    "navSource": "NEOS fund page Fund Details \"Net Asset Value\" (official (fund page Fund Details))",
+    "premiumDiscountSource": "official (fund page Fund Details \"Premium Discount (%)\")",
+    "bidAskSpreadSource": "NEOS fund page Fund Details \"30-Day Median Bid-Ask Spread (%)\""
+  },
+  "identifiers": {
+    "cusip": "78433H303",
+    "isin": "US78433H3030",
+    "underlyingExposure": "S&P 500 Index",
+    "indexName": "S&P 500 Index",
+    "benchmarkIndexName": "Cboe S&P 500 BuyWrite Monthly Index"
+  },
+  "expenseRatio": {
+    "display": "0.68%",
+    "value": 0.68,
+    "managementFeeDisplay": "0.68%",
+    "managementFeeValue": 0.68
+  },
+  "marketPrice": {
+    "display": "$53.09",
+    "value": 53.09,
+    "asOfDate": "Sep 18 2026",
+    "dailyChangeText": "$0.09 (0.17%)",
+    "source": "NEOS fund page Fund Details \"Market Price\""
+  },
+  "yields": {
+    "dividendYield": 12.15,
+    "dividendYieldText": "12.15%",
+    "dividendYieldKind": "official NEOS Distribution Rate (latest distribution annualized / ex-date NAV)",
+    "distributionRate": 12.15,
+    "distributionRateText": "12.15%",
+    "yield12M": 11.82,
+    "yield12MText": "11.82%",
+    "secYield": 0.46,
+    "secYieldText": "0.46%",
+    "secYieldKind": "official NEOS 30-Day SEC Yield",
+    "distributionAmountText": "$0.5423",
+    "distributionAmountPercentText": "1.01%",
+    "distributionInfoAsOfDate": "Aug 31 2026"
+  },
+  "navIndex": {
+    "startDate": "2022-08-29",
+    "endDate": "2026-09-18",
+    "points": 1482,
+    "benchmarkName": "Cboe S&P 500 BuyWrite Monthly Index",
+    "source": "NEOS fund page \"Growth of $10,000 at NAV Since Inception\" chart series"
+  },
   "documents": {
     "prospectus": "https://neosfunds.com/wp-content/uploads/SPYI-Prospectus.pdf",
     "summaryProspectus": "https://neosfunds.com/wp-content/uploads/SPYI-Summary-Prospectus.pdf",
@@ -552,29 +614,5 @@
     "taxInfo": "https://neosfunds.com/wp-content/uploads/NEOS-Tax-Insert-2025.pdf",
     "form8937": "https://neosfunds.com/wp-content/uploads/NEOS-SP-500-R-High-Income-ETF-Form-8937-12.31.25.pdf"
   },
-  "holdings": {
-    "pages": [
-      "./holdings/001.json",
-      "./holdings/002.json",
-      "./holdings/003.json"
-    ],
-    "pageSize": 250,
-    "totalRows": 508,
-    "asOfDate": "Sep 21 2026",
-    "asOf": "2026-09-21",
-    "source": "https://neosfunds.com/wp-admin/admin-ajax.php?action=download_holdings_csv&ticker=SPYI",
-    "sourceKind": "official NEOS daily holdings CSV (download_holdings_csv)"
-  },
-  "history": {
-    "pages": [
-      "./history/001.json",
-      "./history/002.json"
-    ],
-    "pageSize": 1000,
-    "totalRows": 1017,
-    "asOfDate": "Sep 18 2026",
-    "asOf": "2026-09-18",
-    "source": "https://query1.finance.yahoo.com/v8/finance/chart/SPYI?period1=0&period2=9999999999&interval=1d&events=div%7Csplit&includeAdjustedClose=true",
-    "sourceKind": "Yahoo Finance public chart API (daily Close / Adj Close / Volume)"
-  }
+  "inceptionNote": null
 }

@@ -2,42 +2,14 @@
   "ticker": "BNDI",
   "name": "Enhanced Income Aggregate Bond ETF",
   "category": "Enhanced Fixed Income",
-  "categoryClass": "ticker-enhanced-income-treasuries",
-  "dataFile": "./funds/BNDI/meta.json",
   "fundPage": "https://neosfunds.com/bndi/",
-  "source": {
-    "provider": "NEOS Investment Management LLC (NEOS ETFs)",
-    "site": "https://neosfunds.com",
-    "lineup": "https://neosfunds.com/#explore-etfs",
-    "fundPage": "https://neosfunds.com/bndi/",
-    "holdingsDownload": "https://neosfunds.com/wp-admin/admin-ajax.php?action=download_holdings_csv&ticker=BNDI",
-    "holdingsSource": "official NEOS daily holdings CSV (download_holdings_csv)",
-    "historySource": "Yahoo Finance public chart API (daily Close / Adj Close / Volume)",
-    "historyUrl": "https://query1.finance.yahoo.com/v8/finance/chart/BNDI?period1=0&period2=9999999999&interval=1d&events=div%7Csplit&includeAdjustedClose=true",
-    "returnsSource": "NEOS fund page performance tables (NAV Performance)",
-    "distributionsSource": "NEOS fund page Distribution History table",
-    "distributionInfoSource": "NEOS fund page Distribution Information block",
-    "documentsSource": "NEOS fund page Documents table",
-    "registrant": "NEOS ETF Trust (Investment Company Act file 811-23645)",
-    "nportDoc": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0001848758&type=NPORT-P&dateb=&owner=include&count=10",
-    "exchangeSource": "NEOS fund page Fund Details \"Primary Exchange\"",
-    "navSource": "NEOS fund page Fund Details \"Net Asset Value\" (official (fund page Fund Details))",
-    "premiumDiscountSource": "official (fund page Fund Details \"Premium Discount (%)\")",
-    "bidAskSpreadSource": "NEOS fund page Fund Details \"30-Day Median Bid-Ask Spread (%)\""
-  },
-  "identifiers": {
-    "cusip": "78433H402",
-    "isin": "US78433H4020",
-    "underlyingExposure": "U.S. Aggregate Bond ETFs",
-    "indexName": "U.S. Aggregate Bond ETFs",
-    "benchmarkIndexName": "Bloomberg U.S. Aggregate Bond Index"
-  },
-  "expenseRatio": {
-    "display": "0.61%",
-    "value": 0.61,
-    "managementFeeDisplay": "0.58%",
-    "managementFeeValue": 0.58
-  },
+  "dataFile": "./funds/BNDI/meta.json",
+  "cusip": "78433H402",
+  "isin": "US78433H4020",
+  "ter": "0.61%",
+  "terValue": 0.61,
+  "terGross": "0.58%",
+  "terGrossValue": 0.58,
   "nav": {
     "display": "$45.53",
     "value": 45.53,
@@ -45,123 +17,45 @@
     "dailyChangeText": "$-0.17 (-0.37%)",
     "kind": "official (fund page Fund Details)"
   },
-  "marketPrice": {
-    "display": "$45.51",
-    "value": 45.51,
-    "asOfDate": "Sep 18 2026",
-    "dailyChangeText": "$-0.20 (-0.43%)",
-    "source": "NEOS fund page Fund Details \"Market Price\""
-  },
-  "premiumDiscount": {
-    "display": "-0.05%",
-    "value": -0.05,
-    "derivedValue": -0.04,
-    "kind": "official (fund page Fund Details \"Premium Discount (%)\")"
-  },
-  "bidAskSpread": {
-    "display": "0.06%",
-    "value": 0.06,
-    "asOfDate": "Sep 18 2026",
-    "kind": "official (fund page Fund Details \"30-Day Median Bid-Ask Spread (%)\")"
-  },
+  "navValue": 45.53,
   "aum": {
     "display": "$191.24M",
     "value": 191241120,
     "asOfDate": "Sep 18 2026",
     "source": "official NEOS daily holdings CSV (download_holdings_csv)"
   },
+  "aumValue": 191241120,
+  "asOfDate": "Sep 18 2026",
+  "inceptionDate": "Aug 29 2022",
+  "inceptionDateFundPage": "Aug 29 2022",
+  "exchange": "NYSE",
+  "closePrice": "$45.51",
+  "closePriceValue": 45.51,
+  "premiumDiscount": {
+    "display": "-0.05%",
+    "value": -0.05,
+    "derivedValue": -0.04,
+    "kind": "official (fund page Fund Details \"Premium Discount (%)\")"
+  },
+  "premiumDiscountValue": -0.05,
+  "premiumDiscountDerivedValue": -0.04,
+  "premiumDiscountKind": "official (fund page Fund Details \"Premium Discount (%)\")",
+  "bidAskSpread": {
+    "display": "0.06%",
+    "value": 0.06,
+    "asOfDate": "Sep 18 2026",
+    "kind": "official (fund page Fund Details \"30-Day Median Bid-Ask Spread (%)\")"
+  },
+  "bidAskSpreadValue": 0.06,
+  "acquiredFundFeesText": "0.03%",
+  "totalNetAssets": 191241120,
   "sharesOutstanding": {
     "display": "4,200,000",
     "value": 4200000,
     "asOfDate": "Sep 21 2026"
   },
-  "yields": {
-    "dividendYield": 5.78,
-    "dividendYieldText": "5.78%",
-    "dividendYieldKind": "official NEOS Distribution Rate (latest distribution annualized / ex-date NAV)",
-    "distributionRate": 5.78,
-    "distributionRateText": "5.78%",
-    "yield12M": 5.91,
-    "yield12MText": "5.91%",
-    "secYield": 3.53,
-    "secYieldText": "3.53%",
-    "secYieldKind": "official NEOS 30-Day SEC Yield",
-    "distributionAmountText": "$0.2227",
-    "distributionAmountPercentText": "0.48%",
-    "distributionInfoAsOfDate": "Aug 31 2026"
-  },
-  "returns": {
-    "derivedFrom": "official NEOS fund page performance tables (NAV Performance series)",
-    "monthEnd": {
-      "asOfDate": "Aug 31 2026",
-      "raw": "2026-08-31",
-      "mo1": 0.44,
-      "mo3": -0.43,
-      "mo6": -0.92,
-      "ytd": 1.17,
-      "yr1": 3.71,
-      "yr3": 5,
-      "yr5": null,
-      "yr10": null,
-      "sinceInception": 3.73,
-      "sinceInceptionCumulative": 15.79,
-      "market": {
-        "mo1": 0.48,
-        "mo3": -0.45,
-        "mo6": -1,
-        "ytd": 1.12,
-        "sinceInceptionCumulative": 15.82,
-        "yr1": 3.67,
-        "yr3": 4.94,
-        "yr5": null,
-        "sinceInception": 3.73
-      },
-      "benchmarkName": "Bloomberg U.S. Aggregate Bond Index",
-      "benchmark": {
-        "mo1": 0.39,
-        "mo3": -0.68,
-        "mo6": -2.02,
-        "ytd": -0.31,
-        "sinceInceptionCumulative": 10.99,
-        "yr1": 1.89,
-        "yr3": 4.08,
-        "yr5": null,
-        "sinceInception": 2.64
-      }
-    },
-    "quarterEnd": {
-      "asOfDate": "Jun 30 2026",
-      "raw": "2026-06-30",
-      "mo1": 0.28,
-      "mo3": 1.31,
-      "mo6": 1.89,
-      "ytd": 1.89,
-      "yr1": 5.57,
-      "yr3": 5.05,
-      "yr5": null,
-      "yr10": null,
-      "sinceInception": 4.09,
-      "sinceInceptionCumulative": 16.61,
-      "market": {
-        "mo1": 0.22,
-        "mo3": 1.11,
-        "mo6": 1.8,
-        "ytd": 1.8,
-        "sinceInceptionCumulative": 16.6,
-        "yr1": 5.27,
-        "yr3": 5.01,
-        "yr5": null,
-        "sinceInception": 4.08
-      }
-    }
-  },
-  "navIndex": {
-    "startDate": "2022-08-29",
-    "endDate": "2026-09-18",
-    "points": 1482,
-    "benchmarkName": "Bloomberg U.S. Aggregate Bond Index",
-    "source": "NEOS fund page \"Growth of $10,000 at NAV Since Inception\" chart series"
-  },
+  "netAssetsAsOf": "Sep 18 2026",
+  "secYieldAsOf": "Aug 31 2026",
   "distributions": {
     "frequency": "Monthly",
     "paymentsPerYear": 12,
@@ -541,6 +435,174 @@
     "fallback": false,
     "source": "NEOS fund page Distribution History table"
   },
+  "returns": {
+    "derivedFrom": "official NEOS fund page performance tables (NAV Performance series)",
+    "monthEnd": {
+      "asOfDate": "Aug 31 2026",
+      "raw": "2026-08-31",
+      "mo1": 0.44,
+      "mo3": -0.43,
+      "mo6": -0.92,
+      "ytd": 1.17,
+      "yr1": 3.71,
+      "yr3": 5,
+      "yr5": null,
+      "yr10": null,
+      "sinceInception": 3.73,
+      "sinceInceptionCumulative": 15.79,
+      "market": {
+        "mo1": 0.48,
+        "mo3": -0.45,
+        "mo6": -1,
+        "ytd": 1.12,
+        "sinceInceptionCumulative": 15.82,
+        "yr1": 3.67,
+        "yr3": 4.94,
+        "yr5": null,
+        "sinceInception": 3.73
+      },
+      "benchmarkName": "Bloomberg U.S. Aggregate Bond Index",
+      "benchmark": {
+        "mo1": 0.39,
+        "mo3": -0.68,
+        "mo6": -2.02,
+        "ytd": -0.31,
+        "sinceInceptionCumulative": 10.99,
+        "yr1": 1.89,
+        "yr3": 4.08,
+        "yr5": null,
+        "sinceInception": 2.64
+      }
+    },
+    "quarterEnd": {
+      "asOfDate": "Jun 30 2026",
+      "raw": "2026-06-30",
+      "mo1": 0.28,
+      "mo3": 1.31,
+      "mo6": 1.89,
+      "ytd": 1.89,
+      "yr1": 5.57,
+      "yr3": 5.05,
+      "yr5": null,
+      "yr10": null,
+      "sinceInception": 4.09,
+      "sinceInceptionCumulative": 16.61,
+      "market": {
+        "mo1": 0.22,
+        "mo3": 1.11,
+        "mo6": 1.8,
+        "ytd": 1.8,
+        "sinceInceptionCumulative": 16.6,
+        "yr1": 5.27,
+        "yr3": 5.01,
+        "yr5": null,
+        "sinceInception": 4.08
+      }
+    }
+  },
+  "metrics": {
+    "ytd": 1.17,
+    "tr1y": 3.71,
+    "tr3y": 15.76,
+    "tr5y": null,
+    "tr10y": null,
+    "cagr3y": 5,
+    "cagr5y": null,
+    "cagr10y": null,
+    "siAnn": 3.73,
+    "dividendYield": 5.78,
+    "dividendYieldText": "5.78%",
+    "distributionYield": 5.78,
+    "distributionYieldText": "5.78%",
+    "yield12M": 5.91,
+    "yield12MText": "5.91%",
+    "secYield": 3.53,
+    "secYieldText": "3.53%",
+    "returnsBasis": "official NEOS fund page NAV Performance (monthly series)"
+  },
+  "distributionFrequency": "01 - Monthly",
+  "providerCategory": "Enhanced Fixed Income",
+  "holdings": {
+    "pages": [],
+    "pageSize": 250,
+    "totalRows": 9,
+    "asOfDate": "Sep 21 2026",
+    "asOf": "2026-09-21",
+    "source": "https://neosfunds.com/wp-admin/admin-ajax.php?action=download_holdings_csv&ticker=BNDI",
+    "sourceKind": "official NEOS daily holdings CSV (download_holdings_csv)"
+  },
+  "history": {
+    "pages": [],
+    "pageSize": 1000,
+    "totalRows": 1017,
+    "asOfDate": "Sep 18 2026",
+    "asOf": "2026-09-18",
+    "source": "https://query1.finance.yahoo.com/v8/finance/chart/BNDI?period1=0&period2=9999999999&interval=1d&events=div%7Csplit&includeAdjustedClose=true",
+    "sourceKind": "Yahoo Finance public chart API (daily Close / Adj Close / Volume)"
+  },
+  "navKind": "official (fund page Fund Details)",
+  "source": {
+    "provider": "NEOS Investment Management LLC (NEOS ETFs)",
+    "site": "https://neosfunds.com",
+    "lineup": "https://neosfunds.com/#explore-etfs",
+    "fundPage": "https://neosfunds.com/bndi/",
+    "holdingsDownload": "https://neosfunds.com/wp-admin/admin-ajax.php?action=download_holdings_csv&ticker=BNDI",
+    "holdingsSource": "official NEOS daily holdings CSV (download_holdings_csv)",
+    "historySource": "Yahoo Finance public chart API (daily Close / Adj Close / Volume)",
+    "historyUrl": "https://query1.finance.yahoo.com/v8/finance/chart/BNDI?period1=0&period2=9999999999&interval=1d&events=div%7Csplit&includeAdjustedClose=true",
+    "returnsSource": "NEOS fund page performance tables (NAV Performance)",
+    "distributionsSource": "NEOS fund page Distribution History table",
+    "distributionInfoSource": "NEOS fund page Distribution Information block",
+    "documentsSource": "NEOS fund page Documents table",
+    "registrant": "NEOS ETF Trust (Investment Company Act file 811-23645)",
+    "nportDoc": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0001848758&type=NPORT-P&dateb=&owner=include&count=10",
+    "exchangeSource": "NEOS fund page Fund Details \"Primary Exchange\"",
+    "navSource": "NEOS fund page Fund Details \"Net Asset Value\" (official (fund page Fund Details))",
+    "premiumDiscountSource": "official (fund page Fund Details \"Premium Discount (%)\")",
+    "bidAskSpreadSource": "NEOS fund page Fund Details \"30-Day Median Bid-Ask Spread (%)\""
+  },
+  "identifiers": {
+    "cusip": "78433H402",
+    "isin": "US78433H4020",
+    "underlyingExposure": "U.S. Aggregate Bond ETFs",
+    "indexName": "U.S. Aggregate Bond ETFs",
+    "benchmarkIndexName": "Bloomberg U.S. Aggregate Bond Index"
+  },
+  "expenseRatio": {
+    "display": "0.61%",
+    "value": 0.61,
+    "managementFeeDisplay": "0.58%",
+    "managementFeeValue": 0.58
+  },
+  "marketPrice": {
+    "display": "$45.51",
+    "value": 45.51,
+    "asOfDate": "Sep 18 2026",
+    "dailyChangeText": "$-0.20 (-0.43%)",
+    "source": "NEOS fund page Fund Details \"Market Price\""
+  },
+  "yields": {
+    "dividendYield": 5.78,
+    "dividendYieldText": "5.78%",
+    "dividendYieldKind": "official NEOS Distribution Rate (latest distribution annualized / ex-date NAV)",
+    "distributionRate": 5.78,
+    "distributionRateText": "5.78%",
+    "yield12M": 5.91,
+    "yield12MText": "5.91%",
+    "secYield": 3.53,
+    "secYieldText": "3.53%",
+    "secYieldKind": "official NEOS 30-Day SEC Yield",
+    "distributionAmountText": "$0.2227",
+    "distributionAmountPercentText": "0.48%",
+    "distributionInfoAsOfDate": "Aug 31 2026"
+  },
+  "navIndex": {
+    "startDate": "2022-08-29",
+    "endDate": "2026-09-18",
+    "points": 1482,
+    "benchmarkName": "Bloomberg U.S. Aggregate Bond Index",
+    "source": "NEOS fund page \"Growth of $10,000 at NAV Since Inception\" chart series"
+  },
   "documents": {
     "prospectus": "https://neosfunds.com/wp-content/uploads/BNDI-Prospectus.pdf",
     "summaryProspectus": "https://neosfunds.com/wp-content/uploads/BNDI-Summary-Prospectus.pdf",
@@ -552,27 +614,5 @@
     "taxInfo": "https://neosfunds.com/wp-content/uploads/NEOS-Tax-Insert-2025.pdf",
     "form8937": "https://neosfunds.com/wp-content/uploads/BNDI-Form-8937-5.31.25.pdf"
   },
-  "holdings": {
-    "pages": [
-      "./holdings/001.json"
-    ],
-    "pageSize": 250,
-    "totalRows": 9,
-    "asOfDate": "Sep 21 2026",
-    "asOf": "2026-09-21",
-    "source": "https://neosfunds.com/wp-admin/admin-ajax.php?action=download_holdings_csv&ticker=BNDI",
-    "sourceKind": "official NEOS daily holdings CSV (download_holdings_csv)"
-  },
-  "history": {
-    "pages": [
-      "./history/001.json",
-      "./history/002.json"
-    ],
-    "pageSize": 1000,
-    "totalRows": 1017,
-    "asOfDate": "Sep 18 2026",
-    "asOf": "2026-09-18",
-    "source": "https://query1.finance.yahoo.com/v8/finance/chart/BNDI?period1=0&period2=9999999999&interval=1d&events=div%7Csplit&includeAdjustedClose=true",
-    "sourceKind": "Yahoo Finance public chart API (daily Close / Adj Close / Volume)"
-  }
+  "inceptionNote": null
 }
