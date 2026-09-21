@@ -21,7 +21,9 @@
     "registrant": "NEOS ETF Trust (Investment Company Act file 811-23645)",
     "nportDoc": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0001848758&type=NPORT-P&dateb=&owner=include&count=10",
     "exchangeSource": "NEOS fund page Fund Details \"Primary Exchange\"",
-    "navSource": "NEOS fund page Fund Details \"Net Asset Value\" (official (fund page Fund Details))"
+    "navSource": "NEOS fund page Fund Details \"Net Asset Value\" (official (fund page Fund Details))",
+    "premiumDiscountSource": "official (fund page Fund Details \"Premium Discount (%)\")",
+    "bidAskSpreadSource": "NEOS fund page Fund Details \"30-Day Median Bid-Ask Spread (%)\""
   },
   "identifiers": {
     "cusip": "78433H584",
@@ -31,10 +33,10 @@
     "benchmarkIndexName": "Bloomberg U.S. Corporate High Yield Index"
   },
   "expenseRatio": {
-    "display": "0.68%",
-    "value": 0.68,
-    "managementFeeDisplay": "0.68%",
-    "managementFeeValue": 0.68
+    "display": "0.72%",
+    "value": 0.72,
+    "managementFeeDisplay": "0.65%",
+    "managementFeeValue": 0.65
   },
   "nav": {
     "display": "$48.21",
@@ -51,9 +53,16 @@
     "source": "NEOS fund page Fund Details \"Market Price\""
   },
   "premiumDiscount": {
+    "display": "0.05%",
+    "value": 0.05,
+    "derivedValue": 0.04,
+    "kind": "official (fund page Fund Details \"Premium Discount (%)\")"
+  },
+  "bidAskSpread": {
     "display": "0.04%",
     "value": 0.04,
-    "kind": "derived (Market Price - NAV) / NAV"
+    "asOfDate": "Sep 18 2026",
+    "kind": "official (fund page Fund Details \"30-Day Median Bid-Ask Spread (%)\")"
   },
   "aum": {
     "display": "$222.43M",

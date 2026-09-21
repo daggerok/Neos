@@ -21,7 +21,9 @@
     "registrant": "NEOS ETF Trust (Investment Company Act file 811-23645)",
     "nportDoc": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0001848758&type=NPORT-P&dateb=&owner=include&count=10",
     "exchangeSource": "NEOS fund page Fund Details \"Primary Exchange\"",
-    "navSource": "NEOS fund page Fund Details \"Net Asset Value\" (official (fund page Fund Details))"
+    "navSource": "NEOS fund page Fund Details \"Net Asset Value\" (official (fund page Fund Details))",
+    "premiumDiscountSource": "official (fund page Fund Details \"Premium Discount (%)\")",
+    "bidAskSpreadSource": "NEOS fund page Fund Details \"30-Day Median Bid-Ask Spread (%)\""
   },
   "identifiers": {
     "cusip": "78433H592",
@@ -51,9 +53,16 @@
     "source": "NEOS fund page Fund Details \"Market Price\""
   },
   "premiumDiscount": {
-    "display": "0.07%",
-    "value": 0.07,
-    "kind": "derived (Market Price - NAV) / NAV"
+    "display": "0.05%",
+    "value": 0.05,
+    "derivedValue": 0.07,
+    "kind": "official (fund page Fund Details \"Premium Discount (%)\")"
+  },
+  "bidAskSpread": {
+    "display": "0.14%",
+    "value": 0.14,
+    "asOfDate": "Sep 18 2026",
+    "kind": "official (fund page Fund Details \"30-Day Median Bid-Ask Spread (%)\")"
   },
   "aum": {
     "display": "$17.17M",
