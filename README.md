@@ -65,6 +65,7 @@ The page publishes **annualized** 3 Yr / 5 Yr / 10 Yr figures and a **cumulative
 | **SEDOL / FIGI** | always `—` | NEOS publishes neither; the CSV's identifier is the CUSIP |
 | **Coupon / Maturity** | always `—` | NEOS publishes no fixed-income holdings sheet with coupon or maturity columns |
 | **SEC Yield (30-day)** | official fund page figure, `—` where the page prints `--` | Every NEOS fund currently publishes one; negative values (e.g. QQQI `-0.05%`) are kept verbatim |
+| **Inception Date** | the lineup table's figure; the fund page's own panel date is kept as `inceptionDateFundPage` and explained by `inceptionNote` | HYBI is the one fund where the two differ: the ETF converted from the WSTCM Credit Select Risk-Managed Fund on 09/27/2024 and assumed its performance, so the lineup table keeps 09/30/2014 — the date its published 5Y and 10Y returns are measured from |
 | **Premium / Discount** | the fund page's own `Premium Discount (%)` row | The `(Market Price - NAV) / NAV` quotient is stored alongside as `premiumDiscountDerivedValue`, and is used only if a page ever omits the row |
 
 ### Update controls

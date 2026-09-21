@@ -1760,7 +1760,7 @@ async function updateFund(
   const frequencyCode = formatDistributionFrequency(frequencyLabel);
   const paymentCount = paymentsPerYear(frequencyLabel);
 
-  const holdingsMeta = {
+  let holdingsMeta = {
     pages: [] as string[],
     pageSize: config.holdingsPageSize,
     totalRows: holdings.totalRows,
@@ -1769,7 +1769,7 @@ async function updateFund(
     source: holdings.source,
     sourceKind: holdings.sourceKind,
   };
-  const historyMeta = {
+  let historyMeta = {
     pages: [] as string[],
     pageSize: config.historyPageSize,
     totalRows: historyRows.length,
@@ -1946,47 +1946,18 @@ async function updateFund(
     (meta.distributions as Record<string, unknown>).source = 'Yahoo Finance dividend history (NEOS published no distribution rows)';
   }
 
-  // --- write pages -------------------------------------------------------
-  const holdingsPages = splitPages(holdings.rows, config.holdingsPageSize);
-  for (let index = 0; index < holdingsPages.length; index += 1) {
-    const file = path.join(fundDir, 'holdings', pageFileName(index + 1));
-    const envelope = {
-      ticker,
-      page: index + 1,
-      pageSize: config.holdingsPageSize,
-      totalRows: holdings.rows.length,
-      headers: holdings.headers,
-      rows: holdingsPages[index],
-    };
-    if (await writeIfChanged(file, stableStringify(envelope)) === 'written') changed = true;
-    holdingsMeta.pages.push(`./holdings/${pageFileName(index + 1)}`);
-  }
-  // Drop stale page files when the row count shrinks.
-  await prunePages(path.join(fundDir, 'holdings'), holdingsPages.length);
-
-  const historyPages = splitPages(historyRows, config.historyPageSize);
-  for (let index = 0; index < historyPages.length; index += 1) {
-    const file = path.join(fundDir, 'history', pageFileName(index + 1));
-    const envelope = {
-      ticker,
-      page: index + 1,
-      pageSize: config.historyPageSize,
-      totalRows: historyRows.length,
-      headers: [...HISTORY_HEADERS],
-      rows: historyPages[index],
-    };
-    if (await writeIfChanged(file, stableStringify(envelope)) === 'written') changed = true;
-    historyMeta.pages.push(`./history/${pageFileName(index + 1)}`);
-  }
-  await prunePages(path.join(fundDir, 'history'), historyPages.length);
-
-  if (await writeIfChanged(path.join(fundDir, 'meta.json'), stableStringify(meta)) === 'written') changed = true;
-
-  if (changed) stats.updated += 1; else stats.unchanged += 1;
-
   // --- catalog entry -----------------------------------------------------
+  // The catalog row is built first: `meta.json` mirrors it (the sibling feeds
+  // publish the same fields in both files) and `index.json` collects it.
   const inferredExchange = details.primaryExchange || yahooExchange || null;
-  return {
+  // neosfunds.com prints two inception dates for a fund whose ETF share class
+  // was converted from a predecessor fund (HYBI: the lineup table keeps the
+  // predecessor's 2014 date its performance history is based on, while the fund
+  // page panel shows the 2024 conversion). The catalog shows the lineup figure
+  // and meta.json keeps both.
+  const lineupInception = fund.inceptionDate || '';
+  const fundPageInception = details.inceptionDate || '';
+  const entry: CatalogEntry = {
     ticker,
     name: fund.name,
     category: fund.category,
@@ -2003,7 +1974,8 @@ async function updateFund(
     aum: netAssets === null ? '—' : formatAumDisplay(netAssets),
     aumValue: netAssets,
     asOfDate: details.asOfDate ? formatNeosDate(details.asOfDate) : (holdings.asOfDate ? formatNeosDate(holdings.asOfDate) : ''),
-    inceptionDate: formatNeosDate(details.inceptionDate || fund.inceptionDate),
+    inceptionDate: formatNeosDate(lineupInception || fundPageInception),
+    inceptionDateFundPage: fundPageInception ? formatNeosDate(fundPageInception) : null,
     exchange: inferredExchange,
     closePrice: formatMoneyText(marketPriceValue),
     closePriceValue: marketPriceValue,
@@ -2052,7 +2024,40 @@ async function updateFund(
     history: historyRows.length,
     navKind,
   };
+
+  // `meta.json` carries the catalog row plus the sheet manifests, the
+  // provenance block and the richer per-field objects (the sibling feeds have
+  // exactly this shape, so a consumer can read either file for the headline
+  // figures).
+  const metaWithCatalog: Record<string, unknown> = {
+    ...entry,
+    source: meta.source,
+    identifiers: meta.identifiers,
+    expenseRatio: meta.expenseRatio,
+    nav: meta.nav,
+    marketPrice: meta.marketPrice,
+    premiumDiscount: meta.premiumDiscount,
+    bidAskSpread: meta.bidAskSpread,
+    aum: meta.aum,
+    sharesOutstanding: meta.sharesOutstanding,
+    yields: meta.yields,
+    returns: meta.returns,
+    navIndex: meta.navIndex,
+    distributions: meta.distributions,
+    documents: meta.documents,
+    inceptionNote: lineupInception && fundPageInception && lineupInception !== fundPageInception
+      ? `neosfunds.com publishes ${formatNeosDate(lineupInception)} in the ETF lineup table and ${formatNeosDate(fundPageInception)} in the Fund Details panel (the date the fund's predecessor converted into the ETF); the catalog shows the lineup figure, which is the basis of the published 5Y and 10Y returns.`
+      : null,
+    holdings: holdingsMeta,
+    history: historyMeta,
+  };
+  if (await writeIfChanged(path.join(fundDir, 'meta.json'), stableStringify(metaWithCatalog)) === 'written') changed = true;
+
+  if (changed) stats.updated += 1; else stats.unchanged += 1;
+
+  return entry;
 }
+
 
 function inferPaymentsFromRows(exDates: string[]): number | null {
   const code = inferDistributionFrequency(exDates);
