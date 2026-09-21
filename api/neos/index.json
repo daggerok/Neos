@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-21T06:25:48Z",
+  "generatedAt": "2026-09-21T06:33:43Z",
   "source": {
     "provider": "NEOS Investment Management LLC (NEOS ETFs)",
     "market": "us",
@@ -69,7 +69,9 @@
           "yr3": 5,
           "yr5": null,
           "yr10": null,
-          "sinceInception": 3.73
+          "sinceInception": 3.73,
+          "sinceInceptionCumulative": 15.79,
+          "sinceInceptionCumulativeText": "15.79%"
         },
         "quarterEnd": {
           "asOfDate": "Jun 30 2026",
@@ -78,7 +80,9 @@
           "yr3": 5.05,
           "yr5": null,
           "yr10": null,
-          "sinceInception": 4.09
+          "sinceInception": 4.09,
+          "sinceInceptionCumulative": 16.61,
+          "sinceInceptionCumulativeText": "16.61%"
         }
       },
       "metrics": {
@@ -155,7 +159,9 @@
           "yr3": null,
           "yr5": null,
           "yr10": null,
-          "sinceInception": 5.58
+          "sinceInception": 5.58,
+          "sinceInceptionCumulative": 10.7,
+          "sinceInceptionCumulativeText": "10.70%"
         },
         "quarterEnd": {
           "asOfDate": "Jun 30 2026",
@@ -164,7 +170,9 @@
           "yr3": null,
           "yr5": null,
           "yr10": null,
-          "sinceInception": -7.65
+          "sinceInception": -7.65,
+          "sinceInceptionCumulative": -12.68,
+          "sinceInceptionCumulativeText": "-12.68%"
         }
       },
       "metrics": {
@@ -241,7 +249,9 @@
           "yr3": 5.36,
           "yr5": null,
           "yr10": null,
-          "sinceInception": 5.43
+          "sinceInception": 5.43,
+          "sinceInceptionCumulative": 23.58,
+          "sinceInceptionCumulativeText": "23.58%"
         },
         "quarterEnd": {
           "asOfDate": "Jun 30 2026",
@@ -250,7 +260,9 @@
           "yr3": 5.43,
           "yr5": null,
           "yr10": null,
-          "sinceInception": 5.47
+          "sinceInception": 5.47,
+          "sinceInceptionCumulative": 22.67,
+          "sinceInceptionCumulativeText": "22.67%"
         }
       },
       "metrics": {
@@ -327,7 +339,9 @@
           "yr3": 6.34,
           "yr5": 3.61,
           "yr10": 4.11,
-          "sinceInception": 4.19
+          "sinceInception": 4.19,
+          "sinceInceptionCumulative": 63.17,
+          "sinceInceptionCumulativeText": "63.17%"
         },
         "quarterEnd": {
           "asOfDate": "Jun 30 2026",
@@ -336,7 +350,9 @@
           "yr3": 6.13,
           "yr5": 3.47,
           "yr10": 4.36,
-          "sinceInception": 4.18
+          "sinceInception": 4.18,
+          "sinceInceptionCumulative": 61.73,
+          "sinceInceptionCumulativeText": "61.73%"
         }
       },
       "metrics": {
@@ -413,7 +429,9 @@
           "yr3": null,
           "yr5": null,
           "yr10": null,
-          "sinceInception": 16.24
+          "sinceInception": 16.24,
+          "sinceInceptionCumulative": 20.53,
+          "sinceInceptionCumulativeText": "20.53%"
         },
         "quarterEnd": {
           "asOfDate": "Jun 30 2026",
@@ -422,7 +440,9 @@
           "yr3": null,
           "yr5": null,
           "yr10": null,
-          "sinceInception": 10.01
+          "sinceInception": 10.01,
+          "sinceInceptionCumulative": 10.76,
+          "sinceInceptionCumulativeText": "10.76%"
         }
       },
       "metrics": {
@@ -499,7 +519,9 @@
           "yr3": null,
           "yr5": null,
           "yr10": null,
-          "sinceInception": 18.02
+          "sinceInception": 18.02,
+          "sinceInceptionCumulative": 43.66,
+          "sinceInceptionCumulativeText": "43.66%"
         },
         "quarterEnd": {
           "asOfDate": "Jun 30 2026",
@@ -508,7 +530,9 @@
           "yr3": null,
           "yr5": null,
           "yr10": null,
-          "sinceInception": 20.18
+          "sinceInception": 20.18,
+          "sinceInceptionCumulative": 44.87,
+          "sinceInceptionCumulativeText": "44.87%"
         }
       },
       "metrics": {
@@ -585,7 +609,9 @@
           "yr3": null,
           "yr5": null,
           "yr10": null,
-          "sinceInception": 9.99
+          "sinceInception": 9.99,
+          "sinceInceptionCumulative": 16.76,
+          "sinceInceptionCumulativeText": "16.76%"
         },
         "quarterEnd": {
           "asOfDate": "Jun 30 2026",
@@ -594,7 +620,9 @@
           "yr3": null,
           "yr5": null,
           "yr10": null,
-          "sinceInception": 10.77
+          "sinceInception": 10.77,
+          "sinceInceptionCumulative": 16.07,
+          "sinceInceptionCumulativeText": "16.07%"
         }
       },
       "metrics": {
@@ -671,7 +699,9 @@
           "yr3": null,
           "yr5": null,
           "yr10": null,
-          "sinceInception": null
+          "sinceInception": null,
+          "sinceInceptionCumulative": 22.43,
+          "sinceInceptionCumulativeText": "22.43%"
         },
         "quarterEnd": {
           "asOfDate": "Jun 30 2026",
@@ -680,7 +710,9 @@
           "yr3": null,
           "yr5": null,
           "yr10": null,
-          "sinceInception": null
+          "sinceInception": null,
+          "sinceInceptionCumulative": 19.68,
+          "sinceInceptionCumulativeText": "19.68%"
         }
       },
       "metrics": {
@@ -757,7 +789,9 @@
           "yr3": null,
           "yr5": null,
           "yr10": null,
-          "sinceInception": null
+          "sinceInception": null,
+          "sinceInceptionCumulative": -17.83,
+          "sinceInceptionCumulativeText": "-17.83%"
         },
         "quarterEnd": {
           "asOfDate": "Jun 30 2026",
@@ -766,7 +800,9 @@
           "yr3": null,
           "yr5": null,
           "yr10": null,
-          "sinceInception": null
+          "sinceInception": null,
+          "sinceInceptionCumulative": -42.87,
+          "sinceInceptionCumulativeText": "-42.87%"
         }
       },
       "metrics": {
@@ -843,7 +879,9 @@
           "yr3": null,
           "yr5": null,
           "yr10": null,
-          "sinceInception": null
+          "sinceInception": null,
+          "sinceInceptionCumulative": 17.04,
+          "sinceInceptionCumulativeText": "17.04%"
         },
         "quarterEnd": {
           "asOfDate": "Jun 30 2026",
@@ -852,7 +890,9 @@
           "yr3": null,
           "yr5": null,
           "yr10": null,
-          "sinceInception": null
+          "sinceInception": null,
+          "sinceInceptionCumulative": 12.41,
+          "sinceInceptionCumulativeText": "12.41%"
         }
       },
       "metrics": {
@@ -929,7 +969,9 @@
           "yr3": null,
           "yr5": null,
           "yr10": null,
-          "sinceInception": null
+          "sinceInception": null,
+          "sinceInceptionCumulative": 19.29,
+          "sinceInceptionCumulativeText": "19.29%"
         },
         "quarterEnd": {
           "asOfDate": "Jun 30 2026",
@@ -938,7 +980,9 @@
           "yr3": null,
           "yr5": null,
           "yr10": null,
-          "sinceInception": null
+          "sinceInception": null,
+          "sinceInceptionCumulative": 5.28,
+          "sinceInceptionCumulativeText": "5.28%"
         }
       },
       "metrics": {
@@ -1015,7 +1059,9 @@
           "yr3": 18.46,
           "yr5": 7.62,
           "yr10": null,
-          "sinceInception": 10
+          "sinceInception": 10,
+          "sinceInceptionCumulative": 89.43,
+          "sinceInceptionCumulativeText": "89.43%"
         },
         "quarterEnd": {
           "asOfDate": "Jun 30 2026",
@@ -1024,7 +1070,9 @@
           "yr3": 18.63,
           "yr5": 8.47,
           "yr10": null,
-          "sinceInception": 10.42
+          "sinceInception": 10.42,
+          "sinceInceptionCumulative": 91.02,
+          "sinceInceptionCumulativeText": "91.02%"
         }
       },
       "metrics": {
@@ -1101,7 +1149,9 @@
           "yr3": null,
           "yr5": null,
           "yr10": null,
-          "sinceInception": 19.25
+          "sinceInception": 19.25,
+          "sinceInceptionCumulative": 57.74,
+          "sinceInceptionCumulativeText": "57.74%"
         },
         "quarterEnd": {
           "asOfDate": "Jun 30 2026",
@@ -1110,7 +1160,9 @@
           "yr3": null,
           "yr5": null,
           "yr10": null,
-          "sinceInception": 21.63
+          "sinceInception": 21.63,
+          "sinceInceptionCumulative": 60.58,
+          "sinceInceptionCumulativeText": "60.58%"
         }
       },
       "metrics": {
@@ -1187,7 +1239,9 @@
           "yr3": null,
           "yr5": null,
           "yr10": null,
-          "sinceInception": 17.86
+          "sinceInception": 17.86,
+          "sinceInceptionCumulative": 26.15,
+          "sinceInceptionCumulativeText": "26.15%"
         },
         "quarterEnd": {
           "asOfDate": "Jun 30 2026",
@@ -1196,7 +1250,9 @@
           "yr3": null,
           "yr5": null,
           "yr10": null,
-          "sinceInception": 17.95
+          "sinceInception": 17.95,
+          "sinceInceptionCumulative": 22.8,
+          "sinceInceptionCumulativeText": "22.80%"
         }
       },
       "metrics": {
@@ -1273,7 +1329,9 @@
           "yr3": 16.04,
           "yr5": null,
           "yr10": null,
-          "sinceInception": 15.02
+          "sinceInception": 15.02,
+          "sinceInceptionCumulative": 75.14,
+          "sinceInceptionCumulativeText": "75.14%"
         },
         "quarterEnd": {
           "asOfDate": "Jun 30 2026",
@@ -1282,7 +1340,9 @@
           "yr3": 15.5,
           "yr5": null,
           "yr10": null,
-          "sinceInception": 14.86
+          "sinceInception": 14.86,
+          "sinceInceptionCumulative": 70.14,
+          "sinceInceptionCumulativeText": "70.14%"
         }
       },
       "metrics": {
@@ -1359,7 +1419,9 @@
           "yr3": null,
           "yr5": null,
           "yr10": null,
-          "sinceInception": -1.61
+          "sinceInception": -1.61,
+          "sinceInceptionCumulative": -2.77,
+          "sinceInceptionCumulativeText": "-2.77%"
         },
         "quarterEnd": {
           "asOfDate": "Jun 30 2026",
@@ -1368,7 +1430,9 @@
           "yr3": null,
           "yr5": null,
           "yr10": null,
-          "sinceInception": 0.42
+          "sinceInception": 0.42,
+          "sinceInceptionCumulative": 0.65,
+          "sinceInceptionCumulativeText": "0.65%"
         }
       },
       "metrics": {
@@ -1445,7 +1509,9 @@
           "yr3": null,
           "yr5": null,
           "yr10": null,
-          "sinceInception": null
+          "sinceInception": null,
+          "sinceInceptionCumulative": -1.79,
+          "sinceInceptionCumulativeText": "-1.79%"
         },
         "quarterEnd": {
           "asOfDate": "Jun 30 2026",
@@ -1454,7 +1520,9 @@
           "yr3": null,
           "yr5": null,
           "yr10": null,
-          "sinceInception": null
+          "sinceInception": null,
+          "sinceInceptionCumulative": -30.35,
+          "sinceInceptionCumulativeText": "-30.35%"
         }
       },
       "metrics": {
@@ -1531,7 +1599,9 @@
           "yr3": null,
           "yr5": null,
           "yr10": null,
-          "sinceInception": null
+          "sinceInception": null,
+          "sinceInceptionCumulative": 11.38,
+          "sinceInceptionCumulativeText": "11.38%"
         },
         "quarterEnd": {
           "asOfDate": "Jun 30 2026",
@@ -1540,7 +1610,9 @@
           "yr3": null,
           "yr5": null,
           "yr10": null,
-          "sinceInception": null
+          "sinceInception": null,
+          "sinceInceptionCumulative": 15.62,
+          "sinceInceptionCumulativeText": "15.62%"
         }
       },
       "metrics": {
@@ -1617,7 +1689,9 @@
           "yr3": null,
           "yr5": null,
           "yr10": null,
-          "sinceInception": null
+          "sinceInception": null,
+          "sinceInceptionCumulative": 10.72,
+          "sinceInceptionCumulativeText": "10.72%"
         },
         "quarterEnd": {
           "asOfDate": "Jun 30 2026",
@@ -1626,7 +1700,9 @@
           "yr3": null,
           "yr5": null,
           "yr10": null,
-          "sinceInception": null
+          "sinceInception": null,
+          "sinceInceptionCumulative": 6.48,
+          "sinceInceptionCumulativeText": "6.48%"
         }
       },
       "metrics": {
