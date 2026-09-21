@@ -1,0 +1,116 @@
+{
+  "ticker": "CSHI",
+  "page": 2,
+  "pageSize": 1000,
+  "totalRows": 1017,
+  "headers": [
+    "Date",
+    "Close",
+    "Adj Close",
+    "Volume"
+  ],
+  "rows": [
+    {
+      "Date": "2022-09-22",
+      "Close": "49.94",
+      "Adj Close": "40.17",
+      "Volume": "600"
+    },
+    {
+      "Date": "2022-09-21",
+      "Close": "49.92",
+      "Adj Close": "40.16",
+      "Volume": "800"
+    },
+    {
+      "Date": "2022-09-20",
+      "Close": "50.10",
+      "Adj Close": "40.17",
+      "Volume": "1000"
+    },
+    {
+      "Date": "2022-09-19",
+      "Close": "50.12",
+      "Adj Close": "40.19",
+      "Volume": "0"
+    },
+    {
+      "Date": "2022-09-16",
+      "Close": "50.10",
+      "Adj Close": "40.17",
+      "Volume": "0"
+    },
+    {
+      "Date": "2022-09-15",
+      "Close": "50.10",
+      "Adj Close": "40.17",
+      "Volume": "2800"
+    },
+    {
+      "Date": "2022-09-14",
+      "Close": "50.10",
+      "Adj Close": "40.17",
+      "Volume": "0"
+    },
+    {
+      "Date": "2022-09-13",
+      "Close": "50.08",
+      "Adj Close": "40.16",
+      "Volume": "100"
+    },
+    {
+      "Date": "2022-09-12",
+      "Close": "50.12",
+      "Adj Close": "40.19",
+      "Volume": "1200"
+    },
+    {
+      "Date": "2022-09-09",
+      "Close": "50.11",
+      "Adj Close": "40.18",
+      "Volume": "3900"
+    },
+    {
+      "Date": "2022-09-08",
+      "Close": "50.08",
+      "Adj Close": "40.15",
+      "Volume": "100"
+    },
+    {
+      "Date": "2022-09-07",
+      "Close": "50.08",
+      "Adj Close": "40.16",
+      "Volume": "2700"
+    },
+    {
+      "Date": "2022-09-06",
+      "Close": "50.07",
+      "Adj Close": "40.15",
+      "Volume": "11700"
+    },
+    {
+      "Date": "2022-09-02",
+      "Close": "50.05",
+      "Adj Close": "40.13",
+      "Volume": "300"
+    },
+    {
+      "Date": "2022-09-01",
+      "Close": "50.04",
+      "Adj Close": "40.13",
+      "Volume": "100"
+    },
+    {
+      "Date": "2022-08-31",
+      "Close": "50.03",
+      "Adj Close": "40.12",
+      "Volume": "3700"
+    },
+    {
+      "Date": "2022-08-30",
+      "Close": "50.01",
+      "Adj Close": "40.11",
+      "Volume": "3400"
+    }
+  ]
+}

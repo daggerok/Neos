@@ -1,0 +1,80 @@
+{
+  "ticker": "NEHI",
+  "page": 1,
+  "pageSize": 250,
+  "totalRows": 7,
+  "headers": [
+    "Name",
+    "Ticker",
+    "Identifier",
+    "Weight",
+    "Market Value",
+    "Shares Held",
+    "Asset Category"
+  ],
+  "rows": [
+    {
+      "Name": "ETHA 10/16/2026 12 C",
+      "Ticker": "2ETHA 261016C00012000",
+      "Identifier": "2ETHA 261016C00012000",
+      "Weight": "32.82%",
+      "Market Value": "$36204109.44",
+      "Shares Held": "45,228",
+      "Asset Category": "Option"
+    },
+    {
+      "Name": "ETHA 10/16/2026 20 C",
+      "Ticker": "2ETHA 261016C00020000",
+      "Identifier": "2ETHA 261016C00020000",
+      "Weight": "-1.09%",
+      "Market Value": "$-1205189.06",
+      "Shares Held": "-11,071",
+      "Asset Category": "Option"
+    },
+    {
+      "Name": "ETHA 10/16/2026 22 C",
+      "Ticker": "2ETHA 261016C00022000",
+      "Identifier": "2ETHA 261016C00022000",
+      "Weight": "-0.48%",
+      "Market Value": "$-526868.89",
+      "Shares Held": "-11,071",
+      "Asset Category": "Option"
+    },
+    {
+      "Name": "ETHA 10/16/2026 12 P",
+      "Ticker": "2ETHA 261016P00012000",
+      "Identifier": "2ETHA 261016P00012000",
+      "Weight": "-0.16%",
+      "Market Value": "$-181816.56",
+      "Shares Held": "-45,228",
+      "Asset Category": "Option"
+    },
+    {
+      "Name": "United States Treasury Bill 11/05/2026",
+      "Ticker": "912797UM7",
+      "Identifier": "912797UM7",
+      "Weight": "48.61%",
+      "Market Value": "$53622172.33",
+      "Shares Held": "53,883,000",
+      "Asset Category": "Treasury"
+    },
+    {
+      "Name": "iShares Ethereum Trust ETF",
+      "Ticker": "ETHA",
+      "Identifier": "46438R105",
+      "Weight": "19.17%",
+      "Market Value": "$21145398.72",
+      "Shares Held": "1,061,516",
+      "Asset Category": "Fund"
+    },
+    {
+      "Name": "Cash & Other",
+      "Ticker": "Cash&Other",
+      "Identifier": "Cash&Other",
+      "Weight": "1.13%",
+      "Market Value": "$1249630.37",
+      "Shares Held": "1,249,630",
+      "Asset Category": "Cash"
+    }
+  ]
+}

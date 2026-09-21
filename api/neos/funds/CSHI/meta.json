@@ -1,0 +1,569 @@
+{
+  "ticker": "CSHI",
+  "name": "Enhanced Income 1-3 Month T-Bill ETF",
+  "category": "Enhanced Fixed Income",
+  "categoryClass": "ticker-enhanced-income-treasuries",
+  "dataFile": "./funds/CSHI/meta.json",
+  "fundPage": "https://neosfunds.com/cshi/",
+  "source": {
+    "provider": "NEOS Investment Management LLC (NEOS ETFs)",
+    "site": "https://neosfunds.com",
+    "lineup": "https://neosfunds.com/#explore-etfs",
+    "fundPage": "https://neosfunds.com/cshi/",
+    "holdingsDownload": "https://neosfunds.com/wp-admin/admin-ajax.php?action=download_holdings_csv&ticker=CSHI",
+    "holdingsSource": "official NEOS daily holdings CSV (download_holdings_csv)",
+    "historySource": "Yahoo Finance public chart API (daily Close / Adj Close / Volume)",
+    "historyUrl": "https://query1.finance.yahoo.com/v8/finance/chart/CSHI?period1=0&period2=9999999999&interval=1d&events=div%7Csplit&includeAdjustedClose=true",
+    "returnsSource": "NEOS fund page performance tables (NAV Performance)",
+    "distributionsSource": "NEOS fund page Distribution History table",
+    "distributionInfoSource": "NEOS fund page Distribution Information block",
+    "documentsSource": "NEOS fund page Documents table",
+    "registrant": "NEOS ETF Trust (Investment Company Act file 811-23645)",
+    "nportDoc": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0001848758&type=NPORT-P&dateb=&owner=include&count=10",
+    "exchangeSource": "NEOS fund page Fund Details \"Primary Exchange\"",
+    "navSource": "NEOS fund page Fund Details \"Net Asset Value\" (official (fund page Fund Details))"
+  },
+  "identifiers": {
+    "cusip": "78433H501",
+    "isin": "US78433H5019",
+    "underlyingExposure": "1-3 Month U.S. T-Bills",
+    "indexName": "1-3 Month U.S. T-Bills",
+    "benchmarkIndexName": "Bloomberg U.S.1-3 Month T-Bill Index"
+  },
+  "expenseRatio": {
+    "display": "0.38%",
+    "value": 0.38,
+    "managementFeeDisplay": "0.38%",
+    "managementFeeValue": 0.38
+  },
+  "nav": {
+    "display": "$49.65",
+    "value": 49.65,
+    "asOfDate": "Sep 18 2026",
+    "dailyChangeText": "$0.02 (0.04%)",
+    "kind": "official (fund page Fund Details)"
+  },
+  "marketPrice": {
+    "display": "$49.65",
+    "value": 49.65,
+    "asOfDate": "Sep 18 2026",
+    "dailyChangeText": "$0.02 (0.04%)",
+    "source": "NEOS fund page Fund Details \"Market Price\""
+  },
+  "premiumDiscount": {
+    "display": "0.00%",
+    "value": 0,
+    "kind": "derived (Market Price - NAV) / NAV"
+  },
+  "aum": {
+    "display": "$1.87B",
+    "value": 1865831968,
+    "asOfDate": "Sep 18 2026",
+    "source": "official NEOS daily holdings CSV (download_holdings_csv)"
+  },
+  "sharesOutstanding": {
+    "display": "37,580,000",
+    "value": 37580000,
+    "asOfDate": "Sep 21 2026"
+  },
+  "yields": {
+    "dividendYield": 5,
+    "dividendYieldText": "5.00%",
+    "dividendYieldKind": "official NEOS Distribution Rate (latest distribution annualized / ex-date NAV)",
+    "distributionRate": 5,
+    "distributionRateText": "5.00%",
+    "yield12M": 4.84,
+    "yield12MText": "4.84%",
+    "secYield": 3.3,
+    "secYieldText": "3.30%",
+    "secYieldKind": "official NEOS 30-Day SEC Yield",
+    "distributionAmountText": "$0.2069",
+    "distributionAmountPercentText": "0.42%",
+    "distributionInfoAsOfDate": "Aug 31 2026"
+  },
+  "returns": {
+    "derivedFrom": "official NEOS fund page performance tables (NAV Performance series)",
+    "monthEnd": {
+      "asOfDate": "Aug 31 2026",
+      "raw": "2026-08-31",
+      "mo1": 0.32,
+      "mo3": 1.06,
+      "mo6": 2.55,
+      "ytd": 3.31,
+      "yr1": 5.01,
+      "yr3": 5.36,
+      "yr5": null,
+      "yr10": null,
+      "sinceInception": 5.43,
+      "sinceInceptionCumulative": 23.58,
+      "market": {
+        "mo1": 0.32,
+        "mo3": 1.08,
+        "mo6": 2.54,
+        "ytd": 3.28,
+        "sinceInceptionCumulative": 23.57,
+        "yr1": 5.03,
+        "yr3": 5.36,
+        "yr5": null,
+        "sinceInception": 5.42
+      },
+      "benchmarkName": "Bloomberg U.S.1-3 Month T-Bill Index",
+      "benchmark": {
+        "mo1": 0.29,
+        "mo3": 0.93,
+        "mo6": 1.86,
+        "ytd": 2.45,
+        "sinceInceptionCumulative": 19.62,
+        "yr1": 3.84,
+        "yr3": 4.64,
+        "yr5": null,
+        "sinceInception": 4.57
+      }
+    },
+    "quarterEnd": {
+      "asOfDate": "Jun 30 2026",
+      "raw": "2026-06-30",
+      "mo1": 0.32,
+      "mo3": 1.24,
+      "mo6": 2.55,
+      "ytd": 2.55,
+      "yr1": 5.1,
+      "yr3": 5.43,
+      "yr5": null,
+      "yr10": null,
+      "sinceInception": 5.47,
+      "sinceInceptionCumulative": 22.67,
+      "market": {
+        "mo1": 0.37,
+        "mo3": 1.24,
+        "mo6": 2.56,
+        "ytd": 2.56,
+        "sinceInceptionCumulative": 22.7,
+        "yr1": 5.16,
+        "yr3": 5.4,
+        "yr5": null,
+        "sinceInception": 5.48
+      }
+    }
+  },
+  "navIndex": {
+    "startDate": "2022-08-29",
+    "endDate": "2026-09-18",
+    "points": 1482,
+    "benchmarkName": "Bloomberg U.S.1-3 Month T-Bill Index",
+    "source": "NEOS fund page \"Growth of $10,000 at NAV Since Inception\" chart series"
+  },
+  "distributions": {
+    "frequency": "Monthly",
+    "paymentsPerYear": 12,
+    "headers": [
+      "Declaration Date",
+      "Ex-Div Date",
+      "Record Date",
+      "Payable Date",
+      "Amount ($)"
+    ],
+    "rows": [
+      {
+        "Declaration Date": "12/08/2026",
+        "Ex-Div Date": "12/09/2026",
+        "Record Date": "12/09/2026",
+        "Payable Date": "12/11/2026",
+        "Amount ($)": ""
+      },
+      {
+        "Declaration Date": "11/09/2026",
+        "Ex-Div Date": "11/10/2026",
+        "Record Date": "11/10/2026",
+        "Payable Date": "11/13/2026",
+        "Amount ($)": ""
+      },
+      {
+        "Declaration Date": "10/13/2026",
+        "Ex-Div Date": "10/14/2026",
+        "Record Date": "10/14/2026",
+        "Payable Date": "10/16/2026",
+        "Amount ($)": ""
+      },
+      {
+        "Declaration Date": "09/08/2026",
+        "Ex-Div Date": "09/09/2026",
+        "Record Date": "09/09/2026",
+        "Payable Date": "09/11/2026",
+        "Amount ($)": "$0.2066"
+      },
+      {
+        "Declaration Date": "08/11/2026",
+        "Ex-Div Date": "08/12/2026",
+        "Record Date": "08/12/2026",
+        "Payable Date": "08/14/2026",
+        "Amount ($)": "$0.2069"
+      },
+      {
+        "Declaration Date": "07/14/2026",
+        "Ex-Div Date": "07/15/2026",
+        "Record Date": "07/15/2026",
+        "Payable Date": "07/17/2026",
+        "Amount ($)": "$0.1945"
+      },
+      {
+        "Declaration Date": "06/09/2026",
+        "Ex-Div Date": "06/10/2026",
+        "Record Date": "06/10/2026",
+        "Payable Date": "06/12/2026",
+        "Amount ($)": "$0.1944"
+      },
+      {
+        "Declaration Date": "05/12/2026",
+        "Ex-Div Date": "05/13/2026",
+        "Record Date": "05/13/2026",
+        "Payable Date": "05/15/2026",
+        "Amount ($)": "$0.1946"
+      },
+      {
+        "Declaration Date": "04/14/2026",
+        "Ex-Div Date": "04/15/2026",
+        "Record Date": "04/15/2026",
+        "Payable Date": "04/17/2026",
+        "Amount ($)": "$0.1946"
+      },
+      {
+        "Declaration Date": "03/10/2026",
+        "Ex-Div Date": "03/11/2026",
+        "Record Date": "03/11/2026",
+        "Payable Date": "03/13/2026",
+        "Amount ($)": "$0.1940"
+      },
+      {
+        "Declaration Date": "02/10/2026",
+        "Ex-Div Date": "02/11/2026",
+        "Record Date": "02/11/2026",
+        "Payable Date": "02/13/2026",
+        "Amount ($)": "$0.1990"
+      },
+      {
+        "Declaration Date": "01/13/2026",
+        "Ex-Div Date": "01/14/2026",
+        "Record Date": "01/14/2026",
+        "Payable Date": "01/16/2026",
+        "Amount ($)": "$0.1991"
+      },
+      {
+        "Declaration Date": "12/23/2025",
+        "Ex-Div Date": "12/24/2025",
+        "Record Date": "12/24/2025",
+        "Payable Date": "12/26/2025",
+        "Amount ($)": "$0.1995"
+      },
+      {
+        "Declaration Date": "11/25/2025",
+        "Ex-Div Date": "11/26/2025",
+        "Record Date": "11/26/2025",
+        "Payable Date": "11/28/2025",
+        "Amount ($)": "$0.2045"
+      },
+      {
+        "Declaration Date": "10/21/2025",
+        "Ex-Div Date": "10/22/2025",
+        "Record Date": "10/22/2025",
+        "Payable Date": "10/24/2025",
+        "Amount ($)": "$0.2094"
+      },
+      {
+        "Declaration Date": "09/23/2025",
+        "Ex-Div Date": "09/24/2025",
+        "Record Date": "09/24/2025",
+        "Payable Date": "09/26/2025",
+        "Amount ($)": "$0.2120"
+      },
+      {
+        "Declaration Date": "08/19/2025",
+        "Ex-Div Date": "08/20/2025",
+        "Record Date": "08/20/2025",
+        "Payable Date": "08/22/2025",
+        "Amount ($)": "$0.2119"
+      },
+      {
+        "Declaration Date": "07/22/2025",
+        "Ex-Div Date": "07/23/2025",
+        "Record Date": "07/23/2025",
+        "Payable Date": "07/25/2025",
+        "Amount ($)": "$0.2120"
+      },
+      {
+        "Declaration Date": "06/24/2025",
+        "Ex-Div Date": "06/25/2025",
+        "Record Date": "06/25/2025",
+        "Payable Date": "06/27/2025",
+        "Amount ($)": "$0.2146"
+      },
+      {
+        "Declaration Date": "05/20/2025",
+        "Ex-Div Date": "05/21/2025",
+        "Record Date": "05/21/2025",
+        "Payable Date": "05/23/2025",
+        "Amount ($)": "$0.2143"
+      },
+      {
+        "Declaration Date": "04/22/2025",
+        "Ex-Div Date": "04/23/2025",
+        "Record Date": "04/23/2025",
+        "Payable Date": "04/25/2025",
+        "Amount ($)": "$0.2080"
+      },
+      {
+        "Declaration Date": "03/25/2025",
+        "Ex-Div Date": "03/26/2025",
+        "Record Date": "03/26/2025",
+        "Payable Date": "03/28/2025",
+        "Amount ($)": "$0.2119"
+      },
+      {
+        "Declaration Date": "02/25/2025",
+        "Ex-Div Date": "02/26/2025",
+        "Record Date": "02/26/2025",
+        "Payable Date": "02/28/2025",
+        "Amount ($)": "$0.2196"
+      },
+      {
+        "Declaration Date": "01/21/2025",
+        "Ex-Div Date": "01/22/2025",
+        "Record Date": "01/22/2025",
+        "Payable Date": "01/24/2025",
+        "Amount ($)": "$0.2247"
+      },
+      {
+        "Declaration Date": "12/23/2024",
+        "Ex-Div Date": "12/24/2024",
+        "Record Date": "12/24/2024",
+        "Payable Date": "12/26/2024",
+        "Amount ($)": "$0.2299"
+      },
+      {
+        "Declaration Date": "11/19/2024",
+        "Ex-Div Date": "11/20/2024",
+        "Record Date": "11/20/2024",
+        "Payable Date": "11/21/2024",
+        "Amount ($)": "$0.2299"
+      },
+      {
+        "Declaration Date": "10/22/2024",
+        "Ex-Div Date": "10/23/2024",
+        "Record Date": "10/23/2024",
+        "Payable Date": "10/24/2024",
+        "Amount ($)": "$0.2300"
+      },
+      {
+        "Declaration Date": "09/24/2024",
+        "Ex-Div Date": "09/25/2024",
+        "Record Date": "09/25/2024",
+        "Payable Date": "09/26/2024",
+        "Amount ($)": "$0.2301"
+      },
+      {
+        "Declaration Date": "08/20/2024",
+        "Ex-Div Date": "08/21/2024",
+        "Record Date": "08/21/2024",
+        "Payable Date": "08/22/2024",
+        "Amount ($)": "$0.2422"
+      },
+      {
+        "Declaration Date": "07/23/2024",
+        "Ex-Div Date": "07/24/2024",
+        "Record Date": "07/24/2024",
+        "Payable Date": "07/25/2024",
+        "Amount ($)": "$0.2297"
+      },
+      {
+        "Declaration Date": "06/25/2024",
+        "Ex-Div Date": "06/26/2024",
+        "Record Date": "06/26/2024",
+        "Payable Date": "06/27/2024",
+        "Amount ($)": "$0.2298"
+      },
+      {
+        "Declaration Date": "05/21/2024",
+        "Ex-Div Date": "05/23/2024",
+        "Record Date": "05/22/2024",
+        "Payable Date": "05/24/2024",
+        "Amount ($)": "$0.2297"
+      },
+      {
+        "Declaration Date": "04/23/2024",
+        "Ex-Div Date": "04/25/2024",
+        "Record Date": "04/24/2024",
+        "Payable Date": "04/26/2024",
+        "Amount ($)": "$0.2498"
+      },
+      {
+        "Declaration Date": "03/19/2024",
+        "Ex-Div Date": "03/21/2024",
+        "Record Date": "03/20/2024",
+        "Payable Date": "03/22/2024",
+        "Amount ($)": "$0.2499"
+      },
+      {
+        "Declaration Date": "02/20/2024",
+        "Ex-Div Date": "02/22/2024",
+        "Record Date": "02/21/2024",
+        "Payable Date": "02/23/2024",
+        "Amount ($)": "$0.2501"
+      },
+      {
+        "Declaration Date": "01/23/2024",
+        "Ex-Div Date": "01/25/2024",
+        "Record Date": "01/24/2024",
+        "Payable Date": "01/26/2024",
+        "Amount ($)": "$0.2503"
+      },
+      {
+        "Declaration Date": "12/19/2023",
+        "Ex-Div Date": "12/20/2023",
+        "Record Date": "12/21/2023",
+        "Payable Date": "12/22/2023",
+        "Amount ($)": "$0.2503"
+      },
+      {
+        "Declaration Date": "11/21/2023",
+        "Ex-Div Date": "11/22/2023",
+        "Record Date": "11/24/2023",
+        "Payable Date": "11/27/2023",
+        "Amount ($)": "$0.2556"
+      },
+      {
+        "Declaration Date": "10/24/2023",
+        "Ex-Div Date": "10/25/2023",
+        "Record Date": "10/26/2023",
+        "Payable Date": "10/27/2023",
+        "Amount ($)": "$0.2553"
+      },
+      {
+        "Declaration Date": "09/19/2023",
+        "Ex-Div Date": "09/20/2023",
+        "Record Date": "09/21/2023",
+        "Payable Date": "09/22/2023",
+        "Amount ($)": "$0.2579"
+      },
+      {
+        "Declaration Date": "08/22/2023",
+        "Ex-Div Date": "08/23/2023",
+        "Record Date": "08/24/2023",
+        "Payable Date": "08/25/2023",
+        "Amount ($)": "$0.2757"
+      },
+      {
+        "Declaration Date": "07/25/2023",
+        "Ex-Div Date": "07/26/2023",
+        "Record Date": "07/27/2023",
+        "Payable Date": "07/28/2023",
+        "Amount ($)": "$0.2710"
+      },
+      {
+        "Declaration Date": "06/21/2023",
+        "Ex-Div Date": "06/22/2023",
+        "Record Date": "06/23/2023",
+        "Payable Date": "06/26/2023",
+        "Amount ($)": "$0.2711"
+      },
+      {
+        "Declaration Date": "05/23/2023",
+        "Ex-Div Date": "05/24/2023",
+        "Record Date": "05/25/2023",
+        "Payable Date": "05/26/2023",
+        "Amount ($)": "$0.2664"
+      },
+      {
+        "Declaration Date": "04/25/2023",
+        "Ex-Div Date": "04/26/2023",
+        "Record Date": "04/27/2023",
+        "Payable Date": "04/28/2023",
+        "Amount ($)": "$0.2565"
+      },
+      {
+        "Declaration Date": "03/21/2023",
+        "Ex-Div Date": "03/22/2023",
+        "Record Date": "03/23/2023",
+        "Payable Date": "03/24/2023",
+        "Amount ($)": "$0.2459"
+      },
+      {
+        "Declaration Date": "02/22/2023",
+        "Ex-Div Date": "02/23/2023",
+        "Record Date": "02/24/2023",
+        "Payable Date": "02/27/2023",
+        "Amount ($)": "$0.2355"
+      },
+      {
+        "Declaration Date": "01/24/2023",
+        "Ex-Div Date": "01/25/2023",
+        "Record Date": "01/26/2023",
+        "Payable Date": "01/27/2023",
+        "Amount ($)": "$0.2307"
+      },
+      {
+        "Declaration Date": "12/22/2022",
+        "Ex-Div Date": "12/23/2022",
+        "Record Date": "12/27/2022",
+        "Payable Date": "12/28/2022",
+        "Amount ($)": "$0.2104"
+      },
+      {
+        "Declaration Date": "11/22/2022",
+        "Ex-Div Date": "11/23/2022",
+        "Record Date": "11/25/2022",
+        "Payable Date": "11/28/2022",
+        "Amount ($)": "$0.2006"
+      },
+      {
+        "Declaration Date": "10/25/2022",
+        "Ex-Div Date": "10/26/2022",
+        "Record Date": "10/27/2022",
+        "Payable Date": "10/28/2022",
+        "Amount ($)": "$0.1906"
+      },
+      {
+        "Declaration Date": "09/20/2022",
+        "Ex-Div Date": "09/21/2022",
+        "Record Date": "09/22/2022",
+        "Payable Date": "09/23/2022",
+        "Amount ($)": "$0.1604"
+      }
+    ],
+    "fallback": false,
+    "source": "NEOS fund page Distribution History table"
+  },
+  "documents": {
+    "prospectus": "https://neosfunds.com/wp-content/uploads/CSHI-Prospectus.pdf",
+    "summaryProspectus": "https://neosfunds.com/wp-content/uploads/CSHI-Summary-Prospectus.pdf",
+    "sai": "https://neosfunds.com/wp-content/uploads/neos_sai-042926.pdf",
+    "annualReport": "https://neosfunds.com/wp-content/uploads/CSHI-Annual-Report.pdf",
+    "semiAnnualReport": "https://neosfunds.com/wp-content/uploads/CSHI-Semi-Annual-1.pdf",
+    "fiscalQ1Holdings": "https://neosfunds.com/wp-content/uploads/CSHI-Part-F-3.31.26-Confidential-v.2.pdf",
+    "fiscalQ3Holdings": "https://neosfunds.com/wp-content/uploads/CSHI-Fiscal-Year-Q3-Portfolio-Holdings.pdf",
+    "taxInfo": "https://neosfunds.com/wp-content/uploads/NEOS-Tax-Insert-2025.pdf",
+    "form8937": "https://neosfunds.com/wp-content/uploads/NEOS-Enhanced-Income-1-3-Month-T-Bill-ETF-Form-8937-12.31.25.pdf"
+  },
+  "holdings": {
+    "pages": [
+      "./holdings/001.json"
+    ],
+    "pageSize": 250,
+    "totalRows": 23,
+    "asOfDate": "Sep 21 2026",
+    "asOf": "2026-09-21",
+    "source": "https://neosfunds.com/wp-admin/admin-ajax.php?action=download_holdings_csv&ticker=CSHI",
+    "sourceKind": "official NEOS daily holdings CSV (download_holdings_csv)"
+  },
+  "history": {
+    "pages": [
+      "./history/001.json",
+      "./history/002.json"
+    ],
+    "pageSize": 1000,
+    "totalRows": 1017,
+    "asOfDate": "Sep 18 2026",
+    "asOf": "2026-09-18",
+    "source": "https://query1.finance.yahoo.com/v8/finance/chart/CSHI?period1=0&period2=9999999999&interval=1d&events=div%7Csplit&includeAdjustedClose=true",
+    "sourceKind": "Yahoo Finance public chart API (daily Close / Adj Close / Volume)"
+  }
+}

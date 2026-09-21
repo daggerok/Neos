@@ -1,0 +1,107 @@
+{
+  "ticker": "HYBI",
+  "page": 1,
+  "pageSize": 250,
+  "totalRows": 10,
+  "headers": [
+    "Name",
+    "Ticker",
+    "Identifier",
+    "Weight",
+    "Market Value",
+    "Shares Held",
+    "Asset Category"
+  ],
+  "rows": [
+    {
+      "Name": "United States Treasury Bill 12/01/2026",
+      "Ticker": "912797VZ7",
+      "Identifier": "912797VZ7",
+      "Weight": "69.73%",
+      "Market Value": "$155096694.32",
+      "Shares Held": "156,302,000",
+      "Asset Category": "Treasury"
+    },
+    {
+      "Name": "Xtrackers USD High Yield Corporate Bond ETF",
+      "Ticker": "HYLB",
+      "Identifier": "233051432",
+      "Weight": "12.50%",
+      "Market Value": "$27799722.90",
+      "Shares Held": "776,095",
+      "Asset Category": "Fund"
+    },
+    {
+      "Name": "State Street SPDR Portfolio High Yield Bond ETF",
+      "Ticker": "SPHY",
+      "Identifier": "78468R606",
+      "Weight": "12.50%",
+      "Market Value": "$27800353.74",
+      "Shares Held": "1,209,763",
+      "Asset Category": "Fund"
+    },
+    {
+      "Name": "SPXW US 10/01/26 P6800",
+      "Ticker": "SPXW 261001P06800000",
+      "Identifier": "SPXW 261001P06800000",
+      "Weight": "0.01%",
+      "Market Value": "$16490.00",
+      "Shares Held": "97",
+      "Asset Category": "Option"
+    },
+    {
+      "Name": "SPXW US 10/01/26 P6875",
+      "Ticker": "SPXW 261001P06875000",
+      "Identifier": "SPXW 261001P06875000",
+      "Weight": "0.01%",
+      "Market Value": "$19157.50",
+      "Shares Held": "97",
+      "Asset Category": "Option"
+    },
+    {
+      "Name": "SPXW US 10/01/26 P6950",
+      "Ticker": "SPXW 261001P06950000",
+      "Identifier": "SPXW 261001P06950000",
+      "Weight": "0.01%",
+      "Market Value": "$23037.50",
+      "Shares Held": "97",
+      "Asset Category": "Option"
+    },
+    {
+      "Name": "SPXW US 10/01/26 P7100",
+      "Ticker": "SPXW 261001P07100000",
+      "Identifier": "SPXW 261001P07100000",
+      "Weight": "-0.02%",
+      "Market Value": "$-33950.00",
+      "Shares Held": "-97",
+      "Asset Category": "Option"
+    },
+    {
+      "Name": "SPXW US 10/01/26 P7180",
+      "Ticker": "SPXW 261001P07180000",
+      "Identifier": "SPXW 261001P07180000",
+      "Weight": "-0.02%",
+      "Market Value": "$-43650.00",
+      "Shares Held": "-97",
+      "Asset Category": "Option"
+    },
+    {
+      "Name": "SPXW US 10/01/26 P7250",
+      "Ticker": "SPXW 261001P07250000",
+      "Identifier": "SPXW 261001P07250000",
+      "Weight": "-0.03%",
+      "Market Value": "$-56745.00",
+      "Shares Held": "-97",
+      "Asset Category": "Option"
+    },
+    {
+      "Name": "Cash & Other",
+      "Ticker": "Cash&Other",
+      "Identifier": "Cash&Other",
+      "Weight": "5.30%",
+      "Market Value": "$11793901.13",
+      "Shares Held": "11,793,901",
+      "Asset Category": "Cash"
+    }
+  ]
+}

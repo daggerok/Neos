@@ -1,0 +1,379 @@
+{
+  "ticker": "TLTI",
+  "name": "Enhanced Income 20+ Year Treasury Bond ETF",
+  "category": "Enhanced Fixed Income",
+  "categoryClass": "ticker-enhanced-income-treasuries",
+  "dataFile": "./funds/TLTI/meta.json",
+  "fundPage": "https://neosfunds.com/tlti/",
+  "source": {
+    "provider": "NEOS Investment Management LLC (NEOS ETFs)",
+    "site": "https://neosfunds.com",
+    "lineup": "https://neosfunds.com/#explore-etfs",
+    "fundPage": "https://neosfunds.com/tlti/",
+    "holdingsDownload": "https://neosfunds.com/wp-admin/admin-ajax.php?action=download_holdings_csv&ticker=TLTI",
+    "holdingsSource": "official NEOS daily holdings CSV (download_holdings_csv)",
+    "historySource": "Yahoo Finance public chart API (daily Close / Adj Close / Volume)",
+    "historyUrl": "https://query1.finance.yahoo.com/v8/finance/chart/TLTI?period1=0&period2=9999999999&interval=1d&events=div%7Csplit&includeAdjustedClose=true",
+    "returnsSource": "NEOS fund page performance tables (NAV Performance)",
+    "distributionsSource": "NEOS fund page Distribution History table",
+    "distributionInfoSource": "NEOS fund page Distribution Information block",
+    "documentsSource": "NEOS fund page Documents table",
+    "registrant": "NEOS ETF Trust (Investment Company Act file 811-23645)",
+    "nportDoc": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0001848758&type=NPORT-P&dateb=&owner=include&count=10",
+    "exchangeSource": "NEOS fund page Fund Details \"Primary Exchange\"",
+    "navSource": "NEOS fund page Fund Details \"Net Asset Value\" (official (fund page Fund Details))"
+  },
+  "identifiers": {
+    "cusip": "78433H592",
+    "isin": "US78433H5928",
+    "underlyingExposure": "20+ Year Treasury Bonds",
+    "indexName": "20+ Year Treasury Bonds",
+    "benchmarkIndexName": "ICE US Treasury 20+ Year Bond Total Return Index"
+  },
+  "expenseRatio": {
+    "display": "0.58%",
+    "value": 0.58,
+    "managementFeeDisplay": "0.58%",
+    "managementFeeValue": 0.58
+  },
+  "nav": {
+    "display": "$42.91",
+    "value": 42.91,
+    "asOfDate": "Sep 18 2026",
+    "dailyChangeText": "$-0.29 (-0.67%)",
+    "kind": "official (fund page Fund Details)"
+  },
+  "marketPrice": {
+    "display": "$42.94",
+    "value": 42.94,
+    "asOfDate": "Sep 18 2026",
+    "dailyChangeText": "$-0.30 (-0.68%)",
+    "source": "NEOS fund page Fund Details \"Market Price\""
+  },
+  "premiumDiscount": {
+    "display": "0.07%",
+    "value": 0.07,
+    "kind": "derived (Market Price - NAV) / NAV"
+  },
+  "aum": {
+    "display": "$17.17M",
+    "value": 17165480,
+    "asOfDate": "Sep 18 2026",
+    "source": "official NEOS daily holdings CSV (download_holdings_csv)"
+  },
+  "sharesOutstanding": {
+    "display": "400,000",
+    "value": 400000,
+    "asOfDate": "Sep 21 2026"
+  },
+  "yields": {
+    "dividendYield": 6.27,
+    "dividendYieldText": "6.27%",
+    "dividendYieldKind": "official NEOS Distribution Rate (latest distribution annualized / ex-date NAV)",
+    "distributionRate": 6.27,
+    "distributionRateText": "6.27%",
+    "yield12M": 6.43,
+    "yield12MText": "6.43%",
+    "secYield": 4.71,
+    "secYieldText": "4.71%",
+    "secYieldKind": "official NEOS 30-Day SEC Yield",
+    "distributionAmountText": "$0.2267",
+    "distributionAmountPercentText": "0.52%",
+    "distributionInfoAsOfDate": "Aug 31 2026"
+  },
+  "returns": {
+    "derivedFrom": "official NEOS fund page performance tables (NAV Performance series)",
+    "monthEnd": {
+      "asOfDate": "Aug 31 2026",
+      "raw": "2026-08-31",
+      "mo1": 0.79,
+      "mo3": -2.32,
+      "mo6": -5.73,
+      "ytd": -1.43,
+      "yr1": 1.48,
+      "yr3": null,
+      "yr5": null,
+      "yr10": null,
+      "sinceInception": -1.61,
+      "sinceInceptionCumulative": -2.77,
+      "market": {
+        "mo1": 0.99,
+        "mo3": -2.01,
+        "mo6": -5.68,
+        "ytd": -1.24,
+        "sinceInceptionCumulative": -2.61,
+        "yr1": 1.44,
+        "yr3": null,
+        "yr5": null,
+        "sinceInception": -1.52
+      },
+      "benchmarkName": "ICE US Treasury 20+ Year Bond Total Return Index",
+      "benchmark": {
+        "mo1": 0.77,
+        "mo3": -2.63,
+        "mo6": -6.96,
+        "ytd": -2.8,
+        "sinceInceptionCumulative": -4.38,
+        "yr1": -0.23,
+        "yr3": null,
+        "yr5": null,
+        "sinceInception": -2.57
+      }
+    },
+    "quarterEnd": {
+      "asOfDate": "Jun 30 2026",
+      "raw": "2026-06-30",
+      "mo1": 1.11,
+      "mo3": 1.35,
+      "mo6": 2.03,
+      "ytd": 2.03,
+      "yr1": 4.01,
+      "yr3": null,
+      "yr5": null,
+      "yr10": null,
+      "sinceInception": 0.42,
+      "sinceInceptionCumulative": 0.65,
+      "market": {
+        "mo1": 1.52,
+        "mo3": 1.33,
+        "mo6": 2.32,
+        "ytd": 2.32,
+        "sinceInceptionCumulative": 0.9,
+        "yr1": 3.89,
+        "yr3": null,
+        "yr5": null,
+        "sinceInception": 0.58
+      }
+    }
+  },
+  "navIndex": {
+    "startDate": "2024-12-10",
+    "endDate": "2026-09-18",
+    "points": 648,
+    "benchmarkName": "ICE US Treasury 20+ Year Bond Total Return Index",
+    "source": "NEOS fund page \"Growth of $10,000 at NAV Since Inception\" chart series"
+  },
+  "distributions": {
+    "frequency": "Monthly",
+    "paymentsPerYear": 12,
+    "headers": [
+      "Declaration Date",
+      "Ex-Div Date",
+      "Record Date",
+      "Payable Date",
+      "Amount ($)"
+    ],
+    "rows": [
+      {
+        "Declaration Date": "12/08/2026",
+        "Ex-Div Date": "12/09/2026",
+        "Record Date": "12/09/2026",
+        "Payable Date": "12/11/2026",
+        "Amount ($)": ""
+      },
+      {
+        "Declaration Date": "11/09/2026",
+        "Ex-Div Date": "11/10/2026",
+        "Record Date": "11/10/2026",
+        "Payable Date": "11/13/2026",
+        "Amount ($)": ""
+      },
+      {
+        "Declaration Date": "10/13/2026",
+        "Ex-Div Date": "10/14/2026",
+        "Record Date": "10/14/2026",
+        "Payable Date": "10/16/2026",
+        "Amount ($)": ""
+      },
+      {
+        "Declaration Date": "09/08/2026",
+        "Ex-Div Date": "09/09/2026",
+        "Record Date": "09/09/2026",
+        "Payable Date": "09/11/2026",
+        "Amount ($)": "$0.227"
+      },
+      {
+        "Declaration Date": "08/11/2026",
+        "Ex-Div Date": "08/12/2026",
+        "Record Date": "08/12/2026",
+        "Payable Date": "08/14/2026",
+        "Amount ($)": "$0.2267"
+      },
+      {
+        "Declaration Date": "07/14/2026",
+        "Ex-Div Date": "07/15/2026",
+        "Record Date": "07/15/2026",
+        "Payable Date": "07/17/2026",
+        "Amount ($)": "$0.2229"
+      },
+      {
+        "Declaration Date": "06/09/2026",
+        "Ex-Div Date": "06/10/2026",
+        "Record Date": "06/10/2026",
+        "Payable Date": "06/12/2026",
+        "Amount ($)": "$0.2245"
+      },
+      {
+        "Declaration Date": "05/12/2026",
+        "Ex-Div Date": "05/13/2026",
+        "Record Date": "05/13/2026",
+        "Payable Date": "05/15/2026",
+        "Amount ($)": "$0.2272"
+      },
+      {
+        "Declaration Date": "04/14/2026",
+        "Ex-Div Date": "04/15/2026",
+        "Record Date": "04/15/2026",
+        "Payable Date": "04/17/2026",
+        "Amount ($)": "$0.2300"
+      },
+      {
+        "Declaration Date": "03/10/2026",
+        "Ex-Div Date": "03/11/2026",
+        "Record Date": "03/11/2026",
+        "Payable Date": "03/13/2026",
+        "Amount ($)": "$0.2355"
+      },
+      {
+        "Declaration Date": "02/10/2026",
+        "Ex-Div Date": "02/11/2026",
+        "Record Date": "02/11/2026",
+        "Payable Date": "02/13/2026",
+        "Amount ($)": "$0.2310"
+      },
+      {
+        "Declaration Date": "01/13/2026",
+        "Ex-Div Date": "01/14/2026",
+        "Record Date": "01/14/2026",
+        "Payable Date": "01/16/2026",
+        "Amount ($)": "$0.2314"
+      },
+      {
+        "Declaration Date": "12/23/2025",
+        "Ex-Div Date": "12/24/2025",
+        "Record Date": "12/24/2025",
+        "Payable Date": "12/26/2025",
+        "Amount ($)": "$0.2318"
+      },
+      {
+        "Declaration Date": "11/25/2025",
+        "Ex-Div Date": "11/26/2025",
+        "Record Date": "11/26/2025",
+        "Payable Date": "11/28/2025",
+        "Amount ($)": "$0.2377"
+      },
+      {
+        "Declaration Date": "10/21/2025",
+        "Ex-Div Date": "10/22/2025",
+        "Record Date": "10/22/2025",
+        "Payable Date": "10/24/2025",
+        "Amount ($)": "$0.2418"
+      },
+      {
+        "Declaration Date": "09/23/2025",
+        "Ex-Div Date": "09/24/2025",
+        "Record Date": "09/24/2025",
+        "Payable Date": "09/26/2025",
+        "Amount ($)": "$0.2489"
+      },
+      {
+        "Declaration Date": "08/19/2025",
+        "Ex-Div Date": "08/20/2025",
+        "Record Date": "08/20/2025",
+        "Payable Date": "08/22/2025",
+        "Amount ($)": "$0.2468"
+      },
+      {
+        "Declaration Date": "07/22/2025",
+        "Ex-Div Date": "07/23/2025",
+        "Record Date": "07/23/2025",
+        "Payable Date": "07/25/2025",
+        "Amount ($)": "$0.2465"
+      },
+      {
+        "Declaration Date": "06/24/2025",
+        "Ex-Div Date": "06/25/2025",
+        "Record Date": "06/25/2025",
+        "Payable Date": "06/27/2025",
+        "Amount ($)": "$0.2490"
+      },
+      {
+        "Declaration Date": "05/20/2025",
+        "Ex-Div Date": "05/21/2025",
+        "Record Date": "05/21/2025",
+        "Payable Date": "05/23/2025",
+        "Amount ($)": "$0.2378"
+      },
+      {
+        "Declaration Date": "04/22/2025",
+        "Ex-Div Date": "04/23/2025",
+        "Record Date": "04/23/2025",
+        "Payable Date": "04/25/2025",
+        "Amount ($)": "$0.2276"
+      },
+      {
+        "Declaration Date": "03/25/2025",
+        "Ex-Div Date": "03/26/2025",
+        "Record Date": "03/26/2025",
+        "Payable Date": "03/28/2025",
+        "Amount ($)": "$0.2386"
+      },
+      {
+        "Declaration Date": "02/25/2025",
+        "Ex-Div Date": "02/26/2025",
+        "Record Date": "02/26/2025",
+        "Payable Date": "02/28/2025",
+        "Amount ($)": "$0.2452"
+      },
+      {
+        "Declaration Date": "01/21/2025",
+        "Ex-Div Date": "01/22/2025",
+        "Record Date": "01/22/2025",
+        "Payable Date": "01/24/2025",
+        "Amount ($)": "$0.2668"
+      },
+      {
+        "Declaration Date": "12/23/2024",
+        "Ex-Div Date": "12/24/2024",
+        "Record Date": "12/24/2024",
+        "Payable Date": "12/26/2024",
+        "Amount ($)": "$0.2670"
+      }
+    ],
+    "fallback": false,
+    "source": "NEOS fund page Distribution History table"
+  },
+  "documents": {
+    "prospectus": "https://neosfunds.com/wp-content/uploads/TLTI-Prospectus.pdf",
+    "summaryProspectus": "https://neosfunds.com/wp-content/uploads/TLTI-Summary-Prospectus.pdf",
+    "sai": "https://neosfunds.com/wp-content/uploads/neos_sai-042926.pdf",
+    "annualReport": "https://neosfunds.com/wp-content/uploads/TLTI-Annual-Report.pdf",
+    "semiAnnualReport": "https://neosfunds.com/wp-content/uploads/TLTI-Semi-Annual.pdf",
+    "fiscalQ1Holdings": "https://neosfunds.com/wp-content/uploads/TLTI-Part-F-3.31.26-Confidential-v.2.pdf",
+    "fiscalQ3Holdings": "https://neosfunds.com/wp-content/uploads/Fiscal-Year-Q3-Portfolio-Holdings-NEOS-Enhanced-Income-20-Year-Treasurey-Bond-ETF.pdf",
+    "taxInfo": "https://neosfunds.com/wp-content/uploads/NEOS-Tax-Insert-2025.pdf",
+    "form8937": "https://neosfunds.com/wp-content/uploads/NEOS-Enhanced-Income-20-Year-Treasury-Bond-ETF-Form-8937-12.31.25.pdf"
+  },
+  "holdings": {
+    "pages": [
+      "./holdings/001.json"
+    ],
+    "pageSize": 250,
+    "totalRows": 8,
+    "asOfDate": "Sep 21 2026",
+    "asOf": "2026-09-21",
+    "source": "https://neosfunds.com/wp-admin/admin-ajax.php?action=download_holdings_csv&ticker=TLTI",
+    "sourceKind": "official NEOS daily holdings CSV (download_holdings_csv)"
+  },
+  "history": {
+    "pages": [
+      "./history/001.json"
+    ],
+    "pageSize": 1000,
+    "totalRows": 443,
+    "asOfDate": "Sep 18 2026",
+    "asOf": "2026-09-18",
+    "source": "https://query1.finance.yahoo.com/v8/finance/chart/TLTI?period1=0&period2=9999999999&interval=1d&events=div%7Csplit&includeAdjustedClose=true",
+    "sourceKind": "Yahoo Finance public chart API (daily Close / Adj Close / Volume)"
+  }
+}

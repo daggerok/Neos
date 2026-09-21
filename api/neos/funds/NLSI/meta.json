@@ -1,0 +1,279 @@
+{
+  "ticker": "NLSI",
+  "name": "Long/Short Equity Income ETF",
+  "category": "Hedged Equity Income",
+  "categoryClass": "ticker-hedged-equity-income",
+  "dataFile": "./funds/NLSI/meta.json",
+  "fundPage": "https://neosfunds.com/nlsi/",
+  "source": {
+    "provider": "NEOS Investment Management LLC (NEOS ETFs)",
+    "site": "https://neosfunds.com",
+    "lineup": "https://neosfunds.com/#explore-etfs",
+    "fundPage": "https://neosfunds.com/nlsi/",
+    "holdingsDownload": "https://neosfunds.com/wp-admin/admin-ajax.php?action=download_holdings_csv&ticker=NLSI",
+    "holdingsSource": "official NEOS daily holdings CSV (download_holdings_csv)",
+    "historySource": "Yahoo Finance public chart API (daily Close / Adj Close / Volume)",
+    "historyUrl": "https://query1.finance.yahoo.com/v8/finance/chart/NLSI?period1=0&period2=9999999999&interval=1d&events=div%7Csplit&includeAdjustedClose=true",
+    "returnsSource": "NEOS fund page performance tables (NAV Performance)",
+    "distributionsSource": "NEOS fund page Distribution History table",
+    "distributionInfoSource": "NEOS fund page Distribution Information block",
+    "documentsSource": "NEOS fund page Documents table",
+    "registrant": "NEOS ETF Trust (Investment Company Act file 811-23645)",
+    "nportDoc": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0001848758&type=NPORT-P&dateb=&owner=include&count=10",
+    "exchangeSource": "NEOS fund page Fund Details \"Primary Exchange\"",
+    "navSource": "NEOS fund page Fund Details \"Net Asset Value\" (official (fund page Fund Details))"
+  },
+  "identifiers": {
+    "cusip": "78433H477",
+    "isin": "US78433H4772",
+    "underlyingExposure": "Long/Short U.S. Equities",
+    "indexName": "Long/Short U.S. Equities",
+    "benchmarkIndexName": null
+  },
+  "expenseRatio": {
+    "display": "2.89%",
+    "value": 2.89,
+    "managementFeeDisplay": "0.98%",
+    "managementFeeValue": 0.98
+  },
+  "nav": {
+    "display": "$57.93",
+    "value": 57.93,
+    "asOfDate": "Sep 18 2026",
+    "dailyChangeText": "$-0.10 (-0.17%)",
+    "kind": "official (fund page Fund Details)"
+  },
+  "marketPrice": {
+    "display": "$57.87",
+    "value": 57.87,
+    "asOfDate": "Sep 18 2026",
+    "dailyChangeText": "$-0.18 (-0.31%)",
+    "source": "NEOS fund page Fund Details \"Market Price\""
+  },
+  "premiumDiscount": {
+    "display": "-0.10%",
+    "value": -0.1,
+    "kind": "derived (Market Price - NAV) / NAV"
+  },
+  "aum": {
+    "display": "$4.63M",
+    "value": 4634400,
+    "asOfDate": "Sep 18 2026",
+    "source": "official NEOS daily holdings CSV (download_holdings_csv)"
+  },
+  "sharesOutstanding": {
+    "display": "80,000",
+    "value": 80000,
+    "asOfDate": "Sep 21 2026"
+  },
+  "yields": {
+    "dividendYield": 5.27,
+    "dividendYieldText": "5.27%",
+    "dividendYieldKind": "official NEOS Distribution Rate (latest distribution annualized / ex-date NAV)",
+    "distributionRate": 5.27,
+    "distributionRateText": "5.27%",
+    "yield12M": null,
+    "yield12MText": "—",
+    "secYield": -0.37,
+    "secYieldText": "-0.37%",
+    "secYieldKind": "official NEOS 30-Day SEC Yield",
+    "distributionAmountText": "$0.2465",
+    "distributionAmountPercentText": "0.44%",
+    "distributionInfoAsOfDate": "Aug 31 2026"
+  },
+  "returns": {
+    "derivedFrom": "official NEOS fund page performance tables (NAV Performance series)",
+    "monthEnd": {
+      "asOfDate": "Aug 31 2026",
+      "raw": "2026-08-31",
+      "mo1": 8.52,
+      "mo3": 10.65,
+      "mo6": 25.62,
+      "ytd": 16.09,
+      "yr1": null,
+      "yr3": null,
+      "yr5": null,
+      "yr10": null,
+      "sinceInception": null,
+      "sinceInceptionCumulative": 19.29,
+      "market": {
+        "mo1": 8.36,
+        "mo3": 10.83,
+        "mo6": 25.48,
+        "ytd": 15.91,
+        "sinceInceptionCumulative": 19.3,
+        "yr1": null,
+        "yr3": null,
+        "yr5": null,
+        "sinceInception": null
+      },
+      "benchmarkName": null,
+      "benchmark": {}
+    },
+    "quarterEnd": {
+      "asOfDate": "Jun 30 2026",
+      "raw": "2026-06-30",
+      "mo1": -2.34,
+      "mo3": 13.43,
+      "mo6": 2.46,
+      "ytd": 2.46,
+      "yr1": null,
+      "yr3": null,
+      "yr5": null,
+      "yr10": null,
+      "sinceInception": null,
+      "sinceInceptionCumulative": 5.28,
+      "market": {
+        "mo1": -2.17,
+        "mo3": 13.55,
+        "mo6": 2.32,
+        "ytd": 2.32,
+        "sinceInceptionCumulative": 5.3,
+        "yr1": null,
+        "yr3": null,
+        "yr5": null,
+        "sinceInception": null
+      }
+    }
+  },
+  "navIndex": null,
+  "distributions": {
+    "frequency": "Monthly",
+    "paymentsPerYear": 12,
+    "headers": [
+      "Declaration Date",
+      "Ex-Div Date",
+      "Record Date",
+      "Payable Date",
+      "Amount ($)"
+    ],
+    "rows": [
+      {
+        "Declaration Date": "12/21/2026",
+        "Ex-Div Date": "12/22/2026",
+        "Record Date": "12/22/2026",
+        "Payable Date": "12/24/2026",
+        "Amount ($)": ""
+      },
+      {
+        "Declaration Date": "11/23/2026",
+        "Ex-Div Date": "11/24/2026",
+        "Record Date": "11/24/2026",
+        "Payable Date": "11/27/2026",
+        "Amount ($)": ""
+      },
+      {
+        "Declaration Date": "10/27/2026",
+        "Ex-Div Date": "10/28/2026",
+        "Record Date": "10/28/2026",
+        "Payable Date": "10/30/2026",
+        "Amount ($)": ""
+      },
+      {
+        "Declaration Date": "09/22/2026",
+        "Ex-Div Date": "09/23/2026",
+        "Record Date": "09/23/2026",
+        "Payable Date": "09/25/2026",
+        "Amount ($)": ""
+      },
+      {
+        "Declaration Date": "08/25/2026",
+        "Ex-Div Date": "08/26/2026",
+        "Record Date": "08/26/2026",
+        "Payable Date": "08/28/2026",
+        "Amount ($)": "$0.2465"
+      },
+      {
+        "Declaration Date": "07/28/2026",
+        "Ex-Div Date": "07/29/2026",
+        "Record Date": "07/29/2026",
+        "Payable Date": "07/31/2026",
+        "Amount ($)": "$0.2365"
+      },
+      {
+        "Declaration Date": "06/23/2026",
+        "Ex-Div Date": "06/24/2026",
+        "Record Date": "06/24/2026",
+        "Payable Date": "06/26/2026",
+        "Amount ($)": "$0.2254"
+      },
+      {
+        "Declaration Date": "05/26/2026",
+        "Ex-Div Date": "05/27/2026",
+        "Record Date": "05/27/2026",
+        "Payable Date": "05/29/2026",
+        "Amount ($)": "$0.2256"
+      },
+      {
+        "Declaration Date": "04/28/2026",
+        "Ex-Div Date": "04/29/2026",
+        "Record Date": "04/29/2026",
+        "Payable Date": "05/01/2026",
+        "Amount ($)": "$0.2076"
+      },
+      {
+        "Declaration Date": "03/24/2026",
+        "Ex-Div Date": "03/25/2026",
+        "Record Date": "03/25/2026",
+        "Payable Date": "03/27/2026",
+        "Amount ($)": "$0.2100"
+      },
+      {
+        "Declaration Date": "02/24/2026",
+        "Ex-Div Date": "02/25/2026",
+        "Record Date": "02/25/2026",
+        "Payable Date": "02/27/2026",
+        "Amount ($)": "$0.1982"
+      },
+      {
+        "Declaration Date": "01/27/2026",
+        "Ex-Div Date": "01/28/2026",
+        "Record Date": "01/28/2026",
+        "Payable Date": "01/30/2026",
+        "Amount ($)": "$0.2195"
+      },
+      {
+        "Declaration Date": "12/23/2025",
+        "Ex-Div Date": "12/24/2025",
+        "Record Date": "12/24/2025",
+        "Payable Date": "12/26/2025",
+        "Amount ($)": "$0.2371"
+      }
+    ],
+    "fallback": false,
+    "source": "NEOS fund page Distribution History table"
+  },
+  "documents": {
+    "prospectus": "https://neosfunds.com/wp-content/uploads/NLSI-Prospectus.pdf",
+    "summaryProspectus": "https://neosfunds.com/wp-content/uploads/NLSI-SumPro.pdf",
+    "sai": "https://neosfunds.com/wp-content/uploads/neos_sai-042926.pdf",
+    "annualReport": "https://neosfunds.com/wp-content/uploads/NLSI-Annual-Report.pdf",
+    "semiAnnualReport": "https://neosfunds.com/wp-content/uploads/2026-05-04-216006_NEOS-Long-Short-Equity-Income-ETF_TF_TSR-SemiAnnual_webproof.pdf",
+    "fiscalQ1Holdings": "https://neosfunds.com/wp-content/uploads/NLSI-Part-F-3.31.26-Confidential-v.2.pdf",
+    "fiscalQ3Holdings": null,
+    "taxInfo": "https://neosfunds.com/wp-content/uploads/NEOS-Tax-Insert-2025.pdf",
+    "form8937": "https://neosfunds.com/wp-content/uploads/NEOS-Long-Short-Equity-Income-ETF-Form-8937-12.31.25.pdf"
+  },
+  "holdings": {
+    "pages": [
+      "./holdings/001.json"
+    ],
+    "pageSize": 250,
+    "totalRows": 67,
+    "asOfDate": "Sep 21 2026",
+    "asOf": "2026-09-21",
+    "source": "https://neosfunds.com/wp-admin/admin-ajax.php?action=download_holdings_csv&ticker=NLSI",
+    "sourceKind": "official NEOS daily holdings CSV (download_holdings_csv)"
+  },
+  "history": {
+    "pages": [
+      "./history/001.json"
+    ],
+    "pageSize": 1000,
+    "totalRows": 194,
+    "asOfDate": "Sep 18 2026",
+    "asOf": "2026-09-18",
+    "source": "https://query1.finance.yahoo.com/v8/finance/chart/NLSI?period1=0&period2=9999999999&interval=1d&events=div%7Csplit&includeAdjustedClose=true",
+    "sourceKind": "Yahoo Finance public chart API (daily Close / Adj Close / Volume)"
+  }
+}

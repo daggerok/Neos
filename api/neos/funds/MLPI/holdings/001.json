@@ -1,0 +1,260 @@
+{
+  "ticker": "MLPI",
+  "page": 1,
+  "pageSize": 250,
+  "totalRows": 27,
+  "headers": [
+    "Name",
+    "Ticker",
+    "Identifier",
+    "Weight",
+    "Market Value",
+    "Shares Held",
+    "Asset Category"
+  ],
+  "rows": [
+    {
+      "Name": "AMLP 10/16/2026 56 C",
+      "Ticker": "2AMLP 261016C00056000",
+      "Identifier": "2AMLP 261016C00056000",
+      "Weight": "-0.20%",
+      "Market Value": "$-1917303.84",
+      "Shares Held": "-55,768",
+      "Asset Category": "Option"
+    },
+    {
+      "Name": "AMLP 10/16/2026 57 C",
+      "Ticker": "2AMLP 261016C00057000",
+      "Identifier": "2AMLP 261016C00057000",
+      "Weight": "-0.09%",
+      "Market Value": "$-853250.40",
+      "Shares Held": "-55,768",
+      "Asset Category": "Option"
+    },
+    {
+      "Name": "Antero Midstream Corp",
+      "Ticker": "AM",
+      "Identifier": "03676B102",
+      "Weight": "3.32%",
+      "Market Value": "$31807461.40",
+      "Shares Held": "1,501,060",
+      "Asset Category": "Equity"
+    },
+    {
+      "Name": "Cheniere Energy Partners LP",
+      "Ticker": "CQP",
+      "Identifier": "16411Q101",
+      "Weight": "3.42%",
+      "Market Value": "$32754040.56",
+      "Shares Held": "504,996",
+      "Asset Category": "Equity"
+    },
+    {
+      "Name": "Centuri Holdings Inc",
+      "Ticker": "CTRI",
+      "Identifier": "155923105",
+      "Weight": "1.73%",
+      "Market Value": "$16566928.20",
+      "Shares Held": "856,172",
+      "Asset Category": "Equity"
+    },
+    {
+      "Name": "Delek Logistics Partners LP",
+      "Ticker": "DKL",
+      "Identifier": "24664T103",
+      "Weight": "1.45%",
+      "Market Value": "$13876196.37",
+      "Shares Held": "240,447",
+      "Asset Category": "Equity"
+    },
+    {
+      "Name": "DT Midstream Inc",
+      "Ticker": "DTM",
+      "Identifier": "23345M107",
+      "Weight": "3.80%",
+      "Market Value": "$36453291.54",
+      "Shares Held": "291,673",
+      "Asset Category": "Equity"
+    },
+    {
+      "Name": "Enbridge Inc",
+      "Ticker": "ENB CN",
+      "Identifier": "2466149",
+      "Weight": "8.73%",
+      "Market Value": "$83649924.84",
+      "Shares Held": "1,719,648",
+      "Asset Category": "Equity"
+    },
+    {
+      "Name": "Enterprise Products Partners LP",
+      "Ticker": "EPD",
+      "Identifier": "293792107",
+      "Weight": "4.60%",
+      "Market Value": "$44076020.39",
+      "Shares Held": "1,133,351",
+      "Asset Category": "Equity"
+    },
+    {
+      "Name": "Energy Transfer LP",
+      "Ticker": "ET",
+      "Identifier": "29273V100",
+      "Weight": "4.83%",
+      "Market Value": "$46257300.74",
+      "Shares Held": "2,188,141",
+      "Asset Category": "Equity"
+    },
+    {
+      "Name": "Genesis Energy LP",
+      "Ticker": "GEL",
+      "Identifier": "371927104",
+      "Weight": "1.32%",
+      "Market Value": "$12614411.80",
+      "Shares Held": "861,052",
+      "Asset Category": "Equity"
+    },
+    {
+      "Name": "Hess Midstream LP",
+      "Ticker": "HESM",
+      "Identifier": "428103105",
+      "Weight": "1.91%",
+      "Market Value": "$18296092.80",
+      "Shares Held": "455,580",
+      "Asset Category": "Equity"
+    },
+    {
+      "Name": "Kinder Morgan Inc",
+      "Ticker": "KMI",
+      "Identifier": "49456B101",
+      "Weight": "6.43%",
+      "Market Value": "$61617946.08",
+      "Shares Held": "1,935,237",
+      "Asset Category": "Equity"
+    },
+    {
+      "Name": "Kinetik Holdings Inc",
+      "Ticker": "KNTK",
+      "Identifier": "02215L209",
+      "Weight": "3.03%",
+      "Market Value": "$29061521.00",
+      "Shares Held": "543,206",
+      "Asset Category": "Equity"
+    },
+    {
+      "Name": "Cheniere Energy Inc",
+      "Ticker": "LNG",
+      "Identifier": "16411R208",
+      "Weight": "5.28%",
+      "Market Value": "$50614022.46",
+      "Shares Held": "188,619",
+      "Asset Category": "Equity"
+    },
+    {
+      "Name": "MPLX LP",
+      "Ticker": "MPLX",
+      "Identifier": "55336V100",
+      "Weight": "4.25%",
+      "Market Value": "$40751112.96",
+      "Shares Held": "685,584",
+      "Asset Category": "Equity"
+    },
+    {
+      "Name": "NextDecade Corp",
+      "Ticker": "NEXT",
+      "Identifier": "65342K105",
+      "Weight": "2.19%",
+      "Market Value": "$20991099.51",
+      "Shares Held": "3,055,473",
+      "Asset Category": "Equity"
+    },
+    {
+      "Name": "ONEOK Inc",
+      "Ticker": "OKE",
+      "Identifier": "30609A109",
+      "Weight": "5.81%",
+      "Market Value": "$55656364.60",
+      "Shares Held": "595,510",
+      "Asset Category": "Equity"
+    },
+    {
+      "Name": "Plains All American Pipeline LP",
+      "Ticker": "PAA",
+      "Identifier": "726503105",
+      "Weight": "2.90%",
+      "Market Value": "$27757443.85",
+      "Shares Held": "1,094,105",
+      "Asset Category": "Equity"
+    },
+    {
+      "Name": "Plains GP Holdings LP",
+      "Ticker": "PAGP",
+      "Identifier": "72651A207",
+      "Weight": "2.03%",
+      "Market Value": "$19441965.79",
+      "Shares Held": "702,637",
+      "Asset Category": "Equity"
+    },
+    {
+      "Name": "PEMBINA PIPELINE CORP",
+      "Ticker": "PPL CN",
+      "Identifier": "B4PT2P8",
+      "Weight": "4.47%",
+      "Market Value": "$42811254.42",
+      "Shares Held": "901,669",
+      "Asset Category": "Equity"
+    },
+    {
+      "Name": "Rockpoint Gas Storage Inc",
+      "Ticker": "RGSI CN",
+      "Identifier": "BNNSTV5",
+      "Weight": "2.00%",
+      "Market Value": "$19214136.56",
+      "Shares Held": "1,133,270",
+      "Asset Category": "Equity"
+    },
+    {
+      "Name": "Teekay Tankers Ltd",
+      "Ticker": "TNK",
+      "Identifier": "G8726X106",
+      "Weight": "3.73%",
+      "Market Value": "$35788452.24",
+      "Shares Held": "354,622",
+      "Asset Category": "Equity"
+    },
+    {
+      "Name": "Targa Resources Corp",
+      "Ticker": "TRGP",
+      "Identifier": "87612G101",
+      "Weight": "6.18%",
+      "Market Value": "$59279507.20",
+      "Shares Held": "202,880",
+      "Asset Category": "Equity"
+    },
+    {
+      "Name": "TC Energy Corp",
+      "Ticker": "TRP CN",
+      "Identifier": "BJMY6G0",
+      "Weight": "6.88%",
+      "Market Value": "$65975589.02",
+      "Shares Held": "1,074,510",
+      "Asset Category": "Equity"
+    },
+    {
+      "Name": "Williams Cos Inc/The",
+      "Ticker": "WMB",
+      "Identifier": "969457100",
+      "Weight": "9.53%",
+      "Market Value": "$91302984.85",
+      "Shares Held": "1,267,217",
+      "Asset Category": "Equity"
+    },
+    {
+      "Name": "Cash & Other",
+      "Ticker": "Cash&Other",
+      "Identifier": "Cash&Other",
+      "Weight": "0.48%",
+      "Market Value": "$4594525.91",
+      "Shares Held": "4,594,526",
+      "Asset Category": "Cash"
+    }
+  ]
+}

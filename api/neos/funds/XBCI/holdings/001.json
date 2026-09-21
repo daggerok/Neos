@@ -1,0 +1,80 @@
+{
+  "ticker": "XBCI",
+  "page": 1,
+  "pageSize": 250,
+  "totalRows": 7,
+  "headers": [
+    "Name",
+    "Ticker",
+    "Identifier",
+    "Weight",
+    "Market Value",
+    "Shares Held",
+    "Asset Category"
+  ],
+  "rows": [
+    {
+      "Name": "United States Treasury Bill 11/03/2026",
+      "Ticker": "912797VP9",
+      "Identifier": "912797VP9",
+      "Weight": "45.17%",
+      "Market Value": "$81065709.68",
+      "Shares Held": "81,439,000",
+      "Asset Category": "Treasury"
+    },
+    {
+      "Name": "CBTX US 10/16/26 C1390",
+      "Ticker": "CBTX 261016C01390000",
+      "Identifier": "CBTX 261016C01390000",
+      "Weight": "35.79%",
+      "Market Value": "$64225530.00",
+      "Shares Held": "1,206",
+      "Asset Category": "Option"
+    },
+    {
+      "Name": "CBTX US 10/16/26 C1980",
+      "Ticker": "CBTX 261016C01980000",
+      "Identifier": "CBTX 261016C01980000",
+      "Weight": "-0.90%",
+      "Market Value": "$-1621620.00",
+      "Shares Held": "-308",
+      "Asset Category": "Option"
+    },
+    {
+      "Name": "CBTX US 10/16/26 C2060",
+      "Ticker": "CBTX 261016C02060000",
+      "Identifier": "CBTX 261016C02060000",
+      "Weight": "-0.53%",
+      "Market Value": "$-947100.00",
+      "Shares Held": "-308",
+      "Asset Category": "Option"
+    },
+    {
+      "Name": "CBTX US 10/16/26 P1390",
+      "Ticker": "CBTX 261016P01390000",
+      "Identifier": "CBTX 261016P01390000",
+      "Weight": "-0.28%",
+      "Market Value": "$-500490.01",
+      "Shares Held": "-1,206",
+      "Asset Category": "Option"
+    },
+    {
+      "Name": "iShares Bitcoin Trust ETF",
+      "Ticker": "IBIT",
+      "Identifier": "46438F101",
+      "Weight": "18.74%",
+      "Market Value": "$33629759.28",
+      "Shares Held": "730,764",
+      "Asset Category": "Fund"
+    },
+    {
+      "Name": "Cash & Other",
+      "Ticker": "Cash&Other",
+      "Identifier": "Cash&Other",
+      "Weight": "2.01%",
+      "Market Value": "$3612180.75",
+      "Shares Held": "3,612,181",
+      "Asset Category": "Cash"
+    }
+  ]
+}
