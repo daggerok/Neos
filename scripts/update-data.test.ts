@@ -1479,6 +1479,10 @@ const DOCUMENTED_NULLS: Record<string, { reason: string; tickers: string[] }> = 
     reason: "these five fund pages carry an Investment Objective paragraph instead of an Underlying Exposure row",
     tickers: ["HYBI", "IAUI", "NIHI", "QQQH", "SPYH"],
   },
+  "documents.form8937": {
+    reason: "these five funds have not filed a Form 8937 with NEOS yet (their 8937 tab is empty)",
+    tickers: ["IAUI", "NIHI", "XBCI", "XQQI", "XSPI"],
+  },
 };
 
 describe("the app's meta.json field contract", () => {
@@ -1598,6 +1602,7 @@ const DOCUMENTED_DASHES: Record<string, string[]> = {
   "Annual Report": ["XBCI", "XQQI", "XSPI"],
   "Supplemental Tax Information": ["XBCI", "XQQI", "XSPI"],
   "12-Month Trailing Distribution Rate": ["IAUI", "MLPI", "NEHI", "NIHI", "NLSI", "SPYH", "XBCI", "XQQI", "XSPI"],
+  "Form 8937": ["IAUI", "NIHI", "XBCI", "XQQI", "XSPI"],
 };
 
 /** The `const overview: Array<...> = [...]` rows of renderOverviewTable(). */
