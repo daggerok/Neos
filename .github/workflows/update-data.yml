@@ -1,8 +1,6 @@
 name: Update NEOS ETF data
 
 on:
-  push:
-    branches: [arena/01a0c26d-neos]
   workflow_dispatch:
     inputs:
       max_fetches:
