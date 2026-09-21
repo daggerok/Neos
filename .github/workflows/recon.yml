@@ -21,7 +21,7 @@ jobs:
         run: |
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add -A recon-request/output.txt
+          git add -A recon-request
           if git diff --cached --quiet; then
             echo 'recon output unchanged'
           else
