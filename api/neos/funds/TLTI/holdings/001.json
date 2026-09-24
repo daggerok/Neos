@@ -1,0 +1,89 @@
+{
+  "ticker": "TLTI",
+  "page": 1,
+  "pageSize": 250,
+  "totalRows": 8,
+  "headers": [
+    "Name",
+    "Ticker",
+    "Identifier",
+    "Weight",
+    "Market Value",
+    "Shares Held",
+    "Asset Category"
+  ],
+  "rows": [
+    {
+      "Name": "United States Treasury Note/Bond 4.125% 08/15/2053",
+      "Ticker": "912810TT5",
+      "Identifier": "912810TT5",
+      "Weight": "97.52%",
+      "Market Value": "$18253435.19",
+      "Shares Held": "22,399,000",
+      "Asset Category": "Treasury"
+    },
+    {
+      "Name": "SPXW US 10/01/26 P6800",
+      "Ticker": "SPXW 261001P06800000",
+      "Identifier": "SPXW 261001P06800000",
+      "Weight": "0.00%",
+      "Market Value": "$480.00",
+      "Shares Held": "8",
+      "Asset Category": "Option"
+    },
+    {
+      "Name": "SPXW US 10/01/26 P6875",
+      "Ticker": "SPXW 261001P06875000",
+      "Identifier": "SPXW 261001P06875000",
+      "Weight": "0.00%",
+      "Market Value": "$580.00",
+      "Shares Held": "8",
+      "Asset Category": "Option"
+    },
+    {
+      "Name": "SPXW US 10/01/26 P6950",
+      "Ticker": "SPXW 261001P06950000",
+      "Identifier": "SPXW 261001P06950000",
+      "Weight": "0.00%",
+      "Market Value": "$700.00",
+      "Shares Held": "8",
+      "Asset Category": "Option"
+    },
+    {
+      "Name": "SPXW US 10/01/26 P7100",
+      "Ticker": "SPXW 261001P07100000",
+      "Identifier": "SPXW 261001P07100000",
+      "Weight": "-0.01%",
+      "Market Value": "$-1020.00",
+      "Shares Held": "-8",
+      "Asset Category": "Option"
+    },
+    {
+      "Name": "SPXW US 10/01/26 P7180",
+      "Ticker": "SPXW 261001P07180000",
+      "Identifier": "SPXW 261001P07180000",
+      "Weight": "-0.01%",
+      "Market Value": "$-1340.00",
+      "Shares Held": "-8",
+      "Asset Category": "Option"
+    },
+    {
+      "Name": "SPXW US 10/01/26 P7250",
+      "Ticker": "SPXW 261001P07250000",
+      "Identifier": "SPXW 261001P07250000",
+      "Weight": "-0.01%",
+      "Market Value": "$-1720.00",
+      "Shares Held": "-8",
+      "Asset Category": "Option"
+    },
+    {
+      "Name": "Cash & Other",
+      "Ticker": "Cash&Other",
+      "Identifier": "Cash&Other",
+      "Weight": "2.50%",
+      "Market Value": "$468734.47",
+      "Shares Held": "468,734",
+      "Asset Category": "Cash"
+    }
+  ]
+}

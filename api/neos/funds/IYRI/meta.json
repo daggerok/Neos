@@ -1,0 +1,426 @@
+{
+  "ticker": "IYRI",
+  "name": "Real Estate High income ETF",
+  "category": "High Income Alternatives",
+  "fundPage": "https://neosfunds.com/iyri/",
+  "dataFile": "./funds/IYRI/meta.json",
+  "cusip": "78433H618",
+  "isin": "US78433H6181",
+  "ter": "0.68%",
+  "terValue": 0.68,
+  "terGross": "0.68%",
+  "terGrossValue": 0.68,
+  "nav": {
+    "display": "$46.86",
+    "value": 46.86,
+    "asOfDate": "Sep 22 2026",
+    "dailyChangeText": "$-0.10 (-0.21%)",
+    "kind": "official (fund page Fund Details)"
+  },
+  "navValue": 46.86,
+  "aum": {
+    "display": "$304.80M",
+    "value": 304795260,
+    "asOfDate": "Sep 22 2026",
+    "source": "official NEOS daily holdings CSV (download_holdings_csv)"
+  },
+  "aumValue": 304795260,
+  "asOfDate": "Sep 22 2026",
+  "inceptionDate": "Jan 14 2025",
+  "inceptionDateFundPage": "Jan 14 2025",
+  "exchange": "Cboe",
+  "closePrice": "$46.90",
+  "closePriceValue": 46.9,
+  "premiumDiscount": {
+    "display": "0.08%",
+    "value": 0.08,
+    "derivedValue": 0.09,
+    "kind": "official (fund page Fund Details \"Premium Discount (%)\")"
+  },
+  "premiumDiscountValue": 0.08,
+  "premiumDiscountDerivedValue": 0.09,
+  "premiumDiscountKind": "official (fund page Fund Details \"Premium Discount (%)\")",
+  "bidAskSpread": {
+    "display": "0.15%",
+    "value": 0.15,
+    "asOfDate": "Sep 22 2026",
+    "kind": "official (fund page Fund Details \"30-Day Median Bid-Ask Spread (%)\")"
+  },
+  "bidAskSpreadValue": 0.15,
+  "acquiredFundFeesText": null,
+  "totalNetAssets": 304795260,
+  "sharesOutstanding": {
+    "display": "6,600,000",
+    "value": 6600000,
+    "asOfDate": "Sep 24 2026"
+  },
+  "netAssetsAsOf": "Sep 22 2026",
+  "secYieldAsOf": "Aug 31 2026",
+  "distributions": {
+    "frequency": "Monthly",
+    "paymentsPerYear": 12,
+    "headers": [
+      "Declaration Date",
+      "Ex-Div Date",
+      "Record Date",
+      "Payable Date",
+      "Amount ($)"
+    ],
+    "rows": [
+      {
+        "Declaration Date": "12/15/2026",
+        "Ex-Div Date": "12/16/2026",
+        "Record Date": "12/16/2026",
+        "Payable Date": "12/18/2026",
+        "Amount ($)": ""
+      },
+      {
+        "Declaration Date": "11/17/2026",
+        "Ex-Div Date": "11/18/2026",
+        "Record Date": "11/18/2026",
+        "Payable Date": "11/20/2026",
+        "Amount ($)": ""
+      },
+      {
+        "Declaration Date": "10/20/2026",
+        "Ex-Div Date": "10/21/2026",
+        "Record Date": "10/21/2026",
+        "Payable Date": "10/23/2026",
+        "Amount ($)": ""
+      },
+      {
+        "Declaration Date": "09/15/2026",
+        "Ex-Div Date": "09/16/2026",
+        "Record Date": "09/16/2026",
+        "Payable Date": "09/18/2026",
+        "Amount ($)": "$0.4289"
+      },
+      {
+        "Declaration Date": "08/18/2026",
+        "Ex-Div Date": "08/19/2026",
+        "Record Date": "08/19/2026",
+        "Payable Date": "08/21/2026",
+        "Amount ($)": "$0.4461"
+      },
+      {
+        "Declaration Date": "07/21/2026",
+        "Ex-Div Date": "07/22/2026",
+        "Record Date": "07/22/2026",
+        "Payable Date": "07/24/2026",
+        "Amount ($)": "$0.4526"
+      },
+      {
+        "Declaration Date": "06/15/2026",
+        "Ex-Div Date": "06/16/2026",
+        "Record Date": "06/16/2026",
+        "Payable Date": "06/18/2026",
+        "Amount ($)": "$0.4489"
+      },
+      {
+        "Declaration Date": "05/19/2026",
+        "Ex-Div Date": "05/20/2026",
+        "Record Date": "05/20/2026",
+        "Payable Date": "05/22/2026",
+        "Amount ($)": "$0.4405"
+      },
+      {
+        "Declaration Date": "04/21/2026",
+        "Ex-Div Date": "04/22/2026",
+        "Record Date": "04/22/2026",
+        "Payable Date": "04/24/2026",
+        "Amount ($)": "$0.4509"
+      },
+      {
+        "Declaration Date": "03/17/2026",
+        "Ex-Div Date": "03/18/2026",
+        "Record Date": "03/18/2026",
+        "Payable Date": "03/20/2026",
+        "Amount ($)": "$0.4432"
+      },
+      {
+        "Declaration Date": "02/17/2026",
+        "Ex-Div Date": "02/18/2026",
+        "Record Date": "02/18/2026",
+        "Payable Date": "02/20/2026",
+        "Amount ($)": "$0.4550"
+      },
+      {
+        "Declaration Date": "01/20/2026",
+        "Ex-Div Date": "01/21/2026",
+        "Record Date": "01/21/2026",
+        "Payable Date": "01/23/2026",
+        "Amount ($)": "$0.4505"
+      },
+      {
+        "Declaration Date": "12/23/2025",
+        "Ex-Div Date": "12/24/2025",
+        "Record Date": "12/24/2025",
+        "Payable Date": "12/26/2025",
+        "Amount ($)": "$0.4399"
+      },
+      {
+        "Declaration Date": "11/25/2025",
+        "Ex-Div Date": "11/26/2025",
+        "Record Date": "11/26/2025",
+        "Payable Date": "11/28/2025",
+        "Amount ($)": "$0.4460"
+      },
+      {
+        "Declaration Date": "10/21/2025",
+        "Ex-Div Date": "10/22/2025",
+        "Record Date": "10/22/2025",
+        "Payable Date": "10/24/2025",
+        "Amount ($)": "$0.4637"
+      },
+      {
+        "Declaration Date": "09/23/2025",
+        "Ex-Div Date": "09/24/2025",
+        "Record Date": "09/24/2025",
+        "Payable Date": "09/26/2025",
+        "Amount ($)": "$0.4641"
+      },
+      {
+        "Declaration Date": "08/19/2025",
+        "Ex-Div Date": "08/20/2025",
+        "Record Date": "08/20/2025",
+        "Payable Date": "08/22/2025",
+        "Amount ($)": "$0.4572"
+      },
+      {
+        "Declaration Date": "07/22/2025",
+        "Ex-Div Date": "07/23/2025",
+        "Record Date": "07/23/2025",
+        "Payable Date": "07/25/2025",
+        "Amount ($)": "$0.4703"
+      },
+      {
+        "Declaration Date": "06/24/2025",
+        "Ex-Div Date": "06/25/2025",
+        "Record Date": "06/25/2025",
+        "Payable Date": "06/27/2025",
+        "Amount ($)": "$0.4663"
+      },
+      {
+        "Declaration Date": "05/20/2025",
+        "Ex-Div Date": "05/21/2025",
+        "Record Date": "05/21/2025",
+        "Payable Date": "05/23/2025",
+        "Amount ($)": "$0.4817"
+      },
+      {
+        "Declaration Date": "04/22/2025",
+        "Ex-Div Date": "04/23/2025",
+        "Record Date": "04/23/2025",
+        "Payable Date": "04/25/2025",
+        "Amount ($)": "$0.4821"
+      },
+      {
+        "Declaration Date": "03/25/2025",
+        "Ex-Div Date": "03/26/2025",
+        "Record Date": "03/26/2025",
+        "Payable Date": "03/28/2025",
+        "Amount ($)": "$0.5137"
+      },
+      {
+        "Declaration Date": "02/25/2025",
+        "Ex-Div Date": "02/26/2025",
+        "Record Date": "02/26/2025",
+        "Payable Date": "02/28/2025",
+        "Amount ($)": "$0.5087"
+      },
+      {
+        "Declaration Date": "01/21/2025",
+        "Ex-Div Date": "01/22/2025",
+        "Record Date": "01/22/2025",
+        "Payable Date": "01/24/2025",
+        "Amount ($)": "$0.5005"
+      }
+    ],
+    "fallback": false,
+    "source": "NEOS fund page Distribution History table"
+  },
+  "returns": {
+    "derivedFrom": "official NEOS fund page performance tables (NAV Performance series)",
+    "monthEnd": {
+      "asOfDate": "Aug 31 2026",
+      "raw": "2026-08-31",
+      "mo1": -1.77,
+      "mo3": 2.14,
+      "mo6": 1.49,
+      "ytd": 7.25,
+      "yr1": 6.78,
+      "yr3": null,
+      "yr5": null,
+      "yr10": null,
+      "sinceInception": 9.99,
+      "sinceInceptionCumulative": 16.76,
+      "market": {
+        "mo1": -1.83,
+        "mo3": 2.27,
+        "mo6": 1.52,
+        "ytd": 7.5,
+        "sinceInceptionCumulative": 16.98,
+        "yr1": 6.57,
+        "yr3": null,
+        "yr5": null,
+        "sinceInception": 10.11
+      },
+      "benchmarkName": "Dow Jones U.S. Real Estate Capped Index",
+      "benchmark": {
+        "mo1": -2.3,
+        "mo3": 1.76,
+        "mo6": 2.27,
+        "ytd": 10.35,
+        "sinceInceptionCumulative": 16.55,
+        "yr1": 7.93,
+        "yr3": null,
+        "yr5": null,
+        "sinceInception": 9.87
+      }
+    },
+    "quarterEnd": {
+      "asOfDate": "Jun 30 2026",
+      "raw": "2026-06-30",
+      "mo1": 1.55,
+      "mo3": 6.7,
+      "mo6": 6.62,
+      "ytd": 6.62,
+      "yr1": 9.68,
+      "yr3": null,
+      "yr5": null,
+      "yr10": null,
+      "sinceInception": 10.77,
+      "sinceInceptionCumulative": 16.07,
+      "market": {
+        "mo1": 1.55,
+        "mo3": 6.72,
+        "mo6": 6.74,
+        "ytd": 6.74,
+        "sinceInceptionCumulative": 16.15,
+        "yr1": 9.54,
+        "yr3": null,
+        "yr5": null,
+        "sinceInception": 10.82
+      }
+    }
+  },
+  "metrics": {
+    "ytd": 7.25,
+    "tr1y": 6.78,
+    "tr3y": null,
+    "tr5y": null,
+    "tr10y": null,
+    "cagr3y": null,
+    "cagr5y": null,
+    "cagr10y": null,
+    "siAnn": 9.99,
+    "dividendYield": 10.84,
+    "dividendYieldText": "10.84%",
+    "distributionYield": 10.84,
+    "distributionYieldText": "10.84%",
+    "yield12M": 10.93,
+    "yield12MText": "10.93%",
+    "secYield": 3.05,
+    "secYieldText": "3.05%",
+    "returnsBasis": "official NEOS fund page NAV Performance (monthly series)"
+  },
+  "distributionFrequency": "01 - Monthly",
+  "providerCategory": "High Income Alternatives",
+  "holdings": {
+    "pages": [
+      "./holdings/001.json"
+    ],
+    "pageSize": 250,
+    "totalRows": 63,
+    "asOfDate": "Sep 24 2026",
+    "asOf": "2026-09-24",
+    "source": "https://neosfunds.com/wp-admin/admin-ajax.php?action=download_holdings_csv&ticker=IYRI",
+    "sourceKind": "official NEOS daily holdings CSV (download_holdings_csv)"
+  },
+  "history": {
+    "pages": [
+      "./history/001.json"
+    ],
+    "pageSize": 1000,
+    "totalRows": 423,
+    "asOfDate": "Sep 23 2026",
+    "asOf": "2026-09-23",
+    "source": "https://query1.finance.yahoo.com/v8/finance/chart/IYRI?period1=0&period2=9999999999&interval=1d&events=div%7Csplit&includeAdjustedClose=true",
+    "sourceKind": "Yahoo Finance public chart API (daily Close / Adj Close / Volume)"
+  },
+  "navKind": "official (fund page Fund Details)",
+  "source": {
+    "provider": "NEOS Investment Management LLC (NEOS ETFs)",
+    "site": "https://neosfunds.com",
+    "lineup": "https://neosfunds.com/#explore-etfs",
+    "fundPage": "https://neosfunds.com/iyri/",
+    "holdingsDownload": "https://neosfunds.com/wp-admin/admin-ajax.php?action=download_holdings_csv&ticker=IYRI",
+    "holdingsSource": "official NEOS daily holdings CSV (download_holdings_csv)",
+    "historySource": "Yahoo Finance public chart API (daily Close / Adj Close / Volume)",
+    "historyUrl": "https://query1.finance.yahoo.com/v8/finance/chart/IYRI?period1=0&period2=9999999999&interval=1d&events=div%7Csplit&includeAdjustedClose=true",
+    "returnsSource": "NEOS fund page performance tables (NAV Performance)",
+    "distributionsSource": "NEOS fund page Distribution History table",
+    "distributionInfoSource": "NEOS fund page Distribution Information block",
+    "documentsSource": "NEOS fund page Documents table",
+    "registrant": "NEOS ETF Trust (Investment Company Act file 811-23645)",
+    "nportDoc": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0001848758&type=NPORT-P&dateb=&owner=include&count=10",
+    "exchangeSource": "NEOS fund page Fund Details \"Primary Exchange\"",
+    "navSource": "NEOS fund page Fund Details \"Net Asset Value\" (official (fund page Fund Details))",
+    "premiumDiscountSource": "official (fund page Fund Details \"Premium Discount (%)\")",
+    "bidAskSpreadSource": "NEOS fund page Fund Details \"30-Day Median Bid-Ask Spread (%)\""
+  },
+  "identifiers": {
+    "cusip": "78433H618",
+    "isin": "US78433H6181",
+    "underlyingExposure": "Dow Jones U.S. Real Estate Capped Index",
+    "indexName": "Dow Jones U.S. Real Estate Capped Index",
+    "benchmarkIndexName": "Dow Jones U.S. Real Estate Capped Index"
+  },
+  "expenseRatio": {
+    "display": "0.68%",
+    "value": 0.68,
+    "managementFeeDisplay": "0.68%",
+    "managementFeeValue": 0.68
+  },
+  "marketPrice": {
+    "display": "$46.90",
+    "value": 46.9,
+    "asOfDate": "Sep 22 2026",
+    "dailyChangeText": "$-0.07 (-0.15%)",
+    "source": "NEOS fund page Fund Details \"Market Price\""
+  },
+  "yields": {
+    "dividendYield": 10.84,
+    "dividendYieldText": "10.84%",
+    "dividendYieldKind": "official NEOS Distribution Rate (latest distribution annualized / ex-date NAV)",
+    "distributionRate": 10.84,
+    "distributionRateText": "10.84%",
+    "yield12M": 10.93,
+    "yield12MText": "10.93%",
+    "secYield": 3.05,
+    "secYieldText": "3.05%",
+    "secYieldKind": "official NEOS 30-Day SEC Yield",
+    "distributionAmountText": "$0.4461",
+    "distributionAmountPercentText": "0.90%",
+    "distributionInfoAsOfDate": "Aug 31 2026"
+  },
+  "navIndex": {
+    "startDate": "2025-01-14",
+    "endDate": "2026-09-22",
+    "points": 617,
+    "benchmarkName": "Dow Jones U.S. Real Estate Capped Index",
+    "source": "NEOS fund page \"Growth of $10,000 at NAV Since Inception\" chart series"
+  },
+  "documents": {
+    "prospectus": "https://neosfunds.com/wp-content/uploads/IYRI-Prospectus.pdf",
+    "summaryProspectus": "https://neosfunds.com/wp-content/uploads/IYRI-Summary-Prospectus.pdf",
+    "sai": "https://neosfunds.com/wp-content/uploads/neos_sai-042926.pdf",
+    "annualReport": "https://neosfunds.com/wp-content/uploads/IYRI-Annual-Report.pdf",
+    "semiAnnualReport": "https://neosfunds.com/wp-content/uploads/IYRI-Semi-Annual.pdf",
+    "fiscalQ1Holdings": "https://neosfunds.com/wp-content/uploads/IYRI-Part-F-3.31.26-Confidential-v.2.pdf",
+    "fiscalQ3Holdings": "https://neosfunds.com/wp-content/uploads/Fiscal-Year-Q3-Portfolio-Holdings-NEOS-Real-Estate-High-Income-ETF.pdf",
+    "taxInfo": "https://neosfunds.com/wp-content/uploads/NEOS-Tax-Insert-2025.pdf",
+    "form8937": "https://neosfunds.com/wp-content/uploads/NEOS-Real-Estate-High-Income-ETF-Form-8937-12.31.25.pdf"
+  },
+  "inceptionNote": null
+}

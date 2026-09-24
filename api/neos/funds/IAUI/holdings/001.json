@@ -1,0 +1,89 @@
+{
+  "ticker": "IAUI",
+  "page": 1,
+  "pageSize": 250,
+  "totalRows": 8,
+  "headers": [
+    "Name",
+    "Ticker",
+    "Identifier",
+    "Weight",
+    "Market Value",
+    "Shares Held",
+    "Asset Category"
+  ],
+  "rows": [
+    {
+      "Name": "GLD 10/16/2026 370 C",
+      "Ticker": "2GLD 261016C00370000",
+      "Identifier": "2GLD 261016C00370000",
+      "Weight": "5.22%",
+      "Market Value": "$33240096.00",
+      "Shares Held": "13,128",
+      "Asset Category": "Option"
+    },
+    {
+      "Name": "GLD 10/16/2026 418 C",
+      "Ticker": "2GLD 261016C00418000",
+      "Identifier": "2GLD 261016C00418000",
+      "Weight": "-0.09%",
+      "Market Value": "$-576386.55",
+      "Shares Held": "-3,917",
+      "Asset Category": "Option"
+    },
+    {
+      "Name": "GLD 10/16/2026 428 C",
+      "Ticker": "2GLD 261016C00428000",
+      "Identifier": "2GLD 261016C00428000",
+      "Weight": "-0.05%",
+      "Market Value": "$-295694.33",
+      "Shares Held": "-3,917",
+      "Asset Category": "Option"
+    },
+    {
+      "Name": "GLD 10/16/2026 370 P",
+      "Ticker": "2GLD 261016P00370000",
+      "Identifier": "2GLD 261016P00370000",
+      "Weight": "-0.27%",
+      "Market Value": "$-1693512.00",
+      "Shares Held": "-13,128",
+      "Asset Category": "Option"
+    },
+    {
+      "Name": "United States Treasury Bill 09/24/2026",
+      "Ticker": "912797UH8",
+      "Identifier": "912797UH8",
+      "Weight": "72.45%",
+      "Market Value": "$461767000.00",
+      "Shares Held": "461,767,000",
+      "Asset Category": "Treasury"
+    },
+    {
+      "Name": "United States Treasury Bill 12/17/2026",
+      "Ticker": "912797VH7",
+      "Identifier": "912797VH7",
+      "Weight": "1.94%",
+      "Market Value": "$12341632.31",
+      "Shares Held": "12,458,000",
+      "Asset Category": "Treasury"
+    },
+    {
+      "Name": "Goldman Sachs Physical Gold ETF",
+      "Ticker": "AAAU",
+      "Identifier": "38150K103",
+      "Weight": "18.94%",
+      "Market Value": "$120709894.16",
+      "Shares Held": "2,858,392",
+      "Asset Category": "Fund"
+    },
+    {
+      "Name": "Cash & Other",
+      "Ticker": "Cash&Other",
+      "Identifier": "Cash&Other",
+      "Weight": "1.86%",
+      "Market Value": "$11827893.03",
+      "Shares Held": "11,827,893",
+      "Asset Category": "Cash"
+    }
+  ]
+}

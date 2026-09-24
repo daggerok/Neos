@@ -1,0 +1,447 @@
+{
+  "ticker": "BTCI",
+  "name": "Bitcoin High Income ETF",
+  "category": "High Income Alternatives",
+  "fundPage": "https://neosfunds.com/btci/",
+  "dataFile": "./funds/BTCI/meta.json",
+  "cusip": "78433H642",
+  "isin": "US78433H6421",
+  "ter": "0.99%",
+  "terValue": 0.99,
+  "terGross": "0.98%",
+  "terGrossValue": 0.98,
+  "nav": {
+    "display": "$34.34",
+    "value": 34.34,
+    "asOfDate": "Sep 22 2026",
+    "dailyChangeText": "$-0.13 (-0.37%)",
+    "kind": "official (fund page Fund Details)"
+  },
+  "navValue": 34.34,
+  "aum": {
+    "display": "$1.38B",
+    "value": 1383091908,
+    "asOfDate": "Sep 22 2026",
+    "source": "official NEOS daily holdings CSV (download_holdings_csv)"
+  },
+  "aumValue": 1383091908,
+  "asOfDate": "Sep 22 2026",
+  "inceptionDate": "Oct 16 2024",
+  "inceptionDateFundPage": "Oct 16 2024",
+  "exchange": "Cboe",
+  "closePrice": "$34.44",
+  "closePriceValue": 34.44,
+  "premiumDiscount": {
+    "display": "0.30%",
+    "value": 0.3,
+    "derivedValue": 0.29,
+    "kind": "official (fund page Fund Details \"Premium Discount (%)\")"
+  },
+  "premiumDiscountValue": 0.3,
+  "premiumDiscountDerivedValue": 0.29,
+  "premiumDiscountKind": "official (fund page Fund Details \"Premium Discount (%)\")",
+  "bidAskSpread": {
+    "display": "0.09%",
+    "value": 0.09,
+    "asOfDate": "Sep 22 2026",
+    "kind": "official (fund page Fund Details \"30-Day Median Bid-Ask Spread (%)\")"
+  },
+  "bidAskSpreadValue": 0.09,
+  "acquiredFundFeesText": "0.01%",
+  "totalNetAssets": 1383091908,
+  "sharesOutstanding": {
+    "display": "40,920,000",
+    "value": 40920000,
+    "asOfDate": "Sep 24 2026"
+  },
+  "netAssetsAsOf": "Sep 22 2026",
+  "secYieldAsOf": "Aug 31 2026",
+  "distributions": {
+    "frequency": "Monthly",
+    "paymentsPerYear": 12,
+    "headers": [
+      "Declaration Date",
+      "Ex-Div Date",
+      "Record Date",
+      "Payable Date",
+      "Amount ($)"
+    ],
+    "rows": [
+      {
+        "Declaration Date": "12/15/2026",
+        "Ex-Div Date": "12/16/2026",
+        "Record Date": "12/16/2026",
+        "Payable Date": "12/18/2026",
+        "Amount ($)": ""
+      },
+      {
+        "Declaration Date": "11/17/2026",
+        "Ex-Div Date": "11/18/2026",
+        "Record Date": "11/18/2026",
+        "Payable Date": "11/20/2026",
+        "Amount ($)": ""
+      },
+      {
+        "Declaration Date": "10/20/2026",
+        "Ex-Div Date": "10/21/2026",
+        "Record Date": "10/21/2026",
+        "Payable Date": "10/23/2026",
+        "Amount ($)": ""
+      },
+      {
+        "Declaration Date": "09/15/2026",
+        "Ex-Div Date": "09/16/2026",
+        "Record Date": "09/16/2026",
+        "Payable Date": "09/18/2026",
+        "Amount ($)": "$0.7184"
+      },
+      {
+        "Declaration Date": "08/18/2026",
+        "Ex-Div Date": "08/19/2026",
+        "Record Date": "08/19/2026",
+        "Payable Date": "08/21/2026",
+        "Amount ($)": "$0.6289"
+      },
+      {
+        "Declaration Date": "07/21/2026",
+        "Ex-Div Date": "07/22/2026",
+        "Record Date": "07/22/2026",
+        "Payable Date": "07/24/2026",
+        "Amount ($)": "$0.6458"
+      },
+      {
+        "Declaration Date": "06/15/2026",
+        "Ex-Div Date": "06/16/2026",
+        "Record Date": "06/16/2026",
+        "Payable Date": "06/18/2026",
+        "Amount ($)": "$0.6525"
+      },
+      {
+        "Declaration Date": "05/19/2026",
+        "Ex-Div Date": "05/20/2026",
+        "Record Date": "05/20/2026",
+        "Payable Date": "05/22/2026",
+        "Amount ($)": "$0.7934"
+      },
+      {
+        "Declaration Date": "04/21/2026",
+        "Ex-Div Date": "04/22/2026",
+        "Record Date": "04/22/2026",
+        "Payable Date": "04/24/2026",
+        "Amount ($)": "$0.7982"
+      },
+      {
+        "Declaration Date": "03/17/2026",
+        "Ex-Div Date": "03/18/2026",
+        "Record Date": "03/18/2026",
+        "Payable Date": "03/20/2026",
+        "Amount ($)": "$0.7804"
+      },
+      {
+        "Declaration Date": "02/17/2026",
+        "Ex-Div Date": "02/18/2026",
+        "Record Date": "02/18/2026",
+        "Payable Date": "02/20/2026",
+        "Amount ($)": "$0.7608"
+      },
+      {
+        "Declaration Date": "01/20/2026",
+        "Ex-Div Date": "01/21/2026",
+        "Record Date": "01/21/2026",
+        "Payable Date": "01/23/2026",
+        "Amount ($)": "$1.0427"
+      },
+      {
+        "Declaration Date": "12/23/2025",
+        "Ex-Div Date": "12/24/2025",
+        "Record Date": "12/24/2025",
+        "Payable Date": "12/26/2025",
+        "Amount ($)": "$0.9967"
+      },
+      {
+        "Declaration Date": "11/25/2025",
+        "Ex-Div Date": "11/26/2025",
+        "Record Date": "11/26/2025",
+        "Payable Date": "11/28/2025",
+        "Amount ($)": "$1.0181"
+      },
+      {
+        "Declaration Date": "10/21/2025",
+        "Ex-Div Date": "10/22/2025",
+        "Record Date": "10/22/2025",
+        "Payable Date": "10/24/2025",
+        "Amount ($)": "$1.2999"
+      },
+      {
+        "Declaration Date": "09/23/2025",
+        "Ex-Div Date": "09/24/2025",
+        "Record Date": "09/24/2025",
+        "Payable Date": "09/26/2025",
+        "Amount ($)": "$1.3401"
+      },
+      {
+        "Declaration Date": "08/19/2025",
+        "Ex-Div Date": "08/20/2025",
+        "Record Date": "08/20/2025",
+        "Payable Date": "08/22/2025",
+        "Amount ($)": "$1.4153"
+      },
+      {
+        "Declaration Date": "07/22/2025",
+        "Ex-Div Date": "07/23/2025",
+        "Record Date": "07/23/2025",
+        "Payable Date": "07/25/2025",
+        "Amount ($)": "$1.4716"
+      },
+      {
+        "Declaration Date": "06/24/2025",
+        "Ex-Div Date": "06/25/2025",
+        "Record Date": "06/25/2025",
+        "Payable Date": "06/27/2025",
+        "Amount ($)": "$1.3978"
+      },
+      {
+        "Declaration Date": "05/20/2025",
+        "Ex-Div Date": "05/21/2025",
+        "Record Date": "05/21/2025",
+        "Payable Date": "05/23/2025",
+        "Amount ($)": "$1.5145"
+      },
+      {
+        "Declaration Date": "04/22/2025",
+        "Ex-Div Date": "04/23/2025",
+        "Record Date": "04/23/2025",
+        "Payable Date": "04/25/2025",
+        "Amount ($)": "$1.2591"
+      },
+      {
+        "Declaration Date": "03/25/2025",
+        "Ex-Div Date": "03/26/2025",
+        "Record Date": "03/26/2025",
+        "Payable Date": "03/28/2025",
+        "Amount ($)": "$1.3350"
+      },
+      {
+        "Declaration Date": "02/25/2025",
+        "Ex-Div Date": "02/26/2025",
+        "Record Date": "02/26/2025",
+        "Payable Date": "02/28/2025",
+        "Amount ($)": "$1.4319"
+      },
+      {
+        "Declaration Date": "01/21/2025",
+        "Ex-Div Date": "01/22/2025",
+        "Record Date": "01/22/2025",
+        "Payable Date": "01/24/2025",
+        "Amount ($)": "$1.5718"
+      },
+      {
+        "Declaration Date": "12/23/2024",
+        "Ex-Div Date": "12/24/2024",
+        "Record Date": "12/24/2024",
+        "Payable Date": "12/26/2024",
+        "Amount ($)": "$1.4578"
+      },
+      {
+        "Declaration Date": "11/19/2024",
+        "Ex-Div Date": "11/20/2024",
+        "Record Date": "11/20/2024",
+        "Payable Date": "11/21/2024",
+        "Amount ($)": "$1.4081"
+      },
+      {
+        "Declaration Date": "10/22/2024",
+        "Ex-Div Date": "10/23/2024",
+        "Record Date": "10/23/2024",
+        "Payable Date": "10/24/2024",
+        "Amount ($)": "$1.1253"
+      }
+    ],
+    "fallback": false,
+    "source": "NEOS fund page Distribution History table"
+  },
+  "returns": {
+    "derivedFrom": "official NEOS fund page performance tables (NAV Performance series)",
+    "monthEnd": {
+      "asOfDate": "Aug 31 2026",
+      "raw": "2026-08-31",
+      "mo1": 18.63,
+      "mo3": 2.46,
+      "mo6": 15.2,
+      "ytd": -11.67,
+      "yr1": -25.95,
+      "yr3": null,
+      "yr5": null,
+      "yr10": null,
+      "sinceInception": 5.58,
+      "sinceInceptionCumulative": 10.7,
+      "market": {
+        "mo1": 18.77,
+        "mo3": 2.75,
+        "mo6": 15.23,
+        "ytd": -11.56,
+        "sinceInceptionCumulative": 10.78,
+        "yr1": -25.85,
+        "yr3": null,
+        "yr5": null,
+        "sinceInception": 5.62
+      },
+      "benchmarkName": "S&P Bitcoin Index (USD)",
+      "benchmark": {
+        "mo1": 25.42,
+        "mo3": 7.48,
+        "mo6": 20.29,
+        "ytd": -9.88,
+        "sinceInceptionCumulative": 16.49,
+        "yr1": -27.1,
+        "yr3": null,
+        "yr5": null,
+        "sinceInception": 8.49
+      }
+    },
+    "quarterEnd": {
+      "asOfDate": "Jun 30 2026",
+      "raw": "2026-06-30",
+      "mo1": -19.18,
+      "mo3": -12.47,
+      "mo6": -30.33,
+      "ytd": -30.33,
+      "yr1": -40.91,
+      "yr3": null,
+      "yr5": null,
+      "yr10": null,
+      "sinceInception": -7.65,
+      "sinceInceptionCumulative": -12.68,
+      "market": {
+        "mo1": -18.8,
+        "mo3": -12.39,
+        "mo6": -30.1,
+        "ytd": -30.1,
+        "sinceInceptionCumulative": -12.45,
+        "yr1": -40.95,
+        "yr3": null,
+        "yr5": null,
+        "sinceInception": -7.5
+      }
+    }
+  },
+  "metrics": {
+    "ytd": -11.67,
+    "tr1y": -25.95,
+    "tr3y": null,
+    "tr5y": null,
+    "tr10y": null,
+    "cagr3y": null,
+    "cagr5y": null,
+    "cagr10y": null,
+    "siAnn": 5.58,
+    "dividendYield": 25.61,
+    "dividendYieldText": "25.61%",
+    "distributionYield": 25.61,
+    "distributionYieldText": "25.61%",
+    "yield12M": 36.51,
+    "yield12MText": "36.51%",
+    "secYield": 1.35,
+    "secYieldText": "1.35%",
+    "returnsBasis": "official NEOS fund page NAV Performance (monthly series)"
+  },
+  "distributionFrequency": "01 - Monthly",
+  "providerCategory": "High Income Alternatives",
+  "holdings": {
+    "pages": [
+      "./holdings/001.json"
+    ],
+    "pageSize": 250,
+    "totalRows": 8,
+    "asOfDate": "Sep 24 2026",
+    "asOf": "2026-09-24",
+    "source": "https://neosfunds.com/wp-admin/admin-ajax.php?action=download_holdings_csv&ticker=BTCI",
+    "sourceKind": "official NEOS daily holdings CSV (download_holdings_csv)"
+  },
+  "history": {
+    "pages": [
+      "./history/001.json"
+    ],
+    "pageSize": 1000,
+    "totalRows": 483,
+    "asOfDate": "Sep 23 2026",
+    "asOf": "2026-09-23",
+    "source": "https://query1.finance.yahoo.com/v8/finance/chart/BTCI?period1=0&period2=9999999999&interval=1d&events=div%7Csplit&includeAdjustedClose=true",
+    "sourceKind": "Yahoo Finance public chart API (daily Close / Adj Close / Volume)"
+  },
+  "navKind": "official (fund page Fund Details)",
+  "source": {
+    "provider": "NEOS Investment Management LLC (NEOS ETFs)",
+    "site": "https://neosfunds.com",
+    "lineup": "https://neosfunds.com/#explore-etfs",
+    "fundPage": "https://neosfunds.com/btci/",
+    "holdingsDownload": "https://neosfunds.com/wp-admin/admin-ajax.php?action=download_holdings_csv&ticker=BTCI",
+    "holdingsSource": "official NEOS daily holdings CSV (download_holdings_csv)",
+    "historySource": "Yahoo Finance public chart API (daily Close / Adj Close / Volume)",
+    "historyUrl": "https://query1.finance.yahoo.com/v8/finance/chart/BTCI?period1=0&period2=9999999999&interval=1d&events=div%7Csplit&includeAdjustedClose=true",
+    "returnsSource": "NEOS fund page performance tables (NAV Performance)",
+    "distributionsSource": "NEOS fund page Distribution History table",
+    "distributionInfoSource": "NEOS fund page Distribution Information block",
+    "documentsSource": "NEOS fund page Documents table",
+    "registrant": "NEOS ETF Trust (Investment Company Act file 811-23645)",
+    "nportDoc": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0001848758&type=NPORT-P&dateb=&owner=include&count=10",
+    "exchangeSource": "NEOS fund page Fund Details \"Primary Exchange\"",
+    "navSource": "NEOS fund page Fund Details \"Net Asset Value\" (official (fund page Fund Details))",
+    "premiumDiscountSource": "official (fund page Fund Details \"Premium Discount (%)\")",
+    "bidAskSpreadSource": "NEOS fund page Fund Details \"30-Day Median Bid-Ask Spread (%)\""
+  },
+  "identifiers": {
+    "cusip": "78433H642",
+    "isin": "US78433H6421",
+    "underlyingExposure": "Bitcoin ETPs",
+    "indexName": "Bitcoin ETPs",
+    "benchmarkIndexName": "S&P Bitcoin Index (USD)"
+  },
+  "expenseRatio": {
+    "display": "0.99%",
+    "value": 0.99,
+    "managementFeeDisplay": "0.98%",
+    "managementFeeValue": 0.98
+  },
+  "marketPrice": {
+    "display": "$34.44",
+    "value": 34.44,
+    "asOfDate": "Sep 22 2026",
+    "dailyChangeText": "$-0.08 (-0.23%)",
+    "source": "NEOS fund page Fund Details \"Market Price\""
+  },
+  "yields": {
+    "dividendYield": 25.61,
+    "dividendYieldText": "25.61%",
+    "dividendYieldKind": "official NEOS Distribution Rate (latest distribution annualized / ex-date NAV)",
+    "distributionRate": 25.61,
+    "distributionRateText": "25.61%",
+    "yield12M": 36.51,
+    "yield12MText": "36.51%",
+    "secYield": 1.35,
+    "secYieldText": "1.35%",
+    "secYieldKind": "official NEOS 30-Day SEC Yield",
+    "distributionAmountText": "$0.6289",
+    "distributionAmountPercentText": "2.13%",
+    "distributionInfoAsOfDate": "Aug 31 2026"
+  },
+  "navIndex": {
+    "startDate": "2024-10-16",
+    "endDate": "2026-09-23",
+    "points": 708,
+    "benchmarkName": "S&P Bitcoin Index (USD)",
+    "source": "NEOS fund page \"Growth of $10,000 at NAV Since Inception\" chart series"
+  },
+  "documents": {
+    "prospectus": "https://neosfunds.com/wp-content/uploads/BTCI-Prospectus.pdf",
+    "summaryProspectus": "https://neosfunds.com/wp-content/uploads/BTCI-Summary-Prospectus.pdf",
+    "sai": "https://neosfunds.com/wp-content/uploads/neos_sai-042926.pdf",
+    "annualReport": "https://neosfunds.com/wp-content/uploads/BTCI-Annual-Report.pdf",
+    "semiAnnualReport": "https://neosfunds.com/wp-content/uploads/BTCI-Semi-Annual-1.pdf",
+    "fiscalQ1Holdings": "https://neosfunds.com/wp-content/uploads/BTCI-Part-F-3.31.26-Confidential-v.2.pdf",
+    "fiscalQ3Holdings": "https://neosfunds.com/wp-content/uploads/Fiscal-Year-Q3-Portfolio-Holdings-NEOS-Bitcoin-High-Income-ETF.pdf",
+    "taxInfo": "https://neosfunds.com/wp-content/uploads/NEOS-Tax-Insert-2025.pdf",
+    "form8937": "https://neosfunds.com/wp-content/uploads/NEOS-Bitcoin-High-Income-ETF-Form-8937-12.31.25.pdf"
+  },
+  "inceptionNote": null
+}

@@ -1,0 +1,475 @@
+{
+  "ticker": "IWMI",
+  "name": "Russell 2000 High Income ETF",
+  "category": "Equity High Income",
+  "fundPage": "https://neosfunds.com/iwmi/",
+  "dataFile": "./funds/IWMI/meta.json",
+  "cusip": "78433H634",
+  "isin": "US78433H6348",
+  "ter": "0.76%",
+  "terValue": 0.76,
+  "terGross": "0.68%",
+  "terGrossValue": 0.68,
+  "nav": {
+    "display": "$50.49",
+    "value": 50.49,
+    "asOfDate": "Sep 22 2026",
+    "dailyChangeText": "$0.26 (0.52%)",
+    "kind": "official (fund page Fund Details)"
+  },
+  "navValue": 50.49,
+  "aum": {
+    "display": "$1.28B",
+    "value": 1280437394,
+    "asOfDate": "Sep 22 2026",
+    "source": "official NEOS daily holdings CSV (download_holdings_csv)"
+  },
+  "aumValue": 1280437394,
+  "asOfDate": "Sep 22 2026",
+  "inceptionDate": "Jun 24 2024",
+  "inceptionDateFundPage": "Jun 24 2024",
+  "exchange": "CBOE",
+  "closePrice": "$50.45",
+  "closePriceValue": 50.45,
+  "premiumDiscount": {
+    "display": "-0.08%",
+    "value": -0.08,
+    "derivedValue": -0.08,
+    "kind": "official (fund page Fund Details \"Premium Discount (%)\")"
+  },
+  "premiumDiscountValue": -0.08,
+  "premiumDiscountDerivedValue": -0.08,
+  "premiumDiscountKind": "official (fund page Fund Details \"Premium Discount (%)\")",
+  "bidAskSpread": {
+    "display": "0.02%",
+    "value": 0.02,
+    "asOfDate": "Sep 22 2026",
+    "kind": "official (fund page Fund Details \"30-Day Median Bid-Ask Spread (%)\")"
+  },
+  "bidAskSpreadValue": 0.02,
+  "acquiredFundFeesText": "0.08%",
+  "totalNetAssets": 1280437394,
+  "sharesOutstanding": {
+    "display": "25,790,000",
+    "value": 25790000,
+    "asOfDate": "Sep 24 2026"
+  },
+  "netAssetsAsOf": "Sep 22 2026",
+  "secYieldAsOf": "Aug 31 2026",
+  "distributions": {
+    "frequency": "Monthly",
+    "paymentsPerYear": 12,
+    "headers": [
+      "Declaration Date",
+      "Ex-Div Date",
+      "Record Date",
+      "Payable Date",
+      "Amount ($)"
+    ],
+    "rows": [
+      {
+        "Declaration Date": "12/15/2026",
+        "Ex-Div Date": "12/16/2026",
+        "Record Date": "12/16/2026",
+        "Payable Date": "12/18/2026",
+        "Amount ($)": ""
+      },
+      {
+        "Declaration Date": "11/17/2026",
+        "Ex-Div Date": "11/18/2026",
+        "Record Date": "11/18/2026",
+        "Payable Date": "11/20/2026",
+        "Amount ($)": ""
+      },
+      {
+        "Declaration Date": "10/20/2026",
+        "Ex-Div Date": "10/21/2026",
+        "Record Date": "10/21/2026",
+        "Payable Date": "10/23/2026",
+        "Amount ($)": ""
+      },
+      {
+        "Declaration Date": "09/15/2026",
+        "Ex-Div Date": "09/16/2026",
+        "Record Date": "09/16/2026",
+        "Payable Date": "09/18/2026",
+        "Amount ($)": "$0.6075"
+      },
+      {
+        "Declaration Date": "08/18/2026",
+        "Ex-Div Date": "08/19/2026",
+        "Record Date": "08/19/2026",
+        "Payable Date": "08/21/2026",
+        "Amount ($)": "$0.6373"
+      },
+      {
+        "Declaration Date": "07/21/2026",
+        "Ex-Div Date": "07/22/2026",
+        "Record Date": "07/22/2026",
+        "Payable Date": "07/24/2026",
+        "Amount ($)": "$0.6250"
+      },
+      {
+        "Declaration Date": "06/15/2026",
+        "Ex-Div Date": "06/16/2026",
+        "Record Date": "06/16/2026",
+        "Payable Date": "06/18/2026",
+        "Amount ($)": "$0.6277"
+      },
+      {
+        "Declaration Date": "05/19/2026",
+        "Ex-Div Date": "05/20/2026",
+        "Record Date": "05/20/2026",
+        "Payable Date": "05/22/2026",
+        "Amount ($)": "$0.6046"
+      },
+      {
+        "Declaration Date": "04/21/2026",
+        "Ex-Div Date": "04/22/2026",
+        "Record Date": "04/22/2026",
+        "Payable Date": "04/24/2026",
+        "Amount ($)": "$0.6120"
+      },
+      {
+        "Declaration Date": "03/17/2026",
+        "Ex-Div Date": "03/18/2026",
+        "Record Date": "03/18/2026",
+        "Payable Date": "03/20/2026",
+        "Amount ($)": "$0.5710"
+      },
+      {
+        "Declaration Date": "02/17/2026",
+        "Ex-Div Date": "02/18/2026",
+        "Record Date": "02/18/2026",
+        "Payable Date": "02/20/2026",
+        "Amount ($)": "$0.6018"
+      },
+      {
+        "Declaration Date": "01/20/2026",
+        "Ex-Div Date": "01/21/2026",
+        "Record Date": "01/21/2026",
+        "Payable Date": "01/23/2026",
+        "Amount ($)": "$0.6082"
+      },
+      {
+        "Declaration Date": "12/23/2025",
+        "Ex-Div Date": "12/24/2025",
+        "Record Date": "12/24/2025",
+        "Payable Date": "12/26/2025",
+        "Amount ($)": "$0.5991"
+      },
+      {
+        "Declaration Date": "11/25/2025",
+        "Ex-Div Date": "11/26/2025",
+        "Record Date": "11/26/2025",
+        "Payable Date": "11/28/2025",
+        "Amount ($)": "$0.5732"
+      },
+      {
+        "Declaration Date": "10/21/2025",
+        "Ex-Div Date": "10/22/2025",
+        "Record Date": "10/22/2025",
+        "Payable Date": "10/24/2025",
+        "Amount ($)": "$0.5901"
+      },
+      {
+        "Declaration Date": "09/23/2025",
+        "Ex-Div Date": "09/24/2025",
+        "Record Date": "09/24/2025",
+        "Payable Date": "09/26/2025",
+        "Amount ($)": "$0.5868"
+      },
+      {
+        "Declaration Date": "08/19/2025",
+        "Ex-Div Date": "08/20/2025",
+        "Record Date": "08/20/2025",
+        "Payable Date": "08/22/2025",
+        "Amount ($)": "$0.5617"
+      },
+      {
+        "Declaration Date": "07/22/2025",
+        "Ex-Div Date": "07/23/2025",
+        "Record Date": "07/23/2025",
+        "Payable Date": "07/25/2025",
+        "Amount ($)": "$0.5616"
+      },
+      {
+        "Declaration Date": "06/24/2025",
+        "Ex-Div Date": "06/25/2025",
+        "Record Date": "06/25/2025",
+        "Payable Date": "06/27/2025",
+        "Amount ($)": "$0.5573"
+      },
+      {
+        "Declaration Date": "05/20/2025",
+        "Ex-Div Date": "05/21/2025",
+        "Record Date": "05/21/2025",
+        "Payable Date": "05/23/2025",
+        "Amount ($)": "$0.5534"
+      },
+      {
+        "Declaration Date": "04/22/2025",
+        "Ex-Div Date": "04/23/2025",
+        "Record Date": "04/23/2025",
+        "Payable Date": "04/25/2025",
+        "Amount ($)": "$0.4980"
+      },
+      {
+        "Declaration Date": "03/25/2025",
+        "Ex-Div Date": "03/26/2025",
+        "Record Date": "03/26/2025",
+        "Payable Date": "03/28/2025",
+        "Amount ($)": "$0.5685"
+      },
+      {
+        "Declaration Date": "02/25/2025",
+        "Ex-Div Date": "02/26/2025",
+        "Record Date": "02/26/2025",
+        "Payable Date": "02/28/2025",
+        "Amount ($)": "$0.5833"
+      },
+      {
+        "Declaration Date": "01/21/2025",
+        "Ex-Div Date": "01/22/2025",
+        "Record Date": "01/22/2025",
+        "Payable Date": "01/24/2025",
+        "Amount ($)": "$0.6086"
+      },
+      {
+        "Declaration Date": "12/23/2024",
+        "Ex-Div Date": "12/24/2024",
+        "Record Date": "12/24/2024",
+        "Payable Date": "12/26/2024",
+        "Amount ($)": "$0.6108"
+      },
+      {
+        "Declaration Date": "11/19/2024",
+        "Ex-Div Date": "11/20/2024",
+        "Record Date": "11/20/2024",
+        "Payable Date": "11/21/2024",
+        "Amount ($)": "$0.6344"
+      },
+      {
+        "Declaration Date": "10/22/2024",
+        "Ex-Div Date": "10/23/2024",
+        "Record Date": "10/23/2024",
+        "Payable Date": "10/24/2024",
+        "Amount ($)": "$0.6239"
+      },
+      {
+        "Declaration Date": "09/24/2024",
+        "Ex-Div Date": "09/25/2024",
+        "Record Date": "09/25/2024",
+        "Payable Date": "09/26/2024",
+        "Amount ($)": "$0.6233"
+      },
+      {
+        "Declaration Date": "08/20/2024",
+        "Ex-Div Date": "08/21/2024",
+        "Record Date": "08/21/2024",
+        "Payable Date": "08/22/2024",
+        "Amount ($)": "$0.6579"
+      },
+      {
+        "Declaration Date": "07/23/2024",
+        "Ex-Div Date": "07/24/2024",
+        "Record Date": "07/24/2024",
+        "Payable Date": "07/25/2024",
+        "Amount ($)": "$0.6016"
+      },
+      {
+        "Declaration Date": "06/25/2024",
+        "Ex-Div Date": "06/26/2024",
+        "Record Date": "06/26/2024",
+        "Payable Date": "06/27/2024",
+        "Amount ($)": "$0.5450"
+      }
+    ],
+    "fallback": false,
+    "source": "NEOS fund page Distribution History table"
+  },
+  "returns": {
+    "derivedFrom": "official NEOS fund page performance tables (NAV Performance series)",
+    "monthEnd": {
+      "asOfDate": "Aug 31 2026",
+      "raw": "2026-08-31",
+      "mo1": 1.36,
+      "mo3": 2.76,
+      "mo6": 11.45,
+      "ytd": 17.22,
+      "yr1": 25.63,
+      "yr3": null,
+      "yr5": null,
+      "yr10": null,
+      "sinceInception": 18.02,
+      "sinceInceptionCumulative": 43.66,
+      "market": {
+        "mo1": 1.42,
+        "mo3": 2.73,
+        "mo6": 11.48,
+        "ytd": 17.24,
+        "sinceInceptionCumulative": 43.55,
+        "yr1": 25.47,
+        "yr3": null,
+        "yr5": null,
+        "sinceInception": 17.98
+      },
+      "benchmarkName": "Cboe Russell 2000 BuyWrite Monthly Index",
+      "benchmark": {
+        "mo1": 1.92,
+        "mo3": 5.81,
+        "mo6": 9.76,
+        "ytd": 14.73,
+        "sinceInceptionCumulative": 33.54,
+        "yr1": 21.14,
+        "yr3": null,
+        "yr5": null,
+        "sinceInception": 14.14
+      }
+    },
+    "quarterEnd": {
+      "asOfDate": "Jun 30 2026",
+      "raw": "2026-06-30",
+      "mo1": 3.63,
+      "mo3": 17.13,
+      "mo6": 18.21,
+      "ytd": 18.21,
+      "yr1": 36.26,
+      "yr3": null,
+      "yr5": null,
+      "yr10": null,
+      "sinceInception": 20.18,
+      "sinceInceptionCumulative": 44.87,
+      "market": {
+        "mo1": 3.49,
+        "mo3": 16.99,
+        "mo6": 18.1,
+        "ytd": 18.1,
+        "sinceInceptionCumulative": 44.61,
+        "yr1": 35.91,
+        "yr3": null,
+        "yr5": null,
+        "sinceInception": 20.07
+      }
+    }
+  },
+  "metrics": {
+    "ytd": 17.22,
+    "tr1y": 25.63,
+    "tr3y": null,
+    "tr5y": null,
+    "tr10y": null,
+    "cagr3y": null,
+    "cagr5y": null,
+    "cagr10y": null,
+    "siAnn": 18.02,
+    "dividendYield": 14.51,
+    "dividendYieldText": "14.51%",
+    "distributionYield": 14.51,
+    "distributionYieldText": "14.51%",
+    "yield12M": 13.73,
+    "yield12MText": "13.73%",
+    "secYield": 0.52,
+    "secYieldText": "0.52%",
+    "returnsBasis": "official NEOS fund page NAV Performance (monthly series)"
+  },
+  "distributionFrequency": "01 - Monthly",
+  "providerCategory": "Equity High Income",
+  "holdings": {
+    "pages": [
+      "./holdings/001.json"
+    ],
+    "pageSize": 250,
+    "totalRows": 4,
+    "asOfDate": "Sep 24 2026",
+    "asOf": "2026-09-24",
+    "source": "https://neosfunds.com/wp-admin/admin-ajax.php?action=download_holdings_csv&ticker=IWMI",
+    "sourceKind": "official NEOS daily holdings CSV (download_holdings_csv)"
+  },
+  "history": {
+    "pages": [
+      "./history/001.json"
+    ],
+    "pageSize": 1000,
+    "totalRows": 563,
+    "asOfDate": "Sep 23 2026",
+    "asOf": "2026-09-23",
+    "source": "https://query1.finance.yahoo.com/v8/finance/chart/IWMI?period1=0&period2=9999999999&interval=1d&events=div%7Csplit&includeAdjustedClose=true",
+    "sourceKind": "Yahoo Finance public chart API (daily Close / Adj Close / Volume)"
+  },
+  "navKind": "official (fund page Fund Details)",
+  "source": {
+    "provider": "NEOS Investment Management LLC (NEOS ETFs)",
+    "site": "https://neosfunds.com",
+    "lineup": "https://neosfunds.com/#explore-etfs",
+    "fundPage": "https://neosfunds.com/iwmi/",
+    "holdingsDownload": "https://neosfunds.com/wp-admin/admin-ajax.php?action=download_holdings_csv&ticker=IWMI",
+    "holdingsSource": "official NEOS daily holdings CSV (download_holdings_csv)",
+    "historySource": "Yahoo Finance public chart API (daily Close / Adj Close / Volume)",
+    "historyUrl": "https://query1.finance.yahoo.com/v8/finance/chart/IWMI?period1=0&period2=9999999999&interval=1d&events=div%7Csplit&includeAdjustedClose=true",
+    "returnsSource": "NEOS fund page performance tables (NAV Performance)",
+    "distributionsSource": "NEOS fund page Distribution History table",
+    "distributionInfoSource": "NEOS fund page Distribution Information block",
+    "documentsSource": "NEOS fund page Documents table",
+    "registrant": "NEOS ETF Trust (Investment Company Act file 811-23645)",
+    "nportDoc": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0001848758&type=NPORT-P&dateb=&owner=include&count=10",
+    "exchangeSource": "NEOS fund page Fund Details \"Primary Exchange\"",
+    "navSource": "NEOS fund page Fund Details \"Net Asset Value\" (official (fund page Fund Details))",
+    "premiumDiscountSource": "official (fund page Fund Details \"Premium Discount (%)\")",
+    "bidAskSpreadSource": "NEOS fund page Fund Details \"30-Day Median Bid-Ask Spread (%)\""
+  },
+  "identifiers": {
+    "cusip": "78433H634",
+    "isin": "US78433H6348",
+    "underlyingExposure": "Russell 2000 ® Index",
+    "indexName": "Russell 2000 ® Index",
+    "benchmarkIndexName": "Cboe Russell 2000 BuyWrite Monthly Index"
+  },
+  "expenseRatio": {
+    "display": "0.76%",
+    "value": 0.76,
+    "managementFeeDisplay": "0.68%",
+    "managementFeeValue": 0.68
+  },
+  "marketPrice": {
+    "display": "$50.45",
+    "value": 50.45,
+    "asOfDate": "Sep 22 2026",
+    "dailyChangeText": "$0.24 (0.48%)",
+    "source": "NEOS fund page Fund Details \"Market Price\""
+  },
+  "yields": {
+    "dividendYield": 14.51,
+    "dividendYieldText": "14.51%",
+    "dividendYieldKind": "official NEOS Distribution Rate (latest distribution annualized / ex-date NAV)",
+    "distributionRate": 14.51,
+    "distributionRateText": "14.51%",
+    "yield12M": 13.73,
+    "yield12MText": "13.73%",
+    "secYield": 0.52,
+    "secYieldText": "0.52%",
+    "secYieldKind": "official NEOS 30-Day SEC Yield",
+    "distributionAmountText": "$0.6373",
+    "distributionAmountPercentText": "1.21%",
+    "distributionInfoAsOfDate": "Aug 31 2026"
+  },
+  "navIndex": {
+    "startDate": "2024-06-24",
+    "endDate": "2026-09-23",
+    "points": 822,
+    "benchmarkName": "Cboe Russell 2000 BuyWrite Monthly Index",
+    "source": "NEOS fund page \"Growth of $10,000 at NAV Since Inception\" chart series"
+  },
+  "documents": {
+    "prospectus": "https://neosfunds.com/wp-content/uploads/IWMI-Prospectus.pdf",
+    "summaryProspectus": "https://neosfunds.com/wp-content/uploads/IWMI-Summary-Prospectus.pdf",
+    "sai": "https://neosfunds.com/wp-content/uploads/neos_sai-042926.pdf",
+    "annualReport": "https://neosfunds.com/wp-content/uploads/IWMI-Annual-Report.pdf",
+    "semiAnnualReport": "https://neosfunds.com/wp-content/uploads/IWMI-Semi-Annual-1.pdf",
+    "fiscalQ1Holdings": "https://neosfunds.com/wp-content/uploads/IWMI-Part-F-3.31.26-Confidential-v.2.pdf",
+    "fiscalQ3Holdings": "https://neosfunds.com/wp-content/uploads/Fiscal-Year-Q3-Portfolio-Holdings-NEOS-Russell-2000®-High-Income-ETF.pdf",
+    "taxInfo": "https://neosfunds.com/wp-content/uploads/NEOS-Tax-Insert-2025.pdf",
+    "form8937": "https://neosfunds.com/wp-content/uploads/NEOS-Russell-2000-High-Income-ETF-Form-8937-12.31.25.pdf"
+  },
+  "inceptionNote": null
+}

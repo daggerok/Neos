@@ -1,0 +1,329 @@
+{
+  "ticker": "XQQI",
+  "name": "Boosted Nasdaq-100 High Income ETF",
+  "category": "Boosted High Income",
+  "fundPage": "https://neosfunds.com/xqqi/",
+  "dataFile": "./funds/XQQI/meta.json",
+  "cusip": "78433H519",
+  "isin": "US78433H5191",
+  "ter": "0.98%",
+  "terValue": 0.98,
+  "terGross": "0.98%",
+  "terGrossValue": 0.98,
+  "nav": {
+    "display": "$51.14",
+    "value": 51.14,
+    "asOfDate": "Sep 22 2026",
+    "dailyChangeText": "$0.42 (0.83%)",
+    "kind": "official (fund page Fund Details)"
+  },
+  "navValue": 51.14,
+  "aum": {
+    "display": "$367.82M",
+    "value": 367817875,
+    "asOfDate": "Sep 22 2026",
+    "source": "official NEOS daily holdings CSV (download_holdings_csv)"
+  },
+  "aumValue": 367817875,
+  "asOfDate": "Sep 22 2026",
+  "inceptionDate": "Feb 2 2026",
+  "inceptionDateFundPage": "Feb 2 2026",
+  "exchange": "NASDAQ",
+  "closePrice": "$51.18",
+  "closePriceValue": 51.18,
+  "premiumDiscount": {
+    "display": "0.08%",
+    "value": 0.08,
+    "derivedValue": 0.08,
+    "kind": "official (fund page Fund Details \"Premium Discount (%)\")"
+  },
+  "premiumDiscountValue": 0.08,
+  "premiumDiscountDerivedValue": 0.08,
+  "premiumDiscountKind": "official (fund page Fund Details \"Premium Discount (%)\")",
+  "bidAskSpread": {
+    "display": "0.10%",
+    "value": 0.1,
+    "asOfDate": "Sep 22 2026",
+    "kind": "official (fund page Fund Details \"30-Day Median Bid-Ask Spread (%)\")"
+  },
+  "bidAskSpreadValue": 0.1,
+  "acquiredFundFeesText": null,
+  "totalNetAssets": 367817875,
+  "sharesOutstanding": {
+    "display": "7,250,000",
+    "value": 7250000,
+    "asOfDate": "Sep 24 2026"
+  },
+  "netAssetsAsOf": "Sep 22 2026",
+  "secYieldAsOf": "Aug 31 2026",
+  "distributions": {
+    "frequency": "Monthly",
+    "paymentsPerYear": 12,
+    "headers": [
+      "Declaration Date",
+      "Ex-Div Date",
+      "Record Date",
+      "Payable Date",
+      "Amount ($)"
+    ],
+    "rows": [
+      {
+        "Declaration Date": "12/01/2026",
+        "Ex-Div Date": "12/02/2026",
+        "Record Date": "12/02/2026",
+        "Payable Date": "12/04/2026",
+        "Amount ($)": ""
+      },
+      {
+        "Declaration Date": "11/03/2026",
+        "Ex-Div Date": "11/04/2026",
+        "Record Date": "11/04/2026",
+        "Payable Date": "11/06/2026",
+        "Amount ($)": ""
+      },
+      {
+        "Declaration Date": "10/06/2026",
+        "Ex-Div Date": "10/07/2026",
+        "Record Date": "10/07/2026",
+        "Payable Date": "10/09/2026",
+        "Amount ($)": ""
+      },
+      {
+        "Declaration Date": "09/01/2026",
+        "Ex-Div Date": "09/02/2026",
+        "Record Date": "09/02/2026",
+        "Payable Date": "09/04/2026",
+        "Amount ($)": "$0.8403"
+      },
+      {
+        "Declaration Date": "08/04/2026",
+        "Ex-Div Date": "08/05/2026",
+        "Record Date": "08/05/2026",
+        "Payable Date": "08/07/2026",
+        "Amount ($)": "$0.8236"
+      },
+      {
+        "Declaration Date": "07/07/2026",
+        "Ex-Div Date": "07/08/2026",
+        "Record Date": "07/08/2026",
+        "Payable Date": "07/10/2026",
+        "Amount ($)": "$0.8772"
+      },
+      {
+        "Declaration Date": "06/02/2026",
+        "Ex-Div Date": "06/03/2026",
+        "Record Date": "06/03/2026",
+        "Payable Date": "06/05/2026",
+        "Amount ($)": "$0.9216"
+      },
+      {
+        "Declaration Date": "05/05/2026",
+        "Ex-Div Date": "05/06/2026",
+        "Record Date": "05/06/2026",
+        "Payable Date": "05/08/2026",
+        "Amount ($)": "$0.8560"
+      },
+      {
+        "Declaration Date": "04/07/2026",
+        "Ex-Div Date": "04/08/2026",
+        "Record Date": "04/08/2026",
+        "Payable Date": "04/10/2026",
+        "Amount ($)": "$0.7672"
+      },
+      {
+        "Declaration Date": "03/03/2026",
+        "Ex-Div Date": "03/04/2026",
+        "Record Date": "03/04/2026",
+        "Payable Date": "03/06/2026",
+        "Amount ($)": "$0.8139"
+      },
+      {
+        "Declaration Date": "02/03/2026",
+        "Ex-Div Date": "02/04/2026",
+        "Record Date": "02/04/2026",
+        "Payable Date": "02/06/2026",
+        "Amount ($)": "$0.8500"
+      }
+    ],
+    "fallback": false,
+    "source": "NEOS fund page Distribution History table"
+  },
+  "returns": {
+    "derivedFrom": "official NEOS fund page performance tables (NAV Performance series)",
+    "monthEnd": {
+      "asOfDate": "Aug 31 2026",
+      "raw": "2026-08-31",
+      "mo1": 6.19,
+      "mo3": -3.48,
+      "mo6": 14.44,
+      "ytd": null,
+      "yr1": null,
+      "yr3": null,
+      "yr5": null,
+      "yr10": null,
+      "sinceInception": null,
+      "sinceInceptionCumulative": 11.38,
+      "market": {
+        "mo1": 6.24,
+        "mo3": -3.49,
+        "mo6": 14.7,
+        "ytd": null,
+        "sinceInceptionCumulative": 11.7,
+        "yr1": null,
+        "yr3": null,
+        "yr5": null,
+        "sinceInception": null
+      },
+      "benchmarkName": "Nasdaq-100 Index",
+      "benchmark": {
+        "mo1": 4.24,
+        "mo3": -2.75,
+        "mo6": 18.4,
+        "ytd": null,
+        "sinceInceptionCumulative": 14.88,
+        "yr1": null,
+        "yr3": null,
+        "yr5": null,
+        "sinceInception": null
+      }
+    },
+    "quarterEnd": {
+      "asOfDate": "Jun 30 2026",
+      "raw": "2026-06-30",
+      "mo1": 0.2,
+      "mo3": 26.57,
+      "mo6": null,
+      "ytd": null,
+      "yr1": null,
+      "yr3": null,
+      "yr5": null,
+      "yr10": null,
+      "sinceInception": null,
+      "sinceInceptionCumulative": 15.62,
+      "market": {
+        "mo1": 0.17,
+        "mo3": 26.79,
+        "mo6": null,
+        "ytd": null,
+        "sinceInceptionCumulative": 15.94,
+        "yr1": null,
+        "yr3": null,
+        "yr5": null,
+        "sinceInception": null
+      }
+    }
+  },
+  "metrics": {
+    "ytd": null,
+    "tr1y": null,
+    "tr3y": null,
+    "tr5y": null,
+    "tr10y": null,
+    "cagr3y": null,
+    "cagr5y": null,
+    "cagr10y": null,
+    "siAnn": null,
+    "dividendYield": 20.15,
+    "dividendYieldText": "20.15%",
+    "distributionYield": 20.15,
+    "distributionYieldText": "20.15%",
+    "yield12M": null,
+    "yield12MText": "—",
+    "secYield": -0.32,
+    "secYieldText": "-0.32%",
+    "returnsBasis": "official NEOS fund page NAV Performance (monthly series)"
+  },
+  "distributionFrequency": "01 - Monthly",
+  "providerCategory": "Boosted High Income",
+  "holdings": {
+    "pages": [
+      "./holdings/001.json"
+    ],
+    "pageSize": 250,
+    "totalRows": 106,
+    "asOfDate": "Sep 24 2026",
+    "asOf": "2026-09-24",
+    "source": "https://neosfunds.com/wp-admin/admin-ajax.php?action=download_holdings_csv&ticker=XQQI",
+    "sourceKind": "official NEOS daily holdings CSV (download_holdings_csv)"
+  },
+  "history": {
+    "pages": [
+      "./history/001.json"
+    ],
+    "pageSize": 1000,
+    "totalRows": 160,
+    "asOfDate": "Sep 23 2026",
+    "asOf": "2026-09-23",
+    "source": "https://query1.finance.yahoo.com/v8/finance/chart/XQQI?period1=0&period2=9999999999&interval=1d&events=div%7Csplit&includeAdjustedClose=true",
+    "sourceKind": "Yahoo Finance public chart API (daily Close / Adj Close / Volume)"
+  },
+  "navKind": "official (fund page Fund Details)",
+  "source": {
+    "provider": "NEOS Investment Management LLC (NEOS ETFs)",
+    "site": "https://neosfunds.com",
+    "lineup": "https://neosfunds.com/#explore-etfs",
+    "fundPage": "https://neosfunds.com/xqqi/",
+    "holdingsDownload": "https://neosfunds.com/wp-admin/admin-ajax.php?action=download_holdings_csv&ticker=XQQI",
+    "holdingsSource": "official NEOS daily holdings CSV (download_holdings_csv)",
+    "historySource": "Yahoo Finance public chart API (daily Close / Adj Close / Volume)",
+    "historyUrl": "https://query1.finance.yahoo.com/v8/finance/chart/XQQI?period1=0&period2=9999999999&interval=1d&events=div%7Csplit&includeAdjustedClose=true",
+    "returnsSource": "NEOS fund page performance tables (NAV Performance)",
+    "distributionsSource": "NEOS fund page Distribution History table",
+    "distributionInfoSource": "NEOS fund page Distribution Information block",
+    "documentsSource": "NEOS fund page Documents table",
+    "registrant": "NEOS ETF Trust (Investment Company Act file 811-23645)",
+    "nportDoc": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0001848758&type=NPORT-P&dateb=&owner=include&count=10",
+    "exchangeSource": "NEOS fund page Fund Details \"Primary Exchange\"",
+    "navSource": "NEOS fund page Fund Details \"Net Asset Value\" (official (fund page Fund Details))",
+    "premiumDiscountSource": "official (fund page Fund Details \"Premium Discount (%)\")",
+    "bidAskSpreadSource": "NEOS fund page Fund Details \"30-Day Median Bid-Ask Spread (%)\""
+  },
+  "identifiers": {
+    "cusip": "78433H519",
+    "isin": "US78433H5191",
+    "underlyingExposure": "Nasdaq-100 Index",
+    "indexName": "Nasdaq-100 Index",
+    "benchmarkIndexName": "Nasdaq-100 Index"
+  },
+  "expenseRatio": {
+    "display": "0.98%",
+    "value": 0.98,
+    "managementFeeDisplay": "0.98%",
+    "managementFeeValue": 0.98
+  },
+  "marketPrice": {
+    "display": "$51.18",
+    "value": 51.18,
+    "asOfDate": "Sep 22 2026",
+    "dailyChangeText": "$0.48 (0.95%)",
+    "source": "NEOS fund page Fund Details \"Market Price\""
+  },
+  "yields": {
+    "dividendYield": 20.15,
+    "dividendYieldText": "20.15%",
+    "dividendYieldKind": "official NEOS Distribution Rate (latest distribution annualized / ex-date NAV)",
+    "distributionRate": 20.15,
+    "distributionRateText": "20.15%",
+    "yield12M": null,
+    "yield12MText": "—",
+    "secYield": -0.32,
+    "secYieldText": "-0.32%",
+    "secYieldKind": "official NEOS 30-Day SEC Yield",
+    "distributionAmountText": "$0.8236",
+    "distributionAmountPercentText": "1.68%",
+    "distributionInfoAsOfDate": "Aug 31 2026"
+  },
+  "navIndex": null,
+  "documents": {
+    "prospectus": "https://neosfunds.com/wp-content/uploads/XQQI-Prospectus.pdf",
+    "summaryProspectus": "https://neosfunds.com/wp-content/uploads/xqqi-sumpro.pdf",
+    "sai": "https://neosfunds.com/wp-content/uploads/xqqi-sai.pdf",
+    "annualReport": null,
+    "semiAnnualReport": "https://neosfunds.com/wp-content/uploads/2026-05-04-216007_NEOS-Boosted-Nasdaq-100-High-Income-ETF_TF_TSR-SemiAnnual_webproof.pdf",
+    "fiscalQ1Holdings": "https://neosfunds.com/wp-content/uploads/XQQI-Part-F-3.31.26-Confidential-v.2.pdf",
+    "fiscalQ3Holdings": null,
+    "taxInfo": null,
+    "form8937": null
+  },
+  "inceptionNote": null
+}

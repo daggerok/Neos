@@ -1,0 +1,53 @@
+{
+  "ticker": "NIHI",
+  "page": 1,
+  "pageSize": 250,
+  "totalRows": 4,
+  "headers": [
+    "Name",
+    "Ticker",
+    "Identifier",
+    "Weight",
+    "Market Value",
+    "Shares Held",
+    "Asset Category"
+  ],
+  "rows": [
+    {
+      "Name": "iShares Core MSCI EAFE ETF",
+      "Ticker": "IEFA",
+      "Identifier": "46432F842",
+      "Weight": "99.59%",
+      "Market Value": "$205502994.96",
+      "Shares Held": "2,100,828",
+      "Asset Category": "Fund"
+    },
+    {
+      "Name": "MXEA US 10/16/26 C3270",
+      "Ticker": "MXEA 261016C03270000",
+      "Identifier": "MXEA 261016C03270000",
+      "Weight": "-0.03%",
+      "Market Value": "$-70685.00",
+      "Shares Held": "-211",
+      "Asset Category": "Option"
+    },
+    {
+      "Name": "MXEA US 10/16/26 C3300",
+      "Ticker": "MXEA 261016C03300000",
+      "Identifier": "MXEA 261016C03300000",
+      "Weight": "-0.03%",
+      "Market Value": "$-53805.00",
+      "Shares Held": "-211",
+      "Asset Category": "Option"
+    },
+    {
+      "Name": "Cash & Other",
+      "Ticker": "Cash&Other",
+      "Identifier": "Cash&Other",
+      "Weight": "0.46%",
+      "Market Value": "$957090.17",
+      "Shares Held": "957,090",
+      "Asset Category": "Cash"
+    }
+  ]
+}

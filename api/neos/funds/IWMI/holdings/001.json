@@ -1,0 +1,53 @@
+{
+  "ticker": "IWMI",
+  "page": 1,
+  "pageSize": 250,
+  "totalRows": 4,
+  "headers": [
+    "Name",
+    "Ticker",
+    "Identifier",
+    "Weight",
+    "Market Value",
+    "Shares Held",
+    "Asset Category"
+  ],
+  "rows": [
+    {
+      "Name": "RUT US 10/16/26 C3005",
+      "Ticker": "RUT 261016C03005000",
+      "Identifier": "RUT 261016C03005000",
+      "Weight": "-0.05%",
+      "Market Value": "$-626050.00",
+      "Shares Held": "-1,318",
+      "Asset Category": "Option"
+    },
+    {
+      "Name": "RUT US 10/16/26 C3050",
+      "Ticker": "RUT 261016C03050000",
+      "Identifier": "RUT 261016C03050000",
+      "Weight": "-0.02%",
+      "Market Value": "$-283370.00",
+      "Shares Held": "-1,318",
+      "Asset Category": "Option"
+    },
+    {
+      "Name": "Vanguard Russell 2000 ETF",
+      "Ticker": "VTWO",
+      "Identifier": "92206C664",
+      "Weight": "99.09%",
+      "Market Value": "$1268758140.16",
+      "Shares Held": "11,137,273",
+      "Asset Category": "Fund"
+    },
+    {
+      "Name": "Cash & Other",
+      "Ticker": "Cash&Other",
+      "Identifier": "Cash&Other",
+      "Weight": "0.98%",
+      "Market Value": "$12567907.70",
+      "Shares Held": "12,567,908",
+      "Asset Category": "Cash"
+    }
+  ]
+}
