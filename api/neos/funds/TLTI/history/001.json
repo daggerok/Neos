@@ -2,7 +2,7 @@
   "ticker": "TLTI",
   "page": 1,
   "pageSize": 1000,
-  "totalRows": 443,
+  "totalRows": 445,
   "headers": [
     "Date",
     "Close",
@@ -10,6 +10,18 @@
     "Volume"
   ],
   "rows": [
+    {
+      "Date": "2026-09-23",
+      "Close": "42.54",
+      "Adj Close": "42.54",
+      "Volume": "9500"
+    },
+    {
+      "Date": "2026-09-21",
+      "Close": "43.22",
+      "Adj Close": "43.22",
+      "Volume": "13100"
+    },
     {
       "Date": "2026-09-18",
       "Close": "42.94",
@@ -1489,7 +1501,7 @@
     {
       "Date": "2025-09-25",
       "Close": "46.86",
-      "Adj Close": "44.11",
+      "Adj Close": "44.12",
       "Volume": "500"
     },
     {

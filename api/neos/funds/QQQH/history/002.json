@@ -2,7 +2,7 @@
   "ticker": "QQQH",
   "page": 2,
   "pageSize": 1000,
-  "totalRows": 1694,
+  "totalRows": 1696,
   "headers": [
     "Date",
     "Close",
@@ -10,6 +10,18 @@
     "Volume"
   ],
   "rows": [
+    {
+      "Date": "2022-09-26",
+      "Close": "39.14",
+      "Adj Close": "28.16",
+      "Volume": "73400"
+    },
+    {
+      "Date": "2022-09-23",
+      "Close": "39.28",
+      "Adj Close": "28.26",
+      "Volume": "119550"
+    },
     {
       "Date": "2022-09-22",
       "Close": "39.42",
@@ -2941,7 +2953,7 @@
     {
       "Date": "2020-10-14",
       "Close": "53.92",
-      "Adj Close": "33.18",
+      "Adj Close": "33.19",
       "Volume": "20600"
     },
     {

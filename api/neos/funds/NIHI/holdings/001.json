@@ -17,17 +17,17 @@
       "Name": "iShares Core MSCI EAFE ETF",
       "Ticker": "IEFA",
       "Identifier": "46432F842",
-      "Weight": "99.66%",
-      "Market Value": "$203812144.72",
-      "Shares Held": "2,079,928",
+      "Weight": "99.59%",
+      "Market Value": "$205502994.96",
+      "Shares Held": "2,100,828",
       "Asset Category": "Fund"
     },
     {
       "Name": "MXEA US 10/16/26 C3270",
       "Ticker": "MXEA 261016C03270000",
       "Identifier": "MXEA 261016C03270000",
-      "Weight": "-0.10%",
-      "Market Value": "$-211000.00",
+      "Weight": "-0.03%",
+      "Market Value": "$-70685.00",
       "Shares Held": "-211",
       "Asset Category": "Option"
     },
@@ -36,7 +36,7 @@
       "Ticker": "MXEA 261016C03300000",
       "Identifier": "MXEA 261016C03300000",
       "Weight": "-0.03%",
-      "Market Value": "$-64355.00",
+      "Market Value": "$-53805.00",
       "Shares Held": "-211",
       "Asset Category": "Option"
     },
@@ -44,9 +44,9 @@
       "Name": "Cash & Other",
       "Ticker": "Cash&Other",
       "Identifier": "Cash&Other",
-      "Weight": "0.47%",
-      "Market Value": "$958637.72",
-      "Shares Held": "958,638",
+      "Weight": "0.46%",
+      "Market Value": "$957090.17",
+      "Shares Held": "957,090",
       "Asset Category": "Cash"
     }
   ]
