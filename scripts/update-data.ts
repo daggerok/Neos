@@ -1,4 +1,5 @@
 #!/usr/bin/env bun
+import { hasOutputFilters, printConfig, printFilter, createReporter } from './update-output.ts';
 /// <reference types="bun" />
 /**
  * @file NEOS static feed updater.
@@ -2143,6 +2144,7 @@ export async function main(env: Record<string, string | undefined> = process.env
     return;
   }
   const config = readConfig(env);
+  printConfig('Neos', config);
   const stats: RunStats = { updated: 0, unchanged: 0, skipped: 0, failed: 0 };
 
   // The lineup table is the catalog: it lists every fund, its asset class, the
@@ -2201,7 +2203,8 @@ export async function main(env: Record<string, string | undefined> = process.env
     candidates = candidates.slice(0, config.maxFetches);
   }
 
-  console.log(`NEOS ETF feed: ${lineup.length} funds in the lineup, ${candidates.length} selected.`);
+  printFilter(candidates.length, lineup.length, hasOutputFilters(config));
+  const output = createReporter(API_ROOT, candidates.length);
   if (config.maxFetches > 0) {
     const cursor = await readCursor();
     if (cursor) console.log(`Resuming after cursor ${cursor}.`);
@@ -2215,23 +2218,22 @@ export async function main(env: Record<string, string | undefined> = process.env
     for (;;) {
       const fund = queue.shift();
       if (!fund) return;
+      const before = await output.before(fund.ticker);
       try {
         const entry = await updateFund(fund, config, stats);
         if (!passesReturnFilters(entry, config)) {
           stats.skipped += 1;
           processed += 1;
-          console.log(`  [${String(processed).padStart(2)}/${total}] ${fund.ticker.padEnd(5)} – filtered out by a return range`);
+          await output.result(fund.ticker, before, 'skipped', 'return filter');
           continue;
         }
         byTicker.set(fund.ticker, entry);
         processed += 1;
-        console.log(
-          `  [${String(processed).padStart(2)}/${total}] ${fund.ticker.padEnd(5)} holdings=${entry.holdings ?? 0} history=${entry.history ?? 0}`,
-        );
+        await output.result(fund.ticker, before);
       } catch (error) {
         processed += 1;
         stats.failed += 1;
-        console.warn(`  [${String(processed).padStart(2)}/${total}] ${fund.ticker.padEnd(5)} ! ${errorMessage(error)}`);
+        await output.result(fund.ticker, before, 'failed', errorMessage(error));
       }
     }
   });
