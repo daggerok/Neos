@@ -18,7 +18,7 @@
       "Ticker": "IEFA",
       "Identifier": "46432F842",
       "Weight": "99.59%",
-      "Market Value": "$205502994.96",
+      "Market Value": "$204788713.44",
       "Shares Held": "2,100,828",
       "Asset Category": "Fund"
     },
@@ -27,7 +27,7 @@
       "Ticker": "MXEA 261016C03270000",
       "Identifier": "MXEA 261016C03270000",
       "Weight": "-0.03%",
-      "Market Value": "$-70685.00",
+      "Market Value": "$-63300.00",
       "Shares Held": "-211",
       "Asset Category": "Option"
     },
@@ -35,8 +35,8 @@
       "Name": "MXEA US 10/16/26 C3300",
       "Ticker": "MXEA 261016C03300000",
       "Identifier": "MXEA 261016C03300000",
-      "Weight": "-0.03%",
-      "Market Value": "$-53805.00",
+      "Weight": "-0.02%",
+      "Market Value": "$-48530.00",
       "Shares Held": "-211",
       "Asset Category": "Option"
     },
@@ -45,8 +45,8 @@
       "Ticker": "Cash&Other",
       "Identifier": "Cash&Other",
       "Weight": "0.46%",
-      "Market Value": "$957090.17",
-      "Shares Held": "957,090",
+      "Market Value": "$954283.91",
+      "Shares Held": "954,284",
       "Asset Category": "Cash"
     }
   ]

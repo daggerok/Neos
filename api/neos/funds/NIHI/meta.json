@@ -11,26 +11,26 @@
   "terGross": "0.68%",
   "terGrossValue": 0.68,
   "nav": {
-    "display": "$52.15",
-    "value": 52.15,
-    "asOfDate": "Sep 22 2026",
-    "dailyChangeText": "$0.21 (0.40%)",
+    "display": "$51.33",
+    "value": 51.33,
+    "asOfDate": "Sep 23 2026",
+    "dailyChangeText": "$-0.82 (-1.57%)",
     "kind": "official (fund page Fund Details)"
   },
-  "navValue": 52.15,
+  "navValue": 51.33,
   "aum": {
-    "display": "$206.34M",
-    "value": 206338962,
-    "asOfDate": "Sep 22 2026",
+    "display": "$205.63M",
+    "value": 205634256,
+    "asOfDate": "Sep 23 2026",
     "source": "official NEOS daily holdings CSV (download_holdings_csv)"
   },
-  "aumValue": 206338962,
-  "asOfDate": "Sep 22 2026",
+  "aumValue": 205634256,
+  "asOfDate": "Sep 23 2026",
   "inceptionDate": "Sep 16 2025",
   "inceptionDateFundPage": "Sep 16 2025",
   "exchange": "CBOE",
-  "closePrice": "$52.19",
-  "closePriceValue": 52.19,
+  "closePrice": "$51.37",
+  "closePriceValue": 51.37,
   "premiumDiscount": {
     "display": "0.08%",
     "value": 0.08,
@@ -43,18 +43,18 @@
   "bidAskSpread": {
     "display": "0.11%",
     "value": 0.11,
-    "asOfDate": "Sep 22 2026",
+    "asOfDate": "Sep 23 2026",
     "kind": "official (fund page Fund Details \"30-Day Median Bid-Ask Spread (%)\")"
   },
   "bidAskSpreadValue": 0.11,
   "acquiredFundFeesText": "0.07%",
-  "totalNetAssets": 206338962,
+  "totalNetAssets": 205634256,
   "sharesOutstanding": {
     "display": "4,020,000",
     "value": 4020000,
-    "asOfDate": "Sep 24 2026"
+    "asOfDate": "Sep 25 2026"
   },
-  "netAssetsAsOf": "Sep 22 2026",
+  "netAssetsAsOf": "Sep 23 2026",
   "secYieldAsOf": "Aug 31 2026",
   "distributions": {
     "frequency": "Monthly",
@@ -276,8 +276,8 @@
     ],
     "pageSize": 250,
     "totalRows": 4,
-    "asOfDate": "Sep 24 2026",
-    "asOf": "2026-09-24",
+    "asOfDate": "Sep 25 2026",
+    "asOf": "2026-09-25",
     "source": "https://neosfunds.com/wp-admin/admin-ajax.php?action=download_holdings_csv&ticker=NIHI",
     "sourceKind": "official NEOS daily holdings CSV (download_holdings_csv)"
   },
@@ -286,9 +286,9 @@
       "./history/001.json"
     ],
     "pageSize": 1000,
-    "totalRows": 255,
-    "asOfDate": "Sep 23 2026",
-    "asOf": "2026-09-23",
+    "totalRows": 256,
+    "asOfDate": "Sep 24 2026",
+    "asOf": "2026-09-24",
     "source": "https://query1.finance.yahoo.com/v8/finance/chart/NIHI?period1=0&period2=9999999999&interval=1d&events=div%7Csplit&includeAdjustedClose=true",
     "sourceKind": "Yahoo Finance public chart API (daily Close / Adj Close / Volume)"
   },
@@ -327,10 +327,10 @@
     "managementFeeValue": 0.68
   },
   "marketPrice": {
-    "display": "$52.19",
-    "value": 52.19,
-    "asOfDate": "Sep 22 2026",
-    "dailyChangeText": "$0.21 (0.39%)",
+    "display": "$51.37",
+    "value": 51.37,
+    "asOfDate": "Sep 23 2026",
+    "dailyChangeText": "$-0.82 (-1.57%)",
     "source": "NEOS fund page Fund Details \"Market Price\""
   },
   "yields": {
