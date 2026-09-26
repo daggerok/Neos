@@ -1,4 +1,5 @@
 #!/usr/bin/env bun
+/// <reference types="bun" />
 import { readFile as outputReadFile, readdir as outputReadDir } from 'node:fs/promises';
 import { createHash as outputCreateHash } from 'node:crypto';
 import { join as outputJoin } from 'node:path';
@@ -8,6 +9,9 @@ import { fileURLToPath as outputFileURLToPath } from 'node:url';
 /** Presentation only: no requests, writes, filtering, or changes to updater state. */
 
 const outputClean = (value: unknown): string => String(value ?? 'null').replace(/[\r\n\t]+/g, ' ');
+/** Presentation only: per-fund retry and fallback notices are printed when VERBOSE is enabled. */
+const outputVerbose = (): boolean => /^(1|true|yes|on)$/i.test((globalThis as any).process?.env?.VERBOSE ?? '');
+function outputNote(message: string): void { if (outputVerbose()) console.warn(message); }
 /** Names are the canonical environment knobs, not internal parser properties. */
 function outputConfigEntries(config: Record<string, any>): [string, string][] {
   const values = new Map<string, string>();
@@ -36,7 +40,8 @@ function outputConfigEntries(config: Record<string, any>): [string, string][] {
   });
 }
 function outputPrintConfig(brand: string, config: Record<string, any>): void {
-  console.log(`[ config ] ${brand} updater:\n${outputConfigEntries(config).map(([key, value]) => `            ${key}=${/TOKEN|PASSWORD|SECRET|COOKIE/i.test(key) ? '<redacted>' : outputClean(value)}`).join('\n')}`);
+  const entries: [string, string][] = [...outputConfigEntries(config), ['VERBOSE', String(outputVerbose())]];
+  console.log(`[ config   ] ${brand} updater:\n${entries.map(([key, value]) => `              ${key}=${/TOKEN|PASSWORD|SECRET|COOKIE/i.test(key) ? '<redacted>' : outputClean(value)}`).join('\n')}`);
 }
 function outputHasOutputFilters(config: Record<string, any>): boolean {
   return outputConfigEntries(config).some(([name, value]) =>
@@ -44,7 +49,7 @@ function outputHasOutputFilters(config: Record<string, any>): boolean {
     !['', ':', 'null', 'all'].includes(value));
 }
 function outputPrintFilter(selected: number, total: number, deferred = false): void {
-  console.log(`[ filter ] ${selected} of ${total} funds ${deferred ? 'selected for evaluation (data-dependent filters applied per fund)' : 'pass filters'}`);
+  console.log(`[ filter   ] ${selected} of ${total} funds ${deferred ? 'selected for evaluation (data-dependent filters applied per fund)' : 'pass filters'}`);
 }
 function outputStable(value: any): any {
   if (Array.isArray(value)) return value.map(outputStable);
@@ -88,19 +93,27 @@ function outputMoney(value: any): string {
 function outputFundLine(index: number, total: number, ticker: string, status: string, data: any = {}, reason?: unknown): string {
   const width = Math.max(2, String(total).length);
   const metrics = data.metrics ?? {};
+  // Presentation only. Keep valid zero/false values; omit unavailable fields.
+  // outputMoney returns the string 'null' for an unavailable monetary value.
+  const field = (key: string, value: unknown): string =>
+    value === null || value === undefined || value === 'null' ? '' : `${key}=${outputClean(value)}`;
+  const sources = [
+    field('official', data.officialHistoryCount),
+    field('yahoo', data.yahooHistoryCount),
+  ].filter(part => part !== '').join(' ');
   const detail = [
-    `port=${outputClean(data.portId ?? data.portfolioId)}`,
-    `history=${outputClean(outputCount(data.history ?? data.historyCount))}`,
-    `(official=${outputClean(data.officialHistoryCount)} yahoo=${outputClean(data.yahooHistoryCount)})`,
-    `holdings=${outputClean(outputCount(data.holdings ?? data.holdingsCount))}`,
-    `divs=${outputClean(outputCount(data.worksheets?.Distributions ?? data.distributions))}`,
-    `netAssets=${outputMoney(data.netAssets ?? data.aum)}`,
-    `total=${outputMoney(data.totalFundNetAssets ?? data.totalNetAssets)}`,
-    `div=${outputClean(outputScalar(data.trailingYield ?? data.yields?.effectiveYield ?? data.yields?.dividendYield ?? data.dividendYield ?? metrics.dividendYield))}`,
-    `sec=${outputClean(outputScalar(data.secYield ?? data.yields?.secYield ?? metrics.secYield))}`,
-    `wp=${outputClean(data.workplaceRaw)}`,
-  ].join(' ');
-  return `[ ${String(index).padStart(width)}/${String(total).padEnd(width)}  ] ${outputClean(ticker).padEnd(5)} ${status.padEnd(9)} ${detail}${reason ? ` reason=${outputClean(reason)}` : ''}`;
+    field('port', data.portId ?? data.portfolioId),
+    field('history', outputCount(data.history ?? data.historyCount)),
+    sources ? `(${sources})` : '',
+    field('holdings', outputCount(data.holdings ?? data.holdingsCount)),
+    field('divs', outputCount(data.worksheets?.Distributions ?? data.distributions)),
+    field('netAssets', outputMoney(data.netAssets ?? data.aum)),
+    field('total', outputMoney(data.totalFundNetAssets ?? data.totalNetAssets)),
+    field('div', outputScalar(data.trailingYield ?? data.yields?.effectiveYield ?? data.yields?.dividendYield ?? data.dividendYield ?? metrics.dividendYield)),
+    field('sec', outputScalar(data.secYield ?? data.yields?.secYield ?? metrics.secYield)),
+    field('wp', data.workplaceRaw),
+  ].filter(part => part !== '').join(' ');
+  return `[ ${String(index).padStart(width)}/${String(total).padEnd(width)}  ] ${outputClean(ticker).padEnd(5)} ${status.padEnd(9)}${detail ? ` ${detail}` : ''}${reason ? ` reason=${outputClean(reason)}` : ''}`;
 }
 function outputCreateReporter(root: URL | string, total: number) {
   let completed = 0;
@@ -113,7 +126,6 @@ function outputCreateReporter(root: URL | string, total: number) {
   };
 }
 
-/// <reference types="bun" />
 /**
  * @file NEOS static feed updater.
  *
@@ -1786,7 +1798,7 @@ async function updateFund(
       }
     } catch (error) {
       if (!config.edgarFallback) throw error;
-      console.warn(`    ${ticker}: holdings CSV unavailable (${errorMessage(error)}), trying EDGAR`);
+      outputNote(`[ ${'holdings'.padEnd(9)}] ${ticker}: holdings CSV unavailable (${errorMessage(error)}), trying EDGAR`);
       const xml = await fetchText(neosEdgarFilingsUrl(), secHeaders(config), config, `${ticker} EDGAR`);
       const filings = [...xml.matchAll(/href=["'](\/Archives\/[^"']+primary_doc\.xml)["']/gi)].map((match) => match[1]);
       if (!filings.length) throw new Error(`${ticker}: no N-PORT primary_doc.xml link on the EDGAR page`);
@@ -1822,7 +1834,7 @@ async function updateFund(
         Volume: row.volume === null ? '' : String(row.volume),
       }));
     } catch (error) {
-      console.warn(`    ${ticker}: Yahoo chart unavailable (${errorMessage(error)})`);
+      outputNote(`[ ${'chart'.padEnd(9)}] ${ticker}: Yahoo chart unavailable (${errorMessage(error)})`);
     }
   }
 
