@@ -1607,7 +1607,7 @@ export function paymentsPerYear(frequency: string | null | undefined): number | 
 export function formatDistributionFrequency(value: unknown): string {
   const raw = cleanText(value);
   const normalized = raw.toLowerCase().replace(/[‐‑‒–—]/g, '-');
-  if (!normalized || normalized === '-') return '00 - —';
+  if (!normalized || normalized === '-') return '00 - None';
   if (normalized === 'monthly') return '01 - Monthly';
   if (normalized === 'quarterly') return '04 - Quarterly';
   if (normalized === 'semi-annually' || normalized === 'semiannual' || normalized === 'semi-annual') return '06 - Semi-annually';
