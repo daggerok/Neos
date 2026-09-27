@@ -17,62 +17,62 @@
       "Name": "United States Treasury Bill 12/01/2026",
       "Ticker": "912797VZ7",
       "Identifier": "912797VZ7",
-      "Weight": "94.42%",
-      "Market Value": "$208879130.90",
+      "Weight": "94.40%",
+      "Market Value": "$208942337.76",
       "Shares Held": "210,430,000",
       "Asset Category": "Treasury"
     },
     {
-      "Name": "S&P DOW PUT OPT 10/26 6850",
+      "Name": "SPXW US 10/08/26 P6850",
       "Ticker": "SPXW 261008P06850000",
       "Identifier": "SPXW 261008P06850000",
       "Weight": "0.01%",
-      "Market Value": "$21582.50",
+      "Market Value": "$11155.00",
       "Shares Held": "97",
       "Asset Category": "Option"
     },
     {
-      "Name": "S&P DOW PUT OPT 10/26 6925",
+      "Name": "SPXW US 10/08/26 P6925",
       "Ticker": "SPXW 261008P06925000",
       "Identifier": "SPXW 261008P06925000",
       "Weight": "0.01%",
-      "Market Value": "$25705.00",
+      "Market Value": "$12852.50",
       "Shares Held": "97",
       "Asset Category": "Option"
     },
     {
-      "Name": "S&P DOW PUT OPT 10/26 7025",
+      "Name": "SPXW US 10/08/26 P7025",
       "Ticker": "SPXW 261008P07025000",
       "Identifier": "SPXW 261008P07025000",
       "Weight": "0.01%",
-      "Market Value": "$32495.00",
+      "Market Value": "$16247.50",
       "Shares Held": "97",
       "Asset Category": "Option"
     },
     {
-      "Name": "S&P DOW PUT OPT 10/26 7175",
+      "Name": "SPXW US 10/08/26 P7175",
       "Ticker": "SPXW 261008P07175000",
       "Identifier": "SPXW 261008P07175000",
-      "Weight": "-0.02%",
-      "Market Value": "$-50925.00",
+      "Weight": "-0.01%",
+      "Market Value": "$-24492.50",
       "Shares Held": "-97",
       "Asset Category": "Option"
     },
     {
-      "Name": "S&P DOW PUT OPT 10/26 7260",
+      "Name": "SPXW US 10/08/26 P7260",
       "Ticker": "SPXW 261008P07260000",
       "Identifier": "SPXW 261008P07260000",
-      "Weight": "-0.03%",
-      "Market Value": "$-69355.00",
+      "Weight": "-0.01%",
+      "Market Value": "$-32010.00",
       "Shares Held": "-97",
       "Asset Category": "Option"
     },
     {
-      "Name": "S&P DOW PUT OPT 10/26 7320",
+      "Name": "SPXW US 10/08/26 P7320",
       "Ticker": "SPXW 261008P07320000",
       "Identifier": "SPXW 261008P07320000",
-      "Weight": "-0.04%",
-      "Market Value": "$-88755.00",
+      "Weight": "-0.02%",
+      "Market Value": "$-40740.00",
       "Shares Held": "-97",
       "Asset Category": "Option"
     },
@@ -81,8 +81,8 @@
       "Ticker": "Cash&Other",
       "Identifier": "Cash&Other",
       "Weight": "5.62%",
-      "Market Value": "$12441593.48",
-      "Shares Held": "12,441,593",
+      "Market Value": "$12440750.74",
+      "Shares Held": "12,440,751",
       "Asset Category": "Cash"
     }
   ]
