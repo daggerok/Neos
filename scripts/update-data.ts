@@ -581,17 +581,25 @@ Examples:
 // Politeness & fetching
 // ---------------------------------------------------------------------------
 
-let lastRequestAt = 0;
-let pacing: Promise<void> = Promise.resolve();
+// One pacing lane per concurrent worker (sized from config.concurrency
+// where the worker pool is started). A single shared chain serialized every
+// request through one FIFO regardless of concurrency; CONCURRENCY workers
+// now each get their own paced lane, so concurrency actually multiplies
+// throughput as documented instead of only overlapping wait time.
+let lastRequestAtLanes: number[] = [0];
+let pacingLanes: Promise<void>[] = [Promise.resolve()];
 
 async function paceRequests(config: UpdaterConfig): Promise<void> {
   const gap = Math.max(0, config.requestSleep * 1000);
-  pacing = pacing.then(async () => {
-    const wait = lastRequestAt + gap - Date.now();
+  let lane = 0;
+  for (let i = 1; i < lastRequestAtLanes.length; i++) if (lastRequestAtLanes[i] < lastRequestAtLanes[lane]) lane = i;
+  const turn = pacingLanes[lane].then(async () => {
+    const wait = lastRequestAtLanes[lane] + gap - Date.now();
     if (wait > 0) await sleep(wait);
-    lastRequestAt = Date.now();
+    lastRequestAtLanes[lane] = Date.now();
   });
-  return pacing;
+  pacingLanes[lane] = turn.catch(() => undefined);
+  return turn;
 }
 
 function errorMessage(error: unknown): string {
@@ -2339,7 +2347,10 @@ export async function main(env: Record<string, string | undefined> = process.env
   const queue = candidates.slice();
   const total = candidates.length;
   let processed = 0;
-  const workers = Array.from({ length: Math.max(1, config.concurrency) }, async () => {
+  const laneCount = Math.max(1, config.concurrency);
+  lastRequestAtLanes = new Array(laneCount).fill(0);
+  pacingLanes = new Array(laneCount).fill(null).map(() => Promise.resolve());
+  const workers = Array.from({ length: laneCount }, async () => {
     for (;;) {
       const fund = queue.shift();
       if (!fund) return;
