@@ -159,7 +159,7 @@ describe("normalization", () => {
     expect(numberOrNull("N/A")).toBeNull();
     expect(numberOrNull("")).toBeNull();
     expect(numberOrNull("0")).toBe(0);
-    expect(numberOrNull("$53.10")).toBe(53.1);
+    expect(numberOrNull("$53.640")).toBe(53.64);
     expect(numberOrNull("-0.05%")).toBe(-0.05);
     expect(numberOrNull("$12,151,808,030")).toBe(12151808030);
     expect(numberOrNull(Number.NaN)).toBeNull();
@@ -224,7 +224,7 @@ describe("formatters", () => {
     expect(formatPercentText(12.15)).toBe("12.15%");
     expect(formatPercentText(-0.05)).toBe("-0.05%");
     expect(formatPercentText(null)).toBe("\u2014");
-    expect(formatMoneyText(53.1)).toBe("$53.10");
+    expect(formatMoneyText(53.64)).toBe("$53.64");
     expect(formatMoneyText(null)).toBe("\u2014");
   });
 });
@@ -538,7 +538,7 @@ const FUND_DETAILS_HTML = `
   <table style="border-bottom: 3px solid #b4b4b4;" class="table fund-details-font">
     <thead><tr><th class="th-dark-blue-style">Closing NAV Price</th><th class="th-dark-blue-style"><span class="neos-sr-only">Spacer column</span></th></tr></thead>
     <tbody>
-      <tr><td class="bg-f7f7f7">Net Asset Value</td><td class="bg-f7f7f7 text-right"> $53.10
+      <tr><td class="bg-f7f7f7">Net Asset Value</td><td class="bg-f7f7f7 text-right"> $53.640
         </td></tr>
       <tr><td class="bg-f7f7f7">Daily Change ($)</td><td class="bg-f7f7f7 text-right">$0.10</td></tr>
       <tr><td class="bg-f7f7f7">Daily Change (%)</td><td class="bg-f7f7f7 text-right">0.19%</td></tr>
@@ -549,7 +549,7 @@ const FUND_DETAILS_HTML = `
   <table style="border-bottom: 3px solid #b4b4b4;" class="table fund-details-font">
     <thead><tr><th class="th-dark-blue-style">Closing Market Price</th><th class="th-dark-blue-style"><span class="neos-sr-only">Spacer column</span></th></tr></thead>
     <tbody>
-      <tr><td class="bg-f7f7f7">Market Price</td><td class="bg-f7f7f7 text-right">$53.09</td></tr>
+      <tr><td class="bg-f7f7f7">Market Price</td><td class="bg-f7f7f7 text-right">$53.65</td></tr>
       <tr><td class="bg-f7f7f7">Daily Change ($)</td><td class="bg-f7f7f7 text-right">$0.09</td></tr>
       <tr><td class="bg-f7f7f7">Daily Change (%)</td><td class="bg-f7f7f7 text-right">0.17%</td></tr>
     </tbody>
@@ -578,10 +578,10 @@ describe("parseNeosFundDetails", () => {
   });
 
   test("the two Daily Change pairs stay with their own quote", () => {
-    expect(details.netAssetValue).toBe(53.1);
+    expect(details.netAssetValue).toBe(53.64);
     expect(details.navDailyChangeValue).toBe(0.1);
     expect(details.navDailyChangePercent).toBe(0.19);
-    expect(details.marketPrice).toBe(53.09);
+    expect(details.marketPrice).toBe(53.65);
     expect(details.marketPriceDailyChangeValue).toBe(0.09);
     expect(details.marketPriceDailyChangePercent).toBe(0.17);
   });
@@ -1314,9 +1314,9 @@ describe("published index.json", () => {
     expect(spyi.cusip).toBe("78433H303");
     expect(spyi.isin).toBe("US78433H3030");
     expect(spyi.inceptionDate).toBe("Aug 29 2022");
-    expect(spyi.navValue).toBe(53.1);
-    expect(spyi.closePriceValue).toBe(53.09);
-    expect(spyi.premiumDiscountValue).toBe(-0.02);
+    expect(spyi.navValue).toBe(53.64);
+    expect(spyi.closePriceValue).toBe(53.65);
+    expect(spyi.premiumDiscountValue).toBe(0.01);
     expect(spyi.metrics.dividendYield).toBe(12.15);
     expect(spyi.metrics.yield12M).toBe(11.82);
     expect(spyi.metrics.secYield).toBe(0.46);
