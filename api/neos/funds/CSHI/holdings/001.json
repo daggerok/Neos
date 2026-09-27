@@ -18,7 +18,7 @@
       "Ticker": "912797SA6",
       "Identifier": "912797SA6",
       "Weight": "7.08%",
-      "Market Value": "$133544000.10",
+      "Market Value": "$133586059.52",
       "Shares Held": "133,628,000",
       "Asset Category": "Treasury"
     },
@@ -27,7 +27,7 @@
       "Ticker": "912797SK4",
       "Identifier": "912797SK4",
       "Weight": "6.74%",
-      "Market Value": "$127133868.98",
+      "Market Value": "$127171403.89",
       "Shares Held": "127,596,000",
       "Asset Category": "Treasury"
     },
@@ -36,7 +36,7 @@
       "Ticker": "912797SU2",
       "Identifier": "912797SU2",
       "Weight": "7.63%",
-      "Market Value": "$143990392.55",
+      "Market Value": "$144035750.00",
       "Shares Held": "145,000,000",
       "Asset Category": "Treasury"
     },
@@ -45,7 +45,7 @@
       "Ticker": "912797UJ4",
       "Identifier": "912797UJ4",
       "Weight": "6.72%",
-      "Market Value": "$126738389.29",
+      "Market Value": "$126777882.07",
       "Shares Held": "126,913,000",
       "Asset Category": "Treasury"
     },
@@ -54,7 +54,7 @@
       "Ticker": "912797UL9",
       "Identifier": "912797UL9",
       "Weight": "6.81%",
-      "Market Value": "$128605335.56",
+      "Market Value": "$128641762.98",
       "Shares Held": "128,974,000",
       "Asset Category": "Treasury"
     },
@@ -63,7 +63,7 @@
       "Ticker": "912797UY1",
       "Identifier": "912797UY1",
       "Weight": "6.99%",
-      "Market Value": "$131911771.05",
+      "Market Value": "$131952792.32",
       "Shares Held": "132,609,000",
       "Asset Category": "Treasury"
     },
@@ -72,7 +72,7 @@
       "Ticker": "912797UZ8",
       "Identifier": "912797UZ8",
       "Weight": "7.10%",
-      "Market Value": "$133993307.20",
+      "Market Value": "$134035882.98",
       "Shares Held": "134,806,000",
       "Asset Category": "Treasury"
     },
@@ -81,7 +81,7 @@
       "Ticker": "912797VA2",
       "Identifier": "912797VA2",
       "Weight": "7.28%",
-      "Market Value": "$137303243.68",
+      "Market Value": "$137347579.76",
       "Shares Held": "138,360,000",
       "Asset Category": "Treasury"
     },
@@ -90,7 +90,7 @@
       "Ticker": "912797VG9",
       "Identifier": "912797VG9",
       "Weight": "7.42%",
-      "Market Value": "$139970080.30",
+      "Market Value": "$140015537.48",
       "Shares Held": "141,167,000",
       "Asset Category": "Treasury"
     },
@@ -99,7 +99,7 @@
       "Ticker": "912797VN4",
       "Identifier": "912797VN4",
       "Weight": "6.77%",
-      "Market Value": "$127833125.14",
+      "Market Value": "$127868661.33",
       "Shares Held": "128,271,000",
       "Asset Category": "Treasury"
     },
@@ -108,7 +108,7 @@
       "Ticker": "912797VX2",
       "Identifier": "912797VX2",
       "Weight": "6.93%",
-      "Market Value": "$130759073.86",
+      "Market Value": "$130794437.22",
       "Shares Held": "131,521,000",
       "Asset Category": "Treasury"
     },
@@ -117,7 +117,7 @@
       "Ticker": "912797VY0",
       "Identifier": "912797VY0",
       "Weight": "7.11%",
-      "Market Value": "$134172479.51",
+      "Market Value": "$134212493.70",
       "Shares Held": "135,069,000",
       "Asset Category": "Treasury"
     },
@@ -126,7 +126,7 @@
       "Ticker": "912797WE3",
       "Identifier": "912797WE3",
       "Weight": "7.28%",
-      "Market Value": "$137451886.08",
+      "Market Value": "$137496500.75",
       "Shares Held": "138,585,000",
       "Asset Category": "Treasury"
     },
@@ -135,79 +135,79 @@
       "Ticker": "912797WG8",
       "Identifier": "912797WG8",
       "Weight": "7.06%",
-      "Market Value": "$133174729.81",
+      "Market Value": "$133217574.78",
       "Shares Held": "134,500,000",
       "Asset Category": "Treasury"
     },
     {
-      "Name": "S&P DOW PUT OPT 10/26 6625",
+      "Name": "SPXW US 10/08/26 P6625",
       "Ticker": "SPXW 261008P06625000",
       "Identifier": "SPXW 261008P06625000",
       "Weight": "0.00%",
-      "Market Value": "$88740.00",
+      "Market Value": "$45900.00",
       "Shares Held": "612",
       "Asset Category": "Option"
     },
     {
-      "Name": "S&P DOW PUT OPT 10/26 6700",
+      "Name": "SPXW US 10/08/26 P6700",
       "Ticker": "SPXW 261008P06700000",
       "Identifier": "SPXW 261008P06700000",
-      "Weight": "0.01%",
-      "Market Value": "$102510.00",
+      "Weight": "0.00%",
+      "Market Value": "$53550.00",
       "Shares Held": "612",
       "Asset Category": "Option"
     },
     {
-      "Name": "S&P DOW PUT OPT 10/26 6775",
+      "Name": "SPXW US 10/08/26 P6775",
       "Ticker": "SPXW 261008P06775000",
       "Identifier": "SPXW 261008P06775000",
-      "Weight": "0.01%",
-      "Market Value": "$117810.00",
+      "Weight": "0.00%",
+      "Market Value": "$61200.00",
       "Shares Held": "612",
       "Asset Category": "Option"
     },
     {
-      "Name": "S&P DOW PUT OPT 10/26 6900",
+      "Name": "SPXW US 10/08/26 P6900",
       "Ticker": "SPXW 261008P06900000",
       "Identifier": "SPXW 261008P06900000",
-      "Weight": "-0.01%",
-      "Market Value": "$-153000.00",
+      "Weight": "0.00%",
+      "Market Value": "$-78030.00",
       "Shares Held": "-612",
       "Asset Category": "Option"
     },
     {
-      "Name": "S&P DOW PUT OPT 10/26 7000",
+      "Name": "SPXW US 10/08/26 P7000",
       "Ticker": "SPXW 261008P07000000",
       "Identifier": "SPXW 261008P07000000",
       "Weight": "0.01%",
-      "Market Value": "$194310.00",
+      "Market Value": "$96390.00",
       "Shares Held": "612",
       "Asset Category": "Option"
     },
     {
-      "Name": "S&P DOW PUT OPT 10/26 7075",
+      "Name": "SPXW US 10/08/26 P7075",
       "Ticker": "SPXW 261008P07075000",
       "Identifier": "SPXW 261008P07075000",
       "Weight": "-0.01%",
-      "Market Value": "$-235620.00",
+      "Market Value": "$-114750.00",
       "Shares Held": "-612",
       "Asset Category": "Option"
     },
     {
-      "Name": "S&P DOW PUT OPT 10/26 7150",
+      "Name": "SPXW US 10/08/26 P7150",
       "Ticker": "SPXW 261008P07150000",
       "Identifier": "SPXW 261008P07150000",
-      "Weight": "-0.02%",
-      "Market Value": "$-293760.00",
+      "Weight": "-0.01%",
+      "Market Value": "$-140760.00",
       "Shares Held": "-612",
       "Asset Category": "Option"
     },
     {
-      "Name": "S&P DOW PUT OPT 10/26 7225",
+      "Name": "SPXW US 10/08/26 P7225",
       "Ticker": "SPXW 261008P07225000",
       "Identifier": "SPXW 261008P07225000",
-      "Weight": "-0.02%",
-      "Market Value": "$-382500.00",
+      "Weight": "-0.01%",
+      "Market Value": "$-175950.00",
       "Shares Held": "-612",
       "Asset Category": "Option"
     },
@@ -216,8 +216,8 @@
       "Ticker": "Cash&Other",
       "Identifier": "Cash&Other",
       "Weight": "1.11%",
-      "Market Value": "$20957457.11",
-      "Shares Held": "20,957,457",
+      "Market Value": "$20891132.02",
+      "Shares Held": "20,891,132",
       "Asset Category": "Cash"
     }
   ]
