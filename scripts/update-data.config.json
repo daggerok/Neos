@@ -13,7 +13,7 @@
   "DIVIDEND_YIELD": ":",
   "SEC_YIELD": ":",
   "HISTORY_RANGE": "max",
-  "EDGAR_FALLBACK": "false",
+  "EDGAR_FALLBACK": "true",
   "SKIP_YAHOO": "false",
   "SKIP_NEOS": "false",
   "SEC_UA": "",
