@@ -1,15 +1,4 @@
 #!/usr/bin/env bun
-// Checked-in JSON is the runtime default; any nonblank environment value wins.
-import { readFileSync as readUpdaterConfig } from 'node:fs';
-try {
-  const updaterDefaults = JSON.parse(readUpdaterConfig(new URL('./update-data.config.json', import.meta.url), 'utf8')) as Record<string, unknown>;
-  for (const [key, value] of Object.entries(updaterDefaults)) {
-    const current = process.env[key];
-    if ((current === undefined || current.trim() === '') && value !== null && value !== undefined) process.env[key] = String(value);
-  }
-} catch (error) {
-  if ((error as NodeJS.ErrnoException).code !== 'ENOENT') throw error;
-}
 /// <reference types="bun" />
 import { readFile as outputReadFile, readdir as outputReadDir } from 'node:fs/promises';
 import { createHash as outputCreateHash } from 'node:crypto';
@@ -545,24 +534,27 @@ NEOS ETF static feed updater (zero dependencies, run with Bun).
 
   bun ./scripts/update-data.ts [-h|--help]
 
-Environment variables (all optional):
+Defaults live in scripts/update-data.config.json (flat object, string values).
+Precedence: config file < workflow advanced JSON < nonblank workflow inputs <
+environment variable. Defaults below are the checked-in file values.
 
   MAX_FETCHES          0     Funds to process. 0 = full pass. A positive value
                              resumes after the committed cursor in
                              api/neos/update-state.json.
-  REQUEST_SLEEP        1.5   Minimum seconds between request starts.
+  REQUEST_SLEEP        2     Minimum seconds between request starts.
                              neosfunds.com throttles bursts with an SSL reset,
                              so keep this at 1.5s or more.
   CONCURRENCY          2     Parallel fund workers (starts stay globally paced).
   MAX_RETRIES          3     Retries for network errors and 408/425/429/5xx.
   TICKERS              ""    Space/comma separated tickers. ANDed with the other
                              filters, never overriding them.
-  AUM                  ""    "min:max" dollars, K/M/B/T suffixes, or a preset:
+  CATEGORY             ""    Keep only this NEOS asset-class heading.
+  AUM                  :     "min:max" dollars, K/M/B/T suffixes, or a preset:
                              nano <$10M | micro $10M-$300M | small $300M-$2B |
                              mid $2B-$10B | large >=$10B
-  TER                  ""    "min:max" expense ratio percent.
-  DIVIDEND_YIELD       ""    "min:max" distribution-rate percent.
-  SEC_YIELD            ""    "min:max" 30-day SEC yield percent.
+  TER                  :     "min:max" expense ratio percent.
+  DIVIDEND_YIELD       :     "min:max" distribution-rate percent.
+  SEC_YIELD            :     "min:max" 30-day SEC yield percent.
   PERFORMANCE_YTD|1Y|3Y|5Y|10Y   "min:max" official fund-page NAV return percent.
   TOTAL_RETURN_YTD|1Y|3Y|5Y|10Y  "min:max" derived cumulative total return percent.
   HOLDINGS_PAGE_SIZE   250   Rows per holdings page file.
@@ -570,12 +562,13 @@ Environment variables (all optional):
                              HISTORICAL_PAGE_SIZE).
   HISTORY_RANGE        max   Yahoo chart range used for daily history
                              ("max", "10y", "5y", ...).
-  CATEGORY             ""    Keep only this NEOS asset-class heading.
-  STORE_RAW_DOWNLOADS  0     1|true|yes|y|on writes api/neos/raw/**.
-  SEC_UA               (set) Declared User-Agent for SEC EDGAR requests.
-  EDGAR_FALLBACK       0     Use Form N-PORT-P when a fund has no holdings CSV.
-  SKIP_YAHOO           0     Skip Yahoo Finance (daily history, dividend fallback).
-  SKIP_NEOS            0     Skip neosfunds.com entirely (keeps committed data).
+  STORE_RAW_DOWNLOADS  false 1|true|yes|y|on writes api/neos/raw/**.
+  SEC_UA               ""    Declared User-Agent for SEC EDGAR requests (blank
+                             uses the repo URL descriptor).
+  EDGAR_FALLBACK       true  Use Form N-PORT-P when a fund has no holdings CSV.
+  SKIP_YAHOO           false Skip Yahoo Finance (daily history, dividend fallback).
+  SKIP_NEOS            false Skip neosfunds.com entirely (keeps committed data).
+  VERBOSE              false Print per-fund retry and fallback notices.
 
 Range syntax is strict "min:max" with exactly one colon; "" and ":" mean no
 restriction; a configured min must not exceed max.
@@ -2282,12 +2275,78 @@ async function readCursor(): Promise<string | null> {
 // Entry point
 // ---------------------------------------------------------------------------
 
+// File defaults and explicit overrides, one mechanism for the CLI and the
+// workflow: allowlisted scalar controls only, so GitHub Actions can resolve them
+// without interpolating user input into bash. Precedence: config file <
+// advanced JSON < nonblank inputs < environment (explicit env wins, blank
+// included; HISTORICAL_PAGE_SIZE stays an alias of HISTORY_PAGE_SIZE).
+export const CONTROL_NAMES = [
+  'MAX_FETCHES', 'REQUEST_SLEEP', 'CONCURRENCY', 'MAX_RETRIES', 'TICKERS', 'CATEGORY',
+  'AUM', 'TER', 'DIVIDEND_YIELD', 'SEC_YIELD',
+  ...['PERFORMANCE', 'TOTAL_RETURN'].flatMap((prefix) => ['YTD', '1Y', '3Y', '5Y', '10Y'].map((period) => `${prefix}_${period}`)),
+  'HOLDINGS_PAGE_SIZE', 'HISTORY_PAGE_SIZE', 'HISTORY_RANGE', 'STORE_RAW_DOWNLOADS',
+  'SEC_UA', 'EDGAR_FALLBACK', 'SKIP_YAHOO', 'SKIP_NEOS', 'VERBOSE',
+] as const;
+export type ControlName = (typeof CONTROL_NAMES)[number];
+export const CONFIG_FILE_URL = new URL('./update-data.config.json', import.meta.url);
+const CONTROL_ALIASES: Partial<Record<ControlName, string>> = { HISTORY_PAGE_SIZE: 'HISTORICAL_PAGE_SIZE' };
+
+export function resolveControls(
+  file: unknown = {},
+  advanced: unknown = {},
+  inputs: unknown = {},
+  env: Record<string, string | undefined> = {},
+): Record<string, string> {
+  const result: Record<string, string> = {};
+  const known = new Set<string>(CONTROL_NAMES);
+  const apply = (value: unknown, skipEmpty = false): void => {
+    if (!value || typeof value !== 'object' || Array.isArray(value)) throw new Error('Configuration must be a JSON object');
+    for (const [key, raw] of Object.entries(value)) {
+      if (!known.has(key)) throw new Error(`Unknown updater control: ${key}`);
+      if (skipEmpty && (raw === '' || raw === undefined || raw === null)) continue;
+      if (!['string', 'number', 'boolean'].includes(typeof raw)) throw new Error(`${key}: expected string, number or boolean`);
+      const text = String(raw);
+      if (/[\r\n\0]/.test(text)) throw new Error(`${key}: multiline/control characters are not allowed`);
+      result[key] = text;
+    }
+  };
+  apply(file);
+  apply(advanced);
+  apply(inputs, true);
+  for (const key of CONTROL_NAMES) {
+    const alias = CONTROL_ALIASES[key];
+    const value = env[key] ?? (alias ? env[alias] : undefined);
+    if (value !== undefined) apply({ [key]: value });
+  }
+  for (const key of ['MAX_FETCHES', 'CONCURRENCY', 'HOLDINGS_PAGE_SIZE', 'HISTORY_PAGE_SIZE', 'MAX_RETRIES']) {
+    const v = result[key];
+    if (v === undefined || v.trim() === '') continue;
+    const min = ['MAX_FETCHES', 'MAX_RETRIES'].includes(key) ? 0 : 1;
+    if (!/^\d+$/.test(v.trim()) || !Number.isSafeInteger(Number(v)) || Number(v) < min) throw new Error(`${key}: expected integer >= ${min}`);
+  }
+  if (result.REQUEST_SLEEP?.trim() && (!Number.isFinite(Number(result.REQUEST_SLEEP)) || Number(result.REQUEST_SLEEP) < 0)) throw new Error('REQUEST_SLEEP: expected nonnegative seconds');
+  for (const key of ['STORE_RAW_DOWNLOADS', 'EDGAR_FALLBACK', 'SKIP_YAHOO', 'SKIP_NEOS', 'VERBOSE']) {
+    if (result[key]?.trim() && !/^(0|1|true|false|yes|no|y|n|on|off)$/i.test(result[key].trim())) throw new Error(`${key}: expected boolean`);
+  }
+  readConfig(result); // validate every min:max filter before any request or write
+  return result;
+}
+
+export async function runtimeControls(env: Record<string, string | undefined> = process.env): Promise<Record<string, string>> {
+  let file: unknown = {};
+  try { file = JSON.parse(await readFile(CONFIG_FILE_URL, 'utf8')); }
+  catch (error) { if ((error as NodeJS.ErrnoException).code !== 'ENOENT') throw error; }
+  return resolveControls(file, {}, {}, env);
+}
+
 export async function main(env: Record<string, string | undefined> = process.env): Promise<void> {
   if (process.argv.slice(2).some((arg) => arg === '-h' || arg === '--help')) {
     console.log(USAGE);
     return;
   }
-  const config = readConfig(env);
+  const controls = await runtimeControls(env);
+  if (controls.VERBOSE !== undefined && env === process.env) process.env.VERBOSE = controls.VERBOSE;
+  const config = readConfig(controls);
   outputPrintConfig('Neos', config);
   const stats: RunStats = { updated: 0, unchanged: 0, skipped: 0, failed: 0 };
 
