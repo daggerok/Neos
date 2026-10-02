@@ -406,7 +406,8 @@
     "yield12MText": "7.42%",
     "secYield": -0.01,
     "secYieldText": "-0.01%",
-    "returnsBasis": "official NEOS fund page NAV Performance (monthly series)"
+    "returnsBasis": "official NEOS fund page NAV total returns (month-end Performance table); 3/5/10 Yr cumulative derived from the published annualized figures",
+    "performanceAsOf": "2026-08-31"
   },
   "distributionFrequency": "01 - Monthly",
   "providerCategory": "Hedged Equity Income",

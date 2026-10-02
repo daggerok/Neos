@@ -103,7 +103,8 @@
         "yield12MText": "5.91%",
         "secYield": 3.53,
         "secYieldText": "3.53%",
-        "returnsBasis": "official NEOS fund page NAV Performance (monthly series)"
+        "returnsBasis": "official NEOS fund page NAV total returns (month-end Performance table); 3/5/10 Yr cumulative derived from the published annualized figures",
+        "performanceAsOf": "2026-08-31"
       },
       "distributionFrequency": "01 - Monthly",
       "providerCategory": "Enhanced Fixed Income",
@@ -193,7 +194,8 @@
         "yield12MText": "36.51%",
         "secYield": 1.35,
         "secYieldText": "1.35%",
-        "returnsBasis": "official NEOS fund page NAV Performance (monthly series)"
+        "returnsBasis": "official NEOS fund page NAV total returns (month-end Performance table); 3/5/10 Yr cumulative derived from the published annualized figures",
+        "performanceAsOf": "2026-08-31"
       },
       "distributionFrequency": "01 - Monthly",
       "providerCategory": "High Income Alternatives",
@@ -283,7 +285,8 @@
         "yield12MText": "4.84%",
         "secYield": 3.3,
         "secYieldText": "3.30%",
-        "returnsBasis": "official NEOS fund page NAV Performance (monthly series)"
+        "returnsBasis": "official NEOS fund page NAV total returns (month-end Performance table); 3/5/10 Yr cumulative derived from the published annualized figures",
+        "performanceAsOf": "2026-08-31"
       },
       "distributionFrequency": "01 - Monthly",
       "providerCategory": "Enhanced Fixed Income",
@@ -373,7 +376,8 @@
         "yield12MText": "8.27%",
         "secYield": 6.13,
         "secYieldText": "6.13%",
-        "returnsBasis": "official NEOS fund page NAV Performance (monthly series)"
+        "returnsBasis": "official NEOS fund page NAV total returns (month-end Performance table); 3/5/10 Yr cumulative derived from the published annualized figures",
+        "performanceAsOf": "2026-08-31"
       },
       "distributionFrequency": "01 - Monthly",
       "providerCategory": "Enhanced Fixed Income",
@@ -463,7 +467,8 @@
         "yield12MText": "—",
         "secYield": 1.87,
         "secYieldText": "1.87%",
-        "returnsBasis": "official NEOS fund page NAV Performance (monthly series)"
+        "returnsBasis": "official NEOS fund page NAV total returns (month-end Performance table); 3/5/10 Yr cumulative derived from the published annualized figures",
+        "performanceAsOf": "2026-08-31"
       },
       "distributionFrequency": "01 - Monthly",
       "providerCategory": "High Income Alternatives",
@@ -553,7 +558,8 @@
         "yield12MText": "13.73%",
         "secYield": 0.52,
         "secYieldText": "0.52%",
-        "returnsBasis": "official NEOS fund page NAV Performance (monthly series)"
+        "returnsBasis": "official NEOS fund page NAV total returns (month-end Performance table); 3/5/10 Yr cumulative derived from the published annualized figures",
+        "performanceAsOf": "2026-08-31"
       },
       "distributionFrequency": "01 - Monthly",
       "providerCategory": "Equity High Income",
@@ -643,7 +649,8 @@
         "yield12MText": "10.93%",
         "secYield": 3.05,
         "secYieldText": "3.05%",
-        "returnsBasis": "official NEOS fund page NAV Performance (monthly series)"
+        "returnsBasis": "official NEOS fund page NAV total returns (month-end Performance table); 3/5/10 Yr cumulative derived from the published annualized figures",
+        "performanceAsOf": "2026-08-31"
       },
       "distributionFrequency": "01 - Monthly",
       "providerCategory": "High Income Alternatives",
@@ -733,7 +740,8 @@
         "yield12MText": "—",
         "secYield": 3.47,
         "secYieldText": "3.47%",
-        "returnsBasis": "official NEOS fund page NAV Performance (monthly series)"
+        "returnsBasis": "official NEOS fund page NAV total returns (month-end Performance table); 3/5/10 Yr cumulative derived from the published annualized figures",
+        "performanceAsOf": "2026-08-31"
       },
       "distributionFrequency": "01 - Monthly",
       "providerCategory": "High Income Alternatives",
@@ -823,7 +831,8 @@
         "yield12MText": "—",
         "secYield": 1.13,
         "secYieldText": "1.13%",
-        "returnsBasis": "official NEOS fund page NAV Performance (monthly series)"
+        "returnsBasis": "official NEOS fund page NAV total returns (month-end Performance table); 3/5/10 Yr cumulative derived from the published annualized figures",
+        "performanceAsOf": "2026-08-31"
       },
       "distributionFrequency": "01 - Monthly",
       "providerCategory": "High Income Alternatives",
@@ -913,7 +922,8 @@
         "yield12MText": "—",
         "secYield": 2.73,
         "secYieldText": "2.73%",
-        "returnsBasis": "official NEOS fund page NAV Performance (monthly series)"
+        "returnsBasis": "official NEOS fund page NAV total returns (month-end Performance table); 3/5/10 Yr cumulative derived from the published annualized figures",
+        "performanceAsOf": "2026-08-31"
       },
       "distributionFrequency": "01 - Monthly",
       "providerCategory": "Equity High Income",
@@ -1003,7 +1013,8 @@
         "yield12MText": "—",
         "secYield": -0.37,
         "secYieldText": "-0.37%",
-        "returnsBasis": "official NEOS fund page NAV Performance (monthly series)"
+        "returnsBasis": "official NEOS fund page NAV total returns (month-end Performance table); 3/5/10 Yr cumulative derived from the published annualized figures",
+        "performanceAsOf": "2026-08-31"
       },
       "distributionFrequency": "01 - Monthly",
       "providerCategory": "Hedged Equity Income",
@@ -1093,7 +1104,8 @@
         "yield12MText": "7.42%",
         "secYield": -0.01,
         "secYieldText": "-0.01%",
-        "returnsBasis": "official NEOS fund page NAV Performance (monthly series)"
+        "returnsBasis": "official NEOS fund page NAV total returns (month-end Performance table); 3/5/10 Yr cumulative derived from the published annualized figures",
+        "performanceAsOf": "2026-08-31"
       },
       "distributionFrequency": "01 - Monthly",
       "providerCategory": "Hedged Equity Income",
@@ -1183,7 +1195,8 @@
         "yield12MText": "14.08%",
         "secYield": -0.05,
         "secYieldText": "-0.05%",
-        "returnsBasis": "official NEOS fund page NAV Performance (monthly series)"
+        "returnsBasis": "official NEOS fund page NAV total returns (month-end Performance table); 3/5/10 Yr cumulative derived from the published annualized figures",
+        "performanceAsOf": "2026-08-31"
       },
       "distributionFrequency": "01 - Monthly",
       "providerCategory": "Equity High Income",
@@ -1273,7 +1286,8 @@
         "yield12MText": "—",
         "secYield": 0.5,
         "secYieldText": "0.50%",
-        "returnsBasis": "official NEOS fund page NAV Performance (monthly series)"
+        "returnsBasis": "official NEOS fund page NAV total returns (month-end Performance table); 3/5/10 Yr cumulative derived from the published annualized figures",
+        "performanceAsOf": "2026-08-31"
       },
       "distributionFrequency": "01 - Monthly",
       "providerCategory": "Hedged Equity Income",
@@ -1363,7 +1377,8 @@
         "yield12MText": "11.82%",
         "secYield": 0.46,
         "secYieldText": "0.46%",
-        "returnsBasis": "official NEOS fund page NAV Performance (monthly series)"
+        "returnsBasis": "official NEOS fund page NAV total returns (month-end Performance table); 3/5/10 Yr cumulative derived from the published annualized figures",
+        "performanceAsOf": "2026-09-30"
       },
       "distributionFrequency": "01 - Monthly",
       "providerCategory": "Equity High Income",
@@ -1453,7 +1468,8 @@
         "yield12MText": "6.43%",
         "secYield": 4.71,
         "secYieldText": "4.71%",
-        "returnsBasis": "official NEOS fund page NAV Performance (monthly series)"
+        "returnsBasis": "official NEOS fund page NAV total returns (month-end Performance table); 3/5/10 Yr cumulative derived from the published annualized figures",
+        "performanceAsOf": "2026-08-31"
       },
       "distributionFrequency": "01 - Monthly",
       "providerCategory": "Enhanced Fixed Income",
@@ -1543,7 +1559,8 @@
         "yield12MText": "—",
         "secYield": 1.12,
         "secYieldText": "1.12%",
-        "returnsBasis": "official NEOS fund page NAV Performance (monthly series)"
+        "returnsBasis": "official NEOS fund page NAV total returns (month-end Performance table); 3/5/10 Yr cumulative derived from the published annualized figures",
+        "performanceAsOf": "2026-08-31"
       },
       "distributionFrequency": "01 - Monthly",
       "providerCategory": "Boosted High Income",
@@ -1633,7 +1650,8 @@
         "yield12MText": "—",
         "secYield": -0.32,
         "secYieldText": "-0.32%",
-        "returnsBasis": "official NEOS fund page NAV Performance (monthly series)"
+        "returnsBasis": "official NEOS fund page NAV total returns (month-end Performance table); 3/5/10 Yr cumulative derived from the published annualized figures",
+        "performanceAsOf": "2026-08-31"
       },
       "distributionFrequency": "01 - Monthly",
       "providerCategory": "Boosted High Income",
@@ -1723,7 +1741,8 @@
         "yield12MText": "—",
         "secYield": 0.18,
         "secYieldText": "0.18%",
-        "returnsBasis": "official NEOS fund page NAV Performance (monthly series)"
+        "returnsBasis": "official NEOS fund page NAV total returns (month-end Performance table); 3/5/10 Yr cumulative derived from the published annualized figures",
+        "performanceAsOf": "2026-08-31"
       },
       "distributionFrequency": "01 - Monthly",
       "providerCategory": "Boosted High Income",
