@@ -101,6 +101,7 @@ Defaults below are the values in `scripts/update-data.config.json`. Environment 
 | `SKIP_YAHOO` | `false` | Keep previous history and distributions while refreshing catalog and holdings |
 | `SKIP_NEOS` | `false` | Keep the previously published official catalog |
 | `VERBOSE` | `false` | Print per-fund retry and fallback notices |
+| `USE_SYSTEM_CA` | `auto` | TLS trust store: `auto` restarts the updater once with Bun's `--use-system-ca` when a request fails with an untrusted-certificate error; `true` always uses the system CA store; `false` never restarts. Not an individual workflow input: use `advanced`, the config file or the CLI environment |
 
 Range syntax is strict `min:max` with exactly one colon; `""` and `:` mean no restriction. Funds not selected for a successful update keep their prior published metadata and data files, so a bounded or partly failed run can never empty the site.
 

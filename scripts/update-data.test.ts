@@ -63,6 +63,8 @@ import {
   parseYahooExchangeName,
   paymentsPerYear,
   CONTROL_NAMES,
+  installSystemCa,
+  isCertError,
   readConfig,
   resolveControls,
   runtimeControls,
@@ -1369,4 +1371,77 @@ test('README follows the standard section order and documents the verification c
 test('scripts/ carries only the config, the updater and its test', () => {
   const names = [...new Bun.Glob('*').scanSync({ cwd: path.join(REPO_ROOT, 'scripts'), onlyFiles: false })].sort();
   expect(names).toEqual(['update-data.config.json', 'update-data.test.ts', 'update-data.ts']);
+});
+
+describe('system CA support', () => {
+  test('USE_SYSTEM_CA resolver accepts auto/true/false case-insensitively and rejects others', () => {
+    expect(file().USE_SYSTEM_CA).toBe('auto');
+    for (const value of ['auto', 'true', 'false', 'AUTO', 'True', 'FALSE']) {
+      expect(resolveControls(file(), {}, {}, { USE_SYSTEM_CA: value }).USE_SYSTEM_CA).toBe(value);
+    }
+    expect(() => resolveControls(file(), {}, {}, { USE_SYSTEM_CA: 'maybe' })).toThrow('USE_SYSTEM_CA');
+    expect(() => resolveControls(file(), { USE_SYSTEM_CA: 'yes' })).toThrow('USE_SYSTEM_CA');
+  });
+
+  test('isCertError recognises untrusted-certificate errors, also through cause', () => {
+    expect(isCertError({ code: 'UNABLE_TO_GET_ISSUER_CERT_LOCALLY' })).toBe(true);
+    expect(isCertError(new Error('unable to get local issuer certificate'))).toBe(true);
+    expect(isCertError(new Error('fetch failed', { cause: new Error('unable to get local issuer certificate') }))).toBe(true);
+    expect(isCertError({ code: 'ECONNRESET', message: 'socket hang up' })).toBe(false);
+    expect(isCertError(new Error('HTTP 403 Forbidden'))).toBe(false);
+    expect(isCertError(null)).toBe(false);
+  });
+
+  describe('installSystemCa', () => {
+    const originalFetch = globalThis.fetch;
+    const restore = () => { globalThis.fetch = originalFetch; };
+    const reexecSpy = () => {
+      const calls: number[] = [];
+      const reexec = (() => { calls.push(1); throw new Error('reexec'); }) as () => never;
+      return { calls, reexec };
+    };
+
+    test('mode false and an already active store leave fetch unchanged', () => {
+      try {
+        const { calls, reexec } = reexecSpy();
+        installSystemCa('false', reexec, false);
+        expect(globalThis.fetch).toBe(originalFetch);
+        installSystemCa('auto', reexec, true);
+        expect(globalThis.fetch).toBe(originalFetch);
+        installSystemCa('true', reexec, true);
+        expect(globalThis.fetch).toBe(originalFetch);
+        expect(calls.length).toBe(0);
+      } finally { restore(); }
+    });
+
+    test('mode true restarts immediately', () => {
+      try {
+        const { calls, reexec } = reexecSpy();
+        expect(() => installSystemCa('true', reexec, false)).toThrow('reexec');
+        expect(calls.length).toBe(1);
+      } finally { restore(); }
+    });
+
+    test('mode auto wraps fetch: cert error restarts once, other errors rethrown, success passes through', async () => {
+      try {
+        const { calls, reexec } = reexecSpy();
+        let behaviour: 'ok' | 'cert' | 'reset' = 'ok';
+        globalThis.fetch = (async () => {
+          if (behaviour === 'cert') throw new Error('fetch failed', { cause: { code: 'UNABLE_TO_GET_ISSUER_CERT_LOCALLY' } });
+          if (behaviour === 'reset') throw Object.assign(new Error('socket hang up'), { code: 'ECONNRESET' });
+          return new Response('ok');
+        }) as unknown as typeof fetch;
+        const stub = globalThis.fetch;
+        installSystemCa('auto', reexec, false);
+        expect(globalThis.fetch).not.toBe(stub);
+        expect(await (await fetch('https://example.invalid/')).text()).toBe('ok');
+        behaviour = 'reset';
+        await expect(fetch('https://example.invalid/')).rejects.toThrow('socket hang up');
+        expect(calls.length).toBe(0);
+        behaviour = 'cert';
+        await expect(fetch('https://example.invalid/')).rejects.toThrow('reexec');
+        expect(calls.length).toBe(1);
+      } finally { restore(); }
+    });
+  });
 });

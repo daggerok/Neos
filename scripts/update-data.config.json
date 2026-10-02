@@ -27,5 +27,6 @@
   "EDGAR_FALLBACK": "true",
   "SKIP_YAHOO": "false",
   "SKIP_NEOS": "false",
-  "VERBOSE": "false"
+  "VERBOSE": "false",
+  "USE_SYSTEM_CA": "auto"
 }

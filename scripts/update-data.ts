@@ -174,6 +174,42 @@ import { existsSync } from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 
+// --- TLS trust store (identical in every ETF repo) ---
+const SYSTEM_CA_MARKER = 'ETF_UPDATER_SYSTEM_CA';
+const CERT_ERROR = /UNABLE_TO_GET_ISSUER_CERT|UNABLE_TO_VERIFY_LEAF_SIGNATURE|SELF_SIGNED_CERT|CERT_HAS_EXPIRED|unable to get (?:local )?issuer certificate|self[- ]signed certificate|certificate has expired/i;
+
+export function isCertError(error: unknown): boolean {
+  const e = error as { code?: unknown; message?: unknown; cause?: unknown } | null;
+  return CERT_ERROR.test(`${String(e?.code ?? '')} ${String(e?.message ?? '')}`) || (e?.cause ? isCertError(e.cause) : false);
+}
+
+export function systemCaActive(env: Record<string, string | undefined> = process.env, execArgv: string[] = process.execArgv): boolean {
+  return execArgv.includes('--use-system-ca') || env.NODE_USE_SYSTEM_CA === '1' || env[SYSTEM_CA_MARKER] === '1';
+}
+
+export function reexecWithSystemCa(): never {
+  const child = Bun.spawnSync([process.execPath, '--use-system-ca', ...process.argv.slice(1)], {
+    env: { ...process.env, [SYSTEM_CA_MARKER]: '1' },
+    stdio: ['inherit', 'inherit', 'inherit'],
+  });
+  process.exit(child.exitCode ?? 1);
+}
+
+/** mode: auto (restart once on an untrusted-certificate error), true (restart now), false (never). */
+export function installSystemCa(mode: string, reexec: () => never = reexecWithSystemCa, active: boolean = systemCaActive()): void {
+  if (mode === 'false' || active) return;
+  if (mode === 'true') reexec();
+  const realFetch = globalThis.fetch;
+  globalThis.fetch = (async (...args: Parameters<typeof fetch>) => {
+    try { return await realFetch(...args); }
+    catch (error) {
+      if (!isCertError(error)) throw error;
+      console.error('[ notice   ] TLS certificate not trusted; restarting once with --use-system-ca');
+      return reexec();
+    }
+  }) as typeof fetch;
+}
+
 const REPO_ROOT = path.join(path.dirname(fileURLToPath(import.meta.url)), '..');
 const API_ROOT = path.join(REPO_ROOT, 'api', 'neos');
 
@@ -572,6 +608,9 @@ environment variable. Defaults below are the checked-in file values.
   SKIP_YAHOO           false Skip Yahoo Finance (daily history, dividend fallback).
   SKIP_NEOS            false Skip neosfunds.com entirely (keeps committed data).
   VERBOSE              false Print per-fund retry and fallback notices.
+  USE_SYSTEM_CA        auto  auto|true|false. auto restarts once with Bun's --use-system-ca
+                             on an untrusted-certificate error; true always uses the
+                             system CA store; false never restarts.
 
 Range syntax is strict "min:max" with exactly one colon; "" and ":" mean no
 restriction; a configured min must not exceed max.
@@ -2288,7 +2327,7 @@ export const CONTROL_NAMES = [
   'AUM', 'TER', 'DIVIDEND_YIELD', 'SEC_YIELD',
   ...['PERFORMANCE', 'TOTAL_RETURN'].flatMap((prefix) => ['YTD', '1Y', '3Y', '5Y', '10Y'].map((period) => `${prefix}_${period}`)),
   'HOLDINGS_PAGE_SIZE', 'HISTORY_PAGE_SIZE', 'HISTORY_RANGE', 'STORE_RAW_DOWNLOADS',
-  'SEC_UA', 'EDGAR_FALLBACK', 'SKIP_YAHOO', 'SKIP_NEOS', 'VERBOSE',
+  'SEC_UA', 'EDGAR_FALLBACK', 'SKIP_YAHOO', 'SKIP_NEOS', 'VERBOSE', 'USE_SYSTEM_CA',
 ] as const;
 export type ControlName = (typeof CONTROL_NAMES)[number];
 export const CONFIG_FILE_URL = new URL('./update-data.config.json', import.meta.url);
@@ -2332,6 +2371,7 @@ export function resolveControls(
     if (result[key]?.trim() && !/^(0|1|true|false|yes|no|y|n|on|off)$/i.test(result[key].trim())) throw new Error(`${key}: expected boolean`);
   }
   if (result.HISTORY_RANGE?.trim() && !/^(max|ytd|\d+(d|mo|y))$/i.test(result.HISTORY_RANGE.trim())) throw new Error('HISTORY_RANGE: expected max, ytd or a Yahoo range such as 1y, 5y, 10y, 6mo');
+  if (result.USE_SYSTEM_CA?.trim() && !/^(auto|true|false)$/i.test(result.USE_SYSTEM_CA.trim())) throw new Error('USE_SYSTEM_CA: expected auto, true or false');
   readConfig(result); // validate every min:max filter before any request or write
   return result;
 }
@@ -2350,6 +2390,7 @@ export async function main(env: Record<string, string | undefined> = process.env
   }
   const controls = await runtimeControls(env);
   if (controls.VERBOSE !== undefined && env === process.env) process.env.VERBOSE = controls.VERBOSE;
+  installSystemCa((controls.USE_SYSTEM_CA?.trim() || 'auto').toLowerCase());
   const config = readConfig(controls);
   outputPrintConfig('Neos', config);
   const stats: RunStats = { updated: 0, unchanged: 0, skipped: 0, failed: 0 };
