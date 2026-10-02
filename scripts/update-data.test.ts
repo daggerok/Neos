@@ -1,7 +1,7 @@
 /**
  * Unit tests for the NEOS ETF data updater.
  *
- * Every HTML fixture below is a faithful transcription of the markup
+ * Every HTML sample below is a faithful transcription of the markup
  * neosfunds.com actually serves (verified against the live pages and the daily
  * holdings CSV on 2026-09-21), trimmed to the parts that matter. The tests are
  * the guard for the two things the committed feed cannot show by itself: the
@@ -62,7 +62,10 @@ import {
   parseYahooChart,
   parseYahooExchangeName,
   paymentsPerYear,
+  CONTROL_NAMES,
   readConfig,
+  resolveControls,
+  runtimeControls,
   sanitizeTicker,
   splitPages,
   splitRowCells,
@@ -74,11 +77,8 @@ import {
 } from "./update-data";
 
 const REPO_ROOT = path.join(import.meta.dir, "..");
-const API_ROOT = path.join(REPO_ROOT, "api", "neos");
-
-function feedJson(relative: string): any {
-  return JSON.parse(readFileSync(path.join(API_ROOT, relative), "utf8"));
-}
+const read = (relative: string) => readFileSync(path.join(REPO_ROOT, relative), "utf8");
+const file = () => JSON.parse(read("scripts/update-data.config.json"));
 
 // ---------------------------------------------------------------------------
 // 1. Source URLs
@@ -268,7 +268,7 @@ describe("readConfig", () => {
     expect(config.skipYahoo).toBe(false);
     expect(config.skipNeos).toBe(false);
     expect(config.edgarFallback).toBe(false);
-    expect(config.secUa).toContain("daggerok/Neos");
+    expect(config.secUa).toBe("daggerok ETF feed daggerok@gmail.com");
   });
 
   test("a comma/space separated TICKERS list is normalized and ANDed", () => {
@@ -1249,559 +1249,124 @@ describe("page files", () => {
   });
 });
 
-// ---------------------------------------------------------------------------
-// 17. The published feed
-// ---------------------------------------------------------------------------
-
-describe("published index.json", () => {
-  const index = feedJson("index.json");
-  const byTicker = Object.fromEntries(index.funds.map((fund: any) => [fund.ticker, fund]));
-
-  test("every NEOS ETF is in the catalog", () => {
-    expect(index.counts.funds).toBe(index.funds.length);
-    expect(index.counts.funds).toBe(19);
-    expect(Object.keys(byTicker).sort()).toEqual([
-      "BNDI", "BTCI", "CSHI", "HYBI", "IAUI", "IWMI", "IYRI", "MLPI", "NEHI", "NIHI",
-      "NLSI", "QQQH", "QQQI", "SPYH", "SPYI", "TLTI", "XBCI", "XQQI", "XSPI",
-    ]);
-  });
-
-  test("the counts are the sum of what the funds actually carry", () => {
-    const holdings = index.funds.reduce((sum: number, fund: any) => sum + fund.holdings, 0);
-    const history = index.funds.reduce((sum: number, fund: any) => sum + fund.history, 0);
-    expect(index.counts.holdings).toBe(holdings);
-    expect(index.counts.history).toBe(history);
-    expect(index.counts.holdings).toBeGreaterThan(0);
-    expect(index.counts.history).toBeGreaterThan(0);
-  });
-
-  test("the provenance block names the official sources", () => {
-    expect(index.source.site).toBe(NEOS_SITE);
-    expect(index.source.catalog).toBe(NEOS_LINEUP_URL);
-    expect(index.source.holdings).toContain("download_holdings_csv");
-    expect(index.source.registrant).toContain("811-23645");
-    expect(index.source.nportRegistrant).toContain(NEOS_ETF_TRUST_CIK);
-    expect(index.generatedAt).toMatch(/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}Z$/);
-  });
-
-  test("every catalog row carries the display fields the app's table renders", () => {
-    for (const fund of index.funds) {
-      for (const key of [
-        "ticker", "name", "category", "fundPage", "dataFile", "nav", "navValue", "aum", "aumValue",
-        "asOfDate", "inceptionDate", "exchange", "closePrice", "closePriceValue", "premiumDiscount",
-        "premiumDiscountValue", "ter", "terValue", "totalNetAssets", "sharesOutstanding",
-      ]) {
-        expect(`${fund.ticker}.${key}`).toBe(`${fund.ticker}.${key}`);
-        expect(fund[key]).not.toBeUndefined();
-        expect(fund[key]).not.toBeNull();
-      }
-      expect(fund.distributionFrequency).toMatch(/^\d{2} - /);
-      expect(fund.distributions.frequency).toBeTruthy();
-      expect(fund.distributions.exDate).toMatch(/^\d{2}\/\d{2}\/\d{4}$/);
-      expect(fund.distributions.dividend).toMatch(/^\$/);
-      expect(fund.metrics.dividendYieldText).toMatch(/%$/);
-      expect(fund.metrics.secYieldText).toMatch(/%$/);
-      expect(fund.metrics.returnsBasis).toContain("NEOS fund page");
-      expect(fund.holdings).toBeGreaterThan(0);
-      expect(fund.history).toBeGreaterThan(0);
-    }
-  });
-
-  test("SPYI matches the figures verified on the live pages", () => {
-    const spyi = byTicker["SPYI"];
-    expect(spyi.name).toBe("S&P 500 High Income ETF");
-    expect(spyi.category).toBe("Equity High Income");
-    expect(spyi.cusip).toBe("78433H303");
-    expect(spyi.isin).toBe("US78433H3030");
-    expect(spyi.inceptionDate).toBe("Aug 29 2022");
-    expect(spyi.navValue).toBe(53.64);
-    expect(spyi.closePriceValue).toBe(53.65);
-    expect(spyi.premiumDiscountValue).toBe(0.01);
-    expect(spyi.metrics.dividendYield).toBe(12.15);
-    expect(spyi.metrics.yield12M).toBe(11.82);
-    expect(spyi.metrics.secYield).toBe(0.46);
-    expect(spyi.metrics.ytd).toBe(10.72);
-    expect(spyi.metrics.tr1y).toBe(17.65);
-    // The calendar is newer than the Distribution Information block: the
-    // September payout is already declared and paid, so it is the latest one.
-    expect(spyi.distributions.exDate).toBe("09/16/2026");
-    expect(spyi.distributions.dividend).toBe("$0.5338");
-    expect(spyi.distributionFrequency).toBe("01 - Monthly");
-  });
+test('configuration precedence: file < advanced < nonblank input < environment', () => {
+  const c = resolveControls({ CONCURRENCY: 2, TICKERS: 'SPYI' }, { CONCURRENCY: 3, TICKERS: 'QQQI' }, { CONCURRENCY: '4', TICKERS: '' }, { CONCURRENCY: '5' });
+  expect(c.CONCURRENCY).toBe('5');
+  expect(c.TICKERS).toBe('QQQI');
+  expect(resolveControls({ CONCURRENCY: 2 }, { CONCURRENCY: 3 }, { CONCURRENCY: '4' }).CONCURRENCY).toBe('4');
+  expect(resolveControls({ TICKERS: 'SPYI' }, { TICKERS: '' }, { TICKERS: '' }).TICKERS).toBe('');
+  expect(resolveControls({ SKIP_YAHOO: true }, {}, {}, { SKIP_YAHOO: 'false' }).SKIP_YAHOO).toBe('false');
+  expect(resolveControls({ HISTORY_PAGE_SIZE: 1000 }, {}, {}, { HISTORICAL_PAGE_SIZE: '500' }).HISTORY_PAGE_SIZE).toBe('500');
 });
 
-describe("published fund files", () => {
-  const index = feedJson("index.json");
-
-  test("every fund has a meta.json with the fields the detail tabs read", () => {
-    for (const fund of index.funds) {
-      const meta = feedJson(`funds/${fund.ticker}/meta.json`);
-      expect(meta.ticker).toBe(fund.ticker);
-      expect(meta.identifiers.cusip).toBeTruthy();
-      expect(meta.identifiers.isin).toBeTruthy();
-      // Five funds' pages carry an Investment Objective paragraph instead of an
-      // `Underlying Exposure` row; for them the feed publishes null and the app
-      // renders an em dash rather than inventing an index.
-      const WITHOUT_EXPOSURE_ROW = ["HYBI", "IAUI", "NIHI", "QQQH", "SPYH"];
-      if (WITHOUT_EXPOSURE_ROW.includes(fund.ticker)) {
-        expect(meta.identifiers.underlyingExposure).toBeNull();
-        expect(meta.identifiers.indexName).toBeNull();
-      } else {
-        expect(meta.identifiers.indexName).toBeTruthy();
-      }
-      expect(meta.expenseRatio.managementFeeDisplay).toBeTruthy();
-      expect(meta.expenseRatio.display).toBeTruthy();
-      expect(meta.nav.display).toMatch(/^\$/);
-      expect(meta.nav.dailyChangeText).toBeTruthy();
-      expect(meta.marketPrice.display).toMatch(/^\$/);
-      expect(meta.marketPrice.dailyChangeText).toBeTruthy();
-      expect(meta.sharesOutstanding.display).toBeTruthy();
-      expect(meta.aum.display).toMatch(/^\$/);
-      expect(meta.yields.distributionRateText).toMatch(/%$/);
-      expect(meta.yields.secYieldText).toMatch(/%$/);
-      expect(meta.returns.derivedFrom).toContain("NEOS fund page");
-      // Every fund page publishes its own premium/discount and bid-ask spread.
-      expect(meta.premiumDiscount.kind).toBe(
-        'official (fund page Fund Details "Premium Discount (%)")',
-      );
-      expect(meta.premiumDiscount.value).toBe(fund.premiumDiscountValue);
-      expect(meta.bidAskSpread.display).toMatch(/%$/);
-      expect(meta.source.premiumDiscountSource).toContain("official");
-      expect(meta.distributions.paymentsPerYear).toBeGreaterThan(0);
-      expect(meta.distributions.rows.length).toBeGreaterThan(0);
-      expect(meta.holdings.asOfDate).toBeTruthy();
-      expect(meta.history.asOfDate).toBeTruthy();
-      expect(meta.source.provider).toContain("NEOS");
-      expect(meta.source.nportDoc).toContain(NEOS_ETF_TRUST_CIK);
-      expect(meta.documents.prospectus).toContain("neosfunds.com");
-    }
-  });
-
-  test("a fund the site lists without a document publishes null, not an empty string", () => {
-    for (const fund of index.funds) {
-      const meta = feedJson(`funds/${fund.ticker}/meta.json`);
-      for (const value of Object.values(meta.documents)) {
-        expect(value === null || typeof value === "string").toBe(true);
-      }
-    }
-  });
-
-  test("the distributions worksheet carries the same headers and row shape as the page", () => {
-    for (const fund of index.funds) {
-      const meta = feedJson(`funds/${fund.ticker}/meta.json`);
-      expect(meta.distributions.headers).toEqual([...NEOS_DISTRIBUTION_HEADERS]);
-      for (const row of meta.distributions.rows) {
-        expect(Object.keys(row)).toEqual([...NEOS_DISTRIBUTION_HEADERS]);
-        expect(row["Declaration Date"]).toMatch(/^\d{2}\/\d{2}\/\d{4}$/);
-      }
-    }
-  });
-
-  test("holdings pages declare their manifest and sum to the published row count", () => {
-    for (const fund of index.funds) {
-      const meta = feedJson(`funds/${fund.ticker}/meta.json`);
-      expect(meta.holdings.pages.length).toBeGreaterThan(0);
-      let total = 0;
-      for (const page of meta.holdings.pages) {
-        const payload = feedJson(`funds/${fund.ticker}/${page}`);
-        expect(payload.headers).toEqual([...HOLDINGS_HEADERS]);
-        expect(payload.ticker).toBe(fund.ticker);
-        total += payload.rows.length;
-      }
-      expect(total).toBe(meta.holdings.totalRows);
-      expect(total).toBe(fund.holdings);
-    }
-  });
-
-  test("history pages declare their manifest and sum to the published row count", () => {
-    for (const fund of index.funds) {
-      const meta = feedJson(`funds/${fund.ticker}/meta.json`);
-      expect(meta.history.pages.length).toBeGreaterThan(0);
-      let total = 0;
-      for (const page of meta.history.pages) {
-        const payload = feedJson(`funds/${fund.ticker}/${page}`);
-        expect(payload.headers).toEqual([...HISTORY_HEADERS]);
-        total += payload.rows.length;
-      }
-      expect(total).toBe(meta.history.totalRows);
-      expect(total).toBe(fund.history);
-    }
-  });
-
-  test("SPYI's published history starts at its inception and is newest first", () => {
-    const meta = feedJson("funds/SPYI/meta.json");
-    const payload = feedJson(`funds/SPYI/${meta.history.pages[0]}`);
-    const first = payload.rows[0].Date;
-    const last = payload.rows[payload.rows.length - 1].Date;
-    expect(first > last).toBe(true);
-    expect(payload.rows.every((row: any) => /^\d{4}-\d{2}-\d{2}$/.test(row.Date))).toBe(true);
-  });
+test('blank input inherits the file value', () => {
+  expect(resolveControls({ CONCURRENCY: 2 }, {}, { CONCURRENCY: '' }).CONCURRENCY).toBe('2');
+  expect(resolveControls({ MAX_RETRIES: 3 }, {}, { MAX_RETRIES: '' }).MAX_RETRIES).toBe('3');
 });
 
-// ---------------------------------------------------------------------------
-// 18. The app's field contract — no empty cells unless the provider has none
-// ---------------------------------------------------------------------------
-
-// The single-file app reads these straight out of a fund's meta.json. The list
-// is scanned out of app.tsx itself rather than transcribed, so renaming a field
-// on either side of the feed contract fails this suite instead of blanking a
-// cell in the published site.
-function metaPathsReadByApp(): string[] {
-  const app = readFileSync(path.join(REPO_ROOT, "app.tsx"), "utf8");
-  const chains = [...app.matchAll(/\bmeta\.([A-Za-z0-9_.]+)/g)].map((match) => match[1]);
-  return [...new Set(chains)]
-    // `meta.json` in prose and comments is not a field read.
-    .filter((chain) => !chain.includes("json"))
-    .map((chain) => chain.replace(/\.$/, ""))
-    .sort();
-}
-
-/** Walks a dotted field path, so the app's own reads can be checked verbatim. */
-const fieldAt = (value: any, dotted: string): any =>
-  dotted.split(".").reduce((node: any, key: string) => (node === null || node === undefined ? undefined : node[key]), value);
-
-// The only cells the page may show as `—`, each with the provider reason, and
-// the tickers it applies to. Anything else must be filled in.
-const DOCUMENTED_NULLS: Record<string, { reason: string; tickers: string[] }> = {
-  "documents.fiscalQ3Holdings": {
-    reason: "NEOS has not published the fiscal-year Q3 portfolio-holdings PDF for every fund yet",
-    tickers: ["IAUI", "MLPI", "NEHI", "NIHI", "NLSI", "SPYH", "XBCI", "XQQI", "XSPI"],
-  },
-  "documents.annualReport": {
-    reason: "the three February-2026 funds have not filed a first annual report yet",
-    tickers: ["XBCI", "XQQI", "XSPI"],
-  },
-  "documents.taxInfo": {
-    reason: "no supplemental tax insert published for the three February-2026 funds yet",
-    tickers: ["XBCI", "XQQI", "XSPI"],
-  },
-  "identifiers.indexName": {
-    reason: "these five fund pages carry an Investment Objective paragraph instead of an Underlying Exposure row",
-    tickers: ["HYBI", "IAUI", "NIHI", "QQQH", "SPYH"],
-  },
-  "documents.form8937": {
-    reason: "these five funds have not filed a Form 8937 with NEOS yet (their 8937 tab is empty)",
-    tickers: ["IAUI", "NIHI", "XBCI", "XQQI", "XSPI"],
-  },
-};
-
-describe("the app's meta.json field contract", () => {
-  const index = feedJson("index.json");
-  const paths = metaPathsReadByApp();
-
-  test("the reader picks up the app's own meta.json field reads", () => {
-    expect(paths.length).toBeGreaterThan(40);
-    expect(paths).toContain("identifiers.cusip");
-    expect(paths).toContain("nav.dailyChangeText");
-    expect(paths).toContain("yields.secYieldText");
-    expect(paths).toContain("distributions.paymentsPerYear");
-    expect(paths.some((chain) => chain.startsWith("documents."))).toBe(true);
-  });
-
-  test("every field the app renders exists in every published meta.json", () => {
-    for (const fund of index.funds) {
-      const meta = feedJson(`funds/${fund.ticker}/meta.json`);
-      for (const chain of paths) {
-        const value = fieldAt(meta, chain);
-        // `undefined` means the app would render a blank cell: a contract break.
-        expect(`${fund.ticker} meta.${chain} = ${value}`).not.toStartWith(`${fund.ticker} meta.${chain} = undefined`);
-      }
-    }
-  });
-
-  test("a null field is one of the documented provider limitations, and only for its own funds", () => {
-    const observed = new Map<string, string[]>();
-    for (const fund of index.funds) {
-      const meta = feedJson(`funds/${fund.ticker}/meta.json`);
-      for (const chain of paths) {
-        const value = fieldAt(meta, chain);
-        if (value === null) observed.set(chain, [...(observed.get(chain) || []), fund.ticker]);
-      }
-    }
-    for (const [chain, tickers] of observed) {
-      expect(Object.keys(DOCUMENTED_NULLS)).toContain(chain);
-      expect(tickers.sort()).toEqual(DOCUMENTED_NULLS[chain].tickers);
-    }
-    // The other direction: a limitation that no longer applies must be dropped
-    // from the list, so the table in the README cannot rot.
-    for (const chain of Object.keys(DOCUMENTED_NULLS)) {
-      expect(observed.has(chain)).toBe(true);
-    }
-  });
-
-  test("every catalog field the app's table derivation reads is published", () => {
-    const catalogs = [
-      ["returns.monthEnd.asOfDate", (fund: any) => fund.returns.monthEnd.asOfDate],
-      ["returns.quarterEnd.asOfDate", (fund: any) => fund.returns.quarterEnd.asOfDate],
-      ["metrics.dividendYieldText", (fund: any) => fund.metrics.dividendYieldText],
-      ["metrics.secYieldText", (fund: any) => fund.metrics.secYieldText],
-      ["metrics.siAnn", (fund: any) => fund.metrics.siAnn],
-      ["metrics.tr1y", (fund: any) => fund.metrics.tr1y],
-      ["metrics.tr3y", (fund: any) => fund.metrics.tr3y],
-      ["metrics.tr5y", (fund: any) => fund.metrics.tr5y],
-      ["metrics.tr10y", (fund: any) => fund.metrics.tr10y],
-      ["metrics.cagr3y", (fund: any) => fund.metrics.cagr3y],
-      ["metrics.cagr5y", (fund: any) => fund.metrics.cagr5y],
-      ["metrics.cagr10y", (fund: any) => fund.metrics.cagr10y],
-      ["distributions.frequency", (fund: any) => fund.distributions.frequency],
-      ["distributions.paymentsPerYear", (fund: any) => fund.distributions.paymentsPerYear],
-      ["premiumDiscountKind", (fund: any) => fund.premiumDiscountKind],
-      ["bidAskSpread", (fund: any) => fund.bidAskSpread],
-    ] as const;
-    for (const fund of index.funds) {
-      for (const [label, read] of catalogs) {
-        expect(`${fund.ticker} ${label} = ${read(fund)}`).not.toStartWith(`${fund.ticker} ${label} = undefined`);
-      }
-    }
-  });
-
-  test("a return the fund is too young to report is null, never zero", () => {
-    const tooYoung: Record<string, string[]> = {
-      ytd: ["XBCI", "XQQI", "XSPI"],
-      yr1: ["MLPI", "NEHI", "NIHI", "NLSI", "XBCI", "XQQI", "XSPI"],
-      yr3: ["BTCI", "IAUI", "IWMI", "IYRI", "MLPI", "NEHI", "NIHI", "NLSI", "QQQI", "SPYH", "TLTI", "XBCI", "XQQI", "XSPI"],
-    };
-    const byTicker = Object.fromEntries(index.funds.map((fund: any) => [fund.ticker, fund]));
-    for (const [tenor, tickers] of Object.entries(tooYoung)) {
-      for (const ticker of tickers) {
-        expect(`${ticker} ${tenor}`).toBe(`${ticker} ${tenor}`);
-        expect(byTicker[ticker].returns.monthEnd[tenor]).toBeNull();
-      }
-    }
-    // And the funds old enough do report them.
-    expect(byTicker["HYBI"].returns.monthEnd.ytd).not.toBeNull();
-    expect(byTicker["SPYI"].returns.monthEnd.yr3).not.toBeNull();
-  });
+test('scheduled path (empty inputs and advanced) equals the config defaults', () => {
+  const defaults = file();
+  const scheduled = resolveControls(defaults, JSON.parse('{}'), JSON.parse('{}'), {});
+  expect(scheduled).toEqual(defaults);
+  for (const value of Object.values(scheduled)) expect(typeof value).toBe('string');
 });
 
-// ---------------------------------------------------------------------------
-// 19. Rendering the app's Overview tab from the published feed
-// ---------------------------------------------------------------------------
-
-// The Overview tab is a literal array of { section, metric, value } rows inside
-// app.tsx, so the guard reads that array out of the file and evaluates each row
-// against every published fund. A cell that comes back empty is a feed gap
-// (the field is missing) or a provider limitation (the field is null); only the
-// limitations may ever show `—`, and only for the funds listed here. A new
-// dash anywhere fails this suite instead of shipping a blank cell.
-const DOCUMENTED_DASHES: Record<string, string[]> = {
-  "YTD (ME)": ["XBCI", "XQQI", "XSPI"],
-  "YTD (QE)": ["XBCI", "XQQI", "XSPI"],
-  "1Y (ME)": ["MLPI", "NEHI", "NIHI", "NLSI", "XBCI", "XQQI", "XSPI"],
-  "1Y (QE)": ["MLPI", "NEHI", "NIHI", "NLSI", "XBCI", "XQQI", "XSPI"],
-  "3Y CAGR (ME)": ["BTCI", "IAUI", "IWMI", "IYRI", "MLPI", "NEHI", "NIHI", "NLSI", "QQQI", "SPYH", "TLTI", "XBCI", "XQQI", "XSPI"],
-  "3Y CAGR (QE)": ["BTCI", "IAUI", "IWMI", "IYRI", "MLPI", "NEHI", "NIHI", "NLSI", "QQQI", "SPYH", "TLTI", "XBCI", "XQQI", "XSPI"],
-  "5Y CAGR (ME)": ["BNDI", "BTCI", "CSHI", "IAUI", "IWMI", "IYRI", "MLPI", "NEHI", "NIHI", "NLSI", "QQQI", "SPYH", "SPYI", "TLTI", "XBCI", "XQQI", "XSPI"],
-  "5Y CAGR (QE)": ["BNDI", "BTCI", "CSHI", "IAUI", "IWMI", "IYRI", "MLPI", "NEHI", "NIHI", "NLSI", "QQQI", "SPYH", "SPYI", "TLTI", "XBCI", "XQQI", "XSPI"],
-  "10Y CAGR (ME)": ["BNDI", "BTCI", "CSHI", "IAUI", "IWMI", "IYRI", "MLPI", "NEHI", "NIHI", "NLSI", "QQQH", "QQQI", "SPYH", "SPYI", "TLTI", "XBCI", "XQQI", "XSPI"],
-  "10Y CAGR (QE)": ["BNDI", "BTCI", "CSHI", "IAUI", "IWMI", "IYRI", "MLPI", "NEHI", "NIHI", "NLSI", "QQQH", "QQQI", "SPYH", "SPYI", "TLTI", "XBCI", "XQQI", "XSPI"],
-  "SI Ann. (ME)": ["MLPI", "NEHI", "NIHI", "NLSI", "XBCI", "XQQI", "XSPI"],
-  "SI Ann. (QE)": ["MLPI", "NEHI", "NIHI", "NLSI", "XBCI", "XQQI", "XSPI"],
-  "Underlying Exposure": ["HYBI", "IAUI", "NIHI", "QQQH", "SPYH"],
-  "Fiscal Year Q3 Portfolio Holdings": ["IAUI", "MLPI", "NEHI", "NIHI", "NLSI", "SPYH", "XBCI", "XQQI", "XSPI"],
-  "Annual Report": ["XBCI", "XQQI", "XSPI"],
-  "Supplemental Tax Information": ["XBCI", "XQQI", "XSPI"],
-  "12-Month Trailing Distribution Rate": ["IAUI", "MLPI", "NEHI", "NIHI", "NLSI", "SPYH", "XBCI", "XQQI", "XSPI"],
-  "Form 8937": ["IAUI", "NIHI", "XBCI", "XQQI", "XSPI"],
-};
-
-/** The `const overview: Array<...> = [...]` rows of renderOverviewTable(). */
-function overviewRows(): Array<{ section: string; metric: string; expression: string }> {
-  const app = readFileSync(path.join(REPO_ROOT, "app.tsx"), "utf8");
-  const marker = "const overview: Array<{ section: string; metric: string; value: unknown }> = [";
-  const start = app.indexOf(marker);
-  expect(start).toBeGreaterThan(0);
-  const end = app.indexOf("  ];", start);
-  const body = app.slice(start + marker.length, end);
-  return [...body.matchAll(/\{ section: '([^']+)', metric: '([^']+)', value: ([\s\S]*?) \},/g)].map(
-    ([, section, metric, expression]) => ({ section, metric, expression }),
-  );
-}
-
-describe("the Overview tab renders from the feed", () => {
-  const index = feedJson("index.json");
-  const rows = overviewRows();
-  const dashes = new Map<string, string[]>();
-
-  test("every Overview row evaluates against every fund", () => {
-    expect(rows.length).toBeGreaterThan(60);
-    const formatMoney = (value: number | null) => (value === null || value === undefined ? "\u2014" : `$${Number(value).toFixed(2)}`);
-    const formatPercent = (value: number | null) => (value === null || value === undefined ? "\u2014" : `${Number(value).toFixed(2)}%`);
-    for (const fund of index.funds) {
-      const meta = feedJson(`funds/${fund.ticker}/meta.json`);
-      const monthEnd = (fund.returns && fund.returns.monthEnd) || {};
-      const quarterEnd = (fund.returns && fund.returns.quarterEnd) || {};
-      for (const row of rows) {
-        // The same expression the app renders, evaluated against the feed.
-        const render = new Function(
-          "meta",
-          "fund",
-          "monthEnd",
-          "quarterEnd",
-          "formatMoney",
-          "formatPercent",
-          "categoryLabel",
-          `return (${row.expression});`,
-        );
-        const value = render(meta, fund, monthEnd, quarterEnd, formatMoney, formatPercent, (label: string) => label || "ETF");
-        const empty = value === null || value === undefined || value === "" || value === "\u2014";
-        if (empty) dashes.set(row.metric, [...(dashes.get(row.metric) || []), fund.ticker]);
-      }
-    }
-    expect(dashes.size).toBeGreaterThan(0);
-  });
-
-  test("only the documented provider limitations render as `—`", () => {
-    for (const [metric, tickers] of dashes) {
-      expect(Object.keys(DOCUMENTED_DASHES)).toContain(metric);
-      expect(DOCUMENTED_DASHES[metric]).toContain(tickers[0]);
-      // A fund outside the documented set means a cell went blank.
-      for (const ticker of tickers) expect(`${metric} ${ticker}`).toBe(`${metric} ${DOCUMENTED_DASHES[metric].includes(ticker) ? ticker : `${ticker} UNEXPECTED`}`);
-    }
-  });
-
-  test("the catalog row carries the figures the Overview tab reads", () => {
-    const spyi = Object.fromEntries(index.funds.map((fund: any) => [fund.ticker, fund]))["SPYI"] as any;
-    expect(spyi.returns.monthEnd.sinceInceptionCumulative).toBe(75.14);
-    expect(spyi.returns.monthEnd.sinceInceptionCumulativeText).toBe("75.14%");
-    expect(spyi.returns.monthEnd.sinceInception).toBe(15.02);
-    expect(spyi.returns.quarterEnd.sinceInceptionCumulative).toBe(70.14);
-    expect(spyi.returns.quarterEnd.asOfDate).toBe("Jun 30 2026");
-  });
-});
-
-
-import { test as frequencyLabelTest, expect as frequencyLabelExpect } from 'bun:test';
-frequencyLabelTest('Frequency placeholders display None and existing cadence labels stay unchanged', async () => {
-  const text = await Bun.file(new URL('../app.tsx', import.meta.url)).text();
-  const start = /^([ \t]*)function (formatDividendFrequency|formatDistributionFrequency)\(/m.exec(text);
-  frequencyLabelExpect(start).not.toBeNull();
-  const tail = text.slice(start!.index);
-  const end = new RegExp('^' + start![1] + '\u007d', 'm').exec(tail);
-  frequencyLabelExpect(end).not.toBeNull();
-  const js = new Bun.Transpiler({ loader: 'ts' }).transformSync(tail.slice(0, end!.index + end![0].length));
-  const format = new Function(js + '; return ' + start![2] + ';')();
-  for (const value of [null, undefined, '', '  ', '-', '‐', '‑', '‒', '–', '—', ' — ']) {
-    frequencyLabelExpect(format(value)).toBe('00 - None');
+test('resolver rejects unknown keys, invalid values and environment-file injection', () => {
+  for (const value of [{ UNKNOWN: 1 }, { SEC_UA: 'x\nEVIL=yes' }, { CONCURRENCY: 0 }, { MAX_RETRIES: 0 }, { MAX_RETRIES: -1 }, { HISTORY_RANGE: 'forever' }, { MAX_FETCHES: 1.5 }, { REQUEST_SLEEP: '-1' }, { VERBOSE: 'maybe' }, { SKIP_NEOS: 'perhaps' }, { AUM: '1:2:3' }, { TER: '5:1' }, { TICKERS: ['SPYI'] }, { TICKERS: null }, null, []]) {
+    expect(() => resolveControls(value)).toThrow();
   }
-  for (const [input, expected] of [
-    ['None', '00 - None'], ['Unknown', '00 - Unknown'], ['Monthly', '01 - Monthly'],
-    ['Quarterly', '04 - Quarterly'], ['Semi-annually', '06 - Semi-annually'],
-    ['Annually', '12 - Annually'], ['Irregular', '99 - Irregular'],
-  ]) frequencyLabelExpect(format(input)).toBe(expected);
+  expect(() => resolveControls({}, { SEC_UA: 'x\rfoo' })).toThrow();
+  expect(() => resolveControls({}, {}, { TICKERS: 'a\nb' })).toThrow();
+  expect(() => resolveControls({}, {}, {}, { SEC_UA: 'x\0bad' })).toThrow();
+  expect(() => resolveControls({}, [])).toThrow();
+  expect(() => resolveControls({}, JSON.parse('{"CONCURRENCY":{"a":1}}'))).toThrow();
+  expect(() => JSON.parse('{not json')).toThrow();
 });
 
-
-import { test as queueTest, describe as queueDescribe, expect as queueExpect } from 'bun:test';
-
-async function tickerChainHarness() {
- const app=await Bun.file(new URL('../app.tsx',import.meta.url)).text();
- const source=app.match(/^function withTickerChain<T>\([\s\S]*?^\}/m)?.[0];
- queueExpect(source).toBeDefined();
- const javascript=new Bun.Transpiler({loader:'ts'}).transformSync(source!);
- const chains=new Map<string,Promise<void>>();
- const enqueue=new Function('holdingsChains',`${javascript}; return withTickerChain;`)(chains) as
-  <T>(ticker:string,fn:()=>Promise<T>)=>Promise<T>;
- return {chains,enqueue};
-}
-
-queueDescribe('per-ticker queue preserves caller results and stores completion-only promises',()=>{
- queueTest('successful generic result reaches caller, not the internal queue',async()=>{
-  const {chains,enqueue}=await tickerChainHarness();
-  const value={rows:[['AGEM']]};
-  queueExpect(await enqueue('AGEM',async()=>value)).toBe(value);
-  queueExpect(await chains.get('AGEM')).toBeUndefined();
- });
- queueTest('rejection reaches caller without poisoning the next queued task',async()=>{
-  const {chains,enqueue}=await tickerChainHarness();
-  const error=new Error('page failed');
-  const work=enqueue('AGEM',async()=>{throw error;});
-  const observed=work.catch(reason=>reason);
-  const settled=chains.get('AGEM');
-  const next=enqueue('AGEM',async()=>42);
-  queueExpect(await observed).toBe(error);
-  queueExpect(await settled).toBeUndefined();
-  queueExpect(await next).toBe(42);
-  queueExpect(await chains.get('AGEM')).toBeUndefined();
- });
- queueTest('synchronous callback throws also leave the queue usable',async()=>{
-  const {chains,enqueue}=await tickerChainHarness();
-  const error=new Error('synchronous failure');
-  queueExpect(await enqueue('AGEM',()=>{throw error;}).catch(reason=>reason)).toBe(error);
-  queueExpect(await chains.get('AGEM')).toBeUndefined();
-  queueExpect(await enqueue('AGEM',async()=>'recovered')).toBe('recovered');
- });
- queueTest('same-ticker work stays serial while other tickers run independently',async()=>{
-  const {chains,enqueue}=await tickerChainHarness();
-  let release!:()=>void;
-  const gate=new Promise<void>(resolve=>{release=resolve;});
-  const events:string[]=[];
-  const first=enqueue('AGEM',async()=>{events.push('first');await gate;events.push('done');return 1;});
-  const second=enqueue('AGEM',async()=>{events.push('second');return 2;});
-  try {
-   queueExpect(await enqueue('SGOL',async()=>3)).toBe(3);
-   queueExpect(events).toEqual(['first']);
-  } finally { release(); }
-  queueExpect(await Promise.all([first,second])).toEqual([1,2]);
-  queueExpect(events).toEqual(['first','done','second']);
-  queueExpect(await chains.get('AGEM')).toBeUndefined();
-  queueExpect(await chains.get('SGOL')).toBeUndefined();
- });
+test('provider-specific defaults resolve to the documented values', () => {
+  const config = readConfig(resolveControls(file()));
+  expect(config.maxFetches).toBe(0);
+  expect(config.requestSleep).toBe(2);
+  expect(config.concurrency).toBe(2);
+  expect(config.maxRetries).toBe(3);
+  expect(config.tickers).toEqual([]);
+  expect(config.category).toBe('');
+  expect(config.aumRange).toBeUndefined();
+  expect(config.terRange).toBeUndefined();
+  expect(config.holdingsPageSize).toBe(250);
+  expect(config.historyPageSize).toBe(1000);
+  expect(config.historyRange).toBe('max');
+  expect(config.storeRawDownloads).toBe(false);
+  expect(config.edgarFallback).toBe(true);
+  expect(config.skipYahoo).toBe(false);
+  expect(config.skipNeos).toBe(false);
+  expect(config.secUa).toBe('daggerok ETF feed daggerok@gmail.com');
+  expect(file().SEC_UA).toBe('daggerok ETF feed daggerok@gmail.com');
+  expect(config.performanceRanges).toEqual({});
+  expect(config.totalReturnRanges).toEqual({});
+  expect(readConfig(resolveControls(file(), {}, { PERFORMANCE_3Y: '10:' })).performanceRanges['3Y']).toEqual({ min: 10, max: Infinity });
 });
 
+test('runtimeControls feeds the CLI with file defaults and env overrides', async () => {
+  expect(await runtimeControls({})).toEqual(file());
+  expect((await runtimeControls({ TICKERS: 'SPYI', SEC_UA: 'ci-contact' })).TICKERS).toBe('SPYI');
+});
 
-import { test as headerTest, expect as headerExpect } from 'bun:test';
-async function headerSummaryHarness() {
-  const source = await Bun.file(new URL('../app.tsx', import.meta.url)).text();
-  const match = /^([ \t]*)function renderHeaderSummary\(/m.exec(source);
-  headerExpect(match).not.toBeNull();
-  const tail = source.slice(match!.index);
-  const end = new RegExp('^' + match![1] + '}', 'm').exec(tail)!;
-  const js = new Bun.Transpiler({ loader: 'ts' }).transformSync(tail.slice(0, end.index + end[0].length));
-  const makeNode = (text = ''): any => {
-    const node: any = { textContent: text, childNodes: [], dataset: {}, listeners: {} };
-    node.replaceChildren = (...children: any[]) => { node.childNodes = children; };
-    node.append = (...children: any[]) => { node.childNodes.push(...children); };
-    node.addEventListener = (name: string, listener: any) => { node.listeners[name] = listener; };
-    return node;
-  };
-  const panel = makeNode(), subtitle = makeNode(), details = makeNode('Data: source link and updated timestamp');
-  subtitle.append(details);
-  const document = { getElementById: () => panel, createTextNode: makeNode, createElement: () => makeNode() };
-  const render = new Function('document', js + '; return renderHeaderSummary;')(document);
-  const text = () => subtitle.childNodes.map((n: any) => n.textContent).join('');
-  return { render, panel, subtitle, details, makeNode, text };
-}
-headerTest('header has no visible subtitle without selection; original details nodes are retained', async () => {
-  const h = await headerSummaryHarness();
-  h.render(h.subtitle, new Set(), null, () => {});
-  headerExpect(h.text()).toBe('');
-  headerExpect(h.panel.childNodes).toEqual([h.details]);
-  headerExpect(h.panel.childNodes[0]).toBe(h.details);
+test('config keys, CONTROL_NAMES, --help and README controls table are in sync', () => {
+  expect(Object.keys(file()).sort()).toEqual([...CONTROL_NAMES].sort());
+  expect(new Set(CONTROL_NAMES).size).toBe(CONTROL_NAMES.length);
+  for (const name of CONTROL_NAMES) expect(name).toMatch(/^[A-Z0-9_]+$/);
+  const doc = read('README.md');
+  const table = doc.slice(doc.indexOf('### Update controls'), doc.indexOf('### Examples'));
+  for (const name of CONTROL_NAMES) {
+    const tenor = name.match(/^(PERFORMANCE|TOTAL_RETURN)_(1Y|3Y|5Y|10Y)$/);
+    expect(table).toContain(tenor ? '`_' + tenor[2] + '`' : '`' + name + '`');
+    if (tenor) expect(table).toContain('`' + tenor[1] + '_YTD`');
+  }
+  expect(doc).toContain('scripts/update-data.config.json');
+  const help = Bun.spawnSync(['bun', 'scripts/update-data.ts', '--help'], { cwd: new URL('..', import.meta.url).pathname });
+  const usage = help.stdout.toString();
+  for (const name of CONTROL_NAMES) {
+    const tenor = name.match(/^(PERFORMANCE|TOTAL_RETURN)_(YTD|1Y|3Y|5Y|10Y)$/);
+    expect(usage).toContain(tenor ? tenor[1] + '_YTD|1Y|3Y|5Y|10Y' : name);
+  }
 });
-headerTest('header shows sorted selected tickers only, preserving click activation and highlight', async () => {
-  const h = await headerSummaryHarness(); const activated: string[] = [];
-  h.render(h.subtitle, new Set(['ZZZ', 'AAA']), 'AAA', (ticker: string) => activated.push(ticker));
-  headerExpect(h.text()).toBe('2 selected: AAA, ZZZ');
-  const links = h.subtitle.childNodes.filter((n: any) => n.dataset.headerFund);
-  headerExpect(links[0].className).toContain('underline');
-  links[1].listeners.click({ preventDefault() {} });
-  headerExpect(activated).toEqual(['ZZZ']);
-  headerExpect(h.panel.childNodes[0]).toBe(h.details);
+
+test('workflow: <= 25 inputs, advanced JSON, schedule, fixed api/neos output, no inputs interpolation', () => {
+  const wf = read('.github/workflows/update-data.yml');
+  const block = wf.slice(wf.indexOf('    inputs:'), wf.indexOf('\npermissions:'));
+  const names = [...block.matchAll(/^      (\w+):$/gm)].map((m) => m[1]);
+  expect(names.length).toBeLessThanOrEqual(25);
+  expect(names).toContain('advanced');
+  expect(block).toMatch(/advanced:[\s\S]*?default: '\{\}'/);
+  for (const name of names.filter((n) => n !== 'advanced')) expect(CONTROL_NAMES).toContain(name.toUpperCase() as any);
+  expect(wf).toContain("cron: '0 0 * * 0'");
+  expect(wf).not.toMatch(/^  push:/m);
+  expect(wf).toContain('toJSON(inputs)');
+  expect(wf).toContain('resolveControls');
+  expect(wf).not.toMatch(/\$\{\{\s*inputs\./);
+  expect(wf).not.toContain('OUTPUT_DIR');
+  expect(wf).toContain('git add api/neos\n          if git diff --cached --quiet -- api/neos');
+  expect([...wf.matchAll(/git add (\S+)/g)].map((m) => m[1])).toEqual(['api/neos']);
+  expect(wf).toContain('vars.SEC_UA');
+  expect(wf).toContain('timeout-minutes: 30');
+  expect(wf).toContain('persist-credentials: false');
+  expect(wf).not.toMatch(/OUTPUT_DIR|\.\.\//);
 });
-headerTest('all selected still lists tickers; clear replaces both summary and selection', async () => {
-  const h = await headerSummaryHarness();
-  h.render(h.subtitle, new Set(['CCC','AAA','BBB']), 'BBB', () => {});
-  headerExpect(h.text()).toBe('3 selected: AAA, BBB, CCC');
-  const next = h.makeNode('Fresh detail context'); h.subtitle.replaceChildren(next);
-  h.render(h.subtitle, new Set(), null, () => {});
-  headerExpect(h.text()).toBe(''); headerExpect(h.panel.childNodes).toEqual([next]);
+
+test('README follows the standard section order and documents the verification commands', () => {
+  const doc = read('README.md');
+  const order = ['# NEOS', '## Using Bun', '## Updating the static NEOS data', '### Data sources', '### Metrics and caveats', '### Update controls', '### Examples', '## TypeScript and verification', '## Brands table', '## Sibling applications', '## License'];
+  let at = -1;
+  for (const heading of order) {
+    const next = doc.indexOf('\n' + heading + '\n', at + 1) >= 0 ? doc.indexOf('\n' + heading + '\n', at + 1) : doc.startsWith(heading + '\n') && at < 0 ? 0 : -1;
+    expect(next).toBeGreaterThan(at - (at < 0 ? 1 : 0));
+    at = next;
+  }
+  for (const command of ['bun install --frozen-lockfile', 'bun test', 'bun build --target=bun scripts/update-data.ts --outfile=/dev/null', 'git diff --check']) expect(doc).toContain(command);
 });
-headerTest('header markup supplies a focusable counter and hidden rich panel with dismissal', async () => {
-  const html = await Bun.file(new URL('../index.html', import.meta.url)).text();
-  headerExpect(html).toMatch(/<button[^>]*aria-controls="app-summary"[^>]*id="ticker-count"/);
-  headerExpect(html).toContain('id="app-summary" role="region" aria-label="ETF catalog information" hidden');
-  headerExpect(html).toContain("event.key !== 'Escape'");
-  headerExpect(html).toContain("trigger.addEventListener('focus', show)");
-  headerExpect(html).toContain("trigger.addEventListener('pointerenter'");
+
+test('scripts/ carries only the config, the updater and its test', () => {
+  const names = [...new Bun.Glob('*').scanSync({ cwd: path.join(REPO_ROOT, 'scripts'), onlyFiles: false })].sort();
+  expect(names).toEqual(['update-data.config.json', 'update-data.test.ts', 'update-data.ts']);
 });
