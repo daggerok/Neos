@@ -57,6 +57,8 @@ import {
   parseNeosLineup,
   parseNeosNavIndex,
   parseNeosPerformanceSection,
+  performanceAsOf,
+  RETURNS_BASIS,
   parseNportXml,
   parseRange,
   parseYahooChart,
@@ -896,6 +898,22 @@ const indexValues2 = ["10000","10100","10150"];
 const ctx = document.getElementById('navIndexChart');
 });
 </script>`;
+
+describe("returnsBasis and performanceAsOf", () => {
+  test("performanceAsOf is the Performance table date as ISO, null when unknown", () => {
+    const monthly = parseNeosPerformanceSection(MONTHLY_PERFORMANCE_HTML, "monthly-performance")!;
+    expect(performanceAsOf(monthly.asOfDate)).toMatch(/^\d{4}-\d{2}-\d{2}$/);
+    expect(performanceAsOf("Aug 31 2026")).toBe("2026-08-31");
+    expect(performanceAsOf("")).toBeNull();
+    expect(performanceAsOf(undefined)).toBeNull();
+  });
+
+  test("returnsBasis is a non-empty honest label", () => {
+    expect(RETURNS_BASIS.trim()).not.toBe("");
+    expect(RETURNS_BASIS).not.toBe("-");
+    expect(RETURNS_BASIS).toContain("official NEOS");
+  });
+});
 
 describe("parseNeosNavIndex", () => {
   test("the inline series behind the growth chart is read as numbers", () => {

@@ -399,7 +399,8 @@
     "yield12MText": "14.08%",
     "secYield": -0.05,
     "secYieldText": "-0.05%",
-    "returnsBasis": "official NEOS fund page NAV Performance (monthly series)"
+    "returnsBasis": "official NEOS fund page NAV total returns (month-end Performance table); 3/5/10 Yr cumulative derived from the published annualized figures",
+    "performanceAsOf": "2026-08-31"
   },
   "distributionFrequency": "01 - Monthly",
   "providerCategory": "Equity High Income",

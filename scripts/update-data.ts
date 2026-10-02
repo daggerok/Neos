@@ -369,6 +369,14 @@ export function toIsoDate(raw: unknown): string {
   return '';
 }
 
+/** Honest label for how `metrics` returns are computed (STANDARD.md 9a). */
+export const RETURNS_BASIS = 'official NEOS fund page NAV total returns (month-end Performance table); 3/5/10 Yr cumulative derived from the published annualized figures';
+
+/** ISO date the published returns are as of: the Performance table date (not the NAV date), or null when unknown. */
+export function performanceAsOf(tableDate: unknown): string | null {
+  return toIsoDate(tableDate) || null;
+}
+
 /** `08/29/2022` -> `Aug 29 2022`. Returns the cleaned input when unparseable. */
 export function formatNeosDate(raw: unknown): string {
   const iso = toIsoDate(raw);
@@ -1933,7 +1941,8 @@ async function updateFund(
     yield12MText: formatPercentText(distributionInfo?.trailingRate12M ?? null),
     secYield: distributionInfo?.secYield ?? fund.secYield ?? null,
     secYieldText: formatPercentText(distributionInfo?.secYield ?? fund.secYield ?? null),
-    returnsBasis: 'official NEOS fund page NAV Performance (monthly series)',
+    returnsBasis: RETURNS_BASIS,
+    performanceAsOf: performanceAsOf(monthEndDate),
   };
 
   const latestDistribution = distributionRows.find((row) => row['Amount ($)'] && !isMissingCell(row['Amount ($)']));

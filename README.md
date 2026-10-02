@@ -58,6 +58,10 @@ NEOS publishes **no asset-class column**, so the Watchlist's `Asset Category` is
 
 The page publishes **annualized** 3 Yr / 5 Yr / 10 Yr figures and a **cumulative** Inception figure. The catalog carries both readings, computed from the published one with `(1 + r)^n - 1` or `(1 + TR)^(1/n) - 1`, and `returns.derivedFrom` records that the basis is NEOS's own NAV Performance table. Nothing is extrapolated past a tenor the fund has not lived through: a fund younger than its 5-year mark publishes `null`, and the app prints `—`.
 
+#### Returns basis and as-of date
+
+Every `funds[].metrics` row in `api/neos/index.json` ends with two fields: `returnsBasis`, a non-empty label saying the returns are NEOS's official NAV total returns from the month-end Performance table (3/5/10 Yr cumulative derived from the published annualized figures), and `performanceAsOf`, the ISO `YYYY-MM-DD` date of that table (not the NAV date), `null` only when the page prints none. Unavailable numbers are `null`, never `0`.
+
 #### Known value limitations
 
 | Metric | Status | Reason |
