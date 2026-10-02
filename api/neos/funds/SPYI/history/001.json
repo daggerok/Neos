@@ -2,7 +2,7 @@
   "ticker": "SPYI",
   "page": 1,
   "pageSize": 1000,
-  "totalRows": 1022,
+  "totalRows": 1026,
   "headers": [
     "Date",
     "Close",
@@ -11,10 +11,34 @@
   ],
   "rows": [
     {
+      "Date": "2026-10-01",
+      "Close": "53.28",
+      "Adj Close": "53.28",
+      "Volume": "2892100"
+    },
+    {
+      "Date": "2026-09-30",
+      "Close": "53.17",
+      "Adj Close": "53.17",
+      "Volume": "2605500"
+    },
+    {
+      "Date": "2026-09-29",
+      "Close": "53.27",
+      "Adj Close": "53.27",
+      "Volume": "2864100"
+    },
+    {
+      "Date": "2026-09-28",
+      "Close": "53.34",
+      "Adj Close": "53.34",
+      "Volume": "2760200"
+    },
+    {
       "Date": "2026-09-25",
       "Close": "53.65",
       "Adj Close": "53.65",
-      "Volume": "2399100"
+      "Volume": "2410700"
     },
     {
       "Date": "2026-09-24",
@@ -4567,7 +4591,7 @@
     {
       "Date": "2023-09-15",
       "Close": "49.13",
-      "Adj Close": "33.84",
+      "Adj Close": "33.83",
       "Volume": "183800"
     },
     {
@@ -5985,30 +6009,6 @@
       "Close": "45.96",
       "Adj Close": "28.63",
       "Volume": "100"
-    },
-    {
-      "Date": "2022-10-05",
-      "Close": "46.21",
-      "Adj Close": "28.78",
-      "Volume": "300"
-    },
-    {
-      "Date": "2022-10-04",
-      "Close": "46.23",
-      "Adj Close": "28.80",
-      "Volume": "100"
-    },
-    {
-      "Date": "2022-10-03",
-      "Close": "45.42",
-      "Adj Close": "28.29",
-      "Volume": "300"
-    },
-    {
-      "Date": "2022-09-30",
-      "Close": "44.61",
-      "Adj Close": "27.79",
-      "Volume": "2300"
     }
   ]
 }
