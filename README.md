@@ -83,7 +83,7 @@ Defaults below are the values in `scripts/update-data.config.json`. Environment 
 | `MAX_FETCHES` | `0` | Funds to process; `0` = full pass. A positive value resumes after the cursor in `api/neos/update-state.json` |
 | `REQUEST_SLEEP` | `2` | Seconds between request starts; `neosfunds.com` throttles bursts |
 | `CONCURRENCY` | `2` | Parallel fund workers |
-| `MAX_RETRIES` | `3` | Retries after the initial request for network errors and HTTP 408/425/429/5xx |
+| `MAX_RETRIES` | `3` | Retries (integer >= 1) after the initial request for network errors and HTTP 408/425/429/5xx |
 | `TICKERS` | `""` | Space or comma separated ticker allowlist; ANDed with the other filters, never overriding them |
 | `CATEGORY` | `""` | Substring match on the NEOS asset-class group |
 | `AUM` | `:` | `min:max` dollars; also accepts K/M/B/T suffixes and `nano`, `micro`, `small`, `mid`, `large` |
@@ -96,7 +96,7 @@ Defaults below are the values in `scripts/update-data.config.json`. Environment 
 | `HISTORY_PAGE_SIZE` | `1000` | Rows per generated history JSON page |
 | `HISTORY_RANGE` | `max` | Yahoo chart range for the price-history sheets (`max`, `10y`, `5y`, ...) |
 | `STORE_RAW_DOWNLOADS` | `false` | Keep raw samples under `api/neos/raw` |
-| `SEC_UA` | `""` | Declared User-Agent for SEC EDGAR requests; blank uses the repository URL descriptor |
+| `SEC_UA` | `daggerok ETF feed daggerok@gmail.com` | Declared User-Agent for SEC EDGAR requests; redacted in config logs, the `SEC_UA` repository Actions variable overrides it |
 | `EDGAR_FALLBACK` | `true` | Use N-PORT-P when a holdings CSV is unavailable |
 | `SKIP_YAHOO` | `false` | Keep previous history and distributions while refreshing catalog and holdings |
 | `SKIP_NEOS` | `false` | Keep the previously published official catalog |
@@ -126,7 +126,7 @@ bun build --target=bun scripts/update-data.ts --outfile=/dev/null
 git diff --check
 ```
 
-`bun test` also covers the config file, `CONTROL_NAMES`, this README's controls table and the workflow file (`scripts/config-docs.test.ts`).
+`bun test` also covers the config file, `CONTROL_NAMES`, `--help`, this README's controls table and the workflow file.
 
 ## Brands table
 
@@ -151,7 +151,7 @@ git diff --check
 | **ProShares** | [proshares.com](https://www.proshares.com/our-etfs/find-proshares-etfs) \| [ProShares](https://daggerok.github.io/ProShares/) |
 | **Schwab** | [schwabassetmanagement.com](https://www.schwabassetmanagement.com/products) \| [Schwab](https://daggerok.github.io/Schwab/) |
 | **SPDR** | [ssga.com](https://www.ssga.com/us/en/intermediary/etfs/fund-finder) \| [SPDR](https://daggerok.github.io/SPDR/) |
-| **Sprott ETFs** | [sprottetfs.com](https://sprottetfs.com/) \| [Sprott](https://daggerok.github.io/Sprott/) (deployment pending) |
+| **Sprott ETFs** | [sprottetfs.com](https://sprottetfs.com/) \| [Sprott](https://daggerok.github.io/Sprott/) |
 | **Tema ETFs** | [temaetfs.com](https://temaetfs.com/funds) \| [Tema](https://daggerok.github.io/Tema/) |
 | **Themes ETFs** | [themesetfs.com/etfs](https://themesetfs.com/etfs) \| [Themes](https://daggerok.github.io/Themes/) |
 | **VanEck** | [vaneck.com](https://www.vaneck.com/us/en/etf-mutual-fund-finder/) \| [VanEck](https://daggerok.github.io/VanEck/) |
