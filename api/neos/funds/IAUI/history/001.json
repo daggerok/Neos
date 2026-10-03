@@ -2,7 +2,7 @@
   "ticker": "IAUI",
   "page": 1,
   "pageSize": 1000,
-  "totalRows": 329,
+  "totalRows": 334,
   "headers": [
     "Date",
     "Close",
@@ -10,6 +10,36 @@
     "Volume"
   ],
   "rows": [
+    {
+      "Date": "2026-10-02",
+      "Close": "48.21",
+      "Adj Close": "48.21",
+      "Volume": "234700"
+    },
+    {
+      "Date": "2026-10-01",
+      "Close": "48.41",
+      "Adj Close": "48.41",
+      "Volume": "154000"
+    },
+    {
+      "Date": "2026-09-30",
+      "Close": "48.32",
+      "Adj Close": "48.32",
+      "Volume": "185300"
+    },
+    {
+      "Date": "2026-09-29",
+      "Close": "48.53",
+      "Adj Close": "48.53",
+      "Volume": "231200"
+    },
+    {
+      "Date": "2026-09-28",
+      "Close": "47.92",
+      "Adj Close": "47.92",
+      "Volume": "537000"
+    },
     {
       "Date": "2026-09-25",
       "Close": "49.82",

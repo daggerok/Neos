@@ -2,7 +2,7 @@
   "ticker": "NLSI",
   "page": 1,
   "pageSize": 1000,
-  "totalRows": 199,
+  "totalRows": 204,
   "headers": [
     "Date",
     "Close",
@@ -10,6 +10,36 @@
     "Volume"
   ],
   "rows": [
+    {
+      "Date": "2026-10-02",
+      "Close": "57.39",
+      "Adj Close": "57.39",
+      "Volume": "1100"
+    },
+    {
+      "Date": "2026-10-01",
+      "Close": "57.82",
+      "Adj Close": "57.82",
+      "Volume": "200"
+    },
+    {
+      "Date": "2026-09-30",
+      "Close": "56.87",
+      "Adj Close": "56.87",
+      "Volume": "200"
+    },
+    {
+      "Date": "2026-09-29",
+      "Close": "56.53",
+      "Adj Close": "56.53",
+      "Volume": "9900"
+    },
+    {
+      "Date": "2026-09-28",
+      "Close": "56.70",
+      "Adj Close": "56.70",
+      "Volume": "1100"
+    },
     {
       "Date": "2026-09-25",
       "Close": "57.43",

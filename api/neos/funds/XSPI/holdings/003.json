@@ -2,7 +2,7 @@
   "ticker": "XSPI",
   "page": 3,
   "pageSize": 250,
-  "totalRows": 509,
+  "totalRows": 511,
   "headers": [
     "Name",
     "Ticker",
@@ -14,21 +14,39 @@
   ],
   "rows": [
     {
+      "Name": "Weyerhaeuser Co",
+      "Ticker": "WY",
+      "Identifier": "962166104",
+      "Weight": "0.02%",
+      "Market Value": "$23069.03",
+      "Shares Held": "1,249",
+      "Asset Category": "Equity"
+    },
+    {
+      "Name": "Wynn Resorts Ltd",
+      "Ticker": "WYNN",
+      "Identifier": "983134107",
+      "Weight": "0.00%",
+      "Market Value": "$5691.00",
+      "Shares Held": "75",
+      "Asset Category": "Equity"
+    },
+    {
       "Name": "Xcel Energy Inc",
       "Ticker": "XEL",
       "Identifier": "98389B100",
       "Weight": "0.06%",
-      "Market Value": "$68753.00",
-      "Shares Held": "985",
+      "Market Value": "$74613.00",
+      "Shares Held": "1,045",
       "Asset Category": "Equity"
     },
     {
       "Name": "ExxonMobil Holdings Corp",
       "Ticker": "XOM",
       "Identifier": "30233Q108",
-      "Weight": "1.03%",
-      "Market Value": "$1193344.29",
-      "Shares Held": "7,431",
+      "Weight": "1.05%",
+      "Market Value": "$1297483.11",
+      "Shares Held": "7,911",
       "Asset Category": "Equity"
     },
     {
@@ -36,8 +54,8 @@
       "Ticker": "XYL",
       "Identifier": "98419M100",
       "Weight": "0.03%",
-      "Market Value": "$34278.42",
-      "Shares Held": "334",
+      "Market Value": "$35524.71",
+      "Shares Held": "349",
       "Asset Category": "Equity"
     },
     {
@@ -45,17 +63,17 @@
       "Ticker": "XYZ",
       "Identifier": "852234103",
       "Weight": "0.05%",
-      "Market Value": "$61441.68",
-      "Shares Held": "804",
+      "Market Value": "$63106.17",
+      "Shares Held": "849",
       "Asset Category": "Equity"
     },
     {
       "Name": "Yum! Brands Inc",
       "Ticker": "YUM",
       "Identifier": "988498101",
-      "Weight": "0.06%",
-      "Market Value": "$64047.06",
-      "Shares Held": "462",
+      "Weight": "0.05%",
+      "Market Value": "$66971.04",
+      "Shares Held": "492",
       "Asset Category": "Equity"
     },
     {
@@ -63,8 +81,8 @@
       "Ticker": "ZBH",
       "Identifier": "98956P102",
       "Weight": "0.02%",
-      "Market Value": "$26128.48",
-      "Shares Held": "287",
+      "Market Value": "$26663.58",
+      "Shares Held": "302",
       "Asset Category": "Equity"
     },
     {
@@ -72,7 +90,7 @@
       "Ticker": "ZBRA",
       "Identifier": "989207105",
       "Weight": "0.02%",
-      "Market Value": "$19982.16",
+      "Market Value": "$20296.44",
       "Shares Held": "54",
       "Asset Category": "Equity"
     },
@@ -81,17 +99,17 @@
       "Ticker": "ZTS",
       "Identifier": "98978V103",
       "Weight": "0.04%",
-      "Market Value": "$49308.70",
-      "Shares Held": "694",
+      "Market Value": "$51500.91",
+      "Shares Held": "739",
       "Asset Category": "Equity"
     },
     {
       "Name": "Cash & Other",
       "Ticker": "Cash&Other",
       "Identifier": "Cash&Other",
-      "Weight": "1.43%",
-      "Market Value": "$1664075.53",
-      "Shares Held": "1,664,076",
+      "Weight": "3.21%",
+      "Market Value": "$3960446.34",
+      "Shares Held": "3,960,446",
       "Asset Category": "Cash"
     }
   ]

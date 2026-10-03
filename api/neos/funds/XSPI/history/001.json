@@ -2,7 +2,7 @@
   "ticker": "XSPI",
   "page": 1,
   "pageSize": 1000,
-  "totalRows": 163,
+  "totalRows": 168,
   "headers": [
     "Date",
     "Close",
@@ -10,6 +10,36 @@
     "Volume"
   ],
   "rows": [
+    {
+      "Date": "2026-10-02",
+      "Close": "50.11",
+      "Adj Close": "50.11",
+      "Volume": "64300"
+    },
+    {
+      "Date": "2026-10-01",
+      "Close": "49.66",
+      "Adj Close": "49.66",
+      "Volume": "78900"
+    },
+    {
+      "Date": "2026-09-30",
+      "Close": "49.58",
+      "Adj Close": "49.58",
+      "Volume": "77600"
+    },
+    {
+      "Date": "2026-09-29",
+      "Close": "49.67",
+      "Adj Close": "49.67",
+      "Volume": "90100"
+    },
+    {
+      "Date": "2026-09-28",
+      "Close": "49.79",
+      "Adj Close": "49.79",
+      "Volume": "90100"
+    },
     {
       "Date": "2026-09-25",
       "Close": "50.25",

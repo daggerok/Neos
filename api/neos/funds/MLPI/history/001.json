@@ -2,7 +2,7 @@
   "ticker": "MLPI",
   "page": 1,
   "pageSize": 1000,
-  "totalRows": 193,
+  "totalRows": 198,
   "headers": [
     "Date",
     "Close",
@@ -10,6 +10,36 @@
     "Volume"
   ],
   "rows": [
+    {
+      "Date": "2026-10-02",
+      "Close": "51.17",
+      "Adj Close": "51.17",
+      "Volume": "347600"
+    },
+    {
+      "Date": "2026-10-01",
+      "Close": "50.66",
+      "Adj Close": "50.66",
+      "Volume": "336400"
+    },
+    {
+      "Date": "2026-09-30",
+      "Close": "50.21",
+      "Adj Close": "50.21",
+      "Volume": "336200"
+    },
+    {
+      "Date": "2026-09-29",
+      "Close": "50.45",
+      "Adj Close": "50.45",
+      "Volume": "554000"
+    },
+    {
+      "Date": "2026-09-28",
+      "Close": "50.91",
+      "Adj Close": "50.91",
+      "Volume": "471600"
+    },
     {
       "Date": "2026-09-25",
       "Close": "51.10",
