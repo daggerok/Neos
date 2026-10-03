@@ -211,7 +211,11 @@ export function installSystemCa(mode: string, reexec: () => never = reexecWithSy
 }
 
 const REPO_ROOT = path.join(path.dirname(fileURLToPath(import.meta.url)), '..');
-const API_ROOT = path.join(REPO_ROOT, 'api', 'neos');
+let API_ROOT = path.join(REPO_ROOT, 'api', 'neos');
+/** Tests point the updater at a temporary feed directory. */
+export function setApiRootForTests(dir: string): void {
+  API_ROOT = dir;
+}
 
 export const NEOS_SITE = 'https://neosfunds.com';
 export const NEOS_LINEUP_URL = `${NEOS_SITE}/#explore-etfs`;
@@ -245,12 +249,18 @@ export function neosEdgarFilingsUrl(cik: string = NEOS_ETF_TRUST_CIK): string {
 
 export const YAHOO_CHART_URL = 'https://query1.finance.yahoo.com/v8/finance/chart';
 
+/**
+ * Explicit period1/period2 (Yahoo ignores `range` when period1=0). HISTORY_RANGE is
+ * `max` (period1=0) or `Ny` (N * 365.25 days before `nowMs`).
+ */
 export function yahooChartUrl(ticker: string, range: string = 'max', nowMs: number = Date.now()): string {
   const clean = sanitizeTicker(ticker);
   const period2 = Math.floor(nowMs / 1000);
-  const base = `${YAHOO_CHART_URL}/${encodeURIComponent(clean)}?period1=0&period2=${period2}` +
+  const years = /^(\d+)y$/i.exec(range.trim());
+  if (!years && range.trim().toLowerCase() !== 'max') throw new Error(`HISTORY_RANGE: expected max or Ny, received "${range}"`);
+  const period1 = years ? Math.max(0, Math.floor(period2 - Number(years[1]) * 365.25 * 86_400)) : 0;
+  return `${YAHOO_CHART_URL}/${encodeURIComponent(clean)}?period1=${period1}&period2=${period2}` +
     '&interval=1d&events=div%7Csplit&includeAdjustedClose=true';
-  return range && range !== 'max' ? `${base}&range=${encodeURIComponent(range)}` : base;
 }
 
 export function yahooChartProvenanceUrl(ticker: string): string {
@@ -565,7 +575,7 @@ export function readConfig(env: Record<string, string | undefined> = process.env
     secUa: envValue(env, 'SEC_UA') || SEC_UA_DEFAULT,
     skipYahoo: parseBoolean(envValue(env, 'SKIP_YAHOO')),
     skipNeos: parseBoolean(envValue(env, 'SKIP_NEOS')),
-    edgarFallback: parseBoolean(envValue(env, 'EDGAR_FALLBACK')),
+    edgarFallback: parseBoolean(envValue(env, 'EDGAR_FALLBACK'), true),
     aumRange: parseAumRange(envValue(env, 'AUM')),
     terRange: parseRange(envValue(env, 'TER'), 'TER'),
     dividendYieldRange: parseRange(envValue(env, 'DIVIDEND_YIELD'), 'DIVIDEND_YIELD'),
@@ -1567,6 +1577,32 @@ export function parseNportXml(xml: string): { positions: NportPosition[]; repPdD
 }
 
 /** Fold N-PORT positions onto the shared holdings contract. */
+/** Normalized fund series name: lower case, brand and "ETF" words and punctuation removed. */
+function seriesKey(name: string): string {
+  return cleanText(name).toLowerCase().replace(/\(r\)|\u00ae|\u2122/g, '').replace(/\b(neos|etf|etfs|fund|trust)\b/g, '').replace(/[^a-z0-9]+/g, '');
+}
+
+/** True when an N-PORT series name is this fund (exact after normalization, never a prefix of a sibling). */
+export function seriesNameMatches(seriesName: string | null | undefined, fundName: string): boolean {
+  const a = seriesKey(String(seriesName ?? ''));
+  const b = seriesKey(fundName);
+  return a !== '' && a === b;
+}
+
+/** primary_doc.xml links of an EDGAR filing list page, newest first, deduplicated. */
+export function edgarPrimaryDocLinks(html: string): string[] {
+  return [...new Set([...html.matchAll(/href=["'](\/Archives\/[^"']+primary_doc\.xml)["']/gi)].map((match) => match[1]))];
+}
+
+/** A fallback filing must never replace fresher published holdings (ISO report date vs a published date text). */
+export function fallbackIsStale(repPdDate: string, publishedAsOf: string | null | undefined): boolean {
+  const published = publishedAsOf ? Date.parse(`${toIsoDate(publishedAsOf) || publishedAsOf} UTC`) : NaN;
+  const reported = Date.parse(`${repPdDate} UTC`);
+  if (Number.isNaN(published)) return false;
+  if (Number.isNaN(reported)) return true;
+  return reported < published;
+}
+
 export function nportToHoldings(positions: NportPosition[], netAssets: number | null): Array<Record<string, string>> {
   return positions.map((position) => {
     const weight = position.percent === null
@@ -1805,14 +1841,91 @@ function passesReturnFilters(entry: CatalogEntry, config: UpdaterConfig): boolea
 // Per-fund update
 // ---------------------------------------------------------------------------
 
-type RunStats = { updated: number; unchanged: number; skipped: number; failed: number };
+export type RunStats = { updated: number; unchanged: number; skipped: number; failed: number };
 
 function readNumber(entry: CatalogEntry, key: string): number | null {
   const value = (entry as any)[key];
   return typeof value === 'number' ? value : null;
 }
 
-async function updateFund(
+/** The previously published meta.json of a fund, or null when there is none (or it is unreadable). */
+async function readPreviousMeta(fundDir: string): Promise<Record<string, any> | null> {
+  try {
+    return JSON.parse(await readFile(path.join(fundDir, 'meta.json'), 'utf8'));
+  } catch {
+    return null;
+  }
+}
+
+/** Yahoo daily history rows in the published page shape (newest first), or [] when the source failed or is skipped. */
+async function fetchYahooHistory(
+  ticker: string,
+  config: UpdaterConfig,
+): Promise<{ rows: Array<Record<string, string>>; dividends: YahooDistribution[]; exchange: string | null }> {
+  if (config.skipYahoo) return { rows: [], dividends: [], exchange: null };
+  try {
+    const response = await fetchWithRetry(yahooChartUrl(ticker, config.historyRange), yahooHeaders(), config, `${ticker} Yahoo chart`);
+    const json = await response.json();
+    const parsed = parseYahooChart(json);
+    return {
+      rows: parsed.history.map((row) => ({
+        Date: row.date,
+        Close: row.close === null ? '' : row.close.toFixed(2),
+        'Adj Close': row.adjClose === null ? '' : row.adjClose.toFixed(2),
+        Volume: row.volume === null ? '' : String(row.volume),
+      })),
+      dividends: parsed.dividends,
+      exchange: parseYahooExchangeName(json),
+    };
+  } catch (error) {
+    outputNote(`[ ${'chart'.padEnd(9)}] ${ticker}: Yahoo chart unavailable (${errorMessage(error)}), keeping previous history`);
+    return { rows: [], dividends: [], exchange: null };
+  }
+}
+
+/**
+ * SKIP_NEOS: neosfunds.com is not read at all. The previously published fund page data
+ * (returns, holdings, yields) stays exactly as it is; only the daily history and the
+ * history manifest are refreshed from Yahoo. With nothing fresh the previous row is kept.
+ */
+export async function refreshHistoryOnly(
+  fund: LineupFund,
+  previousEntry: CatalogEntry | undefined,
+  config: UpdaterConfig,
+  stats: RunStats,
+): Promise<CatalogEntry> {
+  const ticker = fund.ticker;
+  const fundDir = path.join(API_ROOT, 'funds', ticker);
+  const meta = await readPreviousMeta(fundDir);
+  if (!meta || !previousEntry) throw new Error(`${ticker}: no published data to keep (SKIP_NEOS)`);
+  const fetched = await fetchYahooHistory(ticker, config);
+  if (!fetched.rows.length) {
+    stats.unchanged += 1;
+    return previousEntry;
+  }
+  const pages = splitPages(fetched.rows, config.historyPageSize);
+  const names: string[] = [];
+  for (let index = 0; index < pages.length; index += 1) {
+    const envelope = { ticker, page: index + 1, pageSize: config.historyPageSize, totalRows: fetched.rows.length, headers: [...HISTORY_HEADERS], rows: pages[index] };
+    await writeIfChanged(path.join(fundDir, 'history', pageFileName(index + 1)), stableStringify(envelope));
+    names.push(`./history/${pageFileName(index + 1)}`);
+  }
+  const history = {
+    ...(meta.history ?? {}),
+    pages: names,
+    pageSize: config.historyPageSize,
+    totalRows: fetched.rows.length,
+    asOfDate: formatNeosDate(fetched.rows[0].Date),
+    asOf: fetched.rows[0].Date,
+    source: yahooChartProvenanceUrl(ticker),
+  };
+  const written = await writeIfChanged(path.join(fundDir, 'meta.json'), stableStringify({ ...meta, history }));
+  await prunePages(path.join(fundDir, 'history'), pages.length);
+  if (written === 'written') stats.updated += 1; else stats.unchanged += 1;
+  return { ...previousEntry, history: fetched.rows.length };
+}
+
+export async function updateFund(
   fund: LineupFund,
   config: UpdaterConfig,
   stats: RunStats,
@@ -1854,6 +1967,7 @@ async function updateFund(
       const csv = await fetchText(neosHoldingsCsvUrl(ticker), browserHeaders(), config, `${ticker} holdings CSV`);
       if (/^\s*</.test(csv)) throw new Error(`${ticker} holdings CSV: received HTML instead of CSV`);
       const parsed = parseNeosHoldingsCsv(csv);
+      if (!parsed.rows.length) throw new Error(`${ticker} holdings CSV: no positions`);
       holdings = { ...holdings, ...parsed, headers: parsed.headers, source: neosProvenanceHoldingsUrl(ticker) };
       if (config.storeRawDownloads) {
         await writeIfChanged(path.join(API_ROOT, 'raw', `${ticker}-holdings.csv`), csv);
@@ -1861,44 +1975,44 @@ async function updateFund(
     } catch (error) {
       if (!config.edgarFallback) throw error;
       outputNote(`[ ${'holdings'.padEnd(9)}] ${ticker}: holdings CSV unavailable (${errorMessage(error)}), trying EDGAR`);
-      const xml = await fetchText(neosEdgarFilingsUrl(), secHeaders(config), config, `${ticker} EDGAR`);
-      const filings = [...xml.matchAll(/href=["'](\/Archives\/[^"']+primary_doc\.xml)["']/gi)].map((match) => match[1]);
+      const listing = await fetchText(neosEdgarFilingsUrl(), secHeaders(config), config, `${ticker} EDGAR`);
+      const filings = edgarPrimaryDocLinks(listing).slice(0, 12);
       if (!filings.length) throw new Error(`${ticker}: no N-PORT primary_doc.xml link on the EDGAR page`);
-      const nport = parseNportXml(await fetchText(`https://www.sec.gov${filings[0]}`, secHeaders(config), config, `${ticker} N-PORT`));
+      // The trust files one N-PORT-P per series: only the document whose series is this fund counts.
+      let accepted: { link: string; nport: ReturnType<typeof parseNportXml> } | null = null;
+      for (const link of filings) {
+        const nport = parseNportXml(await fetchText(`https://www.sec.gov${link}`, secHeaders(config), config, `${ticker} N-PORT`));
+        if (seriesNameMatches(nport.seriesName, fund.name)) { accepted = { link, nport }; break; }
+      }
+      if (!accepted) throw new Error(`${ticker}: no recent N-PORT-P filing for this series (checked ${filings.length}); keeping previous data`);
+      const previousHoldingsAsOf = ((await readPreviousMeta(fundDir))?.holdings as Record<string, unknown> | undefined)?.asOfDate;
+      if (fallbackIsStale(accepted.nport.repPdDate, previousHoldingsAsOf as string | undefined)) {
+        throw new Error(`${ticker}: N-PORT-P report ${accepted.nport.repPdDate} is older than the published holdings (${String(previousHoldingsAsOf)}); keeping previous data`);
+      }
       holdings = {
         ...holdings,
         headers: [...HOLDINGS_HEADERS],
-        rows: nportToHoldings(nport.positions, details.netAssets ?? null),
-        asOfDate: nport.repPdDate,
-        totalRows: nport.positions.length,
-        source: `https://www.sec.gov${filings[0]}`,
+        rows: nportToHoldings(accepted.nport.positions, details.netAssets ?? null),
+        asOfDate: accepted.nport.repPdDate,
+        totalRows: accepted.nport.positions.length,
+        source: `https://www.sec.gov${accepted.link}`,
         sourceKind: 'SEC EDGAR Form N-PORT-P (fallback)',
       };
     }
   }
 
   // --- daily history + dividend fallback (Yahoo) -------------------------
-  let historyRows: Array<Record<string, string>> = [];
-  let yahooDividends: YahooDistribution[] = [];
-  let yahooExchange: string | null = null;
-  if (!config.skipYahoo) {
-    try {
-      const url = yahooChartUrl(ticker, config.historyRange);
-      const response = await fetchWithRetry(url, yahooHeaders(), config, `${ticker} Yahoo chart`);
-      const json = await response.json();
-      const parsed = parseYahooChart(json);
-      yahooDividends = parsed.dividends;
-      yahooExchange = parseYahooExchangeName(json);
-      historyRows = parsed.history.map((row) => ({
-        Date: row.date,
-        Close: row.close === null ? '' : row.close.toFixed(2),
-        'Adj Close': row.adjClose === null ? '' : row.adjClose.toFixed(2),
-        Volume: row.volume === null ? '' : String(row.volume),
-      }));
-    } catch (error) {
-      outputNote(`[ ${'chart'.padEnd(9)}] ${ticker}: Yahoo chart unavailable (${errorMessage(error)})`);
-    }
-  }
+  // A skipped or failed Yahoo request keeps the previously published history untouched.
+  const fetchedHistory = await fetchYahooHistory(ticker, config);
+  const historyRows = fetchedHistory.rows;
+  const yahooDividends = fetchedHistory.dividends;
+  const yahooExchange = fetchedHistory.exchange;
+  const previousMeta = historyRows.length ? null : await readPreviousMeta(fundDir);
+  const keptHistory = previousMeta?.history && Number(previousMeta.history.totalRows) > 0 ? previousMeta.history : null;
+  const keptHistoryFirstClose = keptHistory
+    ? await readFile(path.join(fundDir, 'history', '001.json'), 'utf8').then((text) => numberOrNull(JSON.parse(text).rows?.[0]?.Close), () => null)
+    : null;
+  const historyCount = keptHistory ? Number(keptHistory.totalRows) : historyRows.length;
 
   // --- assemble metrics --------------------------------------------------
   const netAssets = holdings.netAssets ?? details.netAssets ?? fund.netAssets ?? null;
@@ -1909,7 +2023,7 @@ async function updateFund(
   const navValue = details.netAssetValue ?? derivedNav;
   const navKind = details.netAssetValue !== null ? 'official (fund page Fund Details)' : 'derived (Net Assets / Shares Outstanding)';
   const marketPriceValue = details.marketPrice
-    ?? (historyRows.length ? numberOrNull(historyRows[0].Close) : null);
+    ?? (historyRows.length ? numberOrNull(historyRows[0].Close) : keptHistoryFirstClose);
   const derivedPremiumDiscount = navValue && marketPriceValue !== null ? round(((marketPriceValue - navValue) / navValue) * 100, 2) : null;
   // NEOS prints its own `Premium Discount (%)`; the quotient is only the guard
   // for the day a panel omits the row.
@@ -1960,15 +2074,17 @@ async function updateFund(
     source: holdings.source,
     sourceKind: holdings.sourceKind,
   };
-  let historyMeta = {
-    pages: [] as string[],
-    pageSize: config.historyPageSize,
-    totalRows: historyRows.length,
-    asOfDate: historyRows.length ? formatNeosDate(historyRows[0].Date) : '',
-    asOf: historyRows.length ? historyRows[0].Date : '',
-    source: config.skipYahoo ? '' : yahooChartProvenanceUrl(ticker),
-    sourceKind: 'Yahoo Finance public chart API (daily Close / Adj Close / Volume)',
-  };
+  let historyMeta = keptHistory
+    ? { ...keptHistory }
+    : {
+        pages: [] as string[],
+        pageSize: config.historyPageSize,
+        totalRows: historyRows.length,
+        asOfDate: historyRows.length ? formatNeosDate(historyRows[0].Date) : '',
+        asOf: historyRows.length ? historyRows[0].Date : '',
+        source: config.skipYahoo ? '' : yahooChartProvenanceUrl(ticker),
+        sourceKind: 'Yahoo Finance public chart API (daily Close / Adj Close / Volume)',
+      };
 
   const meta: Record<string, unknown> = {
     ticker,
@@ -2157,21 +2273,23 @@ async function updateFund(
   // Drop stale page files when a fund's row count shrinks.
   await prunePages(path.join(fundDir, 'holdings'), holdingsPages.length);
 
-  const historyPages = splitPages(historyRows, config.historyPageSize);
-  for (let index = 0; index < historyPages.length; index += 1) {
-    const file = path.join(fundDir, 'history', pageFileName(index + 1));
-    const envelope = {
-      ticker,
-      page: index + 1,
-      pageSize: config.historyPageSize,
-      totalRows: historyRows.length,
-      headers: [...HISTORY_HEADERS],
-      rows: historyPages[index],
-    };
-    if (await writeIfChanged(file, stableStringify(envelope)) === 'written') changed = true;
-    historyMeta.pages.push(`./history/${pageFileName(index + 1)}`);
+  if (!keptHistory) {
+    const historyPages = splitPages(historyRows, config.historyPageSize);
+    for (let index = 0; index < historyPages.length; index += 1) {
+      const file = path.join(fundDir, 'history', pageFileName(index + 1));
+      const envelope = {
+        ticker,
+        page: index + 1,
+        pageSize: config.historyPageSize,
+        totalRows: historyRows.length,
+        headers: [...HISTORY_HEADERS],
+        rows: historyPages[index],
+      };
+      if (await writeIfChanged(file, stableStringify(envelope)) === 'written') changed = true;
+      historyMeta.pages.push(`./history/${pageFileName(index + 1)}`);
+    }
+    await prunePages(path.join(fundDir, 'history'), historyPages.length);
   }
-  await prunePages(path.join(fundDir, 'history'), historyPages.length);
 
   // --- catalog entry -----------------------------------------------------
   // The catalog row is built first: `meta.json` mirrors it (the sibling feeds
@@ -2254,7 +2372,7 @@ async function updateFund(
     distributionFrequency: frequencyCode,
     providerCategory: fund.category,
     holdings: holdings.totalRows,
-    history: historyRows.length,
+    history: historyCount,
     navKind,
   };
 
@@ -2379,7 +2497,7 @@ export function resolveControls(
   for (const key of ['STORE_RAW_DOWNLOADS', 'EDGAR_FALLBACK', 'SKIP_YAHOO', 'SKIP_NEOS', 'VERBOSE']) {
     if (result[key]?.trim() && !/^(0|1|true|false|yes|no|y|n|on|off)$/i.test(result[key].trim())) throw new Error(`${key}: expected boolean`);
   }
-  if (result.HISTORY_RANGE?.trim() && !/^(max|ytd|\d+(d|mo|y))$/i.test(result.HISTORY_RANGE.trim())) throw new Error('HISTORY_RANGE: expected max, ytd or a Yahoo range such as 1y, 5y, 10y, 6mo');
+  if (result.HISTORY_RANGE?.trim() && !/^(max|\d+y)$/i.test(result.HISTORY_RANGE.trim())) throw new Error('HISTORY_RANGE: expected max or Ny (for example 5y, 10y)');
   if (result.USE_SYSTEM_CA?.trim() && !/^(auto|true|false)$/i.test(result.USE_SYSTEM_CA.trim())) throw new Error('USE_SYSTEM_CA: expected auto, true or false');
   readConfig(result); // validate every min:max filter before any request or write
   return result;
@@ -2480,7 +2598,9 @@ export async function main(env: Record<string, string | undefined> = process.env
       if (!fund) return;
       const before = await output.before(fund.ticker);
       try {
-        const entry = await updateFund(fund, config, stats);
+        const entry = config.skipNeos
+          ? await refreshHistoryOnly(fund, previous[fund.ticker], config, stats)
+          : await updateFund(fund, config, stats);
         if (!passesReturnFilters(entry, config)) {
           stats.skipped += 1;
           processed += 1;

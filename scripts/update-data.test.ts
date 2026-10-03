@@ -127,7 +127,11 @@ describe("source URLs", () => {
     const fixed = 1_700_000_000_000;
     expect(yahooChartUrl("SPYI", "max", fixed)).toContain("period1=0&period2=1700000000");
     expect(yahooChartUrl("SPYI", "max", fixed)).not.toContain("&range=");
-    expect(yahooChartUrl("SPYI", "5y", fixed)).toEndWith("&range=5y");
+    // Yahoo ignores `range` when period1=0: the range must move period1 itself.
+    const fiveYears = yahooChartUrl("SPYI", "5y", fixed);
+    expect(fiveYears).not.toContain("&range=");
+    expect(fiveYears).toContain(`period1=${Math.floor(1_700_000_000 - 5 * 365.25 * 86_400)}&period2=1700000000`);
+    expect(() => yahooChartUrl("SPYI", "6mo", fixed)).toThrow(/expected max or Ny/);
   });
 });
 
@@ -271,7 +275,7 @@ describe("readConfig", () => {
     expect(config.tickers).toEqual([]);
     expect(config.skipYahoo).toBe(false);
     expect(config.skipNeos).toBe(false);
-    expect(config.edgarFallback).toBe(false);
+    expect(config.edgarFallback).toBe(true);
     expect(config.secUa).toBe("daggerok ETF feed daggerok@gmail.com");
   });
 
@@ -1461,5 +1465,154 @@ describe('system CA support', () => {
         expect(calls.length).toBe(1);
       } finally { restore(); }
     });
+  });
+});
+
+
+// ---------------------------------------------------------------------------
+// Keep previous data (SKIP_*, source failures) and EDGAR series identity
+// ---------------------------------------------------------------------------
+import { mkdtempSync, mkdirSync, writeFileSync, existsSync, readFileSync as readSync, readdirSync } from "node:fs";
+import { tmpdir } from "node:os";
+import {
+  edgarPrimaryDocLinks,
+  fallbackIsStale,
+  refreshHistoryOnly,
+  seriesNameMatches,
+  setApiRootForTests,
+  updateFund,
+} from "./update-data";
+
+const FUND = {
+  ticker: "SPYI", name: "NEOS S&P 500 High Income ETF", category: "Equity", categoryClass: "", frequency: "Monthly",
+  distributionRate: null, distributionRateText: "", secYield: null, secYieldText: "", managementFee: 0.68,
+  managementFeeText: "0.68%", netAssets: null, netAssetsText: "", inceptionDate: "", fundPage: "https://neosfunds.com/spyi/",
+};
+const PREVIOUS_ROWS = [
+  { Date: "2026-09-18", Close: "53.10", "Adj Close": "53.10", Volume: "1" },
+  { Date: "2026-09-17", Close: "53.00", "Adj Close": "53.00", Volume: "2" },
+  { Date: "2026-09-16", Close: "52.90", "Adj Close": "52.90", Volume: "3" },
+];
+
+function seedFeed(holdingsAsOf = "Sep 21 2026") {
+  const root = mkdtempSync(path.join(tmpdir(), "neos-feed-"));
+  const dir = path.join(root, "funds", "SPYI");
+  mkdirSync(path.join(dir, "history"), { recursive: true });
+  mkdirSync(path.join(dir, "holdings"), { recursive: true });
+  writeFileSync(path.join(dir, "history", "001.json"), JSON.stringify({ ticker: "SPYI", page: 1, pageSize: 1000, totalRows: 3, headers: [...HISTORY_HEADERS], rows: PREVIOUS_ROWS }));
+  writeFileSync(path.join(dir, "holdings", "001.json"), JSON.stringify({ ticker: "SPYI", page: 1, rows: [{ Name: "OLD" }] }));
+  writeFileSync(path.join(dir, "meta.json"), JSON.stringify({
+    ticker: "SPYI",
+    holdings: { pages: ["./holdings/001.json"], totalRows: 1, asOfDate: holdingsAsOf },
+    history: { pages: ["./history/001.json"], pageSize: 1000, totalRows: 3, asOf: "2026-09-18", asOfDate: "Sep 18 2026", source: "yahoo" },
+  }));
+  setApiRootForTests(root);
+  return { root, dir };
+}
+
+const NPORT = (series: string, repPdDate: string) =>
+  `<repPdDate>${repPdDate}</repPdDate><seriesName>${series}</seriesName><invstOrSec><name>X CORP</name><cusip>123456789</cusip><balance>10</balance><valUSD>500</valUSD><pctVal>1.5</pctVal><assetCat>EC</assetCat></invstOrSec>`;
+
+function mockFetch(routes: (url: string) => Response | null) {
+  const urls: string[] = [];
+  const real = globalThis.fetch;
+  globalThis.fetch = (async (input: RequestInfo | URL) => {
+    const url = String(input);
+    urls.push(url);
+    return routes(url) ?? new Response("not found", { status: 404 });
+  }) as unknown as typeof fetch;
+  return { urls, restore: () => { globalThis.fetch = real; } };
+}
+const quiet = () => readConfig({ REQUEST_SLEEP: "0", MAX_RETRIES: "1" });
+const stats = () => ({ updated: 0, unchanged: 0, skipped: 0, failed: 0 });
+
+describe("previous data survives a skipped or failed source", () => {
+  test("SKIP_YAHOO keeps the published history pages and manifest", async () => {
+    const { dir } = seedFeed();
+    const m = mockFetch((url) => url.includes("neosfunds.com/spyi") ? new Response("<html></html>") : url.includes("download_holdings_csv") ? new Response(HOLDINGS_CSV) : null);
+    try {
+      const entry = await updateFund(FUND, { ...quiet(), skipYahoo: true }, stats());
+      expect(entry.history).toBe(3);
+      expect(readdirSync(path.join(dir, "history"))).toEqual(["001.json"]);
+      expect(JSON.parse(readSync(path.join(dir, "meta.json"), "utf8")).history.totalRows).toBe(3);
+    } finally { m.restore(); }
+  });
+
+  test("a failing Yahoo request keeps the published history", async () => {
+    const { dir } = seedFeed();
+    const m = mockFetch((url) => url.includes("neosfunds.com/spyi") ? new Response("<html></html>") : url.includes("download_holdings_csv") ? new Response(HOLDINGS_CSV) : null);
+    try {
+      const entry = await updateFund(FUND, quiet(), stats());
+      expect(m.urls.some((url) => url.includes("query1.finance.yahoo.com"))).toBe(true);
+      expect(entry.history).toBe(3);
+      expect(JSON.parse(readSync(path.join(dir, "history", "001.json"), "utf8")).rows.length).toBe(3);
+    } finally { m.restore(); }
+  });
+
+  test("SKIP_NEOS never reads neosfunds.com and keeps the published fund data", async () => {
+    const { dir } = seedFeed();
+    const previousEntry = { ticker: "SPYI", holdings: 1, history: 3, metrics: { tr1y: 14.62 } };
+    const chart = JSON.stringify({ chart: { result: [{ timestamp: [1_790_000_000], indicators: { quote: [{ close: [54.1], volume: [5] }], adjclose: [{ adjclose: [54.1] }] }, meta: {} }] } });
+    const m = mockFetch((url) => url.includes("finance.yahoo.com") ? new Response(chart) : null);
+    try {
+      const entry = await refreshHistoryOnly(FUND, previousEntry, { ...quiet(), skipNeos: true }, stats());
+      expect(m.urls.every((url) => !url.includes("neosfunds.com"))).toBe(true);
+      expect(entry.history).toBe(1);
+      expect((entry.metrics as { tr1y: number }).tr1y).toBe(14.62);
+      const meta = JSON.parse(readSync(path.join(dir, "meta.json"), "utf8"));
+      expect(meta.holdings.totalRows).toBe(1);
+      expect(meta.history.totalRows).toBe(1);
+      // Yahoo down: the previous row is returned untouched.
+      const failing = mockFetch(() => null);
+      try {
+        expect(await refreshHistoryOnly(FUND, previousEntry, { ...quiet(), skipNeos: true }, stats())).toBe(previousEntry);
+      } finally { failing.restore(); }
+    } finally { m.restore(); }
+  });
+});
+
+describe("EDGAR fallback verifies the series and freshness", () => {
+  test("seriesNameMatches is exact after normalization, never a sibling", () => {
+    expect(seriesNameMatches("NEOS S&amp;P 500(R) High Income ETF".replace("&amp;", "&"), "NEOS S&P 500 High Income ETF")).toBe(true);
+    expect(seriesNameMatches("NEOS Nasdaq-100 High Income ETF", "NEOS S&P 500 High Income ETF")).toBe(false);
+    expect(seriesNameMatches(null, "NEOS S&P 500 High Income ETF")).toBe(false);
+  });
+  test("edgarPrimaryDocLinks keeps order and drops duplicates", () => {
+    expect(edgarPrimaryDocLinks(`<a href="/Archives/a/primary_doc.xml"><a href='/Archives/b/primary_doc.xml'><a href="/Archives/a/primary_doc.xml">`)).toEqual(["/Archives/a/primary_doc.xml", "/Archives/b/primary_doc.xml"]);
+  });
+  test("fallbackIsStale compares the report period with the published date", () => {
+    expect(fallbackIsStale("2026-08-31", "Sep 21 2026")).toBe(true);
+    expect(fallbackIsStale("2026-09-30", "Sep 21 2026")).toBe(false);
+    expect(fallbackIsStale("2026-08-31", undefined)).toBe(false);
+  });
+
+  const listing = `<a href="/Archives/x/other/primary_doc.xml"><a href="/Archives/x/spyi/primary_doc.xml">`;
+  const route = (spyiPeriod: string) => (url: string) => {
+    if (url.includes("neosfunds.com/spyi")) return new Response("<html></html>");
+    if (url.includes("browse-edgar")) return new Response(listing);
+    if (url.includes("/other/")) return new Response(NPORT("NEOS Nasdaq-100 High Income ETF", "2026-09-30"));
+    if (url.includes("/spyi/")) return new Response(NPORT("NEOS S&amp;P 500 High Income ETF", spyiPeriod));
+    return null; // holdings CSV and Yahoo: 404
+  };
+
+  test("a failed CSV takes the filing of THIS series, not the trust's newest filing", async () => {
+    const { dir } = seedFeed("Aug 01 2026");
+    const m = mockFetch(route("2026-08-31"));
+    try {
+      const entry = await updateFund(FUND, quiet(), stats());
+      expect(entry.holdings).toBe(1);
+      const page = JSON.parse(readSync(path.join(dir, "holdings", "001.json"), "utf8"));
+      expect(page.rows[0].Name).toBe("X CORP");
+      expect(JSON.parse(readSync(path.join(dir, "meta.json"), "utf8")).holdings.source).toContain("/spyi/");
+    } finally { m.restore(); }
+  });
+
+  test("an older filing never replaces fresher published holdings", async () => {
+    const { dir } = seedFeed("Sep 21 2026");
+    const m = mockFetch(route("2026-08-31"));
+    try {
+      await expect(updateFund(FUND, quiet(), stats())).rejects.toThrow(/older than the published holdings/);
+      expect(JSON.parse(readSync(path.join(dir, "holdings", "001.json"), "utf8")).rows[0].Name).toBe("OLD");
+    } finally { m.restore(); }
   });
 });

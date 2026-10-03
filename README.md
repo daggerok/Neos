@@ -98,16 +98,16 @@ Defaults below are the values in `scripts/update-data.config.json`. Environment 
 | `TOTAL_RETURN_YTD` / `_1Y` / `_3Y` / `_5Y` / `_10Y` | `""` | `min:max` filters on the derived cumulative total return |
 | `HOLDINGS_PAGE_SIZE` | `250` | Rows per generated holdings JSON page |
 | `HISTORY_PAGE_SIZE` | `1000` | Rows per generated history JSON page |
-| `HISTORY_RANGE` | `max` | Yahoo chart range for the price-history sheets (`max`, `10y`, `5y`, ...) |
+| `HISTORY_RANGE` | `max` | Yahoo history window: `max` or `Ny` (for example `5y`); sent as explicit period1/period2 because Yahoo ignores `range` when period1=0 |
 | `STORE_RAW_DOWNLOADS` | `false` | Keep raw samples under `api/neos/raw` |
 | `SEC_UA` | `daggerok ETF feed daggerok@gmail.com` | Declared User-Agent for SEC EDGAR requests; redacted in config logs, the `SEC_UA` repository Actions variable overrides it |
-| `EDGAR_FALLBACK` | `true` | Use N-PORT-P when a holdings CSV is unavailable |
-| `SKIP_YAHOO` | `false` | Keep previous history and distributions while refreshing catalog and holdings |
-| `SKIP_NEOS` | `false` | Keep the previously published official catalog |
+| `EDGAR_FALLBACK` | `true` | Use the fund's own N-PORT-P series (exact series name match, never older than the published holdings) when a holdings CSV is unavailable |
+| `SKIP_YAHOO` | `false` | Do not call Yahoo; the previously published history pages and manifest stay untouched |
+| `SKIP_NEOS` | `false` | Do not read neosfunds.com; the published fund data stays as it is and only the Yahoo history is refreshed |
 | `VERBOSE` | `false` | Print per-fund retry and fallback notices |
 | `USE_SYSTEM_CA` | `auto` | TLS trust store: `auto` restarts the updater once with Bun's `--use-system-ca` when a request fails with an untrusted-certificate error; `true` always uses the system CA store; `false` never restarts. Not an individual workflow input: use `advanced`, the config file or the CLI environment |
 
-Range syntax is strict `min:max` with exactly one colon; `""` and `:` mean no restriction. Funds not selected for a successful update keep their prior published metadata and data files, so a bounded or partly failed run can never empty the site.
+A failed or skipped Yahoo request never empties a fund's history: the previous pages and manifest are kept. Range syntax is strict `min:max` with exactly one colon; `""` and `:` mean no restriction. Funds not selected for a successful update keep their prior published metadata and data files, so a bounded or partly failed run can never empty the site.
 
 ### Examples
 
