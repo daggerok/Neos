@@ -169,7 +169,7 @@ function outputCreateReporter(root: URL | string, total: number) {
  * Nothing is scraped from a client-rendered widget and no value is invented:
  * a metric NEOS does not publish stays `null` and the app renders `—`.
  */
-import { mkdir, readFile, readdir, writeFile, rm } from 'node:fs/promises';
+import { appendFile, mkdir, readFile, readdir, writeFile, rm, rename } from 'node:fs/promises';
 import { existsSync } from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
@@ -392,7 +392,7 @@ export function formatNeosDate(raw: unknown): string {
   const iso = toIsoDate(raw);
   if (!iso) return cleanText(raw);
   const [year, month, day] = iso.split('-');
-  return `${MONTH_SHORT[Number(month) - 1]} ${Number(day)} ${year}`;
+  return `${MONTH_SHORT[Number(month) - 1]} ${day} ${year}`;
 }
 
 /** Chronological comparator for the display dates this feed publishes (`Aug 29 2022`). */
@@ -437,6 +437,10 @@ type UpdaterConfig = {
   secYieldRange?: Range;
   performanceRanges: RangeMap;
   totalReturnRanges: RangeMap;
+  /** Test hooks (not controls): per-attempt timeout, retry delay, soft run deadline. */
+  timeoutMs?: number;
+  retryDelayMs?: number;
+  deadlineMs?: number;
 };
 
 const AUM_PRESET_BOUNDS = {
@@ -645,25 +649,24 @@ Examples:
 // Politeness & fetching
 // ---------------------------------------------------------------------------
 
-// One pacing lane per concurrent worker (sized from config.concurrency
-// where the worker pool is started). A single shared chain serialized every
-// request through one FIFO regardless of concurrency; CONCURRENCY workers
-// now each get their own paced lane, so concurrency actually multiplies
-// throughput as documented instead of only overlapping wait time.
+// One pacing lane per concurrent worker. The slot is reserved synchronously (before
+// any await), so N simultaneous callers get N distinct lanes instead of all picking
+// the same one; each lane starts a request at most every REQUEST_SLEEP seconds.
 let lastRequestAtLanes: number[] = [0];
-let pacingLanes: Promise<void>[] = [Promise.resolve()];
+
+/** Reserve the earliest slot: returns the lane and the time its request may start. Pure apart from mutating `lanes`. */
+export function reserveSlot(lanes: number[], gapMs: number, now: number): { lane: number; startAt: number } {
+  let lane = 0;
+  for (let i = 1; i < lanes.length; i += 1) if (lanes[i] < lanes[lane]) lane = i;
+  const startAt = Math.max(now, lanes[lane] + gapMs);
+  lanes[lane] = startAt;
+  return { lane, startAt };
+}
 
 async function paceRequests(config: UpdaterConfig): Promise<void> {
-  const gap = Math.max(0, config.requestSleep * 1000);
-  let lane = 0;
-  for (let i = 1; i < lastRequestAtLanes.length; i++) if (lastRequestAtLanes[i] < lastRequestAtLanes[lane]) lane = i;
-  const turn = pacingLanes[lane].then(async () => {
-    const wait = lastRequestAtLanes[lane] + gap - Date.now();
-    if (wait > 0) await sleep(wait);
-    lastRequestAtLanes[lane] = Date.now();
-  });
-  pacingLanes[lane] = turn.catch(() => undefined);
-  return turn;
+  const { startAt } = reserveSlot(lastRequestAtLanes, Math.max(0, config.requestSleep * 1000), Date.now());
+  const wait = startAt - Date.now();
+  if (wait > 0) await sleep(wait);
 }
 
 function errorMessage(error: unknown): string {
@@ -672,30 +675,48 @@ function errorMessage(error: unknown): string {
 
 const RETRY_STATUS = new Set([408, 425, 429, 500, 502, 503, 504]);
 
+/** Per-attempt budget covering headers AND body. */
+export const FETCH_TIMEOUT_MS = 45_000;
+
+/**
+ * Fetch and read the body inside the retry loop: a stalled socket, a timeout (AbortSignal)
+ * or a retryable status is retried up to MAX_RETRIES times; any other status fails at once.
+ */
+export async function fetchRetried<T>(
+  url: string,
+  headers: Record<string, string>,
+  config: UpdaterConfig,
+  label: string,
+  read: (response: Response) => Promise<T>,
+): Promise<T> {
+  let lastError: unknown = null;
+  for (let attempt = 0; attempt <= config.maxRetries; attempt += 1) {
+    await paceRequests(config);
+    try {
+      const response = await fetch(url, { headers, redirect: 'follow', signal: AbortSignal.timeout(config.timeoutMs ?? FETCH_TIMEOUT_MS) });
+      if (response.ok) return await read(response);
+      // neosfunds.com answers 403 from its WAF while throttling, and the CSV
+      // endpoint answers 200 with an HTML error page when the ticker is unknown.
+      if (!RETRY_STATUS.has(response.status) && response.status !== 403) {
+        throw Object.assign(new Error(`${label}: HTTP ${response.status}`), { permanent: true });
+      }
+      lastError = new Error(`${label}: HTTP ${response.status}`);
+    } catch (error) {
+      if ((error as { permanent?: boolean }).permanent) throw error;
+      lastError = error;
+    }
+    if (attempt < config.maxRetries) await sleep(config.retryDelayMs ?? 1500 * (attempt + 1));
+  }
+  throw new Error(`${label}: ${errorMessage(lastError)}`);
+}
+
 export async function fetchWithRetry(
   url: string,
   headers: Record<string, string>,
   config: UpdaterConfig,
   label: string = url,
 ): Promise<Response> {
-  let lastError: unknown = null;
-  for (let attempt = 0; attempt <= config.maxRetries; attempt += 1) {
-    await paceRequests(config);
-    try {
-      const response = await fetch(url, { headers, redirect: 'follow' });
-      if (response.ok) return response;
-      // neosfunds.com answers 403 from its WAF while throttling, and the CSV
-      // endpoint answers 200 with an HTML error page when the ticker is unknown.
-      if (!RETRY_STATUS.has(response.status) && response.status !== 403) {
-        throw new Error(`${label}: HTTP ${response.status}`);
-      }
-      lastError = new Error(`${label}: HTTP ${response.status}`);
-    } catch (error) {
-      lastError = error;
-    }
-    if (attempt < config.maxRetries) await sleep(1500 * (attempt + 1));
-  }
-  throw new Error(`${label}: ${errorMessage(lastError)}`);
+  return fetchRetried(url, headers, config, label, async (response) => response);
 }
 
 function browserHeaders(): Record<string, string> {
@@ -720,13 +741,11 @@ function secHeaders(config: UpdaterConfig): Record<string, string> {
 }
 
 async function fetchText(url: string, headers: Record<string, string>, config: UpdaterConfig, label = url): Promise<string> {
-  const response = await fetchWithRetry(url, headers, config, label);
-  return await response.text();
+  return fetchRetried(url, headers, config, label, (response) => response.text());
 }
 
 async function fetchBytes(url: string, headers: Record<string, string>, config: UpdaterConfig, label = url): Promise<Uint8Array> {
-  const response = await fetchWithRetry(url, headers, config, label);
-  return new Uint8Array(await response.arrayBuffer());
+  return fetchRetried(url, headers, config, label, async (response) => new Uint8Array(await response.arrayBuffer()));
 }
 
 // ---------------------------------------------------------------------------
@@ -1743,15 +1762,27 @@ function stableStringify(value: unknown): string {
   return `${JSON.stringify(value, null, 2)}\n`;
 }
 
-/** Write only when the serialized bytes moved, so a no-op run leaves an empty `git diff`. */
+/** Write only when the serialized bytes moved, via tmp file + rename so an interrupted run never leaves a truncated JSON. */
 export async function writeIfChanged(file: string, content: string): Promise<'written' | 'unchanged'> {
   if (existsSync(file)) {
     const current = await readFile(file, 'utf8');
     if (current === content) return 'unchanged';
   }
   await mkdir(path.dirname(file), { recursive: true });
-  await writeFile(file, content, 'utf8');
+  const tmp = `${file}.tmp-${process.pid}`;
+  await writeFile(tmp, content, 'utf8');
+  await rename(tmp, file);
   return 'written';
+}
+
+/** Like writeIfChanged for JSON with run stamps: the stamps move only when the other content moved. */
+export async function writeJsonIfContentChanged(file: string, value: Record<string, unknown>, stampKeys: string[], stamp: () => string): Promise<'written' | 'unchanged'> {
+  const strip = (item: Record<string, unknown>) => Object.fromEntries(Object.entries(item).filter(([key]) => !stampKeys.includes(key)));
+  let previous: Record<string, unknown> | null = null;
+  try { previous = JSON.parse(await readFile(file, 'utf8')); } catch { /* first write */ }
+  if (previous && JSON.stringify(strip(previous)) === JSON.stringify(strip(value))) return 'unchanged';
+  const stamped = { ...value, ...Object.fromEntries(stampKeys.map((key) => [key, stamp()])) };
+  return writeIfChanged(file, stableStringify(stamped));
 }
 
 export function splitPages<T>(rows: T[], pageSize: number): T[][] {
@@ -1777,9 +1808,8 @@ function matchesRange(value: number | null, range: Range | undefined): boolean {
 }
 
 /**
- * AND filter. A young fund missing a requested 3Y/5Y/10Y metric PASSES the
- * filter (there is nothing to compare), while a fund missing AUM or TER under an
- * active filter FAILS it.
+ * AND filter. A fund missing a figure under an active (bounded) range is EXCLUDED,
+ * the same as AUM and TER.
  */
 function passesFilters(fund: LineupFund, config: UpdaterConfig): boolean {
   if (config.tickers.length && !config.tickers.includes(fund.ticker)) return false;
@@ -1803,7 +1833,7 @@ function passesFilters(fund: LineupFund, config: UpdaterConfig): boolean {
   return true;
 }
 
-function passesReturnFilters(entry: CatalogEntry, config: UpdaterConfig): boolean {
+export function passesReturnFilters(entry: CatalogEntry, config: UpdaterConfig): boolean {
   const monthEnd = ((entry.returns as any)?.monthEnd || {}) as Record<string, number | null>;
   const metrics = (entry.metrics || {}) as Record<string, number | null>;
   const published: Record<ReturnPeriod, number | null> = {
@@ -1817,7 +1847,7 @@ function passesReturnFilters(entry: CatalogEntry, config: UpdaterConfig): boolea
     const range = config.performanceRanges[period];
     if (!range) continue;
     const value = published[period];
-    if (value === null || value === undefined) continue; // young fund: nothing to filter
+    if (value === null || value === undefined) return false; // a bounded range excludes funds without that figure
     if (!matchesRange(value, range)) return false;
   }
   for (const period of RETURN_PERIODS) {
@@ -1831,7 +1861,7 @@ function passesReturnFilters(entry: CatalogEntry, config: UpdaterConfig): boolea
       '10Y': metrics.tr10y ?? null,
     };
     const value = derived[period];
-    if (value === null || value === undefined) continue;
+    if (value === null || value === undefined) return false;
     if (!matchesRange(value, range)) return false;
   }
   return true;
@@ -1864,8 +1894,7 @@ async function fetchYahooHistory(
 ): Promise<{ rows: Array<Record<string, string>>; dividends: YahooDistribution[]; exchange: string | null }> {
   if (config.skipYahoo) return { rows: [], dividends: [], exchange: null };
   try {
-    const response = await fetchWithRetry(yahooChartUrl(ticker, config.historyRange), yahooHeaders(), config, `${ticker} Yahoo chart`);
-    const json = await response.json();
+    const json = JSON.parse(await fetchText(yahooChartUrl(ticker, config.historyRange), yahooHeaders(), config, `${ticker} Yahoo chart`));
     const parsed = parseYahooChart(json);
     return {
       rows: parsed.history.map((row) => ({
@@ -1929,7 +1958,8 @@ export async function updateFund(
   fund: LineupFund,
   config: UpdaterConfig,
   stats: RunStats,
-): Promise<CatalogEntry> {
+  accept?: (entry: CatalogEntry) => boolean,
+): Promise<CatalogEntry | null> {
   const ticker = fund.ticker;
   const fundDir = path.join(API_ROOT, 'funds', ticker);
   let changed = false;
@@ -2121,8 +2151,10 @@ export async function updateFund(
       benchmarkIndexName: monthly?.benchmarkName || null,
     },
     expenseRatio: {
-      display: details.totalOperatingExpensesText || fund.managementFeeText || null,
-      value: numberOrNull(details.totalOperatingExpensesText) ?? fund.managementFee ?? null,
+      display: details.totalOperatingExpensesText || null,
+      value: numberOrNull(details.totalOperatingExpensesText),
+      net: numberOrNull(details.totalOperatingExpensesText),
+      gross: numberOrNull(details.totalOperatingExpensesText),
       managementFeeDisplay: details.managementFeeText || fund.managementFeeText || null,
       managementFeeValue: numberOrNull(details.managementFeeText) ?? fund.managementFee ?? null,
     },
@@ -2253,43 +2285,11 @@ export async function updateFund(
     (meta.distributions as Record<string, unknown>).source = 'Yahoo Finance dividend history (NEOS published no distribution rows)';
   }
 
-  // --- write pages -------------------------------------------------------
-  // Every page file is written before `meta.json`, because the manifest it
-  // carries lists exactly the files that were just published.
+  // --- page layout (nothing is written until the whole fund is computed) ----
   const holdingsPages = splitPages(holdings.rows, config.holdingsPageSize);
-  for (let index = 0; index < holdingsPages.length; index += 1) {
-    const file = path.join(fundDir, 'holdings', pageFileName(index + 1));
-    const envelope = {
-      ticker,
-      page: index + 1,
-      pageSize: config.holdingsPageSize,
-      totalRows: holdings.rows.length,
-      headers: holdings.headers,
-      rows: holdingsPages[index],
-    };
-    if (await writeIfChanged(file, stableStringify(envelope)) === 'written') changed = true;
-    holdingsMeta.pages.push(`./holdings/${pageFileName(index + 1)}`);
-  }
-  // Drop stale page files when a fund's row count shrinks.
-  await prunePages(path.join(fundDir, 'holdings'), holdingsPages.length);
-
-  if (!keptHistory) {
-    const historyPages = splitPages(historyRows, config.historyPageSize);
-    for (let index = 0; index < historyPages.length; index += 1) {
-      const file = path.join(fundDir, 'history', pageFileName(index + 1));
-      const envelope = {
-        ticker,
-        page: index + 1,
-        pageSize: config.historyPageSize,
-        totalRows: historyRows.length,
-        headers: [...HISTORY_HEADERS],
-        rows: historyPages[index],
-      };
-      if (await writeIfChanged(file, stableStringify(envelope)) === 'written') changed = true;
-      historyMeta.pages.push(`./history/${pageFileName(index + 1)}`);
-    }
-    await prunePages(path.join(fundDir, 'history'), historyPages.length);
-  }
+  for (let index = 0; index < holdingsPages.length; index += 1) holdingsMeta.pages.push(`./holdings/${pageFileName(index + 1)}`);
+  const historyPages = keptHistory ? [] : splitPages(historyRows, config.historyPageSize);
+  if (!keptHistory) for (let index = 0; index < historyPages.length; index += 1) historyMeta.pages.push(`./history/${pageFileName(index + 1)}`);
 
   // --- catalog entry -----------------------------------------------------
   // The catalog row is built first: `meta.json` mirrors it (the sibling feeds
@@ -2310,10 +2310,13 @@ export async function updateFund(
     dataFile: `./funds/${ticker}/meta.json`,
     cusip: details.cusip || null,
     isin: details.isin || null,
-    ter: details.totalOperatingExpensesText || fund.managementFeeText || '—',
-    terValue: numberOrNull(details.totalOperatingExpensesText) ?? fund.managementFee ?? null,
-    terGross: details.managementFeeText || fund.managementFeeText || null,
-    terGrossValue: numberOrNull(details.managementFeeText) ?? fund.managementFee ?? null,
+    ter: details.totalOperatingExpensesText || '—',
+    terValue: numberOrNull(details.totalOperatingExpensesText),
+    // NEOS publishes one all-in figure (Total Annual Fund Operating Expenses, no waiver): net == gross.
+    terGross: details.totalOperatingExpensesText || null,
+    terGrossValue: numberOrNull(details.totalOperatingExpensesText),
+    managementFee: details.managementFeeText || fund.managementFeeText || null,
+    managementFeeValue: numberOrNull(details.managementFeeText) ?? fund.managementFee ?? null,
     nav: formatMoneyText(navValue),
     navValue,
     aum: netAssets === null ? '—' : formatAumDisplay(netAssets),
@@ -2402,7 +2405,22 @@ export async function updateFund(
     holdings: holdingsMeta,
     history: historyMeta,
   };
+  // Return filters (PERFORMANCE_*/TOTAL_RETURN_*) decide before anything is written: an excluded
+  // fund keeps its previous complete state (files and index row).
+  if (accept && !accept(entry)) return null;
+
+  // Order: pages first, then meta.json (the manifest), then stale pages; the index row follows in main().
+  for (let index = 0; index < holdingsPages.length; index += 1) {
+    const envelope = { ticker, page: index + 1, pageSize: config.holdingsPageSize, totalRows: holdings.rows.length, headers: holdings.headers, rows: holdingsPages[index] };
+    if (await writeIfChanged(path.join(fundDir, 'holdings', pageFileName(index + 1)), stableStringify(envelope)) === 'written') changed = true;
+  }
+  for (let index = 0; index < historyPages.length; index += 1) {
+    const envelope = { ticker, page: index + 1, pageSize: config.historyPageSize, totalRows: historyRows.length, headers: [...HISTORY_HEADERS], rows: historyPages[index] };
+    if (await writeIfChanged(path.join(fundDir, 'history', pageFileName(index + 1)), stableStringify(envelope)) === 'written') changed = true;
+  }
   if (await writeIfChanged(path.join(fundDir, 'meta.json'), stableStringify(metaWithCatalog)) === 'written') changed = true;
+  await prunePages(path.join(fundDir, 'holdings'), holdingsPages.length);
+  if (!keptHistory) await prunePages(path.join(fundDir, 'history'), historyPages.length);
 
   if (changed) stats.updated += 1; else stats.unchanged += 1;
 
@@ -2429,16 +2447,71 @@ async function prunePages(dir: string, count: number): Promise<void> {
   }
 }
 
-async function readCursor(): Promise<string | null> {
+/** The cursor is only valid for the filter set it was saved under. */
+export function filterScope(config: UpdaterConfig): string {
+  return JSON.stringify({
+    tickers: config.tickers, category: config.category, aum: config.aumRange ?? null, ter: config.terRange ?? null,
+    dividendYield: config.dividendYieldRange ?? null, secYield: config.secYieldRange ?? null,
+    performance: config.performanceRanges, totalReturn: config.totalReturnRanges,
+  });
+}
+
+async function readCursor(scope: string): Promise<string | null> {
   const file = path.join(API_ROOT, 'update-state.json');
   if (!existsSync(file)) return null;
   try {
     const parsed = JSON.parse(await readFile(file, 'utf8'));
+    if (parsed.scope !== undefined && parsed.scope !== scope) return null;
     return parsed.cursor ? String(parsed.cursor) : null;
   } catch {
     return null;
   }
 }
+
+/** A bounded batch: the funds after the cursor, wrapping around the end of the list, at most `max`. */
+export function selectBatch<T extends { ticker: string }>(funds: T[], cursor: string | null, max: number): T[] {
+  if (max <= 0 || !funds.length) return funds.slice();
+  const at = cursor ? funds.findIndex((fund) => fund.ticker === cursor) : -1;
+  const start = at >= 0 ? (at + 1) % funds.length : 0;
+  return Array.from({ length: Math.min(max, funds.length) }, (_, offset) => funds[(start + offset) % funds.length]);
+}
+
+const NULL_METRICS = {
+  ytd: null, tr1y: null, tr3y: null, tr5y: null, tr10y: null, cagr3y: null, cagr5y: null, cagr10y: null, siAnn: null,
+  dividendYield: null, dividendYieldText: '—', distributionYield: null, distributionYieldText: '—', yield12M: null, yield12MText: '—',
+  secYield: null, secYieldText: '—',
+  returnsBasis: 'not available yet: this fund has not been read from its NEOS fund page',
+  performanceAsOf: null,
+};
+
+/** Index row for a lineup fund that has no meta.json yet: full metrics shape, nothing invented, dataFile null. */
+export function placeholderEntry(fund: LineupFund): CatalogEntry {
+  const empty = { asOfDate: '', ytd: null, yr1: null, yr3: null, yr5: null, yr10: null, sinceInception: null, sinceInceptionCumulative: null };
+  return {
+    ticker: fund.ticker,
+    name: fund.name,
+    category: fund.category,
+    fundPage: fund.fundPage || neosFundPageUrl(fund.ticker),
+    dataFile: null,
+    cusip: null, isin: null,
+    ter: '—', terValue: null, terGross: null, terGrossValue: null,
+    managementFee: fund.managementFeeText || null, managementFeeValue: fund.managementFee,
+    nav: '—', navValue: null,
+    aum: fund.netAssets === null ? '—' : formatAumDisplay(fund.netAssets), aumValue: fund.netAssets,
+    asOfDate: '', inceptionDate: formatNeosDate(fund.inceptionDate), exchange: null,
+    closePrice: '—', closePriceValue: null, premiumDiscount: '—', premiumDiscountValue: null,
+    distributions: { frequency: fund.frequency || null, paymentsPerYear: null, exDate: null, dividend: null },
+    returns: { monthEnd: { ...empty }, quarterEnd: { ...empty } },
+    metrics: { ...NULL_METRICS },
+    distributionFrequency: fund.frequency ? formatDistributionFrequency(fund.frequency) : null,
+    providerCategory: fund.category,
+    holdings: 0,
+    history: 0,
+  };
+}
+
+/** Soft deadline: stop taking new funds after this long so the index is still written inside the 30 minute job limit. */
+export const SOFT_DEADLINE_MS = 25 * 60 * 1000;
 
 // ---------------------------------------------------------------------------
 // Entry point
@@ -2567,71 +2640,66 @@ export async function main(env: Record<string, string | undefined> = process.env
     }));
   }
 
-  const filtered = lineup.filter((fund) => passesFilters(fund, config));
-  let candidates = filtered;
-  if (config.maxFetches > 0) {
-    const cursor = await readCursor();
-    if (cursor) {
-      const at = filtered.findIndex((fund) => fund.ticker === cursor);
-      candidates = at >= 0 ? filtered.slice(at + 1) : filtered;
-    }
-    candidates = candidates.slice(0, config.maxFetches);
+  const unknownTickers = config.tickers.filter((ticker) => !lineup.some((fund) => fund.ticker === ticker));
+  if (unknownTickers.length) throw new Error(`TICKERS: not in the NEOS lineup: ${unknownTickers.join(', ')}`);
+
+  const newFunds = Object.keys(previous).length ? lineup.filter((fund) => !previous[fund.ticker]).map((fund) => fund.ticker) : [];
+  if (newFunds.length) {
+    console.log(`NEW FUNDS: ${newFunds.join(', ')}`);
+    if (process.env.GITHUB_STEP_SUMMARY) await appendFile(process.env.GITHUB_STEP_SUMMARY, `### NEW FUNDS\n\n${newFunds.join(', ')}\n`, 'utf8');
   }
+
+  const scope = filterScope(config);
+  const filtered = lineup.filter((fund) => passesFilters(fund, config));
+  const cursor = config.maxFetches > 0 ? await readCursor(scope) : null;
+  const candidates = selectBatch(filtered, cursor, config.maxFetches);
 
   outputPrintFilter(candidates.length, lineup.length, outputHasOutputFilters(config));
   const output = outputCreateReporter(API_ROOT, candidates.length);
-  if (config.maxFetches > 0) {
-    const cursor = await readCursor();
-    if (cursor) console.log(`Resuming after cursor ${cursor}.`);
-  }
+  if (cursor) console.log(`Resuming after cursor ${cursor}.`);
 
   const byTicker = new Map<string, CatalogEntry>();
   const queue = candidates.slice();
-  const total = candidates.length;
-  let processed = 0;
+  let taken = 0;
+  let deadlineHit = false;
+  const startedAt = Date.now();
   const laneCount = Math.max(1, config.concurrency);
   lastRequestAtLanes = new Array(laneCount).fill(0);
-  pacingLanes = new Array(laneCount).fill(null).map(() => Promise.resolve());
   const workers = Array.from({ length: laneCount }, async () => {
     for (;;) {
+      if (Date.now() - startedAt > (config.deadlineMs ?? SOFT_DEADLINE_MS)) {
+        if (queue.length) deadlineHit = true;
+        return;
+      }
       const fund = queue.shift();
       if (!fund) return;
+      taken += 1;
       const before = await output.before(fund.ticker);
       try {
         const entry = config.skipNeos
           ? await refreshHistoryOnly(fund, previous[fund.ticker], config, stats)
-          : await updateFund(fund, config, stats);
-        if (!passesReturnFilters(entry, config)) {
+          : await updateFund(fund, config, stats, (candidate) => passesReturnFilters(candidate, config));
+        if (!entry) {
           stats.skipped += 1;
-          processed += 1;
           await output.result(fund.ticker, before, 'skipped', 'return filter');
           continue;
         }
         byTicker.set(fund.ticker, entry);
-        processed += 1;
         await output.result(fund.ticker, before);
       } catch (error) {
-        processed += 1;
         stats.failed += 1;
         await output.result(fund.ticker, before, 'failed', errorMessage(error));
       }
     }
   });
   await Promise.all(workers);
+  if (deadlineHit) console.log(`Soft deadline reached: ${queue.length} fund(s) not taken, their previous data is kept.`);
 
   // Previously published entries are preserved so a bounded or failed run can
   // never empty the site.
   for (const fund of lineup) {
     if (!previous[fund.ticker]) {
-      previous[fund.ticker] = {
-        ticker: fund.ticker,
-        name: fund.name,
-        category: fund.category,
-        fundPage: fund.fundPage,
-        dataFile: `./funds/${fund.ticker}/meta.json`,
-        holdings: 0,
-        history: 0,
-      };
+      previous[fund.ticker] = placeholderEntry(fund);
     }
   }
   for (const [ticker, entry] of byTicker) previous[ticker] = entry;
@@ -2645,7 +2713,7 @@ export async function main(env: Record<string, string | undefined> = process.env
   const index = {
     // Kept from the previous file so an unchanged rerun produces an empty diff;
     // advanced below only when the serialized bytes actually moved.
-    generatedAt: previousGeneratedAt || new Date().toISOString().replace(/\.\d{3}Z$/, 'Z'),
+    generatedAt: previousGeneratedAt,
     source: {
       provider: 'NEOS Investment Management LLC (NEOS ETFs)',
       market: 'us',
@@ -2664,22 +2732,19 @@ export async function main(env: Record<string, string | undefined> = process.env
     counts,
     funds,
   };
-  const serialized = stableStringify(index);
-  const indexResult = await writeIfChanged(indexFile, serialized);
-  if (indexResult === 'written' && previousGeneratedAt) {
-    await writeFile(
-      indexFile,
-      stableStringify({ ...index, generatedAt: new Date().toISOString().replace(/\.\d{3}Z$/, 'Z') }),
-      'utf8',
-    );
-  }
+  const nowStamp = () => new Date().toISOString().replace(/\.\d{3}Z$/, 'Z');
+  // generatedAt moves only when some content moved; an identical rerun writes nothing.
+  await writeJsonIfContentChanged(indexFile, index, ['generatedAt'], nowStamp);
 
-  if (config.maxFetches > 0 && candidates.length) {
-    await writeIfChanged(
+  if (config.maxFetches > 0 && taken > 0) {
+    await writeJsonIfContentChanged(
       path.join(API_ROOT, 'update-state.json'),
-      stableStringify({ cursor: candidates[candidates.length - 1].ticker, savedAt: new Date().toISOString() }),
+      { cursor: candidates[taken - 1].ticker, scope },
+      ['savedAt'],
+      nowStamp,
     );
-  } else if (config.maxFetches === 0 && existsSync(path.join(API_ROOT, 'update-state.json'))) {
+  } else if (config.maxFetches === 0 && scope === filterScope(readConfig({})) && existsSync(path.join(API_ROOT, 'update-state.json'))) {
+    // Only a full unfiltered pass resets the cursor; a TICKERS or filtered run leaves it alone.
     await rm(path.join(API_ROOT, 'update-state.json'));
   }
 
@@ -2687,6 +2752,7 @@ export async function main(env: Record<string, string | undefined> = process.env
     `Done. updated=${stats.updated} unchanged=${stats.unchanged} skipped=${stats.skipped} failed=${stats.failed} · ` +
       `funds=${counts.funds} holdings=${counts.holdings} history=${counts.history}`,
   );
+  if (taken > 0 && stats.failed === taken) throw new Error(`every fund failed (${stats.failed} of ${taken})`);
 }
 
 if (import.meta.main) {

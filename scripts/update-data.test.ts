@@ -205,14 +205,14 @@ describe("dates", () => {
 
   test("formatNeosDate renders the display form the UI expects", () => {
     expect(formatNeosDate("08/29/2022")).toBe("Aug 29 2022");
-    expect(formatNeosDate("2026-02-02")).toBe("Feb 2 2026");
+    expect(formatNeosDate("2026-02-02")).toBe("Feb 02 2026");
     expect(formatNeosDate("")).toBe("");
   });
 
   test("compareDisplayDates orders the published display dates chronologically", () => {
     expect(compareDisplayDates("Aug 29 2022", "Sep 18 2026")).toBeLessThan(0);
     expect(compareDisplayDates("Sep 18 2026", "Aug 29 2022")).toBeGreaterThan(0);
-    expect(compareDisplayDates("Feb 2 2026", "Feb 2 2026")).toBe(0);
+    expect(compareDisplayDates("Feb 02 2026", "Feb 02 2026")).toBe(0);
   });
 });
 
@@ -1614,5 +1614,177 @@ describe("EDGAR fallback verifies the series and freshness", () => {
       await expect(updateFund(FUND, quiet(), stats())).rejects.toThrow(/older than the published holdings/);
       expect(JSON.parse(readSync(path.join(dir, "holdings", "001.json"), "utf8")).rows[0].Name).toBe("OLD");
     } finally { m.restore(); }
+  });
+});
+
+// ---------------------------------------------------------------------------
+// Run robustness: cursor, placeholders, pacing, timeouts, writes, exit code
+// ---------------------------------------------------------------------------
+import {
+  FETCH_TIMEOUT_MS,
+  fetchRetried,
+  filterScope,
+  main,
+  passesReturnFilters,
+  placeholderEntry,
+  reserveSlot,
+  selectBatch,
+  writeIfChanged,
+  writeJsonIfContentChanged,
+} from "./update-data";
+
+describe("bounded runs (MAX_FETCHES cursor)", () => {
+  const funds = ["A", "B", "C", "D", "E"].map((ticker) => ({ ticker }));
+  test("a batch wraps around the end of the list", () => {
+    expect(selectBatch(funds, "D", 3).map((fund) => fund.ticker)).toEqual(["E", "A", "B"]);
+  });
+  test("a cursor on the last fund starts over instead of stalling forever", () => {
+    expect(selectBatch(funds, "E", 2).map((fund) => fund.ticker)).toEqual(["A", "B"]);
+  });
+  test("no cursor, unknown cursor and no limit", () => {
+    expect(selectBatch(funds, null, 2).map((fund) => fund.ticker)).toEqual(["A", "B"]);
+    expect(selectBatch(funds, "ZZ", 2).map((fund) => fund.ticker)).toEqual(["A", "B"]);
+    expect(selectBatch(funds, "C", 0).length).toBe(5);
+    expect(selectBatch(funds, "C", 99).length).toBe(5);
+  });
+  test("the cursor scope changes with the filter set", () => {
+    expect(filterScope(readConfig({ TICKERS: "SPYI" }))).not.toBe(filterScope(readConfig({})));
+  });
+});
+
+describe("index rows without a fund page read yet", () => {
+  test("a placeholder carries the full metrics shape, null values and dataFile null", () => {
+    const row = placeholderEntry(parseNeosLineup(LINEUP_HTML)[0]) as Record<string, any>;
+    expect(row.dataFile).toBeNull();
+    expect(Object.keys(row.metrics)).toEqual([
+      "ytd", "tr1y", "tr3y", "tr5y", "tr10y", "cagr3y", "cagr5y", "cagr10y", "siAnn", "dividendYield", "dividendYieldText",
+      "distributionYield", "distributionYieldText", "yield12M", "yield12MText", "secYield", "secYieldText", "returnsBasis", "performanceAsOf",
+    ]);
+    expect(row.metrics.tr1y).toBeNull();
+    expect(row.metrics.returnsBasis.length).toBeGreaterThan(0);
+    expect(row.terValue).toBeNull();
+  });
+});
+
+describe("return filters", () => {
+  test("a fund without the filtered figure is excluded", () => {
+    const config = readConfig({ PERFORMANCE_5Y: "5:", TOTAL_RETURN_10Y: "0:" });
+    expect(passesReturnFilters({ ticker: "A", metrics: { cagr5y: null, tr10y: 50 } } as any, config)).toBe(false);
+    expect(passesReturnFilters({ ticker: "A", metrics: { cagr5y: 8, tr10y: null } } as any, config)).toBe(false);
+    expect(passesReturnFilters({ ticker: "A", metrics: { cagr5y: 8, tr10y: 50 } } as any, config)).toBe(true);
+  });
+});
+
+describe("pacing and timeouts", () => {
+  test("simultaneous callers reserve distinct lanes synchronously", () => {
+    const lanes = [0, 0, 0];
+    const slots = [1, 2, 3, 4].map(() => reserveSlot(lanes, 1000, 10_000));
+    expect(slots.map((slot) => slot.lane)).toEqual([0, 1, 2, 0]);
+    expect(slots.map((slot) => slot.startAt)).toEqual([10_000, 10_000, 10_000, 11_000]);
+  });
+
+  test("a stalled request times out per attempt, is retried, then fails", async () => {
+    expect(FETCH_TIMEOUT_MS).toBe(45_000);
+    let calls = 0;
+    const real = globalThis.fetch;
+    globalThis.fetch = ((_url: unknown, init?: RequestInit) => {
+      calls += 1;
+      return new Promise((_resolve, reject) => init?.signal?.addEventListener("abort", () => reject(new Error("aborted"))));
+    }) as unknown as typeof fetch;
+    try {
+      const config = { ...readConfig({ REQUEST_SLEEP: "0", MAX_RETRIES: "1" }), timeoutMs: 20, retryDelayMs: 0 };
+      await expect(fetchRetried("https://x.invalid/", {}, config, "stall", (response) => response.text())).rejects.toThrow(/stall/);
+      expect(calls).toBe(2);
+    } finally { globalThis.fetch = real; }
+  });
+
+  test("a permanent status (404) is not retried", async () => {
+    let calls = 0;
+    const real = globalThis.fetch;
+    globalThis.fetch = (async () => { calls += 1; return new Response("no", { status: 404 }); }) as unknown as typeof fetch;
+    try {
+      const config = { ...readConfig({ REQUEST_SLEEP: "0", MAX_RETRIES: "3" }), retryDelayMs: 0 };
+      await expect(fetchRetried("https://x.invalid/", {}, config, "gone", (response) => response.text())).rejects.toThrow(/HTTP 404/);
+      expect(calls).toBe(1);
+    } finally { globalThis.fetch = real; }
+  });
+});
+
+describe("writes", () => {
+  test("writeIfChanged leaves no tmp file and does not rewrite identical content", async () => {
+    const dir = mkdtempSync(path.join(tmpdir(), "neos-w-"));
+    const target = path.join(dir, "a.json");
+    expect(await writeIfChanged(target, "{}\n")).toBe("written");
+    expect(await writeIfChanged(target, "{}\n")).toBe("unchanged");
+    expect(readdirSync(dir)).toEqual(["a.json"]);
+  });
+
+  test("run stamps move only when the content moved", async () => {
+    const dir = mkdtempSync(path.join(tmpdir(), "neos-s-"));
+    const target = path.join(dir, "index.json");
+    let clock = "2026-10-02T00:00:00Z";
+    const stamp = () => clock;
+    expect(await writeJsonIfContentChanged(target, { funds: [1] }, ["generatedAt"], stamp)).toBe("written");
+    clock = "2026-10-03T00:00:00Z";
+    expect(await writeJsonIfContentChanged(target, { funds: [1], generatedAt: "ignored" }, ["generatedAt"], stamp)).toBe("unchanged");
+    expect(JSON.parse(readSync(target, "utf8")).generatedAt).toBe("2026-10-02T00:00:00Z");
+    expect(await writeJsonIfContentChanged(target, { funds: [1, 2] }, ["generatedAt"], stamp)).toBe("written");
+    expect(JSON.parse(readSync(target, "utf8")).generatedAt).toBe("2026-10-03T00:00:00Z");
+  });
+});
+
+describe("main() against a mocked site", () => {
+  const CHART = JSON.stringify({ chart: { result: [{ timestamp: [1_790_000_000, 1_790_086_400], indicators: { quote: [{ close: [54.1, 54.3], volume: [5, 6] }], adjclose: [{ adjclose: [54.1, 54.3] }] }, meta: { exchangeName: "PCX" } }] } });
+  const routes = (url: string): Response | null => {
+    if (url === "https://neosfunds.com/") return new Response(LINEUP_HTML);
+    if (/neosfunds\.com\/[a-z]+\/$/.test(url)) return new Response("<html></html>");
+    if (url.includes("download_holdings_csv")) return new Response(HOLDINGS_CSV);
+    if (url.includes("finance.yahoo.com")) return new Response(CHART);
+    return null;
+  };
+  const snapshot = (root: string): Record<string, string> => {
+    const out: Record<string, string> = {};
+    const walk = (dir: string) => {
+      for (const entry of readdirSync(dir, { withFileTypes: true })) {
+        const full = path.join(dir, entry.name);
+        if (entry.isDirectory()) walk(full); else out[path.relative(root, full)] = readSync(full, "utf8");
+      }
+    };
+    walk(root);
+    return out;
+  };
+  const env = { REQUEST_SLEEP: "0", MAX_RETRIES: "1", CONCURRENCY: "3", USE_SYSTEM_CA: "false" };
+
+  test("a rerun with identical upstream data writes nothing and the index lists every fund", async () => {
+    const root = mkdtempSync(path.join(tmpdir(), "neos-main-"));
+    setApiRootForTests(root);
+    const m = mockFetch(routes);
+    const log = console.log;
+    console.log = () => {};
+    try {
+      await main(env);
+      const first = snapshot(root);
+      const index = JSON.parse(first["index.json"]);
+      expect(index.funds.map((fund: any) => fund.ticker)).toEqual(["IWMI", "SPYI", "XSPI"]);
+      expect(index.generatedAt).toMatch(/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}Z$/);
+      await new Promise((resolve) => setTimeout(resolve, 1100));
+      await main(env);
+      expect(snapshot(root)).toEqual(first);
+      // A one-ticker run keeps every other fund in the index.
+      await main({ ...env, TICKERS: "SPYI" });
+      expect(JSON.parse(readSync(path.join(root, "index.json"), "utf8")).funds.length).toBe(3);
+    } finally { console.log = log; m.restore(); }
+  });
+
+  test("an unknown ticker is an error and a total failure exits non-zero", async () => {
+    const root = mkdtempSync(path.join(tmpdir(), "neos-fail-"));
+    setApiRootForTests(root);
+    const m = mockFetch((url) => (url === "https://neosfunds.com/" ? new Response(LINEUP_HTML) : null));
+    const log = console.log;
+    console.log = () => {};
+    try {
+      await expect(main({ ...env, TICKERS: "NOPE" })).rejects.toThrow(/not in the NEOS lineup: NOPE/);
+      await expect(main({ ...env, EDGAR_FALLBACK: "false" })).rejects.toThrow(/every fund failed/);
+    } finally { console.log = log; m.restore(); }
   });
 });
