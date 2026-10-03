@@ -42,7 +42,7 @@ The **Update NEOS ETF data** GitHub Actions workflow (`.github/workflows/update-
 | Holdings fallback | SEC EDGAR Form **N-PORT-P**, NEOS ETF Trust **CIK 0001848758** (file 811-23645) | Used only when a holdings CSV is unavailable (`EDGAR_FALLBACK`); enabled in the config file, set `EDGAR_FALLBACK` to `false` to skip it (SEC EDGAR has answered GitHub runner IPs with `403`) |
 | Dividend-history fallback | Yahoo Finance dividend events | Only for a fund with no published Distribution History rows; the feed marks those rows `distributions.fallback: true` |
 
-`neosfunds.com` throttles bursts (the TLS connection is reset), so requests are globally paced by `REQUEST_SLEEP` (config default `2s`) with bounded retries.
+`neosfunds.com` throttles bursts (the TLS connection is reset), so requests are globally paced by `REQUEST_SLEEP` (config default `2s`) with bounded retries; every request has a 45 s budget (headers and body) per attempt.
 
 ### Metrics and caveats
 
@@ -61,6 +61,19 @@ The page publishes **annualized** 3 Yr / 5 Yr / 10 Yr figures and a **cumulative
 #### Returns basis and as-of date
 
 Every `funds[].metrics` row in `api/neos/index.json` ends with two fields: `returnsBasis`, a non-empty label saying the returns are NEOS's official NAV total returns from the month-end Performance table (3/5/10 Yr cumulative derived from the published annualized figures), and `performanceAsOf`, the ISO `YYYY-MM-DD` date of that table (not the NAV date), `null` only when the page prints none. Unavailable numbers are `null`, never `0`.
+
+#### Expense ratio mapping
+
+`terValue` is the **net** expense ratio and `terGrossValue` the **gross** one. NEOS publishes a single all-in figure, `Total Annual Fund Operating Expenses` (management fee plus acquired fund fees, no waiver), so both carry that number and `terGross` repeats its text. The management fee alone is published separately as `managementFee` / `managementFeeValue`. A page that omits the total gives `null`, never the management fee. The `TER` filter reads the management fee of the lineup table.
+
+#### Run behavior
+
+- `MAX_FETCHES` batches wrap around the end of the lineup, count only funds that pass the filters, and the cursor is scoped to the filter set. A `TICKERS` or filtered run never deletes the cursor; only a full unfiltered pass resets it.
+- A fund is either fully updated (pages, then `meta.json`, then its index row) or fully kept from before. Files are written through a temporary file and renamed; stale pages are removed only after the new `meta.json`.
+- A rerun with identical upstream data changes nothing, including `generatedAt`.
+- The run stops taking new funds after 25 minutes and still writes the index.
+- New lineup funds are printed as `NEW FUNDS: ...` (and appended to the step summary) and get an index row with `dataFile: null` and an all-`null` metrics object until their first successful update.
+- The run exits non-zero when every attempted fund failed or a requested ticker is not in the lineup.
 
 #### Known value limitations
 
@@ -84,7 +97,7 @@ Defaults below are the values in `scripts/update-data.config.json`. Environment 
 
 | Control | Default | Meaning |
 | --- | --: | --- |
-| `MAX_FETCHES` | `0` | Funds to process; `0` = full pass. A positive value resumes after the cursor in `api/neos/update-state.json` |
+| `MAX_FETCHES` | `0` | Funds to process; `0` = full pass. A positive value resumes after the cursor in `api/neos/update-state.json` and wraps around |
 | `REQUEST_SLEEP` | `2` | Seconds between request starts; `neosfunds.com` throttles bursts |
 | `CONCURRENCY` | `2` | Parallel fund workers |
 | `MAX_RETRIES` | `3` | Retries (integer >= 1) after the initial request for network errors and HTTP 408/425/429/5xx |
@@ -94,20 +107,20 @@ Defaults below are the values in `scripts/update-data.config.json`. Environment 
 | `TER` | `:` | `min:max` expense ratio percent |
 | `DIVIDEND_YIELD` | `:` | `min:max` catalog distribution rate percent |
 | `SEC_YIELD` | `:` | `min:max` catalog 30-day SEC yield percent |
-| `PERFORMANCE_YTD` / `_1Y` / `_3Y` / `_5Y` / `_10Y` | `""` | `min:max` filters on the official NAV return |
-| `TOTAL_RETURN_YTD` / `_1Y` / `_3Y` / `_5Y` / `_10Y` | `""` | `min:max` filters on the derived cumulative total return |
+| `PERFORMANCE_YTD` / `_1Y` / `_3Y` / `_5Y` / `_10Y` | `""` | `min:max` filters on the official NAV return; a fund without that figure is excluded |
+| `TOTAL_RETURN_YTD` / `_1Y` / `_3Y` / `_5Y` / `_10Y` | `""` | `min:max` filters on the derived cumulative total return; a fund without that figure is excluded |
 | `HOLDINGS_PAGE_SIZE` | `250` | Rows per generated holdings JSON page |
 | `HISTORY_PAGE_SIZE` | `1000` | Rows per generated history JSON page |
-| `HISTORY_RANGE` | `max` | Yahoo chart range for the price-history sheets (`max`, `10y`, `5y`, ...) |
+| `HISTORY_RANGE` | `max` | Yahoo history window: `max` or `Ny` (for example `5y`); sent as explicit period1/period2 because Yahoo ignores `range` when period1=0 |
 | `STORE_RAW_DOWNLOADS` | `false` | Keep raw samples under `api/neos/raw` |
 | `SEC_UA` | `daggerok ETF feed daggerok@gmail.com` | Declared User-Agent for SEC EDGAR requests; redacted in config logs, the `SEC_UA` repository Actions variable overrides it |
-| `EDGAR_FALLBACK` | `true` | Use N-PORT-P when a holdings CSV is unavailable |
-| `SKIP_YAHOO` | `false` | Keep previous history and distributions while refreshing catalog and holdings |
-| `SKIP_NEOS` | `false` | Keep the previously published official catalog |
+| `EDGAR_FALLBACK` | `true` | Use the fund's own N-PORT-P series (exact series name match, never older than the published holdings) when a holdings CSV is unavailable |
+| `SKIP_YAHOO` | `false` | Do not call Yahoo; the previously published history pages and manifest stay untouched |
+| `SKIP_NEOS` | `false` | Do not read neosfunds.com; the published fund data stays as it is and only the Yahoo history is refreshed |
 | `VERBOSE` | `false` | Print per-fund retry and fallback notices |
 | `USE_SYSTEM_CA` | `auto` | TLS trust store: `auto` restarts the updater once with Bun's `--use-system-ca` when a request fails with an untrusted-certificate error; `true` always uses the system CA store; `false` never restarts. Not an individual workflow input: use `advanced`, the config file or the CLI environment |
 
-Range syntax is strict `min:max` with exactly one colon; `""` and `:` mean no restriction. Funds not selected for a successful update keep their prior published metadata and data files, so a bounded or partly failed run can never empty the site.
+A failed or skipped Yahoo request never empties a fund's history: the previous pages and manifest are kept. Range syntax is strict `min:max` with exactly one colon; `""` and `:` mean no restriction. Funds not selected for a successful update keep their prior published metadata and data files, so a bounded or partly failed run can never empty the site.
 
 ### Examples
 

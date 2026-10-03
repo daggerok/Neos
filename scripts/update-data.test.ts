@@ -127,7 +127,11 @@ describe("source URLs", () => {
     const fixed = 1_700_000_000_000;
     expect(yahooChartUrl("SPYI", "max", fixed)).toContain("period1=0&period2=1700000000");
     expect(yahooChartUrl("SPYI", "max", fixed)).not.toContain("&range=");
-    expect(yahooChartUrl("SPYI", "5y", fixed)).toEndWith("&range=5y");
+    // Yahoo ignores `range` when period1=0: the range must move period1 itself.
+    const fiveYears = yahooChartUrl("SPYI", "5y", fixed);
+    expect(fiveYears).not.toContain("&range=");
+    expect(fiveYears).toContain(`period1=${Math.floor(1_700_000_000 - 5 * 365.25 * 86_400)}&period2=1700000000`);
+    expect(() => yahooChartUrl("SPYI", "6mo", fixed)).toThrow(/expected max or Ny/);
   });
 });
 
@@ -201,14 +205,14 @@ describe("dates", () => {
 
   test("formatNeosDate renders the display form the UI expects", () => {
     expect(formatNeosDate("08/29/2022")).toBe("Aug 29 2022");
-    expect(formatNeosDate("2026-02-02")).toBe("Feb 2 2026");
+    expect(formatNeosDate("2026-02-02")).toBe("Feb 02 2026");
     expect(formatNeosDate("")).toBe("");
   });
 
   test("compareDisplayDates orders the published display dates chronologically", () => {
     expect(compareDisplayDates("Aug 29 2022", "Sep 18 2026")).toBeLessThan(0);
     expect(compareDisplayDates("Sep 18 2026", "Aug 29 2022")).toBeGreaterThan(0);
-    expect(compareDisplayDates("Feb 2 2026", "Feb 2 2026")).toBe(0);
+    expect(compareDisplayDates("Feb 02 2026", "Feb 02 2026")).toBe(0);
   });
 });
 
@@ -271,7 +275,7 @@ describe("readConfig", () => {
     expect(config.tickers).toEqual([]);
     expect(config.skipYahoo).toBe(false);
     expect(config.skipNeos).toBe(false);
-    expect(config.edgarFallback).toBe(false);
+    expect(config.edgarFallback).toBe(true);
     expect(config.secUa).toBe("daggerok ETF feed daggerok@gmail.com");
   });
 
@@ -1461,5 +1465,326 @@ describe('system CA support', () => {
         expect(calls.length).toBe(1);
       } finally { restore(); }
     });
+  });
+});
+
+
+// ---------------------------------------------------------------------------
+// Keep previous data (SKIP_*, source failures) and EDGAR series identity
+// ---------------------------------------------------------------------------
+import { mkdtempSync, mkdirSync, writeFileSync, existsSync, readFileSync as readSync, readdirSync } from "node:fs";
+import { tmpdir } from "node:os";
+import {
+  edgarPrimaryDocLinks,
+  fallbackIsStale,
+  refreshHistoryOnly,
+  seriesNameMatches,
+  setApiRootForTests,
+  updateFund,
+} from "./update-data";
+
+const FUND = {
+  ticker: "SPYI", name: "NEOS S&P 500 High Income ETF", category: "Equity", categoryClass: "", frequency: "Monthly",
+  distributionRate: null, distributionRateText: "", secYield: null, secYieldText: "", managementFee: 0.68,
+  managementFeeText: "0.68%", netAssets: null, netAssetsText: "", inceptionDate: "", fundPage: "https://neosfunds.com/spyi/",
+};
+const PREVIOUS_ROWS = [
+  { Date: "2026-09-18", Close: "53.10", "Adj Close": "53.10", Volume: "1" },
+  { Date: "2026-09-17", Close: "53.00", "Adj Close": "53.00", Volume: "2" },
+  { Date: "2026-09-16", Close: "52.90", "Adj Close": "52.90", Volume: "3" },
+];
+
+function seedFeed(holdingsAsOf = "Sep 21 2026") {
+  const root = mkdtempSync(path.join(tmpdir(), "neos-feed-"));
+  const dir = path.join(root, "funds", "SPYI");
+  mkdirSync(path.join(dir, "history"), { recursive: true });
+  mkdirSync(path.join(dir, "holdings"), { recursive: true });
+  writeFileSync(path.join(dir, "history", "001.json"), JSON.stringify({ ticker: "SPYI", page: 1, pageSize: 1000, totalRows: 3, headers: [...HISTORY_HEADERS], rows: PREVIOUS_ROWS }));
+  writeFileSync(path.join(dir, "holdings", "001.json"), JSON.stringify({ ticker: "SPYI", page: 1, rows: [{ Name: "OLD" }] }));
+  writeFileSync(path.join(dir, "meta.json"), JSON.stringify({
+    ticker: "SPYI",
+    holdings: { pages: ["./holdings/001.json"], totalRows: 1, asOfDate: holdingsAsOf },
+    history: { pages: ["./history/001.json"], pageSize: 1000, totalRows: 3, asOf: "2026-09-18", asOfDate: "Sep 18 2026", source: "yahoo" },
+  }));
+  setApiRootForTests(root);
+  return { root, dir };
+}
+
+const NPORT = (series: string, repPdDate: string) =>
+  `<repPdDate>${repPdDate}</repPdDate><seriesName>${series}</seriesName><invstOrSec><name>X CORP</name><cusip>123456789</cusip><balance>10</balance><valUSD>500</valUSD><pctVal>1.5</pctVal><assetCat>EC</assetCat></invstOrSec>`;
+
+function mockFetch(routes: (url: string) => Response | null) {
+  const urls: string[] = [];
+  const real = globalThis.fetch;
+  globalThis.fetch = (async (input: RequestInfo | URL) => {
+    const url = String(input);
+    urls.push(url);
+    return routes(url) ?? new Response("not found", { status: 404 });
+  }) as unknown as typeof fetch;
+  return { urls, restore: () => { globalThis.fetch = real; } };
+}
+const quiet = () => readConfig({ REQUEST_SLEEP: "0", MAX_RETRIES: "1" });
+const stats = () => ({ updated: 0, unchanged: 0, skipped: 0, failed: 0 });
+
+describe("previous data survives a skipped or failed source", () => {
+  test("SKIP_YAHOO keeps the published history pages and manifest", async () => {
+    const { dir } = seedFeed();
+    const m = mockFetch((url) => url.includes("neosfunds.com/spyi") ? new Response("<html></html>") : url.includes("download_holdings_csv") ? new Response(HOLDINGS_CSV) : null);
+    try {
+      const entry = await updateFund(FUND, { ...quiet(), skipYahoo: true }, stats());
+      expect(entry.history).toBe(3);
+      expect(readdirSync(path.join(dir, "history"))).toEqual(["001.json"]);
+      expect(JSON.parse(readSync(path.join(dir, "meta.json"), "utf8")).history.totalRows).toBe(3);
+    } finally { m.restore(); }
+  });
+
+  test("a failing Yahoo request keeps the published history", async () => {
+    const { dir } = seedFeed();
+    const m = mockFetch((url) => url.includes("neosfunds.com/spyi") ? new Response("<html></html>") : url.includes("download_holdings_csv") ? new Response(HOLDINGS_CSV) : null);
+    try {
+      const entry = await updateFund(FUND, quiet(), stats());
+      expect(m.urls.some((url) => url.includes("query1.finance.yahoo.com"))).toBe(true);
+      expect(entry.history).toBe(3);
+      expect(JSON.parse(readSync(path.join(dir, "history", "001.json"), "utf8")).rows.length).toBe(3);
+    } finally { m.restore(); }
+  });
+
+  test("SKIP_NEOS never reads neosfunds.com and keeps the published fund data", async () => {
+    const { dir } = seedFeed();
+    const previousEntry = { ticker: "SPYI", holdings: 1, history: 3, metrics: { tr1y: 14.62 } };
+    const chart = JSON.stringify({ chart: { result: [{ timestamp: [1_790_000_000], indicators: { quote: [{ close: [54.1], volume: [5] }], adjclose: [{ adjclose: [54.1] }] }, meta: {} }] } });
+    const m = mockFetch((url) => url.includes("finance.yahoo.com") ? new Response(chart) : null);
+    try {
+      const entry = await refreshHistoryOnly(FUND, previousEntry, { ...quiet(), skipNeos: true }, stats());
+      expect(m.urls.every((url) => !url.includes("neosfunds.com"))).toBe(true);
+      expect(entry.history).toBe(1);
+      expect((entry.metrics as { tr1y: number }).tr1y).toBe(14.62);
+      const meta = JSON.parse(readSync(path.join(dir, "meta.json"), "utf8"));
+      expect(meta.holdings.totalRows).toBe(1);
+      expect(meta.history.totalRows).toBe(1);
+      // Yahoo down: the previous row is returned untouched.
+      const failing = mockFetch(() => null);
+      try {
+        expect(await refreshHistoryOnly(FUND, previousEntry, { ...quiet(), skipNeos: true }, stats())).toBe(previousEntry);
+      } finally { failing.restore(); }
+    } finally { m.restore(); }
+  });
+});
+
+describe("EDGAR fallback verifies the series and freshness", () => {
+  test("seriesNameMatches is exact after normalization, never a sibling", () => {
+    expect(seriesNameMatches("NEOS S&amp;P 500(R) High Income ETF".replace("&amp;", "&"), "NEOS S&P 500 High Income ETF")).toBe(true);
+    expect(seriesNameMatches("NEOS Nasdaq-100 High Income ETF", "NEOS S&P 500 High Income ETF")).toBe(false);
+    expect(seriesNameMatches(null, "NEOS S&P 500 High Income ETF")).toBe(false);
+  });
+  test("edgarPrimaryDocLinks keeps order and drops duplicates", () => {
+    expect(edgarPrimaryDocLinks(`<a href="/Archives/a/primary_doc.xml"><a href='/Archives/b/primary_doc.xml'><a href="/Archives/a/primary_doc.xml">`)).toEqual(["/Archives/a/primary_doc.xml", "/Archives/b/primary_doc.xml"]);
+  });
+  test("fallbackIsStale compares the report period with the published date", () => {
+    expect(fallbackIsStale("2026-08-31", "Sep 21 2026")).toBe(true);
+    expect(fallbackIsStale("2026-09-30", "Sep 21 2026")).toBe(false);
+    expect(fallbackIsStale("2026-08-31", undefined)).toBe(false);
+  });
+
+  const listing = `<a href="/Archives/x/other/primary_doc.xml"><a href="/Archives/x/spyi/primary_doc.xml">`;
+  const route = (spyiPeriod: string) => (url: string) => {
+    if (url.includes("neosfunds.com/spyi")) return new Response("<html></html>");
+    if (url.includes("browse-edgar")) return new Response(listing);
+    if (url.includes("/other/")) return new Response(NPORT("NEOS Nasdaq-100 High Income ETF", "2026-09-30"));
+    if (url.includes("/spyi/")) return new Response(NPORT("NEOS S&amp;P 500 High Income ETF", spyiPeriod));
+    return null; // holdings CSV and Yahoo: 404
+  };
+
+  test("a failed CSV takes the filing of THIS series, not the trust's newest filing", async () => {
+    const { dir } = seedFeed("Aug 01 2026");
+    const m = mockFetch(route("2026-08-31"));
+    try {
+      const entry = await updateFund(FUND, quiet(), stats());
+      expect(entry.holdings).toBe(1);
+      const page = JSON.parse(readSync(path.join(dir, "holdings", "001.json"), "utf8"));
+      expect(page.rows[0].Name).toBe("X CORP");
+      expect(JSON.parse(readSync(path.join(dir, "meta.json"), "utf8")).holdings.source).toContain("/spyi/");
+    } finally { m.restore(); }
+  });
+
+  test("an older filing never replaces fresher published holdings", async () => {
+    const { dir } = seedFeed("Sep 21 2026");
+    const m = mockFetch(route("2026-08-31"));
+    try {
+      await expect(updateFund(FUND, quiet(), stats())).rejects.toThrow(/older than the published holdings/);
+      expect(JSON.parse(readSync(path.join(dir, "holdings", "001.json"), "utf8")).rows[0].Name).toBe("OLD");
+    } finally { m.restore(); }
+  });
+});
+
+// ---------------------------------------------------------------------------
+// Run robustness: cursor, placeholders, pacing, timeouts, writes, exit code
+// ---------------------------------------------------------------------------
+import {
+  FETCH_TIMEOUT_MS,
+  fetchRetried,
+  filterScope,
+  main,
+  passesReturnFilters,
+  placeholderEntry,
+  reserveSlot,
+  selectBatch,
+  writeIfChanged,
+  writeJsonIfContentChanged,
+} from "./update-data";
+
+describe("bounded runs (MAX_FETCHES cursor)", () => {
+  const funds = ["A", "B", "C", "D", "E"].map((ticker) => ({ ticker }));
+  test("a batch wraps around the end of the list", () => {
+    expect(selectBatch(funds, "D", 3).map((fund) => fund.ticker)).toEqual(["E", "A", "B"]);
+  });
+  test("a cursor on the last fund starts over instead of stalling forever", () => {
+    expect(selectBatch(funds, "E", 2).map((fund) => fund.ticker)).toEqual(["A", "B"]);
+  });
+  test("no cursor, unknown cursor and no limit", () => {
+    expect(selectBatch(funds, null, 2).map((fund) => fund.ticker)).toEqual(["A", "B"]);
+    expect(selectBatch(funds, "ZZ", 2).map((fund) => fund.ticker)).toEqual(["A", "B"]);
+    expect(selectBatch(funds, "C", 0).length).toBe(5);
+    expect(selectBatch(funds, "C", 99).length).toBe(5);
+  });
+  test("the cursor scope changes with the filter set", () => {
+    expect(filterScope(readConfig({ TICKERS: "SPYI" }))).not.toBe(filterScope(readConfig({})));
+  });
+});
+
+describe("index rows without a fund page read yet", () => {
+  test("a placeholder carries the full metrics shape, null values and dataFile null", () => {
+    const row = placeholderEntry(parseNeosLineup(LINEUP_HTML)[0]) as Record<string, any>;
+    expect(row.dataFile).toBeNull();
+    expect(Object.keys(row.metrics)).toEqual([
+      "ytd", "tr1y", "tr3y", "tr5y", "tr10y", "cagr3y", "cagr5y", "cagr10y", "siAnn", "dividendYield", "dividendYieldText",
+      "distributionYield", "distributionYieldText", "yield12M", "yield12MText", "secYield", "secYieldText", "returnsBasis", "performanceAsOf",
+    ]);
+    expect(row.metrics.tr1y).toBeNull();
+    expect(row.metrics.returnsBasis.length).toBeGreaterThan(0);
+    expect(row.terValue).toBeNull();
+  });
+});
+
+describe("return filters", () => {
+  test("a fund without the filtered figure is excluded", () => {
+    const config = readConfig({ PERFORMANCE_5Y: "5:", TOTAL_RETURN_10Y: "0:" });
+    expect(passesReturnFilters({ ticker: "A", metrics: { cagr5y: null, tr10y: 50 } } as any, config)).toBe(false);
+    expect(passesReturnFilters({ ticker: "A", metrics: { cagr5y: 8, tr10y: null } } as any, config)).toBe(false);
+    expect(passesReturnFilters({ ticker: "A", metrics: { cagr5y: 8, tr10y: 50 } } as any, config)).toBe(true);
+  });
+});
+
+describe("pacing and timeouts", () => {
+  test("simultaneous callers reserve distinct lanes synchronously", () => {
+    const lanes = [0, 0, 0];
+    const slots = [1, 2, 3, 4].map(() => reserveSlot(lanes, 1000, 10_000));
+    expect(slots.map((slot) => slot.lane)).toEqual([0, 1, 2, 0]);
+    expect(slots.map((slot) => slot.startAt)).toEqual([10_000, 10_000, 10_000, 11_000]);
+  });
+
+  test("a stalled request times out per attempt, is retried, then fails", async () => {
+    expect(FETCH_TIMEOUT_MS).toBe(45_000);
+    let calls = 0;
+    const real = globalThis.fetch;
+    globalThis.fetch = ((_url: unknown, init?: RequestInit) => {
+      calls += 1;
+      return new Promise((_resolve, reject) => init?.signal?.addEventListener("abort", () => reject(new Error("aborted"))));
+    }) as unknown as typeof fetch;
+    try {
+      const config = { ...readConfig({ REQUEST_SLEEP: "0", MAX_RETRIES: "1" }), timeoutMs: 20, retryDelayMs: 0 };
+      await expect(fetchRetried("https://x.invalid/", {}, config, "stall", (response) => response.text())).rejects.toThrow(/stall/);
+      expect(calls).toBe(2);
+    } finally { globalThis.fetch = real; }
+  });
+
+  test("a permanent status (404) is not retried", async () => {
+    let calls = 0;
+    const real = globalThis.fetch;
+    globalThis.fetch = (async () => { calls += 1; return new Response("no", { status: 404 }); }) as unknown as typeof fetch;
+    try {
+      const config = { ...readConfig({ REQUEST_SLEEP: "0", MAX_RETRIES: "3" }), retryDelayMs: 0 };
+      await expect(fetchRetried("https://x.invalid/", {}, config, "gone", (response) => response.text())).rejects.toThrow(/HTTP 404/);
+      expect(calls).toBe(1);
+    } finally { globalThis.fetch = real; }
+  });
+});
+
+describe("writes", () => {
+  test("writeIfChanged leaves no tmp file and does not rewrite identical content", async () => {
+    const dir = mkdtempSync(path.join(tmpdir(), "neos-w-"));
+    const target = path.join(dir, "a.json");
+    expect(await writeIfChanged(target, "{}\n")).toBe("written");
+    expect(await writeIfChanged(target, "{}\n")).toBe("unchanged");
+    expect(readdirSync(dir)).toEqual(["a.json"]);
+  });
+
+  test("run stamps move only when the content moved", async () => {
+    const dir = mkdtempSync(path.join(tmpdir(), "neos-s-"));
+    const target = path.join(dir, "index.json");
+    let clock = "2026-10-02T00:00:00Z";
+    const stamp = () => clock;
+    expect(await writeJsonIfContentChanged(target, { funds: [1] }, ["generatedAt"], stamp)).toBe("written");
+    clock = "2026-10-03T00:00:00Z";
+    expect(await writeJsonIfContentChanged(target, { funds: [1], generatedAt: "ignored" }, ["generatedAt"], stamp)).toBe("unchanged");
+    expect(JSON.parse(readSync(target, "utf8")).generatedAt).toBe("2026-10-02T00:00:00Z");
+    expect(await writeJsonIfContentChanged(target, { funds: [1, 2] }, ["generatedAt"], stamp)).toBe("written");
+    expect(JSON.parse(readSync(target, "utf8")).generatedAt).toBe("2026-10-03T00:00:00Z");
+  });
+});
+
+describe("main() against a mocked site", () => {
+  const CHART = JSON.stringify({ chart: { result: [{ timestamp: [1_790_000_000, 1_790_086_400], indicators: { quote: [{ close: [54.1, 54.3], volume: [5, 6] }], adjclose: [{ adjclose: [54.1, 54.3] }] }, meta: { exchangeName: "PCX" } }] } });
+  const routes = (url: string): Response | null => {
+    if (url === "https://neosfunds.com/") return new Response(LINEUP_HTML);
+    if (/neosfunds\.com\/[a-z]+\/$/.test(url)) return new Response("<html></html>");
+    if (url.includes("download_holdings_csv")) return new Response(HOLDINGS_CSV);
+    if (url.includes("finance.yahoo.com")) return new Response(CHART);
+    return null;
+  };
+  const snapshot = (root: string): Record<string, string> => {
+    const out: Record<string, string> = {};
+    const walk = (dir: string) => {
+      for (const entry of readdirSync(dir, { withFileTypes: true })) {
+        const full = path.join(dir, entry.name);
+        if (entry.isDirectory()) walk(full); else out[path.relative(root, full)] = readSync(full, "utf8");
+      }
+    };
+    walk(root);
+    return out;
+  };
+  const env = { REQUEST_SLEEP: "0", MAX_RETRIES: "1", CONCURRENCY: "3", USE_SYSTEM_CA: "false" };
+
+  test("a rerun with identical upstream data writes nothing and the index lists every fund", async () => {
+    const root = mkdtempSync(path.join(tmpdir(), "neos-main-"));
+    setApiRootForTests(root);
+    const m = mockFetch(routes);
+    const log = console.log;
+    console.log = () => {};
+    try {
+      await main(env);
+      const first = snapshot(root);
+      const index = JSON.parse(first["index.json"]);
+      expect(index.funds.map((fund: any) => fund.ticker)).toEqual(["IWMI", "SPYI", "XSPI"]);
+      expect(index.generatedAt).toMatch(/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}Z$/);
+      await new Promise((resolve) => setTimeout(resolve, 1100));
+      await main(env);
+      expect(snapshot(root)).toEqual(first);
+      // A one-ticker run keeps every other fund in the index.
+      await main({ ...env, TICKERS: "SPYI" });
+      expect(JSON.parse(readSync(path.join(root, "index.json"), "utf8")).funds.length).toBe(3);
+    } finally { console.log = log; m.restore(); }
+  });
+
+  test("an unknown ticker is an error and a total failure exits non-zero", async () => {
+    const root = mkdtempSync(path.join(tmpdir(), "neos-fail-"));
+    setApiRootForTests(root);
+    const m = mockFetch((url) => (url === "https://neosfunds.com/" ? new Response(LINEUP_HTML) : null));
+    const log = console.log;
+    console.log = () => {};
+    try {
+      await expect(main({ ...env, TICKERS: "NOPE" })).rejects.toThrow(/not in the NEOS lineup: NOPE/);
+      await expect(main({ ...env, EDGAR_FALLBACK: "false" })).rejects.toThrow(/every fund failed/);
+    } finally { console.log = log; m.restore(); }
   });
 });
