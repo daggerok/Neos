@@ -390,8 +390,8 @@ export const YIELD_KIND_BY_BASIS: Record<DividendYieldBasis, string> = {
   'official-distribution-rate': 'official NEOS Distribution Rate (latest distribution annualized / ex-date NAV)',
 };
 /** Kept index rows (unselected, filtered out, failed, SKIP_NEOS) carry the same key set: the code follows the yield the row holds. */
-export function withYieldBasis<T extends { metrics?: any }>(entry: T): T {
-  const old = (entry.metrics ?? {}) as Record<string, unknown>;
+export function withYieldBasis<T extends object>(entry: T): T { // not `{ metrics?: any }`: that weak type rejects CatalogEntry, which has no `metrics` key
+  const old = ((entry as { metrics?: any }).metrics ?? {}) as Record<string, unknown>;
   const metrics: Record<string, unknown> = {};
   for (const [key, value] of Object.entries(old)) {
     if (key === 'dividendYieldBasis') continue;
