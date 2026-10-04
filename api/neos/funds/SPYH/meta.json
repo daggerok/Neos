@@ -13,39 +13,39 @@
   "managementFee": "0.68%",
   "managementFeeValue": 0.68,
   "nav": {
-    "display": "$56.20",
-    "value": 56.2,
-    "asOfDate": "Oct 01 2026",
-    "dailyChangeText": "$0.07 (0.13%)",
+    "display": "$56.48",
+    "value": 56.48,
+    "asOfDate": "Oct 02 2026",
+    "dailyChangeText": "$0.29 (0.51%)",
     "kind": "official (fund page Fund Details)"
   },
-  "navValue": 56.2,
+  "navValue": 56.48,
   "aum": {
     "display": "$36.15M",
     "value": 36150336,
-    "asOfDate": "Oct 01 2026",
+    "asOfDate": "Oct 02 2026",
     "source": "official NEOS daily holdings CSV (download_holdings_csv)"
   },
   "aumValue": 36150336,
-  "asOfDate": "Oct 01 2026",
+  "asOfDate": "Oct 02 2026",
   "inceptionDate": "Apr 02 2025",
   "inceptionDateFundPage": "Apr 02 2025",
   "exchange": "CBOE",
-  "closePrice": "$56.25",
-  "closePriceValue": 56.25,
+  "closePrice": "$56.46",
+  "closePriceValue": 56.46,
   "premiumDiscount": {
-    "display": "0.09%",
-    "value": 0.09,
-    "derivedValue": 0.09,
+    "display": "-0.04%",
+    "value": -0.04,
+    "derivedValue": -0.04,
     "kind": "official (fund page Fund Details \"Premium Discount (%)\")"
   },
-  "premiumDiscountValue": 0.09,
-  "premiumDiscountDerivedValue": 0.09,
+  "premiumDiscountValue": -0.04,
+  "premiumDiscountDerivedValue": -0.04,
   "premiumDiscountKind": "official (fund page Fund Details \"Premium Discount (%)\")",
   "bidAskSpread": {
     "display": "0.11%",
     "value": 0.11,
-    "asOfDate": "Oct 01 2026",
+    "asOfDate": "Oct 02 2026",
     "kind": "official (fund page Fund Details \"30-Day Median Bid-Ask Spread (%)\")"
   },
   "bidAskSpreadValue": 0.11,
@@ -56,7 +56,7 @@
     "value": 640000,
     "asOfDate": "Oct 05 2026"
   },
-  "netAssetsAsOf": "Oct 01 2026",
+  "netAssetsAsOf": "Oct 02 2026",
   "secYieldAsOf": "Aug 31 2026",
   "distributions": {
     "frequency": "Monthly",
@@ -358,10 +358,10 @@
     "managementFeeValue": 0.68
   },
   "marketPrice": {
-    "display": "$56.25",
-    "value": 56.25,
-    "asOfDate": "Oct 01 2026",
-    "dailyChangeText": "$0.03 (0.05%)",
+    "display": "$56.46",
+    "value": 56.46,
+    "asOfDate": "Oct 02 2026",
+    "dailyChangeText": "$0.21 (0.37%)",
     "source": "NEOS fund page Fund Details \"Market Price\""
   },
   "yields": {
