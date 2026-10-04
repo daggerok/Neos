@@ -66,6 +66,8 @@ import {
   paymentsPerYear,
   performanceAsOf,
   placeholderEntry,
+  withYieldBasis,
+  yieldBasisFor,
   readConfig,
   refreshHistoryOnly,
   reserveSlot,
@@ -643,6 +645,37 @@ describe("metrics", () => {
     });
   });
 
+  test("dividendYieldBasis: the Distribution Rate is official-distribution-rate, a null yield has a null code, and every row has the same key set", async () => {
+    await inTempRoot(async () => {
+      mockFetch(site({ SPYI: RICH_PAGES.SPYI + DISTRIBUTION_INFO_HTML }));
+      const rich = (await updateFund(FUND, quiet(), stats()))! as { metrics: Record<string, unknown> };
+      const lineupOnly = (await updateFund({ ...FUND, ticker: "XSPI", distributionRate: 16.78 }, quiet(), stats()))! as { metrics: Record<string, unknown> };
+      expect(lineupOnly.metrics).toMatchObject({ dividendYield: 16.78, dividendYieldBasis: "official-distribution-rate" });
+      const bare = (await updateFund({ ...FUND, ticker: "XSPI", distributionRate: null }, quiet(), stats()))! as { metrics: Record<string, unknown> };
+      const placeholder = placeholderEntry(parseNeosLineup(LINEUP_HTML)[0]) as { metrics: Record<string, unknown> };
+      expect(rich.metrics.dividendYield).toBe(12.15);
+      expect(rich.metrics.dividendYieldBasis).toBe("official-distribution-rate");
+      for (const row of [bare, placeholder]) {
+        expect(row.metrics.dividendYield).toBeNull();
+        expect(row.metrics.dividendYieldBasis).toBeNull();
+      }
+      expect(placeholder.metrics.dividendYieldBasis).toBeNull();
+      expect(yieldBasisFor(0)).toBe("official-distribution-rate");
+      expect(yieldBasisFor(null)).toBeNull();
+      // kept rows: the code follows the yield the row holds, and a stale code never sits next to a null yield
+      const kept = withYieldBasis({ metrics: { ytd: 1, dividendYield: 9.5, dividendYieldText: "9.50%", tr1y: 2 } });
+      expect(kept.metrics.dividendYieldBasis).toBe("official-distribution-rate");
+      const stale = withYieldBasis({ metrics: { dividendYield: null, dividendYieldText: "—", dividendYieldBasis: "official-distribution-rate" } });
+      expect(stale.metrics.dividendYieldBasis).toBeNull();
+      const keys = Object.keys(placeholder.metrics);
+      expect(Object.keys(rich.metrics)).toEqual(keys);
+      expect(Object.keys(bare.metrics)).toEqual(keys);
+      expect(Object.keys(lineupOnly.metrics)).toEqual(keys);
+      const old = withYieldBasis({ metrics: { dividendYield: 1, dividendYieldText: "1%", distributionYield: 1, returnsBasis: "x", performanceAsOf: null } });
+      expect(Object.keys(old.metrics)).toEqual(["dividendYield", "dividendYieldText", "dividendYieldBasis", "distributionYield", "returnsBasis", "performanceAsOf"]);
+    });
+  });
+
   test("TER: the single all-in operating expense is both net and gross; the management fee stays separate", async () => {
     await inTempRoot(async () => {
       mockFetch(site(RICH_PAGES));
@@ -666,6 +699,7 @@ describe("pipeline", () => {
       expect(index.generatedAt).toMatch(/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}Z$/);
       expect(readdirSync(path.join(root, "funds")).sort()).toEqual(["IWMI", "SPYI", "XSPI"]);
       const keys = Object.keys(index.funds[0].metrics);
+      expect(keys).toContain("dividendYieldBasis");
       for (const fund of index.funds) {
         expect(Object.keys(fund.metrics)).toEqual(keys);
         expect(fund.dataFile).toBe(`./funds/${fund.ticker}/meta.json`);

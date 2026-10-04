@@ -92,6 +92,15 @@ Every `funds[].metrics` row in `api/neos/index.json` ends with two fields: `retu
 - New lineup funds are printed as `NEW FUNDS: ...` (and appended to the step summary) and get an index row with `dataFile: null` and an all-`null` metrics object until their first successful update.
 - The run exits non-zero when every attempted fund failed or a requested ticker is not in the lineup.
 
+#### `dividendYieldBasis`
+
+Every `funds[].metrics` row carries `dividendYieldBasis`, a code for the definition behind `dividendYield`; it is `null` exactly when `dividendYield` is `null` (placeholder rows included). A retained yield keeps its code, because the code is derived from the yield the row holds.
+
+| Code | Meaning for NEOS |
+| --- | --- |
+| `official-distribution-rate` | The only code NEOS emits: the official Distribution Rate from the fund page's Distribution Information block (latest distribution annualized over ex-date NAV), or the same figure from the lineup table when the block is missing |
+| `official-trailing-12m`, `official-other`, `computed-trailing-12m`, `indicated` | Never emitted: the trailing 12-month rate is kept separately as `yield12M` and never used as `dividendYield`, and nothing is computed or estimated |
+
 #### Known value limitations
 
 | Metric | Status | Reason |
