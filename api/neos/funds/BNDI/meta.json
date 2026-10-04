@@ -514,6 +514,7 @@
     "siAnn": 3.01,
     "dividendYield": 5.78,
     "dividendYieldText": "5.78%",
+    "dividendYieldBasis": "official-distribution-rate",
     "distributionYield": 5.78,
     "distributionYieldText": "5.78%",
     "yield12M": 5.91,
@@ -594,6 +595,7 @@
   "yields": {
     "dividendYield": 5.78,
     "dividendYieldText": "5.78%",
+    "dividendYieldBasis": "official-distribution-rate",
     "dividendYieldKind": "official NEOS Distribution Rate (latest distribution annualized / ex-date NAV)",
     "distributionRate": 5.78,
     "distributionRateText": "5.78%",

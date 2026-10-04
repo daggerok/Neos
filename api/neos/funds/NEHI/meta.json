@@ -241,6 +241,7 @@
     "siAnn": null,
     "dividendYield": 30.24,
     "dividendYieldText": "30.24%",
+    "dividendYieldBasis": "official-distribution-rate",
     "distributionYield": 30.24,
     "distributionYieldText": "30.24%",
     "yield12M": null,
@@ -320,6 +321,7 @@
   "yields": {
     "dividendYield": 30.24,
     "dividendYieldText": "30.24%",
+    "dividendYieldBasis": "official-distribution-rate",
     "dividendYieldKind": "official NEOS Distribution Rate (latest distribution annualized / ex-date NAV)",
     "distributionRate": 30.24,
     "distributionRateText": "30.24%",
