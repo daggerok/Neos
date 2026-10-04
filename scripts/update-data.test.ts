@@ -614,11 +614,15 @@ describe("parsing", () => {
 // metrics
 // ---------------------------------------------------------------------------
 
+type MetricsRow = { metrics: Record<string, unknown> };
+// CatalogEntry is an open record; the updater always writes a metrics object on a built row
+const rowOf = (entry: object | null): MetricsRow => entry as unknown as MetricsRow;
+
 describe("metrics", () => {
   test("a young fund: horizons it is too young for are null, never 0; the others are derived from the annualized figures", async () => {
     await inTempRoot(async () => {
       mockFetch(site(RICH_PAGES));
-      const { metrics } = (await updateFund(FUND, quiet(), stats()))! as { metrics: Record<string, unknown> };
+      const { metrics } = rowOf(await updateFund(FUND, quiet(), stats()));
       expect(metrics).toMatchObject({ ytd: 10.72, tr1y: 17.65, cagr3y: 16.04, siAnn: 15.02, tr5y: null, tr10y: null, cagr5y: null, cagr10y: null });
       expect(metrics.tr3y).toBe(cumulativeFromAnnualized(16.04, 3));
       expect(Object.values(metrics).includes(0)).toBe(false);
@@ -628,9 +632,9 @@ describe("metrics", () => {
   test("every row has the same metrics keys; returnsBasis and performanceAsOf travel together", async () => {
     await inTempRoot(async () => {
       mockFetch(site(RICH_PAGES));
-      const rich = (await updateFund(FUND, quiet(), stats()))! as { metrics: Record<string, unknown> };
-      const bare = (await updateFund({ ...FUND, ticker: "XSPI" }, quiet(), stats()))! as { metrics: Record<string, unknown> };
-      const placeholder = placeholderEntry(parseNeosLineup(LINEUP_HTML)[0]) as { metrics: Record<string, unknown> };
+      const rich = rowOf(await updateFund(FUND, quiet(), stats()));
+      const bare = rowOf(await updateFund({ ...FUND, ticker: "XSPI" }, quiet(), stats()));
+      const placeholder = rowOf(placeholderEntry(parseNeosLineup(LINEUP_HTML)[0]));
       const keys = Object.keys(placeholder.metrics);
       expect(Object.keys(rich.metrics)).toEqual(keys);
       expect(Object.keys(bare.metrics)).toEqual(keys);
@@ -648,11 +652,11 @@ describe("metrics", () => {
   test("dividendYieldBasis: the Distribution Rate is official-distribution-rate, a null yield has a null code, and every row has the same key set", async () => {
     await inTempRoot(async () => {
       mockFetch(site({ SPYI: RICH_PAGES.SPYI + DISTRIBUTION_INFO_HTML }));
-      const rich = (await updateFund(FUND, quiet(), stats()))! as { metrics: Record<string, unknown> };
-      const lineupOnly = (await updateFund({ ...FUND, ticker: "XSPI", distributionRate: 16.78 }, quiet(), stats()))! as { metrics: Record<string, unknown> };
+      const rich = rowOf(await updateFund(FUND, quiet(), stats()));
+      const lineupOnly = rowOf(await updateFund({ ...FUND, ticker: "XSPI", distributionRate: 16.78 }, quiet(), stats()));
       expect(lineupOnly.metrics).toMatchObject({ dividendYield: 16.78, dividendYieldBasis: "official-distribution-rate" });
-      const bare = (await updateFund({ ...FUND, ticker: "XSPI", distributionRate: null }, quiet(), stats()))! as { metrics: Record<string, unknown> };
-      const placeholder = placeholderEntry(parseNeosLineup(LINEUP_HTML)[0]) as { metrics: Record<string, unknown> };
+      const bare = rowOf(await updateFund({ ...FUND, ticker: "XSPI", distributionRate: null }, quiet(), stats()));
+      const placeholder = rowOf(placeholderEntry(parseNeosLineup(LINEUP_HTML)[0]));
       expect(rich.metrics.dividendYield).toBe(12.15);
       expect(rich.metrics.dividendYieldBasis).toBe("official-distribution-rate");
       for (const row of [bare, placeholder]) {
@@ -663,15 +667,15 @@ describe("metrics", () => {
       expect(yieldBasisFor(0)).toBe("official-distribution-rate");
       expect(yieldBasisFor(null)).toBeNull();
       // kept rows: the code follows the yield the row holds, and a stale code never sits next to a null yield
-      const kept = withYieldBasis({ metrics: { ytd: 1, dividendYield: 9.5, dividendYieldText: "9.50%", tr1y: 2 } });
+      const kept = withYieldBasis<MetricsRow>({ metrics: { ytd: 1, dividendYield: 9.5, dividendYieldText: "9.50%", tr1y: 2 } });
       expect(kept.metrics.dividendYieldBasis).toBe("official-distribution-rate");
-      const stale = withYieldBasis({ metrics: { dividendYield: null, dividendYieldText: "—", dividendYieldBasis: "official-distribution-rate" } });
+      const stale = withYieldBasis<MetricsRow>({ metrics: { dividendYield: null, dividendYieldText: "—", dividendYieldBasis: "official-distribution-rate" } });
       expect(stale.metrics.dividendYieldBasis).toBeNull();
       const keys = Object.keys(placeholder.metrics);
       expect(Object.keys(rich.metrics)).toEqual(keys);
       expect(Object.keys(bare.metrics)).toEqual(keys);
       expect(Object.keys(lineupOnly.metrics)).toEqual(keys);
-      const old = withYieldBasis({ metrics: { dividendYield: 1, dividendYieldText: "1%", distributionYield: 1, returnsBasis: "x", performanceAsOf: null } });
+      const old = withYieldBasis<MetricsRow>({ metrics: { dividendYield: 1, dividendYieldText: "1%", distributionYield: 1, returnsBasis: "x", performanceAsOf: null } });
       expect(Object.keys(old.metrics)).toEqual(["dividendYield", "dividendYieldText", "dividendYieldBasis", "distributionYield", "returnsBasis", "performanceAsOf"]);
     });
   });
