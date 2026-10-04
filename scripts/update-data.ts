@@ -379,6 +379,29 @@ export function toIsoDate(raw: unknown): string {
   return '';
 }
 
+/** Which definition stands behind `metrics.dividendYield`: NEOS publishes one figure, its Distribution Rate. */
+export type DividendYieldBasis = 'official-distribution-rate';
+export const DIVIDEND_YIELD_BASIS: DividendYieldBasis = 'official-distribution-rate';
+export function yieldBasisFor(dividendYield: number | null | undefined): DividendYieldBasis | null {
+  return typeof dividendYield === 'number' && Number.isFinite(dividendYield) ? DIVIDEND_YIELD_BASIS : null;
+}
+/** Exhaustive text per code (meta.json `yields.dividendYieldKind`). */
+export const YIELD_KIND_BY_BASIS: Record<DividendYieldBasis, string> = {
+  'official-distribution-rate': 'official NEOS Distribution Rate (latest distribution annualized / ex-date NAV)',
+};
+/** Kept index rows (unselected, filtered out, failed, SKIP_NEOS) carry the same key set: the code follows the yield the row holds. */
+export function withYieldBasis<T extends { metrics?: any }>(entry: T): T {
+  const old = (entry.metrics ?? {}) as Record<string, unknown>;
+  const metrics: Record<string, unknown> = {};
+  for (const [key, value] of Object.entries(old)) {
+    if (key === 'dividendYieldBasis') continue;
+    metrics[key] = value;
+    if (key === 'dividendYieldText') metrics.dividendYieldBasis = yieldBasisFor(old.dividendYield as number | null);
+  }
+  if (!('dividendYieldBasis' in metrics)) metrics.dividendYieldBasis = yieldBasisFor(old.dividendYield as number | null);
+  return { ...entry, metrics };
+}
+
 /** Honest label for how `metrics` returns are computed (STANDARD.md 9a). */
 export const RETURNS_BASIS = 'official NEOS fund page NAV total returns (month-end Performance table); 3/5/10 Yr cumulative derived from the published annualized figures';
 
@@ -2079,6 +2102,7 @@ export async function updateFund(
     siAnn: monthEndValues.sinceInception ?? null,
     dividendYield: distributionInfo?.distributionRate ?? fund.distributionRate ?? null,
     dividendYieldText: formatPercentText(distributionInfo?.distributionRate ?? fund.distributionRate ?? null),
+    dividendYieldBasis: yieldBasisFor(distributionInfo?.distributionRate ?? fund.distributionRate ?? null),
     distributionYield: distributionInfo?.distributionRate ?? fund.distributionRate ?? null,
     distributionYieldText: formatPercentText(distributionInfo?.distributionRate ?? fund.distributionRate ?? null),
     yield12M: distributionInfo?.trailingRate12M ?? null,
@@ -2202,7 +2226,8 @@ export async function updateFund(
     yields: {
       dividendYield: metrics.dividendYield,
       dividendYieldText: metrics.dividendYieldText,
-      dividendYieldKind: 'official NEOS Distribution Rate (latest distribution annualized / ex-date NAV)',
+      dividendYieldBasis: metrics.dividendYieldBasis,
+      dividendYieldKind: YIELD_KIND_BY_BASIS[DIVIDEND_YIELD_BASIS],
       distributionRate: metrics.distributionYield,
       distributionRateText: metrics.distributionYieldText,
       yield12M: metrics.yield12M,
@@ -2478,7 +2503,7 @@ export function selectBatch<T extends { ticker: string }>(funds: T[], cursor: st
 
 const NULL_METRICS = {
   ytd: null, tr1y: null, tr3y: null, tr5y: null, tr10y: null, cagr3y: null, cagr5y: null, cagr10y: null, siAnn: null,
-  dividendYield: null, dividendYieldText: '—', distributionYield: null, distributionYieldText: '—', yield12M: null, yield12MText: '—',
+  dividendYield: null, dividendYieldText: '—', dividendYieldBasis: null, distributionYield: null, distributionYieldText: '—', yield12M: null, yield12MText: '—',
   secYield: null, secYieldText: '—',
   returnsBasis: 'not available yet: this fund has not been read from its NEOS fund page',
   performanceAsOf: null,
@@ -2703,6 +2728,7 @@ export async function main(env: Record<string, string | undefined> = process.env
     }
   }
   for (const [ticker, entry] of byTicker) previous[ticker] = entry;
+  for (const ticker of Object.keys(previous)) previous[ticker] = withYieldBasis(previous[ticker]);
 
   const funds = Object.values(previous).sort((a, b) => String(a.ticker).localeCompare(String(b.ticker)));
   const counts = {
