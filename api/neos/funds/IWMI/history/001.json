@@ -2,7 +2,7 @@
   "ticker": "IWMI",
   "page": 1,
   "pageSize": 1000,
-  "totalRows": 571,
+  "totalRows": 576,
   "headers": [
     "Date",
     "Close",
@@ -10,6 +10,36 @@
     "Volume"
   ],
   "rows": [
+    {
+      "Date": "2026-10-09",
+      "Close": "49.24",
+      "Adj Close": "49.24",
+      "Volume": "453200"
+    },
+    {
+      "Date": "2026-10-08",
+      "Close": "49.01",
+      "Adj Close": "49.01",
+      "Volume": "715500"
+    },
+    {
+      "Date": "2026-10-07",
+      "Close": "49.01",
+      "Adj Close": "49.01",
+      "Volume": "448800"
+    },
+    {
+      "Date": "2026-10-06",
+      "Close": "49.51",
+      "Adj Close": "49.51",
+      "Volume": "520900"
+    },
+    {
+      "Date": "2026-10-05",
+      "Close": "49.76",
+      "Adj Close": "49.76",
+      "Volume": "466100"
+    },
     {
       "Date": "2026-10-02",
       "Close": "49.48",

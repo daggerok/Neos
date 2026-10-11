@@ -2,7 +2,7 @@
   "ticker": "SPYI",
   "page": 3,
   "pageSize": 250,
-  "totalRows": 510,
+  "totalRows": 508,
   "headers": [
     "Name",
     "Ticker",
@@ -14,39 +14,39 @@
   ],
   "rows": [
     {
-      "Name": "Wynn Resorts Ltd",
-      "Ticker": "WYNN",
-      "Identifier": "983134107",
-      "Weight": "0.01%",
-      "Market Value": "$1011101.00",
-      "Shares Held": "13,325",
-      "Asset Category": "Equity"
-    },
-    {
-      "Name": "Xcel Energy Inc",
-      "Ticker": "XEL",
-      "Identifier": "98389B100",
+      "Name": "Waters Corp",
+      "Ticker": "WAT",
+      "Identifier": "941848103",
       "Weight": "0.06%",
-      "Market Value": "$8006296.20",
-      "Shares Held": "112,133",
+      "Market Value": "$7171085.64",
+      "Shares Held": "16,532",
       "Asset Category": "Equity"
     },
     {
-      "Name": "ExxonMobil Holdings Corp",
-      "Ticker": "XOM",
-      "Identifier": "30233Q108",
-      "Weight": "1.01%",
-      "Market Value": "$125810594.91",
-      "Shares Held": "767,091",
+      "Name": "Workday Inc",
+      "Ticker": "WDAY",
+      "Identifier": "98138H101",
+      "Weight": "0.05%",
+      "Market Value": "$6895620.04",
+      "Shares Held": "36,956",
       "Asset Category": "Equity"
     },
     {
-      "Name": "Xylem Inc/NY",
-      "Ticker": "XYL",
-      "Identifier": "98419M100",
-      "Weight": "0.04%",
-      "Market Value": "$4345211.52",
-      "Shares Held": "42,688",
+      "Name": "WEC Energy Group Inc",
+      "Ticker": "WEC",
+      "Identifier": "92939U106",
+      "Weight": "0.05%",
+      "Market Value": "$6104787.78",
+      "Shares Held": "58,847",
+      "Asset Category": "Equity"
+    },
+    {
+      "Name": "Walmart Inc",
+      "Ticker": "WMT",
+      "Identifier": "931142103",
+      "Weight": "0.72%",
+      "Market Value": "$90845788.30",
+      "Shares Held": "815,858",
       "Asset Category": "Equity"
     },
     {
@@ -54,26 +54,8 @@
       "Ticker": "XYZ",
       "Identifier": "852234103",
       "Weight": "0.06%",
-      "Market Value": "$7276535.35",
-      "Shares Held": "97,895",
-      "Asset Category": "Equity"
-    },
-    {
-      "Name": "Yum! Brands Inc",
-      "Ticker": "YUM",
-      "Identifier": "988498101",
-      "Weight": "0.06%",
-      "Market Value": "$6874060.00",
-      "Shares Held": "50,500",
-      "Asset Category": "Equity"
-    },
-    {
-      "Name": "ZIMMER BIOMET HOLDINGS INC",
-      "Ticker": "ZBH",
-      "Identifier": "98956P102",
-      "Weight": "0.02%",
-      "Market Value": "$3082027.32",
-      "Shares Held": "34,908",
+      "Market Value": "$7605282.12",
+      "Shares Held": "98,463",
       "Asset Category": "Equity"
     },
     {
@@ -81,7 +63,7 @@
       "Ticker": "ZBRA",
       "Identifier": "989207105",
       "Weight": "0.02%",
-      "Market Value": "$2977187.06",
+      "Market Value": "$3066852.78",
       "Shares Held": "7,921",
       "Asset Category": "Equity"
     },
@@ -89,18 +71,18 @@
       "Name": "Zoetis Inc",
       "Ticker": "ZTS",
       "Identifier": "98978V103",
-      "Weight": "0.04%",
-      "Market Value": "$5368917.60",
-      "Shares Held": "77,040",
+      "Weight": "0.05%",
+      "Market Value": "$5795231.46",
+      "Shares Held": "77,466",
       "Asset Category": "Equity"
     },
     {
       "Name": "Cash & Other",
       "Ticker": "Cash&Other",
       "Identifier": "Cash&Other",
-      "Weight": "1.74%",
-      "Market Value": "$215505452.84",
-      "Shares Held": "215,505,453",
+      "Weight": "1.86%",
+      "Market Value": "$233882704.22",
+      "Shares Held": "233,882,704",
       "Asset Category": "Cash"
     }
   ]

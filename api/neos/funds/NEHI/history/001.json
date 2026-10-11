@@ -2,7 +2,7 @@
   "ticker": "NEHI",
   "page": 1,
   "pageSize": 1000,
-  "totalRows": 209,
+  "totalRows": 214,
   "headers": [
     "Date",
     "Close",
@@ -10,6 +10,36 @@
     "Volume"
   ],
   "rows": [
+    {
+      "Date": "2026-10-09",
+      "Close": "31.35",
+      "Adj Close": "31.35",
+      "Volume": "113300"
+    },
+    {
+      "Date": "2026-10-08",
+      "Close": "31.07",
+      "Adj Close": "31.07",
+      "Volume": "134000"
+    },
+    {
+      "Date": "2026-10-07",
+      "Close": "32.49",
+      "Adj Close": "32.49",
+      "Volume": "121500"
+    },
+    {
+      "Date": "2026-10-06",
+      "Close": "33.90",
+      "Adj Close": "33.90",
+      "Volume": "73900"
+    },
+    {
+      "Date": "2026-10-05",
+      "Close": "34.01",
+      "Adj Close": "34.01",
+      "Volume": "75400"
+    },
     {
       "Date": "2026-10-02",
       "Close": "33.54",

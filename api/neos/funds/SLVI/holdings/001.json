@@ -1,0 +1,80 @@
+{
+  "ticker": "SLVI",
+  "page": 1,
+  "pageSize": 250,
+  "totalRows": 7,
+  "headers": [
+    "Name",
+    "Ticker",
+    "Identifier",
+    "Weight",
+    "Market Value",
+    "Shares Held",
+    "Asset Category"
+  ],
+  "rows": [
+    {
+      "Name": "SLV 01/15/2027 55.5 P",
+      "Ticker": "2SLV 270115P00055500",
+      "Identifier": "2SLV 270115P00055500",
+      "Weight": "-5.66%",
+      "Market Value": "$-112139.89",
+      "Shares Held": "-293",
+      "Asset Category": "Option"
+    },
+    {
+      "Name": "SLV 11/20/2026 60 C",
+      "Ticker": "2SLV 261120C00060000",
+      "Identifier": "2SLV 261120C00060000",
+      "Weight": "-0.38%",
+      "Market Value": "$-7558.11",
+      "Shares Held": "-81",
+      "Asset Category": "Option"
+    },
+    {
+      "Name": "iShares Silver Trust",
+      "Ticker": "SLV",
+      "Identifier": "46428Q109",
+      "Weight": "18.86%",
+      "Market Value": "$373544.82",
+      "Shares Held": "6,819",
+      "Asset Category": "Fund"
+    },
+    {
+      "Name": "SLV 11/20/2026 58 C",
+      "Ticker": "2SLV 261120C00058000",
+      "Identifier": "2SLV 261120C00058000",
+      "Weight": "-0.56%",
+      "Market Value": "$-11157.75",
+      "Shares Held": "-81",
+      "Asset Category": "Option"
+    },
+    {
+      "Name": "SLV 01/15/2027 55.5 C",
+      "Ticker": "2SLV 270115C00055500",
+      "Identifier": "2SLV 270115C00055500",
+      "Weight": "5.43%",
+      "Market Value": "$107533.93",
+      "Shares Held": "293",
+      "Asset Category": "Option"
+    },
+    {
+      "Name": "United States Treasury Bill 12/15/2026",
+      "Ticker": "912797WF0",
+      "Identifier": "912797WF0",
+      "Weight": "79.56%",
+      "Market Value": "$1576030.32",
+      "Shares Held": "1,587,000",
+      "Asset Category": "Treasury"
+    },
+    {
+      "Name": "Cash & Other",
+      "Ticker": "Cash&Other",
+      "Identifier": "Cash&Other",
+      "Weight": "2.76%",
+      "Market Value": "$54666.06",
+      "Shares Held": "54,666",
+      "Asset Category": "Cash"
+    }
+  ]
+}

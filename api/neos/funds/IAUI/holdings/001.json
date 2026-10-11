@@ -14,66 +14,66 @@
   ],
   "rows": [
     {
-      "Name": "GLD 11/20/2026 392 C",
-      "Ticker": "2GLD 261120C00392000",
-      "Identifier": "2GLD 261120C00392000",
-      "Weight": "-0.52%",
-      "Market Value": "$-3372913.44",
-      "Shares Held": "-4,251",
-      "Asset Category": "Option"
+      "Name": "Goldman Sachs Physical Gold ETF",
+      "Ticker": "AAAU",
+      "Identifier": "38150K103",
+      "Weight": "19.04%",
+      "Market Value": "$126084089.20",
+      "Shares Held": "3,049,192",
+      "Asset Category": "Fund"
     },
     {
       "Name": "GLD 11/20/2026 401 C",
       "Ticker": "2GLD 261120C00401000",
       "Identifier": "2GLD 261120C00401000",
-      "Weight": "-0.35%",
-      "Market Value": "$-2250904.50",
-      "Shares Held": "-4,251",
+      "Weight": "-0.36%",
+      "Market Value": "$-2379197.79",
+      "Shares Held": "-4,311",
       "Asset Category": "Option"
     },
     {
-      "Name": "GLD 01/15/2027 380 C",
-      "Ticker": "2GLD 270115C00380000",
-      "Identifier": "2GLD 270115C00380000",
-      "Weight": "4.22%",
-      "Market Value": "$27346566.96",
-      "Shares Held": "13,773",
+      "Name": "GLD 11/20/2026 392 C",
+      "Ticker": "2GLD 261120C00392000",
+      "Identifier": "2GLD 261120C00392000",
+      "Weight": "-0.55%",
+      "Market Value": "$-3648399.30",
+      "Shares Held": "-4,311",
       "Asset Category": "Option"
     },
     {
       "Name": "GLD 01/15/2027 380 P",
       "Ticker": "2GLD 270115P00380000",
       "Identifier": "2GLD 270115P00380000",
-      "Weight": "-3.16%",
-      "Market Value": "$-20486786.58",
-      "Shares Held": "-13,773",
+      "Weight": "-2.61%",
+      "Market Value": "$-17259236.50",
+      "Shares Held": "-13,970",
+      "Asset Category": "Option"
+    },
+    {
+      "Name": "GLD 01/15/2027 380 C",
+      "Ticker": "2GLD 270115C00380000",
+      "Identifier": "2GLD 270115C00380000",
+      "Weight": "4.52%",
+      "Market Value": "$29908093.60",
+      "Shares Held": "13,970",
       "Asset Category": "Option"
     },
     {
       "Name": "United States Treasury Bill 12/17/2026",
       "Ticker": "912797VH7",
       "Identifier": "912797VH7",
-      "Weight": "78.98%",
-      "Market Value": "$511667227.76",
-      "Shares Held": "515,805,000",
+      "Weight": "78.14%",
+      "Market Value": "$517477961.42",
+      "Shares Held": "521,215,000",
       "Asset Category": "Treasury"
-    },
-    {
-      "Name": "Goldman Sachs Physical Gold ETF",
-      "Ticker": "AAAU",
-      "Identifier": "38150K103",
-      "Weight": "18.97%",
-      "Market Value": "$122909480.96",
-      "Shares Held": "3,006,592",
-      "Asset Category": "Fund"
     },
     {
       "Name": "Cash & Other",
       "Ticker": "Cash&Other",
       "Identifier": "Cash&Other",
-      "Weight": "1.86%",
-      "Market Value": "$12070625.32",
-      "Shares Held": "12,070,625",
+      "Weight": "1.82%",
+      "Market Value": "$12068512.03",
+      "Shares Held": "12,068,512",
       "Asset Category": "Cash"
     }
   ]

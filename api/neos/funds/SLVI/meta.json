@@ -1,0 +1,250 @@
+{
+  "ticker": "SLVI",
+  "name": "Silver High Income ETF",
+  "category": "High Income Alternatives",
+  "fundPage": "https://neosfunds.com/slvi/",
+  "dataFile": "./funds/SLVI/meta.json",
+  "cusip": "78433H469",
+  "isin": "US78433H4699",
+  "ter": "0.78%",
+  "terValue": 0.78,
+  "terGross": "0.78%",
+  "terGrossValue": 0.78,
+  "managementFee": "0.78%",
+  "managementFeeValue": 0.78,
+  "nav": {
+    "display": "$49.52",
+    "value": 49.52,
+    "asOfDate": "Oct 09 2026",
+    "dailyChangeText": "$1.12 (2.31%)",
+    "kind": "official (fund page Fund Details)"
+  },
+  "navValue": 49.52,
+  "aum": {
+    "display": "$1.98M",
+    "value": 1980956,
+    "asOfDate": "Oct 09 2026",
+    "source": "official NEOS daily holdings CSV (download_holdings_csv)"
+  },
+  "aumValue": 1980956,
+  "asOfDate": "Oct 09 2026",
+  "inceptionDate": "Oct 06 2026",
+  "inceptionDateFundPage": "Oct 06 2026",
+  "exchange": "Cboe",
+  "closePrice": "$49.61",
+  "closePriceValue": 49.61,
+  "premiumDiscount": {
+    "display": "0.17%",
+    "value": 0.17,
+    "derivedValue": 0.18,
+    "kind": "official (fund page Fund Details \"Premium Discount (%)\")"
+  },
+  "premiumDiscountValue": 0.17,
+  "premiumDiscountDerivedValue": 0.18,
+  "premiumDiscountKind": "official (fund page Fund Details \"Premium Discount (%)\")",
+  "bidAskSpread": {
+    "display": "0.19%",
+    "value": 0.19,
+    "asOfDate": "Oct 09 2026",
+    "kind": "official (fund page Fund Details \"30-Day Median Bid-Ask Spread (%)\")"
+  },
+  "bidAskSpreadValue": 0.19,
+  "acquiredFundFeesText": null,
+  "totalNetAssets": 1980956,
+  "sharesOutstanding": {
+    "display": "40,000",
+    "value": 40000,
+    "asOfDate": "Oct 12 2026"
+  },
+  "netAssetsAsOf": "Oct 09 2026",
+  "secYieldAsOf": "Sep 30 2026",
+  "distributions": {
+    "frequency": "Monthly",
+    "paymentsPerYear": 12,
+    "headers": [
+      "Declaration Date",
+      "Ex-Div Date",
+      "Record Date",
+      "Payable Date",
+      "Amount ($)"
+    ],
+    "rows": [
+      {
+        "Declaration Date": "12/15/2026",
+        "Ex-Div Date": "12/16/2026",
+        "Record Date": "12/18/2026",
+        "Payable Date": "12/18/2026",
+        "Amount ($)": ""
+      },
+      {
+        "Declaration Date": "11/17/2026",
+        "Ex-Div Date": "11/18/2026",
+        "Record Date": "11/20/2026",
+        "Payable Date": "11/20/2026",
+        "Amount ($)": ""
+      },
+      {
+        "Declaration Date": "10/20/2026",
+        "Ex-Div Date": "10/21/2026",
+        "Record Date": "10/21/2026",
+        "Payable Date": "10/23/2026",
+        "Amount ($)": ""
+      }
+    ],
+    "fallback": false,
+    "source": "NEOS fund page Distribution History table"
+  },
+  "returns": {
+    "derivedFrom": "official NEOS fund page performance tables (NAV Performance series)",
+    "monthEnd": {
+      "asOfDate": "",
+      "raw": "",
+      "mo1": null,
+      "mo3": null,
+      "mo6": null,
+      "ytd": null,
+      "yr1": null,
+      "yr3": null,
+      "yr5": null,
+      "yr10": null,
+      "sinceInception": null,
+      "sinceInceptionCumulative": null,
+      "market": {},
+      "benchmarkName": null,
+      "benchmark": {}
+    },
+    "quarterEnd": {
+      "asOfDate": "",
+      "raw": "",
+      "mo1": null,
+      "mo3": null,
+      "mo6": null,
+      "ytd": null,
+      "yr1": null,
+      "yr3": null,
+      "yr5": null,
+      "yr10": null,
+      "sinceInception": null,
+      "sinceInceptionCumulative": null,
+      "market": {}
+    }
+  },
+  "metrics": {
+    "ytd": null,
+    "tr1y": null,
+    "tr3y": null,
+    "tr5y": null,
+    "tr10y": null,
+    "cagr3y": null,
+    "cagr5y": null,
+    "cagr10y": null,
+    "siAnn": null,
+    "dividendYield": null,
+    "dividendYieldText": "—",
+    "dividendYieldBasis": null,
+    "distributionYield": null,
+    "distributionYieldText": "—",
+    "yield12M": null,
+    "yield12MText": "—",
+    "secYield": null,
+    "secYieldText": "—",
+    "returnsBasis": "official NEOS fund page NAV total returns (month-end Performance table); 3/5/10 Yr cumulative derived from the published annualized figures",
+    "performanceAsOf": null
+  },
+  "distributionFrequency": "01 - Monthly",
+  "providerCategory": "High Income Alternatives",
+  "holdings": {
+    "pages": [
+      "./holdings/001.json"
+    ],
+    "pageSize": 250,
+    "totalRows": 7,
+    "asOfDate": "Oct 12 2026",
+    "asOf": "2026-10-12",
+    "source": "https://neosfunds.com/wp-admin/admin-ajax.php?action=download_holdings_csv&ticker=SLVI",
+    "sourceKind": "official NEOS daily holdings CSV (download_holdings_csv)"
+  },
+  "history": {
+    "pages": [
+      "./history/001.json"
+    ],
+    "pageSize": 1000,
+    "totalRows": 3,
+    "asOfDate": "Oct 09 2026",
+    "asOf": "2026-10-09",
+    "source": "https://query1.finance.yahoo.com/v8/finance/chart/SLVI?period1=0&period2=9999999999&interval=1d&events=div%7Csplit&includeAdjustedClose=true",
+    "sourceKind": "Yahoo Finance public chart API (daily Close / Adj Close / Volume)"
+  },
+  "navKind": "official (fund page Fund Details)",
+  "source": {
+    "provider": "NEOS Investment Management LLC (NEOS ETFs)",
+    "site": "https://neosfunds.com",
+    "lineup": "https://neosfunds.com/#explore-etfs",
+    "fundPage": "https://neosfunds.com/slvi/",
+    "holdingsDownload": "https://neosfunds.com/wp-admin/admin-ajax.php?action=download_holdings_csv&ticker=SLVI",
+    "holdingsSource": "official NEOS daily holdings CSV (download_holdings_csv)",
+    "historySource": "Yahoo Finance public chart API (daily Close / Adj Close / Volume)",
+    "historyUrl": "https://query1.finance.yahoo.com/v8/finance/chart/SLVI?period1=0&period2=9999999999&interval=1d&events=div%7Csplit&includeAdjustedClose=true",
+    "returnsSource": "NEOS fund page performance tables (NAV Performance)",
+    "distributionsSource": "NEOS fund page Distribution History table",
+    "distributionInfoSource": "NEOS fund page Distribution Information block",
+    "documentsSource": "NEOS fund page Documents table",
+    "registrant": "NEOS ETF Trust (Investment Company Act file 811-23645)",
+    "nportDoc": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0001848758&type=NPORT-P&dateb=&owner=include&count=10",
+    "exchangeSource": "NEOS fund page Fund Details \"Primary Exchange\"",
+    "navSource": "NEOS fund page Fund Details \"Net Asset Value\" (official (fund page Fund Details))",
+    "premiumDiscountSource": "official (fund page Fund Details \"Premium Discount (%)\")",
+    "bidAskSpreadSource": "NEOS fund page Fund Details \"30-Day Median Bid-Ask Spread (%)\""
+  },
+  "identifiers": {
+    "cusip": "78433H469",
+    "isin": "US78433H4699",
+    "underlyingExposure": null,
+    "indexName": null,
+    "benchmarkIndexName": null
+  },
+  "expenseRatio": {
+    "display": "0.78%",
+    "value": 0.78,
+    "net": 0.78,
+    "gross": 0.78,
+    "managementFeeDisplay": "0.78%",
+    "managementFeeValue": 0.78
+  },
+  "marketPrice": {
+    "display": "$49.61",
+    "value": 49.61,
+    "asOfDate": "Oct 09 2026",
+    "dailyChangeText": "$1.16 (2.40%)",
+    "source": "NEOS fund page Fund Details \"Market Price\""
+  },
+  "yields": {
+    "dividendYield": null,
+    "dividendYieldText": "—",
+    "dividendYieldBasis": null,
+    "dividendYieldKind": "official NEOS Distribution Rate (latest distribution annualized / ex-date NAV)",
+    "distributionRate": null,
+    "distributionRateText": "—",
+    "yield12M": null,
+    "yield12MText": "—",
+    "secYield": null,
+    "secYieldText": "—",
+    "secYieldKind": "official NEOS 30-Day SEC Yield",
+    "distributionAmountText": "--",
+    "distributionAmountPercentText": "--",
+    "distributionInfoAsOfDate": "Sep 30 2026"
+  },
+  "navIndex": null,
+  "documents": {
+    "prospectus": "https://neosfunds.com/wp-content/uploads/SLVI-Prospectus.pdf",
+    "summaryProspectus": "https://neosfunds.com/wp-content/uploads/slvi-497k_100126.pdf",
+    "sai": "https://neosfunds.com/wp-content/uploads/slvi-sai.pdf",
+    "annualReport": null,
+    "semiAnnualReport": null,
+    "fiscalQ1Holdings": null,
+    "fiscalQ3Holdings": null,
+    "taxInfo": null,
+    "form8937": null
+  },
+  "inceptionNote": null
+}
