@@ -2711,7 +2711,7 @@ export async function main(env: Record<string, string | undefined> = process.env
   const cursor = config.maxFetches > 0 ? await readCursor(scope) : null;
   const candidates = selectBatch(filtered, cursor, config.maxFetches);
 
-  outputPrintFilter(candidates.length, lineup.length, outputHasOutputFilters(config));
+  outputPrintFilter(candidates.length, lineup.length, outputHasOutputFilters({ ...config, tickers: [] }));
   const output = outputCreateReporter(API_ROOT, candidates.length);
   if (cursor) console.log(`[ cursor   ] resuming after ${cursor}`);
 
