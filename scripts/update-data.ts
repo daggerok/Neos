@@ -1941,6 +1941,36 @@ async function readPreviousMeta(fundDir: string): Promise<Record<string, any> | 
   }
 }
 
+// Yahoo's adjusted close is float32 and its last digits move with the request's period2, so a value
+// sitting on a cent boundary (31.544998 vs 31.545001) flips between runs. Within that noise the
+// published cent is kept: a rerun with the same source data changes nothing.
+export const ADJ_CLOSE_NOISE = 1e-4;
+
+/** The `Adj Close` cell of a day: the published cent while Yahoo's raw value is within float noise of it. */
+export function adjCloseCell(raw: number | null, published: string | undefined): string {
+  if (raw === null) return '';
+  const fresh = raw.toFixed(2);
+  const prior = published === undefined ? null : numberOrNull(published);
+  return published !== undefined && prior !== null && fresh !== published && Math.abs(raw - prior) <= 0.005 + ADJ_CLOSE_NOISE ? published : fresh;
+}
+
+/** The published `Adj Close` cells of a fund by date ({} when it has no readable history pages). */
+async function readPublishedAdjCloses(fundDir: string): Promise<Map<string, string>> {
+  const published = new Map<string, string>();
+  const dir = path.join(fundDir, 'history');
+  if (!existsSync(dir)) return published;
+  for (const file of (await readdir(dir)).filter((name) => /^\d{3}\.json$/.test(name))) {
+    try {
+      for (const row of JSON.parse(await readFile(path.join(dir, file), 'utf8')).rows || []) {
+        if (typeof row?.Date === 'string' && typeof row['Adj Close'] === 'string') published.set(row.Date, row['Adj Close']);
+      }
+    } catch {
+      // an unreadable page has nothing to keep
+    }
+  }
+  return published;
+}
+
 /** Yahoo daily history rows in the published page shape (newest first), or [] when the source failed or is skipped. */
 async function fetchYahooHistory(
   ticker: string,
@@ -1950,11 +1980,12 @@ async function fetchYahooHistory(
   try {
     const json = JSON.parse(await fetchText(yahooChartUrl(ticker, config.historyRange), yahooHeaders(), config, `${ticker} Yahoo chart`));
     const parsed = parseYahooChart(json);
+    const published = await readPublishedAdjCloses(path.join(API_ROOT, 'funds', ticker));
     return {
       rows: parsed.history.map((row) => ({
         Date: row.date,
         Close: row.close === null ? '' : row.close.toFixed(2),
-        'Adj Close': row.adjClose === null ? '' : row.adjClose.toFixed(2),
+        'Adj Close': adjCloseCell(row.adjClose, published.get(row.date)),
         Volume: row.volume === null ? '' : String(row.volume),
       })),
       dividends: parsed.dividends,
