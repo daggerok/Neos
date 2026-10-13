@@ -21,12 +21,12 @@
   },
   "navValue": 56.99,
   "aum": {
-    "display": "$36.47M",
-    "value": 36472768,
+    "display": "$36.49M",
+    "value": 36485440,
     "asOfDate": "Oct 09 2026",
     "source": "official NEOS daily holdings CSV (download_holdings_csv)"
   },
-  "aumValue": 36472768,
+  "aumValue": 36485440,
   "asOfDate": "Oct 09 2026",
   "inceptionDate": "Apr 02 2025",
   "inceptionDateFundPage": "Apr 02 2025",
@@ -50,11 +50,11 @@
   },
   "bidAskSpreadValue": 0.12,
   "acquiredFundFeesText": null,
-  "totalNetAssets": 36472768,
+  "totalNetAssets": 36485440,
   "sharesOutstanding": {
     "display": "640,000",
     "value": 640000,
-    "asOfDate": "Oct 12 2026"
+    "asOfDate": "Oct 13 2026"
   },
   "netAssetsAsOf": "Oct 09 2026",
   "secYieldAsOf": "Sep 30 2026",
@@ -306,8 +306,8 @@
     ],
     "pageSize": 250,
     "totalRows": 489,
-    "asOfDate": "Oct 12 2026",
-    "asOf": "2026-10-12",
+    "asOfDate": "Oct 13 2026",
+    "asOf": "2026-10-13",
     "source": "https://neosfunds.com/wp-admin/admin-ajax.php?action=download_holdings_csv&ticker=SPYH",
     "sourceKind": "official NEOS daily holdings CSV (download_holdings_csv)"
   },
@@ -316,9 +316,9 @@
       "./history/001.json"
     ],
     "pageSize": 1000,
-    "totalRows": 382,
-    "asOfDate": "Oct 09 2026",
-    "asOf": "2026-10-09",
+    "totalRows": 383,
+    "asOfDate": "Oct 12 2026",
+    "asOf": "2026-10-12",
     "source": "https://query1.finance.yahoo.com/v8/finance/chart/SPYH?period1=0&period2=9999999999&interval=1d&events=div%7Csplit&includeAdjustedClose=true",
     "sourceKind": "Yahoo Finance public chart API (daily Close / Adj Close / Volume)"
   },

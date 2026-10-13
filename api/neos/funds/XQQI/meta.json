@@ -21,12 +21,12 @@
   },
   "navValue": 50.8,
   "aum": {
-    "display": "$423.69M",
-    "value": 423693684,
+    "display": "$420.41M",
+    "value": 420407724,
     "asOfDate": "Oct 09 2026",
     "source": "official NEOS daily holdings CSV (download_holdings_csv)"
   },
-  "aumValue": 423693684,
+  "aumValue": 420407724,
   "asOfDate": "Oct 09 2026",
   "inceptionDate": "Feb 02 2026",
   "inceptionDateFundPage": "Feb 02 2026",
@@ -50,11 +50,11 @@
   },
   "bidAskSpreadValue": 0.1,
   "acquiredFundFeesText": null,
-  "totalNetAssets": 423693684,
+  "totalNetAssets": 420407724,
   "sharesOutstanding": {
     "display": "8,340,000",
     "value": 8340000,
-    "asOfDate": "Oct 12 2026"
+    "asOfDate": "Oct 13 2026"
   },
   "netAssetsAsOf": "Oct 09 2026",
   "secYieldAsOf": "Sep 30 2026",
@@ -245,8 +245,8 @@
     ],
     "pageSize": 250,
     "totalRows": 106,
-    "asOfDate": "Oct 12 2026",
-    "asOf": "2026-10-12",
+    "asOfDate": "Oct 13 2026",
+    "asOf": "2026-10-13",
     "source": "https://neosfunds.com/wp-admin/admin-ajax.php?action=download_holdings_csv&ticker=XQQI",
     "sourceKind": "official NEOS daily holdings CSV (download_holdings_csv)"
   },
@@ -255,9 +255,9 @@
       "./history/001.json"
     ],
     "pageSize": 1000,
-    "totalRows": 173,
-    "asOfDate": "Oct 09 2026",
-    "asOf": "2026-10-09",
+    "totalRows": 174,
+    "asOfDate": "Oct 12 2026",
+    "asOf": "2026-10-12",
     "source": "https://query1.finance.yahoo.com/v8/finance/chart/XQQI?period1=0&period2=9999999999&interval=1d&events=div%7Csplit&includeAdjustedClose=true",
     "sourceKind": "Yahoo Finance public chart API (daily Close / Adj Close / Volume)"
   },

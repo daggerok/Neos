@@ -2,7 +2,7 @@
   "ticker": "CSHI",
   "page": 2,
   "pageSize": 1000,
-  "totalRows": 1032,
+  "totalRows": 1033,
   "headers": [
     "Date",
     "Close",
@@ -10,6 +10,12 @@
     "Volume"
   ],
   "rows": [
+    {
+      "Date": "2022-10-14",
+      "Close": "50.04",
+      "Adj Close": "40.25",
+      "Volume": "100"
+    },
     {
       "Date": "2022-10-13",
       "Close": "50.08",

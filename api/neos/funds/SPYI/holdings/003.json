@@ -14,39 +14,21 @@
   ],
   "rows": [
     {
-      "Name": "Waters Corp",
-      "Ticker": "WAT",
-      "Identifier": "941848103",
-      "Weight": "0.06%",
-      "Market Value": "$7171085.64",
-      "Shares Held": "16,532",
+      "Name": "ExxonMobil Holdings Corp",
+      "Ticker": "XOM",
+      "Identifier": "30233Q108",
+      "Weight": "1.05%",
+      "Market Value": "$132861410.55",
+      "Shares Held": "771,777",
       "Asset Category": "Equity"
     },
     {
-      "Name": "Workday Inc",
-      "Ticker": "WDAY",
-      "Identifier": "98138H101",
-      "Weight": "0.05%",
-      "Market Value": "$6895620.04",
-      "Shares Held": "36,956",
-      "Asset Category": "Equity"
-    },
-    {
-      "Name": "WEC Energy Group Inc",
-      "Ticker": "WEC",
-      "Identifier": "92939U106",
-      "Weight": "0.05%",
-      "Market Value": "$6104787.78",
-      "Shares Held": "58,847",
-      "Asset Category": "Equity"
-    },
-    {
-      "Name": "Walmart Inc",
-      "Ticker": "WMT",
-      "Identifier": "931142103",
-      "Weight": "0.72%",
-      "Market Value": "$90845788.30",
-      "Shares Held": "815,858",
+      "Name": "Xylem Inc/NY",
+      "Ticker": "XYL",
+      "Identifier": "98419M100",
+      "Weight": "0.03%",
+      "Market Value": "$4393929.70",
+      "Shares Held": "42,830",
       "Asset Category": "Equity"
     },
     {
@@ -54,8 +36,26 @@
       "Ticker": "XYZ",
       "Identifier": "852234103",
       "Weight": "0.06%",
-      "Market Value": "$7605282.12",
+      "Market Value": "$7563927.66",
       "Shares Held": "98,463",
+      "Asset Category": "Equity"
+    },
+    {
+      "Name": "Yum! Brands Inc",
+      "Ticker": "YUM",
+      "Identifier": "988498101",
+      "Weight": "0.06%",
+      "Market Value": "$7452552.00",
+      "Shares Held": "50,784",
+      "Asset Category": "Equity"
+    },
+    {
+      "Name": "ZIMMER BIOMET HOLDINGS INC",
+      "Ticker": "ZBH",
+      "Identifier": "98956P102",
+      "Weight": "0.03%",
+      "Market Value": "$3230558.50",
+      "Shares Held": "35,050",
       "Asset Category": "Equity"
     },
     {
@@ -63,7 +63,7 @@
       "Ticker": "ZBRA",
       "Identifier": "989207105",
       "Weight": "0.02%",
-      "Market Value": "$3066852.78",
+      "Market Value": "$3074298.52",
       "Shares Held": "7,921",
       "Asset Category": "Equity"
     },
@@ -72,7 +72,7 @@
       "Ticker": "ZTS",
       "Identifier": "98978V103",
       "Weight": "0.05%",
-      "Market Value": "$5795231.46",
+      "Market Value": "$5860302.90",
       "Shares Held": "77,466",
       "Asset Category": "Equity"
     },
@@ -81,8 +81,8 @@
       "Ticker": "Cash&Other",
       "Identifier": "Cash&Other",
       "Weight": "1.86%",
-      "Market Value": "$233882704.22",
-      "Shares Held": "233,882,704",
+      "Market Value": "$233944817.43",
+      "Shares Held": "233,944,817",
       "Asset Category": "Cash"
     }
   ]

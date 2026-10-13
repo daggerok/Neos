@@ -21,12 +21,12 @@
   },
   "navValue": 50.79,
   "aum": {
-    "display": "$210.80M",
-    "value": 210798420,
+    "display": "$210.23M",
+    "value": 210229040,
     "asOfDate": "Oct 09 2026",
     "source": "official NEOS daily holdings CSV (download_holdings_csv)"
   },
-  "aumValue": 210798420,
+  "aumValue": 210229040,
   "asOfDate": "Oct 09 2026",
   "inceptionDate": "Sep 16 2025",
   "inceptionDateFundPage": "Sep 16 2025",
@@ -50,11 +50,11 @@
   },
   "bidAskSpreadValue": 0.12,
   "acquiredFundFeesText": "0.07%",
-  "totalNetAssets": 210798420,
+  "totalNetAssets": 210229040,
   "sharesOutstanding": {
     "display": "4,150,000",
     "value": 4150000,
-    "asOfDate": "Oct 12 2026"
+    "asOfDate": "Oct 13 2026"
   },
   "netAssetsAsOf": "Oct 09 2026",
   "secYieldAsOf": "Sep 30 2026",
@@ -280,8 +280,8 @@
     ],
     "pageSize": 250,
     "totalRows": 4,
-    "asOfDate": "Oct 12 2026",
-    "asOf": "2026-10-12",
+    "asOfDate": "Oct 13 2026",
+    "asOf": "2026-10-13",
     "source": "https://neosfunds.com/wp-admin/admin-ajax.php?action=download_holdings_csv&ticker=NIHI",
     "sourceKind": "official NEOS daily holdings CSV (download_holdings_csv)"
   },
@@ -290,9 +290,9 @@
       "./history/001.json"
     ],
     "pageSize": 1000,
-    "totalRows": 268,
-    "asOfDate": "Oct 09 2026",
-    "asOf": "2026-10-09",
+    "totalRows": 269,
+    "asOfDate": "Oct 12 2026",
+    "asOf": "2026-10-12",
     "source": "https://query1.finance.yahoo.com/v8/finance/chart/NIHI?period1=0&period2=9999999999&interval=1d&events=div%7Csplit&includeAdjustedClose=true",
     "sourceKind": "Yahoo Finance public chart API (daily Close / Adj Close / Volume)"
   },

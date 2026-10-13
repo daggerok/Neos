@@ -21,12 +21,12 @@
   },
   "navValue": 56.02,
   "aum": {
-    "display": "$409.24M",
-    "value": 409236723.59,
+    "display": "$407.63M",
+    "value": 407626705.78,
     "asOfDate": "Oct 09 2026",
     "source": "official NEOS daily holdings CSV (download_holdings_csv)"
   },
-  "aumValue": 409236723.59,
+  "aumValue": 407626705.78,
   "asOfDate": "Oct 09 2026",
   "inceptionDate": "Dec 19 2019",
   "inceptionDateFundPage": "Dec 19 2019",
@@ -50,11 +50,11 @@
   },
   "bidAskSpreadValue": 0.27,
   "acquiredFundFeesText": null,
-  "totalNetAssets": 409236723.59,
+  "totalNetAssets": 407626705.78,
   "sharesOutstanding": {
     "display": "7,304,981",
     "value": 7304981,
-    "asOfDate": "Oct 12 2026"
+    "asOfDate": "Oct 13 2026"
   },
   "netAssetsAsOf": "Oct 09 2026",
   "secYieldAsOf": "Sep 30 2026",
@@ -420,8 +420,8 @@
     ],
     "pageSize": 250,
     "totalRows": 105,
-    "asOfDate": "Oct 12 2026",
-    "asOf": "2026-10-12",
+    "asOfDate": "Oct 13 2026",
+    "asOf": "2026-10-13",
     "source": "https://neosfunds.com/wp-admin/admin-ajax.php?action=download_holdings_csv&ticker=QQQH",
     "sourceKind": "official NEOS daily holdings CSV (download_holdings_csv)"
   },
@@ -431,9 +431,9 @@
       "./history/002.json"
     ],
     "pageSize": 1000,
-    "totalRows": 1709,
-    "asOfDate": "Oct 09 2026",
-    "asOf": "2026-10-09",
+    "totalRows": 1710,
+    "asOfDate": "Oct 12 2026",
+    "asOf": "2026-10-12",
     "source": "https://query1.finance.yahoo.com/v8/finance/chart/QQQH?period1=0&period2=9999999999&interval=1d&events=div%7Csplit&includeAdjustedClose=true",
     "sourceKind": "Yahoo Finance public chart API (daily Close / Adj Close / Volume)"
   },

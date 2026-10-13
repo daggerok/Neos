@@ -14,38 +14,20 @@
   ],
   "rows": [
     {
-      "Name": "SLV 01/15/2027 55.5 P",
-      "Ticker": "2SLV 270115P00055500",
-      "Identifier": "2SLV 270115P00055500",
-      "Weight": "-5.66%",
-      "Market Value": "$-112139.89",
-      "Shares Held": "-293",
+      "Name": "SLV 11/20/2026 58 C",
+      "Ticker": "2SLV 261120C00058000",
+      "Identifier": "2SLV 261120C00058000",
+      "Weight": "-0.48%",
+      "Market Value": "$-9480.24",
+      "Shares Held": "-81",
       "Asset Category": "Option"
     },
     {
       "Name": "SLV 11/20/2026 60 C",
       "Ticker": "2SLV 261120C00060000",
       "Identifier": "2SLV 261120C00060000",
-      "Weight": "-0.38%",
-      "Market Value": "$-7558.11",
-      "Shares Held": "-81",
-      "Asset Category": "Option"
-    },
-    {
-      "Name": "iShares Silver Trust",
-      "Ticker": "SLV",
-      "Identifier": "46428Q109",
-      "Weight": "18.86%",
-      "Market Value": "$373544.82",
-      "Shares Held": "6,819",
-      "Asset Category": "Fund"
-    },
-    {
-      "Name": "SLV 11/20/2026 58 C",
-      "Ticker": "2SLV 261120C00058000",
-      "Identifier": "2SLV 261120C00058000",
-      "Weight": "-0.56%",
-      "Market Value": "$-11157.75",
+      "Weight": "-0.32%",
+      "Market Value": "$-6318.81",
       "Shares Held": "-81",
       "Asset Category": "Option"
     },
@@ -53,27 +35,45 @@
       "Name": "SLV 01/15/2027 55.5 C",
       "Ticker": "2SLV 270115C00055500",
       "Identifier": "2SLV 270115C00055500",
-      "Weight": "5.43%",
-      "Market Value": "$107533.93",
+      "Weight": "5.02%",
+      "Market Value": "$98878.71",
       "Shares Held": "293",
+      "Asset Category": "Option"
+    },
+    {
+      "Name": "SLV 01/15/2027 55.5 P",
+      "Ticker": "2SLV 270115P00055500",
+      "Identifier": "2SLV 270115P00055500",
+      "Weight": "-5.87%",
+      "Market Value": "$-115614.87",
+      "Shares Held": "-293",
       "Asset Category": "Option"
     },
     {
       "Name": "United States Treasury Bill 12/15/2026",
       "Ticker": "912797WF0",
       "Identifier": "912797WF0",
-      "Weight": "79.56%",
-      "Market Value": "$1576030.32",
+      "Weight": "80.05%",
+      "Market Value": "$1576024.94",
       "Shares Held": "1,587,000",
       "Asset Category": "Treasury"
+    },
+    {
+      "Name": "iShares Silver Trust",
+      "Ticker": "SLV",
+      "Identifier": "46428Q109",
+      "Weight": "18.82%",
+      "Market Value": "$370612.65",
+      "Shares Held": "6,819",
+      "Asset Category": "Fund"
     },
     {
       "Name": "Cash & Other",
       "Ticker": "Cash&Other",
       "Identifier": "Cash&Other",
-      "Weight": "2.76%",
-      "Market Value": "$54666.06",
-      "Shares Held": "54,666",
+      "Weight": "2.77%",
+      "Market Value": "$54633.24",
+      "Shares Held": "54,633",
       "Asset Category": "Cash"
     }
   ]

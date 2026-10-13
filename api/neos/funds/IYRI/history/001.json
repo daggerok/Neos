@@ -2,7 +2,7 @@
   "ticker": "IYRI",
   "page": 1,
   "pageSize": 1000,
-  "totalRows": 436,
+  "totalRows": 437,
   "headers": [
     "Date",
     "Close",
@@ -10,6 +10,12 @@
     "Volume"
   ],
   "rows": [
+    {
+      "Date": "2026-10-12",
+      "Close": "45.88",
+      "Adj Close": "45.88",
+      "Volume": "76800"
+    },
     {
       "Date": "2026-10-09",
       "Close": "45.60",

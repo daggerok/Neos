@@ -14,47 +14,47 @@
   ],
   "rows": [
     {
-      "Name": "United States Treasury Bill 10/22/2026",
-      "Ticker": "912797UL9",
-      "Identifier": "912797UL9",
-      "Weight": "6.51%",
-      "Market Value": "$128851345.73",
-      "Shares Held": "128,974,000",
-      "Asset Category": "Treasury"
-    },
-    {
       "Name": "United States Treasury Bill 10/29/2026",
       "Ticker": "912797SK4",
       "Identifier": "912797SK4",
-      "Weight": "6.44%",
-      "Market Value": "$127378576.42",
+      "Weight": "6.40%",
+      "Market Value": "$127378516.45",
       "Shares Held": "127,596,000",
-      "Asset Category": "Treasury"
-    },
-    {
-      "Name": "United States Treasury Bill 11/24/2026",
-      "Ticker": "912797VY0",
-      "Identifier": "912797VY0",
-      "Weight": "6.80%",
-      "Market Value": "$134446163.07",
-      "Shares Held": "135,069,000",
       "Asset Category": "Treasury"
     },
     {
       "Name": "United States Treasury Bill 11/27/2026",
       "Ticker": "912797SU2",
       "Identifier": "912797SU2",
-      "Weight": "7.29%",
-      "Market Value": "$144280482.45",
+      "Weight": "7.25%",
+      "Market Value": "$144280264.95",
       "Shares Held": "145,000,000",
+      "Asset Category": "Treasury"
+    },
+    {
+      "Name": "United States Treasury Bill 10/22/2026",
+      "Ticker": "912797UL9",
+      "Identifier": "912797UL9",
+      "Weight": "6.47%",
+      "Market Value": "$128851312.19",
+      "Shares Held": "128,974,000",
+      "Asset Category": "Treasury"
+    },
+    {
+      "Name": "United States Treasury Bill 11/12/2026",
+      "Ticker": "912797UY1",
+      "Identifier": "912797UY1",
+      "Weight": "6.64%",
+      "Market Value": "$132176100.57",
+      "Shares Held": "132,609,000",
       "Asset Category": "Treasury"
     },
     {
       "Name": "United States Treasury Bill 11/19/2026",
       "Ticker": "912797UZ8",
       "Identifier": "912797UZ8",
-      "Weight": "6.79%",
-      "Market Value": "$134258118.76",
+      "Weight": "6.74%",
+      "Market Value": "$134257955.64",
       "Shares Held": "134,806,000",
       "Asset Category": "Treasury"
     },
@@ -62,108 +62,81 @@
       "Name": "United States Treasury Bill 12/03/2026",
       "Ticker": "912797VA2",
       "Identifier": "912797VA2",
-      "Weight": "6.95%",
-      "Market Value": "$137585760.96",
+      "Weight": "6.91%",
+      "Market Value": "$137585522.98",
       "Shares Held": "138,360,000",
       "Asset Category": "Treasury"
     },
     {
-      "Name": "United States Treasury Bill 12/22/2026",
-      "Ticker": "912797WG8",
-      "Identifier": "912797WG8",
-      "Weight": "7.25%",
-      "Market Value": "$143390159.08",
-      "Shares Held": "144,500,000",
-      "Asset Category": "Treasury"
-    },
-    {
-      "Name": "United States Treasury Bill 11/12/2026",
-      "Ticker": "912797UY1",
-      "Identifier": "912797UY1",
-      "Weight": "6.68%",
-      "Market Value": "$132176229.20",
-      "Shares Held": "132,609,000",
+      "Name": "United States Treasury Bill 12/10/2026",
+      "Ticker": "912797VG9",
+      "Identifier": "912797VG9",
+      "Weight": "7.54%",
+      "Market Value": "$150204082.84",
+      "Shares Held": "151,167,000",
       "Asset Category": "Treasury"
     },
     {
       "Name": "United States Treasury Bill 10/27/2026",
       "Ticker": "912797VN4",
       "Identifier": "912797VN4",
-      "Weight": "6.47%",
-      "Market Value": "$128079573.49",
+      "Weight": "6.43%",
+      "Market Value": "$128079520.90",
       "Shares Held": "128,271,000",
-      "Asset Category": "Treasury"
-    },
-    {
-      "Name": "SPXW US 10/22/26 P7275",
-      "Ticker": "SPXW 261022P07275000",
-      "Identifier": "SPXW 261022P07275000",
-      "Weight": "-0.01%",
-      "Market Value": "$-128182.50",
-      "Shares Held": "-633",
-      "Asset Category": "Option"
-    },
-    {
-      "Name": "SPXW US 10/22/26 P6975",
-      "Ticker": "SPXW 261022P06975000",
-      "Identifier": "SPXW 261022P06975000",
-      "Weight": "0.00%",
-      "Market Value": "$-74377.50",
-      "Shares Held": "-633",
-      "Asset Category": "Option"
-    },
-    {
-      "Name": "United States Treasury Bill 12/10/2026",
-      "Ticker": "912797VG9",
-      "Identifier": "912797VG9",
-      "Weight": "7.59%",
-      "Market Value": "$150204380.64",
-      "Shares Held": "151,167,000",
       "Asset Category": "Treasury"
     },
     {
       "Name": "United States Treasury Bill 01/07/2027",
       "Ticker": "912797VS3",
       "Identifier": "912797VS3",
-      "Weight": "8.01%",
-      "Market Value": "$158448177.60",
+      "Weight": "7.96%",
+      "Market Value": "$158447401.60",
       "Shares Held": "160,000,000",
-      "Asset Category": "Treasury"
-    },
-    {
-      "Name": "United States Treasury Bill 12/08/2026",
-      "Ticker": "912797WE3",
-      "Identifier": "912797WE3",
-      "Weight": "7.56%",
-      "Market Value": "$149654878.62",
-      "Shares Held": "150,585,000",
-      "Asset Category": "Treasury"
-    },
-    {
-      "Name": "SPXW US 10/22/26 P7125",
-      "Ticker": "SPXW 261022P07125000",
-      "Identifier": "SPXW 261022P07125000",
-      "Weight": "0.00%",
-      "Market Value": "$-93367.50",
-      "Shares Held": "-633",
-      "Asset Category": "Option"
-    },
-    {
-      "Name": "United States Treasury Bill 12/29/2026",
-      "Ticker": "912797WH6",
-      "Identifier": "912797WH6",
-      "Weight": "7.60%",
-      "Market Value": "$150341845.82",
-      "Shares Held": "151,628,000",
       "Asset Category": "Treasury"
     },
     {
       "Name": "United States Treasury Bill 11/17/2026",
       "Ticker": "912797VX2",
       "Identifier": "912797VX2",
-      "Weight": "6.62%",
-      "Market Value": "$131018629.24",
+      "Weight": "6.58%",
+      "Market Value": "$131018479.30",
       "Shares Held": "131,521,000",
+      "Asset Category": "Treasury"
+    },
+    {
+      "Name": "United States Treasury Bill 11/24/2026",
+      "Ticker": "912797VY0",
+      "Identifier": "912797VY0",
+      "Weight": "6.75%",
+      "Market Value": "$134445975.33",
+      "Shares Held": "135,069,000",
+      "Asset Category": "Treasury"
+    },
+    {
+      "Name": "United States Treasury Bill 12/08/2026",
+      "Ticker": "912797WE3",
+      "Identifier": "912797WE3",
+      "Weight": "7.52%",
+      "Market Value": "$149654592.51",
+      "Shares Held": "150,585,000",
+      "Asset Category": "Treasury"
+    },
+    {
+      "Name": "United States Treasury Bill 12/22/2026",
+      "Ticker": "912797WG8",
+      "Identifier": "912797WG8",
+      "Weight": "7.20%",
+      "Market Value": "$143389607.09",
+      "Shares Held": "144,500,000",
+      "Asset Category": "Treasury"
+    },
+    {
+      "Name": "United States Treasury Bill 12/29/2026",
+      "Ticker": "912797WH6",
+      "Identifier": "912797WH6",
+      "Weight": "7.55%",
+      "Market Value": "$150341199.88",
+      "Shares Held": "151,628,000",
       "Asset Category": "Treasury"
     },
     {
@@ -171,8 +144,8 @@
       "Ticker": "SPXW 261022P06675000",
       "Identifier": "SPXW 261022P06675000",
       "Weight": "0.00%",
-      "Market Value": "$50640.00",
-      "Shares Held": "633",
+      "Market Value": "$33495.00",
+      "Shares Held": "638",
       "Asset Category": "Option"
     },
     {
@@ -180,8 +153,8 @@
       "Ticker": "SPXW 261022P06750000",
       "Identifier": "SPXW 261022P06750000",
       "Weight": "0.00%",
-      "Market Value": "$56970.00",
-      "Shares Held": "633",
+      "Market Value": "$38280.00",
+      "Shares Held": "638",
       "Asset Category": "Option"
     },
     {
@@ -189,8 +162,17 @@
       "Ticker": "SPXW 261022P06825000",
       "Identifier": "SPXW 261022P06825000",
       "Weight": "0.00%",
-      "Market Value": "$60135.00",
-      "Shares Held": "633",
+      "Market Value": "$41470.00",
+      "Shares Held": "638",
+      "Asset Category": "Option"
+    },
+    {
+      "Name": "SPXW US 10/22/26 P6975",
+      "Ticker": "SPXW 261022P06975000",
+      "Identifier": "SPXW 261022P06975000",
+      "Weight": "0.00%",
+      "Market Value": "$-54230.00",
+      "Shares Held": "-638",
       "Asset Category": "Option"
     },
     {
@@ -198,26 +180,44 @@
       "Ticker": "SPXW 261022P07075000",
       "Identifier": "SPXW 261022P07075000",
       "Weight": "0.00%",
-      "Market Value": "$85455.00",
-      "Shares Held": "633",
+      "Market Value": "$63800.00",
+      "Shares Held": "638",
+      "Asset Category": "Option"
+    },
+    {
+      "Name": "SPXW US 10/22/26 P7125",
+      "Ticker": "SPXW 261022P07125000",
+      "Identifier": "SPXW 261022P07125000",
+      "Weight": "0.00%",
+      "Market Value": "$-70180.00",
+      "Shares Held": "-638",
       "Asset Category": "Option"
     },
     {
       "Name": "SPXW US 10/22/26 P7200",
       "Ticker": "SPXW 261022P07200000",
       "Identifier": "SPXW 261022P07200000",
-      "Weight": "-0.01%",
-      "Market Value": "$-107610.00",
-      "Shares Held": "-633",
+      "Weight": "0.00%",
+      "Market Value": "$-81345.00",
+      "Shares Held": "-638",
+      "Asset Category": "Option"
+    },
+    {
+      "Name": "SPXW US 10/22/26 P7275",
+      "Ticker": "SPXW 261022P07275000",
+      "Identifier": "SPXW 261022P07275000",
+      "Weight": "0.00%",
+      "Market Value": "$-98890.00",
+      "Shares Held": "-638",
       "Asset Category": "Option"
     },
     {
       "Name": "Cash & Other",
       "Ticker": "Cash&Other",
       "Identifier": "Cash&Other",
-      "Weight": "1.44%",
-      "Market Value": "$28580220.35",
-      "Shares Held": "28,580,220",
+      "Weight": "2.06%",
+      "Market Value": "$41007966.66",
+      "Shares Held": "41,007,967",
       "Asset Category": "Cash"
     }
   ]

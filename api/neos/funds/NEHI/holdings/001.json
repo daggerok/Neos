@@ -17,53 +17,53 @@
       "Name": "ETHA 11/20/2026 66 C",
       "Ticker": "2ETHA 261120C00066000",
       "Identifier": "2ETHA 261120C00066000",
-      "Weight": "-0.34%",
-      "Market Value": "$-388520.58",
+      "Weight": "-0.37%",
+      "Market Value": "$-423822.21",
       "Shares Held": "-4,053",
       "Asset Category": "Option"
     },
     {
-      "Name": "ETHA 01/15/2027 60 P",
-      "Ticker": "2ETHA 270115P00060000",
-      "Identifier": "2ETHA 270115P00060000",
-      "Weight": "-11.03%",
-      "Market Value": "$-12588719.77",
-      "Shares Held": "-16,417",
+      "Name": "ETHA 11/20/2026 72 C",
+      "Ticker": "2ETHA 261120C00072000",
+      "Identifier": "2ETHA 261120C00072000",
+      "Weight": "-0.17%",
+      "Market Value": "$-193976.58",
+      "Shares Held": "-4,053",
       "Asset Category": "Option"
     },
     {
       "Name": "ETHA 01/15/2027 60 C",
       "Ticker": "2ETHA 270115C00060000",
       "Identifier": "2ETHA 270115C00060000",
-      "Weight": "6.31%",
-      "Market Value": "$7205092.96",
+      "Weight": "6.62%",
+      "Market Value": "$7678887.58",
       "Shares Held": "16,417",
+      "Asset Category": "Option"
+    },
+    {
+      "Name": "ETHA 01/15/2027 60 P",
+      "Ticker": "2ETHA 270115P00060000",
+      "Identifier": "2ETHA 270115P00060000",
+      "Weight": "-9.87%",
+      "Market Value": "$-11449051.63",
+      "Shares Held": "-16,417",
       "Asset Category": "Option"
     },
     {
       "Name": "United States Treasury Bill 11/05/2026",
       "Ticker": "912797UM7",
       "Identifier": "912797UM7",
-      "Weight": "83.49%",
-      "Market Value": "$95268253.61",
+      "Weight": "82.10%",
+      "Market Value": "$95268189.62",
       "Shares Held": "95,505,000",
       "Asset Category": "Treasury"
-    },
-    {
-      "Name": "ETHA 11/20/2026 72 C",
-      "Ticker": "2ETHA 261120C00072000",
-      "Identifier": "2ETHA 261120C00072000",
-      "Weight": "-0.16%",
-      "Market Value": "$-180236.91",
-      "Shares Held": "-4,053",
-      "Asset Category": "Option"
     },
     {
       "Name": "iShares Ethereum Trust ETF",
       "Ticker": "ETHA",
       "Identifier": "46438R204",
       "Weight": "18.85%",
-      "Market Value": "$21507923.97",
+      "Market Value": "$21876697.09",
       "Shares Held": "384,139",
       "Asset Category": "Fund"
     },
@@ -71,9 +71,9 @@
       "Name": "Cash & Other",
       "Ticker": "Cash&Other",
       "Identifier": "Cash&Other",
-      "Weight": "2.88%",
-      "Market Value": "$3283775.40",
-      "Shares Held": "3,283,775",
+      "Weight": "2.83%",
+      "Market Value": "$3282199.38",
+      "Shares Held": "3,282,199",
       "Asset Category": "Cash"
     }
   ]
