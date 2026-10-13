@@ -18,6 +18,7 @@ import {
   NEOS_CATEGORIES,
   NEOS_DISTRIBUTION_HEADERS,
   RETURNS_BASIS,
+  adjCloseCell,
   annualizedFromCumulative,
   cleanText,
   compareDisplayDates,
@@ -719,6 +720,34 @@ describe("pipeline", () => {
       const after = readJson(root, "index.json");
       expect(after.funds.map((fund: { ticker: string }) => fund.ticker)).toEqual(["IWMI", "SPYI", "XSPI"]);
       expect(readdirSync(path.join(root, "funds")).sort()).toEqual(["IWMI", "SPYI", "XSPI"]);
+    });
+  });
+
+  test("two runs on the same source data write zero changes even when Yahoo adjusted closes jitter across a cent boundary", async () => {
+    await inTempRoot(async (root) => {
+      // Yahoo float32 noise seen live: a value on a cent boundary comes back as 31.544998 and 31.545001 a minute apart
+      const jittered = (adjclose: number[]) => {
+        const chart = JSON.parse(CHART);
+        chart.chart.result[0].indicators.adjclose = [{ adjclose }];
+        return site(RICH_PAGES, JSON.stringify(chart));
+      };
+      mockFetch(jittered([54.104999, 54.295001]));
+      await main(RUN_ENV);
+      const index = readJson(root, "index.json");
+      writeFileSync(path.join(root, "index.json"), JSON.stringify({ ...index, generatedAt: "2020-01-01T00:00:00Z" }, null, 2) + "\n");
+      const first = snapshot(root);
+      expect(readJson(root, "funds", "SPYI", "history", "001.json").rows.map((row: Record<string, string>) => row["Adj Close"])).toEqual(["54.30", "54.10"]);
+      mockFetch(jittered([54.105001, 54.294999]));
+      await main(RUN_ENV);
+      expect(snapshot(root)).toEqual(first);
+      // a real change beyond the noise is still written
+      mockFetch(jittered([54.12, 54.27]));
+      await main(RUN_ENV);
+      expect(readJson(root, "funds", "SPYI", "history", "001.json").rows.map((row: Record<string, string>) => row["Adj Close"])).toEqual(["54.27", "54.12"]);
+      expect(adjCloseCell(31.545001, "31.54")).toBe("31.54");
+      expect(adjCloseCell(31.5452, "31.54")).toBe("31.55");
+      expect(adjCloseCell(31.545001, undefined)).toBe("31.55");
+      expect(adjCloseCell(null, "31.54")).toBe("");
     });
   });
 
