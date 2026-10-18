@@ -2,7 +2,7 @@
   "ticker": "BTCI",
   "page": 1,
   "pageSize": 1000,
-  "totalRows": 497,
+  "totalRows": 501,
   "headers": [
     "Date",
     "Close",
@@ -10,6 +10,30 @@
     "Volume"
   ],
   "rows": [
+    {
+      "Date": "2026-10-16",
+      "Close": "33.02",
+      "Adj Close": "33.02",
+      "Volume": "568200"
+    },
+    {
+      "Date": "2026-10-15",
+      "Close": "33.28",
+      "Adj Close": "33.28",
+      "Volume": "531400"
+    },
+    {
+      "Date": "2026-10-14",
+      "Close": "33.07",
+      "Adj Close": "33.07",
+      "Volume": "538500"
+    },
+    {
+      "Date": "2026-10-13",
+      "Close": "33.59",
+      "Adj Close": "33.59",
+      "Volume": "363800"
+    },
     {
       "Date": "2026-10-12",
       "Close": "33.38",

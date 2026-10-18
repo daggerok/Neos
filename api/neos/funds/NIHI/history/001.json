@@ -2,7 +2,7 @@
   "ticker": "NIHI",
   "page": 1,
   "pageSize": 1000,
-  "totalRows": 269,
+  "totalRows": 273,
   "headers": [
     "Date",
     "Close",
@@ -10,6 +10,30 @@
     "Volume"
   ],
   "rows": [
+    {
+      "Date": "2026-10-16",
+      "Close": "50.86",
+      "Adj Close": "50.86",
+      "Volume": "59200"
+    },
+    {
+      "Date": "2026-10-15",
+      "Close": "50.89",
+      "Adj Close": "50.89",
+      "Volume": "35100"
+    },
+    {
+      "Date": "2026-10-14",
+      "Close": "50.54",
+      "Adj Close": "50.54",
+      "Volume": "48200"
+    },
+    {
+      "Date": "2026-10-13",
+      "Close": "50.83",
+      "Adj Close": "50.83",
+      "Volume": "43600"
+    },
     {
       "Date": "2026-10-12",
       "Close": "50.63",

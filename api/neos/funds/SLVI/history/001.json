@@ -2,7 +2,7 @@
   "ticker": "SLVI",
   "page": 1,
   "pageSize": 1000,
-  "totalRows": 4,
+  "totalRows": 8,
   "headers": [
     "Date",
     "Close",
@@ -11,10 +11,34 @@
   ],
   "rows": [
     {
+      "Date": "2026-10-16",
+      "Close": "46.93",
+      "Adj Close": "46.93",
+      "Volume": "7400"
+    },
+    {
+      "Date": "2026-10-15",
+      "Close": "47.22",
+      "Adj Close": "47.22",
+      "Volume": "9000"
+    },
+    {
+      "Date": "2026-10-14",
+      "Close": "45.71",
+      "Adj Close": "45.71",
+      "Volume": "26300"
+    },
+    {
+      "Date": "2026-10-13",
+      "Close": "48.64",
+      "Adj Close": "48.64",
+      "Volume": "16200"
+    },
+    {
       "Date": "2026-10-12",
       "Close": "49.27",
       "Adj Close": "49.27",
-      "Volume": "12377"
+      "Volume": "12400"
     },
     {
       "Date": "2026-10-09",

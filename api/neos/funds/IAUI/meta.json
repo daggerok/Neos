@@ -13,50 +13,50 @@
   "managementFee": "0.78%",
   "managementFeeValue": 0.78,
   "nav": {
-    "display": "$48.70",
-    "value": 48.7,
-    "asOfDate": "Oct 09 2026",
-    "dailyChangeText": "$0.62 (1.30%)",
+    "display": "$48.48",
+    "value": 48.48,
+    "asOfDate": "Oct 16 2026",
+    "dailyChangeText": "$-0.07 (-0.14%)",
     "kind": "official (fund page Fund Details)"
   },
-  "navValue": 48.7,
+  "navValue": 48.48,
   "aum": {
-    "display": "$661.19M",
-    "value": 661194908,
-    "asOfDate": "Oct 09 2026",
+    "display": "$663.20M",
+    "value": 663195456,
+    "asOfDate": "Oct 16 2026",
     "source": "official NEOS daily holdings CSV (download_holdings_csv)"
   },
-  "aumValue": 661194908,
-  "asOfDate": "Oct 09 2026",
+  "aumValue": 663195456,
+  "asOfDate": "Oct 16 2026",
   "inceptionDate": "Jun 04 2025",
   "inceptionDateFundPage": "Jun 04 2025",
   "exchange": "CBOE",
-  "closePrice": "$48.74",
-  "closePriceValue": 48.74,
+  "closePrice": "$48.53",
+  "closePriceValue": 48.53,
   "premiumDiscount": {
-    "display": "0.09%",
-    "value": 0.09,
-    "derivedValue": 0.08,
+    "display": "0.10%",
+    "value": 0.1,
+    "derivedValue": 0.1,
     "kind": "official (fund page Fund Details \"Premium Discount (%)\")"
   },
-  "premiumDiscountValue": 0.09,
-  "premiumDiscountDerivedValue": 0.08,
+  "premiumDiscountValue": 0.1,
+  "premiumDiscountDerivedValue": 0.1,
   "premiumDiscountKind": "official (fund page Fund Details \"Premium Discount (%)\")",
   "bidAskSpread": {
     "display": "0.10%",
     "value": 0.1,
-    "asOfDate": "Oct 09 2026",
+    "asOfDate": "Oct 16 2026",
     "kind": "official (fund page Fund Details \"30-Day Median Bid-Ask Spread (%)\")"
   },
   "bidAskSpreadValue": 0.1,
   "acquiredFundFeesText": "0.01%",
-  "totalNetAssets": 661194908,
+  "totalNetAssets": 663195456,
   "sharesOutstanding": {
-    "display": "13,640,000",
-    "value": 13640000,
-    "asOfDate": "Oct 13 2026"
+    "display": "13,680,000",
+    "value": 13680000,
+    "asOfDate": "Oct 19 2026"
   },
-  "netAssetsAsOf": "Oct 09 2026",
+  "netAssetsAsOf": "Oct 16 2026",
   "secYieldAsOf": "Sep 30 2026",
   "distributions": {
     "frequency": "Monthly",
@@ -291,8 +291,8 @@
     ],
     "pageSize": 250,
     "totalRows": 7,
-    "asOfDate": "Oct 13 2026",
-    "asOf": "2026-10-13",
+    "asOfDate": "Oct 19 2026",
+    "asOf": "2026-10-19",
     "source": "https://neosfunds.com/wp-admin/admin-ajax.php?action=download_holdings_csv&ticker=IAUI",
     "sourceKind": "official NEOS daily holdings CSV (download_holdings_csv)"
   },
@@ -301,9 +301,9 @@
       "./history/001.json"
     ],
     "pageSize": 1000,
-    "totalRows": 340,
-    "asOfDate": "Oct 12 2026",
-    "asOf": "2026-10-12",
+    "totalRows": 344,
+    "asOfDate": "Oct 16 2026",
+    "asOf": "2026-10-16",
     "source": "https://query1.finance.yahoo.com/v8/finance/chart/IAUI?period1=0&period2=9999999999&interval=1d&events=div%7Csplit&includeAdjustedClose=true",
     "sourceKind": "Yahoo Finance public chart API (daily Close / Adj Close / Volume)"
   },
@@ -344,10 +344,10 @@
     "managementFeeValue": 0.78
   },
   "marketPrice": {
-    "display": "$48.74",
-    "value": 48.74,
-    "asOfDate": "Oct 09 2026",
-    "dailyChangeText": "$0.69 (1.44%)",
+    "display": "$48.53",
+    "value": 48.53,
+    "asOfDate": "Oct 16 2026",
+    "dailyChangeText": "$-0.07 (-0.14%)",
     "source": "NEOS fund page Fund Details \"Market Price\""
   },
   "yields": {

@@ -2,7 +2,7 @@
   "ticker": "SPYI",
   "page": 2,
   "pageSize": 1000,
-  "totalRows": 1033,
+  "totalRows": 1037,
   "headers": [
     "Date",
     "Close",
@@ -10,6 +10,30 @@
     "Volume"
   ],
   "rows": [
+    {
+      "Date": "2022-10-20",
+      "Close": "45.60",
+      "Adj Close": "28.40",
+      "Volume": "100"
+    },
+    {
+      "Date": "2022-10-19",
+      "Close": "45.72",
+      "Adj Close": "28.48",
+      "Volume": "20600"
+    },
+    {
+      "Date": "2022-10-18",
+      "Close": "45.84",
+      "Adj Close": "28.55",
+      "Volume": "9100"
+    },
+    {
+      "Date": "2022-10-17",
+      "Close": "45.58",
+      "Adj Close": "28.39",
+      "Volume": "200"
+    },
     {
       "Date": "2022-10-14",
       "Close": "44.76",

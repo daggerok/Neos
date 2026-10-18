@@ -17,36 +17,36 @@
       "Name": "iShares Core MSCI EAFE ETF",
       "Ticker": "IEFA",
       "Identifier": "46432F842",
-      "Weight": "99.22%",
-      "Market Value": "$208590663.54",
-      "Shares Held": "2,168,753",
+      "Weight": "99.27%",
+      "Market Value": "$210862834.84",
+      "Shares Held": "2,184,428",
       "Asset Category": "Fund"
     },
     {
       "Name": "MXEA US 11/20/26 C3180",
       "Ticker": "MXEA 261120C03180000",
       "Identifier": "MXEA 261120C03180000",
-      "Weight": "-0.22%",
-      "Market Value": "$-458700.00",
-      "Shares Held": "-220",
+      "Weight": "-0.24%",
+      "Market Value": "$-507195.00",
+      "Shares Held": "-221",
       "Asset Category": "Option"
     },
     {
       "Name": "MXEA US 11/20/26 C3220",
       "Ticker": "MXEA 261120C03220000",
       "Identifier": "MXEA 261120C03220000",
-      "Weight": "-0.11%",
-      "Market Value": "$-238700.00",
-      "Shares Held": "-220",
+      "Weight": "-0.12%",
+      "Market Value": "$-264095.00",
+      "Shares Held": "-221",
       "Asset Category": "Option"
     },
     {
       "Name": "Cash & Other",
       "Ticker": "Cash&Other",
       "Identifier": "Cash&Other",
-      "Weight": "1.11%",
-      "Market Value": "$2332504.43",
-      "Shares Held": "2,332,504",
+      "Weight": "1.10%",
+      "Market Value": "$2328606.61",
+      "Shares Held": "2,328,607",
       "Asset Category": "Cash"
     }
   ]
