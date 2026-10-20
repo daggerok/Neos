@@ -2,7 +2,7 @@
   "ticker": "QQQI",
   "page": 1,
   "pageSize": 1000,
-  "totalRows": 682,
+  "totalRows": 683,
   "headers": [
     "Date",
     "Close",
@@ -11,10 +11,16 @@
   ],
   "rows": [
     {
+      "Date": "2026-10-19",
+      "Close": "54.22",
+      "Adj Close": "54.22",
+      "Volume": "4590200"
+    },
+    {
       "Date": "2026-10-16",
       "Close": "53.62",
       "Adj Close": "53.62",
-      "Volume": "8391800"
+      "Volume": "8476700"
     },
     {
       "Date": "2026-10-15",

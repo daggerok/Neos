@@ -21,12 +21,12 @@
   },
   "navValue": 53.62,
   "aum": {
-    "display": "$14.92B",
-    "value": 14917215456,
+    "display": "$15.23B",
+    "value": 15233451365,
     "asOfDate": "Oct 16 2026",
     "source": "official NEOS daily holdings CSV (download_holdings_csv)"
   },
-  "aumValue": 14917215456,
+  "aumValue": 15233451365,
   "asOfDate": "Oct 16 2026",
   "inceptionDate": "Jan 29 2024",
   "inceptionDateFundPage": "Jan 29 2024",
@@ -50,11 +50,11 @@
   },
   "bidAskSpreadValue": 0.02,
   "acquiredFundFeesText": null,
-  "totalNetAssets": 14917215456,
+  "totalNetAssets": 15233451365,
   "sharesOutstanding": {
-    "display": "278,190,000",
-    "value": 278190000,
-    "asOfDate": "Oct 19 2026"
+    "display": "280,990,000",
+    "value": 280990000,
+    "asOfDate": "Oct 20 2026"
   },
   "netAssetsAsOf": "Oct 16 2026",
   "secYieldAsOf": "Sep 30 2026",
@@ -413,8 +413,8 @@
     ],
     "pageSize": 250,
     "totalRows": 104,
-    "asOfDate": "Oct 19 2026",
-    "asOf": "2026-10-19",
+    "asOfDate": "Oct 20 2026",
+    "asOf": "2026-10-20",
     "source": "https://neosfunds.com/wp-admin/admin-ajax.php?action=download_holdings_csv&ticker=QQQI",
     "sourceKind": "official NEOS daily holdings CSV (download_holdings_csv)"
   },
@@ -423,9 +423,9 @@
       "./history/001.json"
     ],
     "pageSize": 1000,
-    "totalRows": 682,
-    "asOfDate": "Oct 16 2026",
-    "asOf": "2026-10-16",
+    "totalRows": 683,
+    "asOfDate": "Oct 19 2026",
+    "asOf": "2026-10-19",
     "source": "https://query1.finance.yahoo.com/v8/finance/chart/QQQI?period1=0&period2=9999999999&interval=1d&events=div%7Csplit&includeAdjustedClose=true",
     "sourceKind": "Yahoo Finance public chart API (daily Close / Adj Close / Volume)"
   },
@@ -490,8 +490,8 @@
   },
   "navIndex": {
     "startDate": "2024-01-29",
-    "endDate": "2026-10-16",
-    "points": 992,
+    "endDate": "2026-10-19",
+    "points": 995,
     "benchmarkName": "Cboe Nasdaq-100 BuyWrite Monthly Index",
     "source": "NEOS fund page \"Growth of $10,000 at NAV Since Inception\" chart series"
   },

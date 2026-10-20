@@ -17,8 +17,8 @@
       "Name": "United States Treasury Bill 12/01/2026",
       "Ticker": "912797VZ7",
       "Identifier": "912797VZ7",
-      "Weight": "71.07%",
-      "Market Value": "$154353507.88",
+      "Weight": "71.05%",
+      "Market Value": "$154372579.06",
       "Shares Held": "155,088,000",
       "Asset Category": "Treasury"
     },
@@ -26,8 +26,8 @@
       "Name": "SPXW US 10/29/26 P6875",
       "Ticker": "SPXW 261029P06875000",
       "Identifier": "SPXW 261029P06875000",
-      "Weight": "0.03%",
-      "Market Value": "$72540.00",
+      "Weight": "0.02%",
+      "Market Value": "$34410.00",
       "Shares Held": "93",
       "Asset Category": "Option"
     },
@@ -35,8 +35,8 @@
       "Name": "SPXW US 10/29/26 P6975",
       "Ticker": "SPXW 261029P06975000",
       "Identifier": "SPXW 261029P06975000",
-      "Weight": "0.04%",
-      "Market Value": "$84165.00",
+      "Weight": "0.02%",
+      "Market Value": "$40920.00",
       "Shares Held": "93",
       "Asset Category": "Option"
     },
@@ -44,8 +44,8 @@
       "Name": "SPXW US 10/29/26 P7025",
       "Ticker": "SPXW 261029P07025000",
       "Identifier": "SPXW 261029P07025000",
-      "Weight": "0.04%",
-      "Market Value": "$91140.00",
+      "Weight": "0.02%",
+      "Market Value": "$44640.00",
       "Shares Held": "93",
       "Asset Category": "Option"
     },
@@ -53,8 +53,8 @@
       "Name": "SPXW US 10/29/26 P7200",
       "Ticker": "SPXW 261029P07200000",
       "Identifier": "SPXW 261029P07200000",
-      "Weight": "-0.06%",
-      "Market Value": "$-129270.00",
+      "Weight": "-0.03%",
+      "Market Value": "$-66960.00",
       "Shares Held": "-93",
       "Asset Category": "Option"
     },
@@ -62,8 +62,8 @@
       "Name": "SPXW US 10/29/26 P7275",
       "Ticker": "SPXW 261029P07275000",
       "Identifier": "SPXW 261029P07275000",
-      "Weight": "-0.07%",
-      "Market Value": "$-157170.00",
+      "Weight": "-0.04%",
+      "Market Value": "$-84165.00",
       "Shares Held": "-93",
       "Asset Category": "Option"
     },
@@ -71,8 +71,8 @@
       "Name": "SPXW US 10/29/26 P7340",
       "Ticker": "SPXW 261029P07340000",
       "Identifier": "SPXW 261029P07340000",
-      "Weight": "-0.09%",
-      "Market Value": "$-190650.00",
+      "Weight": "-0.05%",
+      "Market Value": "$-106485.00",
       "Shares Held": "-93",
       "Asset Category": "Option"
     },
@@ -80,8 +80,8 @@
       "Name": "iShares Broad USD High Yield Corporate Bond ETF",
       "Ticker": "USHY",
       "Identifier": "46435U853",
-      "Weight": "24.94%",
-      "Market Value": "$54173150.40",
+      "Weight": "24.93%",
+      "Market Value": "$54157898.95",
       "Shares Held": "1,525,145",
       "Asset Category": "Fund"
     },
@@ -89,9 +89,9 @@
       "Name": "Cash & Other",
       "Ticker": "Cash&Other",
       "Identifier": "Cash&Other",
-      "Weight": "4.09%",
-      "Market Value": "$8873467.57",
-      "Shares Held": "8,873,468",
+      "Weight": "4.08%",
+      "Market Value": "$8869844.03",
+      "Shares Held": "8,869,844",
       "Asset Category": "Cash"
     }
   ]

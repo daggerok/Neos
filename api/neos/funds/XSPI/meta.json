@@ -21,12 +21,12 @@
   },
   "navValue": 48.99,
   "aum": {
-    "display": "$128.36M",
-    "value": 128361660,
+    "display": "$131.56M",
+    "value": 131557041,
     "asOfDate": "Oct 16 2026",
     "source": "official NEOS daily holdings CSV (download_holdings_csv)"
   },
-  "aumValue": 128361660,
+  "aumValue": 131557041,
   "asOfDate": "Oct 16 2026",
   "inceptionDate": "Feb 02 2026",
   "inceptionDateFundPage": "Feb 02 2026",
@@ -50,11 +50,11 @@
   },
   "bidAskSpreadValue": 0.1,
   "acquiredFundFeesText": null,
-  "totalNetAssets": 128361660,
+  "totalNetAssets": 131557041,
   "sharesOutstanding": {
-    "display": "2,620,000",
-    "value": 2620000,
-    "asOfDate": "Oct 19 2026"
+    "display": "2,670,000",
+    "value": 2670000,
+    "asOfDate": "Oct 20 2026"
   },
   "netAssetsAsOf": "Oct 16 2026",
   "secYieldAsOf": "Sep 30 2026",
@@ -246,9 +246,9 @@
       "./holdings/003.json"
     ],
     "pageSize": 250,
-    "totalRows": 510,
-    "asOfDate": "Oct 19 2026",
-    "asOf": "2026-10-19",
+    "totalRows": 509,
+    "asOfDate": "Oct 20 2026",
+    "asOf": "2026-10-20",
     "source": "https://neosfunds.com/wp-admin/admin-ajax.php?action=download_holdings_csv&ticker=XSPI",
     "sourceKind": "official NEOS daily holdings CSV (download_holdings_csv)"
   },
@@ -257,9 +257,9 @@
       "./history/001.json"
     ],
     "pageSize": 1000,
-    "totalRows": 178,
-    "asOfDate": "Oct 16 2026",
-    "asOf": "2026-10-16",
+    "totalRows": 179,
+    "asOfDate": "Oct 19 2026",
+    "asOf": "2026-10-19",
     "source": "https://query1.finance.yahoo.com/v8/finance/chart/XSPI?period1=0&period2=9999999999&interval=1d&events=div%7Csplit&includeAdjustedClose=true",
     "sourceKind": "Yahoo Finance public chart API (daily Close / Adj Close / Volume)"
   },

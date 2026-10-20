@@ -22,11 +22,11 @@
   "navValue": 47.99,
   "aum": {
     "display": "$1.28B",
-    "value": 1278904185,
+    "value": 1282808410,
     "asOfDate": "Oct 16 2026",
     "source": "official NEOS daily holdings CSV (download_holdings_csv)"
   },
-  "aumValue": 1278904185,
+  "aumValue": 1282808410,
   "asOfDate": "Oct 16 2026",
   "inceptionDate": "Jun 24 2024",
   "inceptionDateFundPage": "Jun 24 2024",
@@ -50,11 +50,11 @@
   },
   "bidAskSpreadValue": 0.02,
   "acquiredFundFeesText": "0.08%",
-  "totalNetAssets": 1278904185,
+  "totalNetAssets": 1282808410,
   "sharesOutstanding": {
     "display": "26,650,000",
     "value": 26650000,
-    "asOfDate": "Oct 19 2026"
+    "asOfDate": "Oct 20 2026"
   },
   "netAssetsAsOf": "Oct 16 2026",
   "secYieldAsOf": "Sep 30 2026",
@@ -385,8 +385,8 @@
     ],
     "pageSize": 250,
     "totalRows": 4,
-    "asOfDate": "Oct 19 2026",
-    "asOf": "2026-10-19",
+    "asOfDate": "Oct 20 2026",
+    "asOf": "2026-10-20",
     "source": "https://neosfunds.com/wp-admin/admin-ajax.php?action=download_holdings_csv&ticker=IWMI",
     "sourceKind": "official NEOS daily holdings CSV (download_holdings_csv)"
   },
@@ -395,9 +395,9 @@
       "./history/001.json"
     ],
     "pageSize": 1000,
-    "totalRows": 581,
-    "asOfDate": "Oct 16 2026",
-    "asOf": "2026-10-16",
+    "totalRows": 582,
+    "asOfDate": "Oct 19 2026",
+    "asOf": "2026-10-19",
     "source": "https://query1.finance.yahoo.com/v8/finance/chart/IWMI?period1=0&period2=9999999999&interval=1d&events=div%7Csplit&includeAdjustedClose=true",
     "sourceKind": "Yahoo Finance public chart API (daily Close / Adj Close / Volume)"
   },
@@ -462,8 +462,8 @@
   },
   "navIndex": {
     "startDate": "2024-06-24",
-    "endDate": "2026-10-16",
-    "points": 845,
+    "endDate": "2026-10-19",
+    "points": 848,
     "benchmarkName": "Cboe Russell 2000 BuyWrite Monthly Index",
     "source": "NEOS fund page \"Growth of $10,000 at NAV Since Inception\" chart series"
   },

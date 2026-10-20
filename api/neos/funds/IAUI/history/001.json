@@ -2,7 +2,7 @@
   "ticker": "IAUI",
   "page": 1,
   "pageSize": 1000,
-  "totalRows": 344,
+  "totalRows": 345,
   "headers": [
     "Date",
     "Close",
@@ -10,6 +10,12 @@
     "Volume"
   ],
   "rows": [
+    {
+      "Date": "2026-10-19",
+      "Close": "48.28",
+      "Adj Close": "48.28",
+      "Volume": "223600"
+    },
     {
       "Date": "2026-10-16",
       "Close": "48.53",

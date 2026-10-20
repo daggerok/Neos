@@ -21,12 +21,12 @@
   },
   "navValue": 45.23,
   "aum": {
-    "display": "$190.85M",
-    "value": 190851188,
+    "display": "$190.37M",
+    "value": 190365888,
     "asOfDate": "Oct 16 2026",
     "source": "official NEOS daily holdings CSV (download_holdings_csv)"
   },
-  "aumValue": 190851188,
+  "aumValue": 190365888,
   "asOfDate": "Oct 16 2026",
   "inceptionDate": "Aug 29 2022",
   "inceptionDateFundPage": "Aug 29 2022",
@@ -50,11 +50,11 @@
   },
   "bidAskSpreadValue": 0.07,
   "acquiredFundFeesText": "0.03%",
-  "totalNetAssets": 190851188,
+  "totalNetAssets": 190365888,
   "sharesOutstanding": {
     "display": "4,220,000",
     "value": 4220000,
-    "asOfDate": "Oct 19 2026"
+    "asOfDate": "Oct 20 2026"
   },
   "netAssetsAsOf": "Oct 16 2026",
   "secYieldAsOf": "Sep 30 2026",
@@ -532,8 +532,8 @@
     ],
     "pageSize": 250,
     "totalRows": 9,
-    "asOfDate": "Oct 19 2026",
-    "asOf": "2026-10-19",
+    "asOfDate": "Oct 20 2026",
+    "asOf": "2026-10-20",
     "source": "https://neosfunds.com/wp-admin/admin-ajax.php?action=download_holdings_csv&ticker=BNDI",
     "sourceKind": "official NEOS daily holdings CSV (download_holdings_csv)"
   },
@@ -543,9 +543,9 @@
       "./history/002.json"
     ],
     "pageSize": 1000,
-    "totalRows": 1037,
-    "asOfDate": "Oct 16 2026",
-    "asOf": "2026-10-16",
+    "totalRows": 1038,
+    "asOfDate": "Oct 19 2026",
+    "asOf": "2026-10-19",
     "source": "https://query1.finance.yahoo.com/v8/finance/chart/BNDI?period1=0&period2=9999999999&interval=1d&events=div%7Csplit&includeAdjustedClose=true",
     "sourceKind": "Yahoo Finance public chart API (daily Close / Adj Close / Volume)"
   },
@@ -610,8 +610,8 @@
   },
   "navIndex": {
     "startDate": "2022-08-29",
-    "endDate": "2026-10-16",
-    "points": 1510,
+    "endDate": "2026-10-19",
+    "points": 1513,
     "benchmarkName": "Bloomberg U.S. Aggregate Bond Index",
     "source": "NEOS fund page \"Growth of $10,000 at NAV Since Inception\" chart series"
   },

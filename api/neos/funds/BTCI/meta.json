@@ -21,12 +21,12 @@
   },
   "navValue": 32.99,
   "aum": {
-    "display": "$1.41B",
-    "value": 1412550442,
+    "display": "$1.42B",
+    "value": 1417907224,
     "asOfDate": "Oct 16 2026",
     "source": "official NEOS daily holdings CSV (download_holdings_csv)"
   },
-  "aumValue": 1412550442,
+  "aumValue": 1417907224,
   "asOfDate": "Oct 16 2026",
   "inceptionDate": "Oct 16 2024",
   "inceptionDateFundPage": "Oct 16 2024",
@@ -50,11 +50,11 @@
   },
   "bidAskSpreadValue": 0.12,
   "acquiredFundFeesText": "0.01%",
-  "totalNetAssets": 1412550442,
+  "totalNetAssets": 1417907224,
   "sharesOutstanding": {
     "display": "42,820,000",
     "value": 42820000,
-    "asOfDate": "Oct 19 2026"
+    "asOfDate": "Oct 20 2026"
   },
   "netAssetsAsOf": "Oct 16 2026",
   "secYieldAsOf": "Sep 30 2026",
@@ -357,8 +357,8 @@
     ],
     "pageSize": 250,
     "totalRows": 9,
-    "asOfDate": "Oct 19 2026",
-    "asOf": "2026-10-19",
+    "asOfDate": "Oct 20 2026",
+    "asOf": "2026-10-20",
     "source": "https://neosfunds.com/wp-admin/admin-ajax.php?action=download_holdings_csv&ticker=BTCI",
     "sourceKind": "official NEOS daily holdings CSV (download_holdings_csv)"
   },
@@ -367,9 +367,9 @@
       "./history/001.json"
     ],
     "pageSize": 1000,
-    "totalRows": 501,
-    "asOfDate": "Oct 16 2026",
-    "asOf": "2026-10-16",
+    "totalRows": 502,
+    "asOfDate": "Oct 19 2026",
+    "asOf": "2026-10-19",
     "source": "https://query1.finance.yahoo.com/v8/finance/chart/BTCI?period1=0&period2=9999999999&interval=1d&events=div%7Csplit&includeAdjustedClose=true",
     "sourceKind": "Yahoo Finance public chart API (daily Close / Adj Close / Volume)"
   },
@@ -434,8 +434,8 @@
   },
   "navIndex": {
     "startDate": "2024-10-16",
-    "endDate": "2026-10-16",
-    "points": 731,
+    "endDate": "2026-10-19",
+    "points": 734,
     "benchmarkName": "S&P Bitcoin Index (USD)",
     "source": "NEOS fund page \"Growth of $10,000 at NAV Since Inception\" chart series"
   },

@@ -17,8 +17,8 @@
       "Name": "IYR 11/20/2026 98 C",
       "Ticker": "2IYR 261120C00098000",
       "Identifier": "2IYR 261120C00098000",
-      "Weight": "-0.64%",
-      "Market Value": "$-1934183.88",
+      "Weight": "-0.44%",
+      "Market Value": "$-1312820.31",
       "Shares Held": "-10,767",
       "Asset Category": "Option"
     },
@@ -26,8 +26,8 @@
       "Name": "IYR 11/20/2026 99 C",
       "Ticker": "2IYR 261120C00099000",
       "Identifier": "2IYR 261120C00099000",
-      "Weight": "-0.47%",
-      "Market Value": "$-1423720.41",
+      "Weight": "-0.31%",
+      "Market Value": "$-929299.77",
       "Shares Held": "-10,767",
       "Asset Category": "Option"
     },
@@ -36,7 +36,7 @@
       "Ticker": "ADC",
       "Identifier": "008492100",
       "Weight": "0.58%",
-      "Market Value": "$1761476.00",
+      "Market Value": "$1729420.50",
       "Shares Held": "26,275",
       "Asset Category": "Equity"
     },
@@ -44,8 +44,8 @@
       "Name": "AGNC Investment Corp",
       "Ticker": "AGNC",
       "Identifier": "00123Q104",
-      "Weight": "0.65%",
-      "Market Value": "$1951256.96",
+      "Weight": "0.63%",
+      "Market Value": "$1888601.92",
       "Shares Held": "223,768",
       "Asset Category": "Equity"
     },
@@ -54,7 +54,7 @@
       "Ticker": "AMH",
       "Identifier": "02665T306",
       "Weight": "0.79%",
-      "Market Value": "$2386570.16",
+      "Market Value": "$2356814.33",
       "Shares Held": "76,297",
       "Asset Category": "Equity"
     },
@@ -62,8 +62,8 @@
       "Name": "AMERICAN TOWER CORP",
       "Ticker": "AMT",
       "Identifier": "03027X100",
-      "Weight": "4.60%",
-      "Market Value": "$13852267.36",
+      "Weight": "4.58%",
+      "Market Value": "$13684787.04",
       "Shares Held": "74,768",
       "Asset Category": "Equity"
     },
@@ -71,8 +71,8 @@
       "Name": "Alexandria Real Estate Equities Inc",
       "Ticker": "ARE",
       "Identifier": "015271109",
-      "Weight": "0.51%",
-      "Market Value": "$1538191.96",
+      "Weight": "0.50%",
+      "Market Value": "$1501603.54",
       "Shares Held": "36,958",
       "Asset Category": "Equity"
     },
@@ -81,7 +81,7 @@
       "Ticker": "BRX",
       "Identifier": "11120U105",
       "Weight": "0.68%",
-      "Market Value": "$2040699.48",
+      "Market Value": "$2020041.64",
       "Shares Held": "73,778",
       "Asset Category": "Equity"
     },
@@ -89,8 +89,8 @@
       "Name": "BXP Inc",
       "Ticker": "BXP",
       "Identifier": "101121101",
-      "Weight": "0.69%",
-      "Market Value": "$2068862.40",
+      "Weight": "0.68%",
+      "Market Value": "$2024829.18",
       "Shares Held": "34,947",
       "Asset Category": "Equity"
     },
@@ -98,8 +98,8 @@
       "Name": "CBRE Group Inc",
       "Ticker": "CBRE",
       "Identifier": "12504L109",
-      "Weight": "3.07%",
-      "Market Value": "$9249326.16",
+      "Weight": "3.04%",
+      "Market Value": "$9088776.54",
       "Shares Held": "69,502",
       "Asset Category": "Equity"
     },
@@ -107,8 +107,8 @@
       "Name": "Crown Castle Inc",
       "Ticker": "CCI",
       "Identifier": "22822V101",
-      "Weight": "2.79%",
-      "Market Value": "$8393316.84",
+      "Weight": "2.77%",
+      "Market Value": "$8270876.04",
       "Shares Held": "102,034",
       "Asset Category": "Equity"
     },
@@ -117,7 +117,7 @@
       "Ticker": "COLD",
       "Identifier": "03064D108",
       "Weight": "0.30%",
-      "Market Value": "$895674.20",
+      "Market Value": "$889193.20",
       "Shares Held": "64,810",
       "Asset Category": "Fund"
     },
@@ -126,7 +126,7 @@
       "Ticker": "CPT",
       "Identifier": "133131102",
       "Weight": "0.77%",
-      "Market Value": "$2327118.36",
+      "Market Value": "$2309651.40",
       "Shares Held": "23,604",
       "Asset Category": "Fund"
     },
@@ -134,8 +134,8 @@
       "Name": "CoStar Group Inc",
       "Ticker": "CSGP",
       "Identifier": "22160N109",
-      "Weight": "1.03%",
-      "Market Value": "$3093747.12",
+      "Weight": "1.02%",
+      "Market Value": "$3045871.12",
       "Shares Held": "95,752",
       "Asset Category": "Equity"
     },
@@ -144,7 +144,7 @@
       "Ticker": "CUBE",
       "Identifier": "229663109",
       "Weight": "0.71%",
-      "Market Value": "$2134000.68",
+      "Market Value": "$2111560.56",
       "Shares Held": "54,732",
       "Asset Category": "Equity"
     },
@@ -153,7 +153,7 @@
       "Ticker": "CUZ",
       "Identifier": "222795502",
       "Weight": "0.37%",
-      "Market Value": "$1110077.68",
+      "Market Value": "$1092004.78",
       "Shares Held": "40,162",
       "Asset Category": "Equity"
     },
@@ -161,8 +161,8 @@
       "Name": "Digital Realty Trust Inc",
       "Ticker": "DLR",
       "Identifier": "253868103",
-      "Weight": "4.51%",
-      "Market Value": "$13594562.35",
+      "Weight": "4.47%",
+      "Market Value": "$13365115.00",
       "Shares Held": "77,255",
       "Asset Category": "Fund"
     },
@@ -170,8 +170,8 @@
       "Name": "HEALTHPEAK PROPERTIES INC.",
       "Ticker": "DOC",
       "Identifier": "42250P103",
-      "Weight": "1.02%",
-      "Market Value": "$3060554.86",
+      "Weight": "1.00%",
+      "Market Value": "$2983008.00",
       "Shares Held": "162,120",
       "Asset Category": "Equity"
     },
@@ -179,8 +179,8 @@
       "Name": "EastGroup Properties Inc",
       "Ticker": "EGP",
       "Identifier": "277276101",
-      "Weight": "0.81%",
-      "Market Value": "$2447162.94",
+      "Weight": "0.82%",
+      "Market Value": "$2451524.64",
       "Shares Held": "12,462",
       "Asset Category": "Equity"
     },
@@ -188,8 +188,8 @@
       "Name": "Equity LifeStyle Properties Inc",
       "Ticker": "ELS",
       "Identifier": "29472R108",
-      "Weight": "0.93%",
-      "Market Value": "$2811008.04",
+      "Weight": "0.94%",
+      "Market Value": "$2802282.48",
       "Shares Held": "45,924",
       "Asset Category": "Equity"
     },
@@ -197,8 +197,8 @@
       "Name": "Equinix Inc",
       "Ticker": "EQIX",
       "Identifier": "29444U700",
-      "Weight": "4.55%",
-      "Market Value": "$13713995.82",
+      "Weight": "4.54%",
+      "Market Value": "$13571150.39",
       "Shares Held": "13,909",
       "Asset Category": "Equity"
     },
@@ -207,7 +207,7 @@
       "Ticker": "ESS",
       "Identifier": "297178105",
       "Weight": "1.36%",
-      "Market Value": "$4108807.50",
+      "Market Value": "$4066412.50",
       "Shares Held": "15,250",
       "Asset Category": "Fund"
     },
@@ -215,8 +215,8 @@
       "Name": "Extra Space Storage Inc",
       "Ticker": "EXR",
       "Identifier": "30225T102",
-      "Weight": "2.30%",
-      "Market Value": "$6916000.18",
+      "Weight": "2.29%",
+      "Market Value": "$6845160.84",
       "Shares Held": "49,538",
       "Asset Category": "Equity"
     },
@@ -225,7 +225,7 @@
       "Ticker": "FR",
       "Identifier": "32054K103",
       "Weight": "0.62%",
-      "Market Value": "$1865982.56",
+      "Market Value": "$1847881.64",
       "Shares Held": "31,756",
       "Asset Category": "Fund"
     },
@@ -234,7 +234,7 @@
       "Ticker": "FRT",
       "Identifier": "313745101",
       "Weight": "0.65%",
-      "Market Value": "$1959796.56",
+      "Market Value": "$1931225.41",
       "Shares Held": "18,433",
       "Asset Category": "Fund"
     },
@@ -243,7 +243,7 @@
       "Ticker": "GLPI",
       "Identifier": "36467J108",
       "Weight": "0.86%",
-      "Market Value": "$2600139.60",
+      "Market Value": "$2569689.90",
       "Shares Held": "66,195",
       "Asset Category": "Equity"
     },
@@ -251,8 +251,8 @@
       "Name": "Healthcare Realty Trust Inc",
       "Ticker": "HR",
       "Identifier": "42226K105",
-      "Weight": "0.50%",
-      "Market Value": "$1491498.48",
+      "Weight": "0.49%",
+      "Market Value": "$1471020.24",
       "Shares Held": "85,326",
       "Asset Category": "Fund"
     },
@@ -260,8 +260,8 @@
       "Name": "Host Hotels & Resorts Inc",
       "Ticker": "HST",
       "Identifier": "44107P104",
-      "Weight": "1.19%",
-      "Market Value": "$3580207.14",
+      "Weight": "1.21%",
+      "Market Value": "$3613066.78",
       "Shares Held": "149,362",
       "Asset Category": "Equity"
     },
@@ -269,8 +269,8 @@
       "Name": "Invitation Homes Inc",
       "Ticker": "INVH",
       "Identifier": "46187W107",
-      "Weight": "1.15%",
-      "Market Value": "$3467856.49",
+      "Weight": "1.14%",
+      "Market Value": "$3421737.97",
       "Shares Held": "128,107",
       "Asset Category": "Equity"
     },
@@ -279,7 +279,7 @@
       "Ticker": "IRM",
       "Identifier": "46284V101",
       "Weight": "2.63%",
-      "Market Value": "$7923629.26",
+      "Market Value": "$7856020.30",
       "Shares Held": "70,426",
       "Asset Category": "Equity"
     },
@@ -287,8 +287,8 @@
       "Name": "Jones Lang LaSalle Inc",
       "Ticker": "JLL",
       "Identifier": "48020Q107",
-      "Weight": "1.11%",
-      "Market Value": "$3330975.53",
+      "Weight": "1.10%",
+      "Market Value": "$3299574.89",
       "Shares Held": "10,903",
       "Asset Category": "Equity"
     },
@@ -297,7 +297,7 @@
       "Ticker": "KIM",
       "Identifier": "49446R109",
       "Weight": "1.22%",
-      "Market Value": "$3676069.87",
+      "Market Value": "$3640769.33",
       "Shares Held": "160,457",
       "Asset Category": "Equity"
     },
@@ -306,7 +306,7 @@
       "Ticker": "KRC",
       "Identifier": "49427F108",
       "Weight": "0.30%",
-      "Market Value": "$911501.10",
+      "Market Value": "$890041.70",
       "Shares Held": "26,170",
       "Asset Category": "Equity"
     },
@@ -314,8 +314,8 @@
       "Name": "Lamar Advertising Co",
       "Ticker": "LAMR",
       "Identifier": "512816109",
-      "Weight": "1.05%",
-      "Market Value": "$3154351.50",
+      "Weight": "1.06%",
+      "Market Value": "$3171583.80",
       "Shares Held": "21,015",
       "Asset Category": "Equity"
     },
@@ -324,7 +324,7 @@
       "Ticker": "LINE",
       "Identifier": "53566V106",
       "Weight": "0.15%",
-      "Market Value": "$450577.92",
+      "Market Value": "$449765.58",
       "Shares Held": "13,539",
       "Asset Category": "Equity"
     },
@@ -333,7 +333,7 @@
       "Ticker": "MAA",
       "Identifier": "59522J103",
       "Weight": "1.08%",
-      "Market Value": "$3257242.64",
+      "Market Value": "$3234062.40",
       "Shares Held": "27,928",
       "Asset Category": "Equity"
     },
@@ -342,7 +342,7 @@
       "Ticker": "MRP",
       "Identifier": "601137102",
       "Weight": "0.22%",
-      "Market Value": "$664740.00",
+      "Market Value": "$649377.12",
       "Shares Held": "29,544",
       "Asset Category": "Equity"
     },
@@ -350,8 +350,8 @@
       "Name": "Annaly Capital Management Inc",
       "Ticker": "NLY",
       "Identifier": "035710839",
-      "Weight": "0.87%",
-      "Market Value": "$2624901.24",
+      "Weight": "0.85%",
+      "Market Value": "$2551467.36",
       "Shares Held": "143,988",
       "Asset Category": "Equity"
     },
@@ -360,7 +360,7 @@
       "Ticker": "NNN",
       "Identifier": "637417106",
       "Weight": "0.62%",
-      "Market Value": "$1879643.46",
+      "Market Value": "$1848874.14",
       "Shares Held": "45,249",
       "Asset Category": "Equity"
     },
@@ -368,8 +368,8 @@
       "Name": "Realty Income Corp",
       "Ticker": "O",
       "Identifier": "756109104",
-      "Weight": "3.95%",
-      "Market Value": "$11886492.48",
+      "Weight": "3.94%",
+      "Market Value": "$11765677.56",
       "Shares Held": "211,956",
       "Asset Category": "Equity"
     },
@@ -377,8 +377,8 @@
       "Name": "Omega Healthcare Investors Inc",
       "Ticker": "OHI",
       "Identifier": "681936100",
-      "Weight": "1.06%",
-      "Market Value": "$3196671.24",
+      "Weight": "1.05%",
+      "Market Value": "$3144140.49",
       "Shares Held": "70,041",
       "Asset Category": "Equity"
     },
@@ -386,8 +386,8 @@
       "Name": "Prologis Inc",
       "Ticker": "PLD",
       "Identifier": "74340W103",
-      "Weight": "8.53%",
-      "Market Value": "$25703048.50",
+      "Weight": "8.49%",
+      "Market Value": "$25363747.82",
       "Shares Held": "204,398",
       "Asset Category": "Equity"
     },
@@ -395,8 +395,8 @@
       "Name": "Public Storage",
       "Ticker": "PSA",
       "Identifier": "74460D109",
-      "Weight": "3.73%",
-      "Market Value": "$11230178.26",
+      "Weight": "3.72%",
+      "Market Value": "$11131545.74",
       "Shares Held": "37,646",
       "Asset Category": "Equity"
     },
@@ -404,8 +404,8 @@
       "Name": "Regency Centers Corp",
       "Ticker": "REG",
       "Identifier": "758849103",
-      "Weight": "0.95%",
-      "Market Value": "$2848889.52",
+      "Weight": "0.94%",
+      "Market Value": "$2816604.18",
       "Shares Held": "38,898",
       "Asset Category": "Equity"
     },
@@ -414,7 +414,7 @@
       "Ticker": "REXR",
       "Identifier": "76169C100",
       "Weight": "0.66%",
-      "Market Value": "$1993522.92",
+      "Market Value": "$1968089.81",
       "Shares Held": "54,113",
       "Asset Category": "Equity"
     },
@@ -422,8 +422,8 @@
       "Name": "Rithm Capital Corp",
       "Ticker": "RITM",
       "Identifier": "64828T201",
-      "Weight": "0.37%",
-      "Market Value": "$1116897.52",
+      "Weight": "0.36%",
+      "Market Value": "$1088523.68",
       "Shares Held": "128,972",
       "Asset Category": "Equity"
     },
@@ -431,8 +431,8 @@
       "Name": "SBA Communications Corp",
       "Ticker": "SBAC",
       "Identifier": "78410G104",
-      "Weight": "1.57%",
-      "Market Value": "$4725883.84",
+      "Weight": "1.55%",
+      "Market Value": "$4625585.76",
       "Shares Held": "25,264",
       "Asset Category": "Equity"
     },
@@ -441,7 +441,7 @@
       "Ticker": "SBRA",
       "Identifier": "78573L106",
       "Weight": "0.37%",
-      "Market Value": "$1127831.44",
+      "Market Value": "$1112669.28",
       "Shares Held": "58,316",
       "Asset Category": "Equity"
     },
@@ -449,8 +449,8 @@
       "Name": "Simon Property Group Inc",
       "Ticker": "SPG",
       "Identifier": "828806109",
-      "Weight": "4.62%",
-      "Market Value": "$13930475.52",
+      "Weight": "4.59%",
+      "Market Value": "$13730441.92",
       "Shares Held": "67,808",
       "Asset Category": "Equity"
     },
@@ -467,8 +467,8 @@
       "Name": "Starwood Property Trust Inc",
       "Ticker": "STWD",
       "Identifier": "85571B105",
-      "Weight": "0.33%",
-      "Market Value": "$994569.66",
+      "Weight": "0.32%",
+      "Market Value": "$956255.58",
       "Shares Held": "79,821",
       "Asset Category": "Fund"
     },
@@ -477,7 +477,7 @@
       "Ticker": "SUI",
       "Identifier": "866674104",
       "Weight": "1.10%",
-      "Market Value": "$3303169.92",
+      "Market Value": "$3288343.70",
       "Shares Held": "27,974",
       "Asset Category": "Equity"
     },
@@ -486,7 +486,7 @@
       "Ticker": "UDR",
       "Identifier": "902653104",
       "Weight": "0.82%",
-      "Market Value": "$2478079.49",
+      "Market Value": "$2458103.76",
       "Shares Held": "72,639",
       "Asset Category": "Equity"
     },
@@ -494,8 +494,8 @@
       "Name": "VICI Properties Inc",
       "Ticker": "VICI",
       "Identifier": "925652109",
-      "Weight": "2.00%",
-      "Market Value": "$6035818.00",
+      "Weight": "1.98%",
+      "Market Value": "$5907940.50",
       "Shares Held": "255,755",
       "Asset Category": "Equity"
     },
@@ -504,7 +504,7 @@
       "Ticker": "VMRK",
       "Identifier": "29476L107",
       "Weight": "3.50%",
-      "Market Value": "$10533397.99",
+      "Market Value": "$10464619.68",
       "Shares Held": "171,946",
       "Asset Category": "Equity"
     },
@@ -513,7 +513,7 @@
       "Ticker": "VNO",
       "Identifier": "929042109",
       "Weight": "0.43%",
-      "Market Value": "$1302414.43",
+      "Market Value": "$1273146.69",
       "Shares Held": "39,551",
       "Asset Category": "Fund"
     },
@@ -521,8 +521,8 @@
       "Name": "Ventas Inc",
       "Ticker": "VTR",
       "Identifier": "92276F100",
-      "Weight": "3.10%",
-      "Market Value": "$9331951.68",
+      "Weight": "3.07%",
+      "Market Value": "$9185222.88",
       "Shares Held": "108,688",
       "Asset Category": "Equity"
     },
@@ -530,8 +530,8 @@
       "Name": "Welltower Inc",
       "Ticker": "WELL",
       "Identifier": "95040Q104",
-      "Weight": "11.79%",
-      "Market Value": "$35514956.40",
+      "Weight": "11.82%",
+      "Market Value": "$35312316.24",
       "Shares Held": "151,224",
       "Asset Category": "Equity"
     },
@@ -539,8 +539,8 @@
       "Name": "WP Carey Inc",
       "Ticker": "WPC",
       "Identifier": "92936U109",
-      "Weight": "1.14%",
-      "Market Value": "$3441020.50",
+      "Weight": "1.13%",
+      "Market Value": "$3368650.25",
       "Shares Held": "52,825",
       "Asset Category": "Equity"
     },
@@ -548,8 +548,8 @@
       "Name": "Weyerhaeuser Co",
       "Ticker": "WY",
       "Identifier": "962166104",
-      "Weight": "1.13%",
-      "Market Value": "$3411865.46",
+      "Weight": "1.12%",
+      "Market Value": "$3340531.20",
       "Shares Held": "173,986",
       "Asset Category": "Equity"
     },
@@ -558,7 +558,7 @@
       "Ticker": "Z",
       "Identifier": "98954M200",
       "Weight": "0.40%",
-      "Market Value": "$1212335.52",
+      "Market Value": "$1209975.36",
       "Shares Held": "39,336",
       "Asset Category": "Equity"
     },
@@ -566,8 +566,8 @@
       "Name": "Zillow Group Inc",
       "Ticker": "ZG",
       "Identifier": "98954M101",
-      "Weight": "0.13%",
-      "Market Value": "$406406.24",
+      "Weight": "0.14%",
+      "Market Value": "$405641.36",
       "Shares Held": "12,748",
       "Asset Category": "Equity"
     },
@@ -575,9 +575,9 @@
       "Name": "Cash & Other",
       "Ticker": "Cash&Other",
       "Identifier": "Cash&Other",
-      "Weight": "1.66%",
-      "Market Value": "$4991355.45",
-      "Shares Held": "4,991,355",
+      "Weight": "1.67%",
+      "Market Value": "$4986057.00",
+      "Shares Held": "4,986,057",
       "Asset Category": "Cash"
     }
   ]

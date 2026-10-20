@@ -21,12 +21,12 @@
   },
   "navValue": 46.86,
   "aum": {
-    "display": "$2.81M",
-    "value": 2811660,
+    "display": "$2.82M",
+    "value": 2815440,
     "asOfDate": "Oct 16 2026",
     "source": "official NEOS daily holdings CSV (download_holdings_csv)"
   },
-  "aumValue": 2811660,
+  "aumValue": 2815440,
   "asOfDate": "Oct 16 2026",
   "inceptionDate": "Oct 06 2026",
   "inceptionDateFundPage": "Oct 06 2026",
@@ -50,11 +50,11 @@
   },
   "bidAskSpreadValue": 0.19,
   "acquiredFundFeesText": null,
-  "totalNetAssets": 2811660,
+  "totalNetAssets": 2815440,
   "sharesOutstanding": {
     "display": "60,000",
     "value": 60000,
-    "asOfDate": "Oct 19 2026"
+    "asOfDate": "Oct 20 2026"
   },
   "netAssetsAsOf": "Oct 16 2026",
   "secYieldAsOf": "Sep 30 2026",
@@ -159,8 +159,8 @@
     ],
     "pageSize": 250,
     "totalRows": 7,
-    "asOfDate": "Oct 19 2026",
-    "asOf": "2026-10-19",
+    "asOfDate": "Oct 20 2026",
+    "asOf": "2026-10-20",
     "source": "https://neosfunds.com/wp-admin/admin-ajax.php?action=download_holdings_csv&ticker=SLVI",
     "sourceKind": "official NEOS daily holdings CSV (download_holdings_csv)"
   },
@@ -169,9 +169,9 @@
       "./history/001.json"
     ],
     "pageSize": 1000,
-    "totalRows": 8,
-    "asOfDate": "Oct 16 2026",
-    "asOf": "2026-10-16",
+    "totalRows": 9,
+    "asOfDate": "Oct 19 2026",
+    "asOf": "2026-10-19",
     "source": "https://query1.finance.yahoo.com/v8/finance/chart/SLVI?period1=0&period2=9999999999&interval=1d&events=div%7Csplit&includeAdjustedClose=true",
     "sourceKind": "Yahoo Finance public chart API (daily Close / Adj Close / Volume)"
   },
