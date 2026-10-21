@@ -2,7 +2,7 @@
   "ticker": "NLSI",
   "page": 1,
   "pageSize": 1000,
-  "totalRows": 215,
+  "totalRows": 216,
   "headers": [
     "Date",
     "Close",
@@ -10,6 +10,12 @@
     "Volume"
   ],
   "rows": [
+    {
+      "Date": "2026-10-20",
+      "Close": "59.81",
+      "Adj Close": "59.81",
+      "Volume": "1000"
+    },
     {
       "Date": "2026-10-19",
       "Close": "59.34",

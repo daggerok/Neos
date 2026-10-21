@@ -17,9 +17,9 @@
       "Name": "ExxonMobil Holdings Corp",
       "Ticker": "XOM",
       "Identifier": "30233Q108",
-      "Weight": "1.10%",
-      "Market Value": "$138769051.56",
-      "Shares Held": "778,377",
+      "Weight": "1.11%",
+      "Market Value": "$138806034.78",
+      "Shares Held": "780,423",
       "Asset Category": "Equity"
     },
     {
@@ -27,8 +27,8 @@
       "Ticker": "XYL",
       "Identifier": "98419M100",
       "Weight": "0.04%",
-      "Market Value": "$4454895.90",
-      "Shares Held": "43,030",
+      "Market Value": "$4525521.84",
+      "Shares Held": "43,092",
       "Asset Category": "Equity"
     },
     {
@@ -36,8 +36,8 @@
       "Ticker": "XYZ",
       "Identifier": "852234103",
       "Weight": "0.06%",
-      "Market Value": "$7692882.50",
-      "Shares Held": "99,263",
+      "Market Value": "$7771809.10",
+      "Shares Held": "99,511",
       "Asset Category": "Equity"
     },
     {
@@ -45,8 +45,8 @@
       "Ticker": "YUM",
       "Identifier": "988498101",
       "Weight": "0.06%",
-      "Market Value": "$7668898.72",
-      "Shares Held": "51,184",
+      "Market Value": "$7778292.80",
+      "Shares Held": "51,308",
       "Asset Category": "Equity"
     },
     {
@@ -54,8 +54,8 @@
       "Ticker": "ZBH",
       "Identifier": "98956P102",
       "Weight": "0.03%",
-      "Market Value": "$3348397.50",
-      "Shares Held": "35,250",
+      "Market Value": "$3389952.00",
+      "Shares Held": "35,312",
       "Asset Category": "Equity"
     },
     {
@@ -63,7 +63,7 @@
       "Ticker": "ZBRA",
       "Identifier": "989207105",
       "Weight": "0.02%",
-      "Market Value": "$2976474.17",
+      "Market Value": "$3042297.68",
       "Shares Held": "7,921",
       "Asset Category": "Equity"
     },
@@ -72,17 +72,17 @@
       "Ticker": "ZTS",
       "Identifier": "98978V103",
       "Weight": "0.05%",
-      "Market Value": "$6213272.94",
-      "Shares Held": "78,066",
+      "Market Value": "$6263290.08",
+      "Shares Held": "78,252",
       "Asset Category": "Equity"
     },
     {
       "Name": "Cash & Other",
       "Ticker": "Cash&Other",
       "Identifier": "Cash&Other",
-      "Weight": "1.95%",
-      "Market Value": "$245794236.14",
-      "Shares Held": "245,794,236",
+      "Weight": "0.99%",
+      "Market Value": "$124225662.69",
+      "Shares Held": "124,225,663",
       "Asset Category": "Cash"
     }
   ]

@@ -2,7 +2,7 @@
   "ticker": "XQQI",
   "page": 1,
   "pageSize": 1000,
-  "totalRows": 179,
+  "totalRows": 180,
   "headers": [
     "Date",
     "Close",
@@ -10,6 +10,12 @@
     "Volume"
   ],
   "rows": [
+    {
+      "Date": "2026-10-20",
+      "Close": "47.87",
+      "Adj Close": "47.87",
+      "Volume": "237400"
+    },
     {
       "Date": "2026-10-19",
       "Close": "48.01",

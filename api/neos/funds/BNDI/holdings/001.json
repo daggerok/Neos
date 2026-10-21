@@ -17,8 +17,8 @@
       "Name": "iShares Core U.S. Aggregate Bond ETF",
       "Ticker": "AGG",
       "Identifier": "464287226",
-      "Weight": "49.64%",
-      "Market Value": "$94505195.51",
+      "Weight": "49.62%",
+      "Market Value": "$94664178.07",
       "Shares Held": "993,641",
       "Asset Category": "Fund"
     },
@@ -27,7 +27,7 @@
       "Ticker": "BND",
       "Identifier": "921937835",
       "Weight": "49.68%",
-      "Market Value": "$94574418.60",
+      "Market Value": "$94775355.75",
       "Shares Held": "1,339,581",
       "Asset Category": "Fund"
     },
@@ -35,8 +35,8 @@
       "Name": "SPXW US 10/29/26 P6875",
       "Ticker": "SPXW 261029P06875000",
       "Identifier": "SPXW 261029P06875000",
-      "Weight": "0.02%",
-      "Market Value": "$30340.00",
+      "Weight": "0.01%",
+      "Market Value": "$17015.00",
       "Shares Held": "82",
       "Asset Category": "Option"
     },
@@ -44,8 +44,8 @@
       "Name": "SPXW US 10/29/26 P6975",
       "Ticker": "SPXW 261029P06975000",
       "Identifier": "SPXW 261029P06975000",
-      "Weight": "0.02%",
-      "Market Value": "$36080.00",
+      "Weight": "0.01%",
+      "Market Value": "$19885.00",
       "Shares Held": "82",
       "Asset Category": "Option"
     },
@@ -53,8 +53,8 @@
       "Name": "SPXW US 10/29/26 P7025",
       "Ticker": "SPXW 261029P07025000",
       "Identifier": "SPXW 261029P07025000",
-      "Weight": "0.02%",
-      "Market Value": "$39360.00",
+      "Weight": "0.01%",
+      "Market Value": "$21935.00",
       "Shares Held": "82",
       "Asset Category": "Option"
     },
@@ -62,8 +62,8 @@
       "Name": "SPXW US 10/29/26 P7200",
       "Ticker": "SPXW 261029P07200000",
       "Identifier": "SPXW 261029P07200000",
-      "Weight": "-0.03%",
-      "Market Value": "$-59040.00",
+      "Weight": "-0.02%",
+      "Market Value": "$-31570.00",
       "Shares Held": "-82",
       "Asset Category": "Option"
     },
@@ -71,8 +71,8 @@
       "Name": "SPXW US 10/29/26 P7275",
       "Ticker": "SPXW 261029P07275000",
       "Identifier": "SPXW 261029P07275000",
-      "Weight": "-0.04%",
-      "Market Value": "$-74210.00",
+      "Weight": "-0.02%",
+      "Market Value": "$-41820.00",
       "Shares Held": "-82",
       "Asset Category": "Option"
     },
@@ -80,8 +80,8 @@
       "Name": "SPXW US 10/29/26 P7340",
       "Ticker": "SPXW 261029P07340000",
       "Identifier": "SPXW 261029P07340000",
-      "Weight": "-0.05%",
-      "Market Value": "$-93890.00",
+      "Weight": "-0.03%",
+      "Market Value": "$-50840.00",
       "Shares Held": "-82",
       "Asset Category": "Option"
     },
@@ -89,9 +89,9 @@
       "Name": "Cash & Other",
       "Ticker": "Cash&Other",
       "Identifier": "Cash&Other",
-      "Weight": "0.74%",
-      "Market Value": "$1404772.73",
-      "Shares Held": "1,404,773",
+      "Weight": "0.73%",
+      "Market Value": "$1402169.15",
+      "Shares Held": "1,402,169",
       "Asset Category": "Cash"
     }
   ]

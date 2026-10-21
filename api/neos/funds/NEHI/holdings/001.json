@@ -17,8 +17,8 @@
       "Name": "ETHA 11/20/2026 66 C",
       "Ticker": "2ETHA 261120C00066000",
       "Identifier": "2ETHA 261120C00066000",
-      "Weight": "-0.18%",
-      "Market Value": "$-203496.00",
+      "Weight": "-0.21%",
+      "Market Value": "$-236730.90",
       "Shares Held": "-4,170",
       "Asset Category": "Option"
     },
@@ -26,8 +26,8 @@
       "Name": "ETHA 11/20/2026 72 C",
       "Ticker": "2ETHA 261120C00072000",
       "Identifier": "2ETHA 261120C00072000",
-      "Weight": "-0.08%",
-      "Market Value": "$-92323.80",
+      "Weight": "-0.09%",
+      "Market Value": "$-99537.90",
       "Shares Held": "-4,170",
       "Asset Category": "Option"
     },
@@ -35,8 +35,8 @@
       "Name": "ETHA 01/15/2027 60 C",
       "Ticker": "2ETHA 270115C00060000",
       "Identifier": "2ETHA 270115C00060000",
-      "Weight": "5.03%",
-      "Market Value": "$5812239.00",
+      "Weight": "5.34%",
+      "Market Value": "$6073531.05",
       "Shares Held": "17,247",
       "Asset Category": "Option"
     },
@@ -44,8 +44,8 @@
       "Name": "ETHA 01/15/2027 60 P",
       "Ticker": "2ETHA 270115P00060000",
       "Identifier": "2ETHA 270115P00060000",
-      "Weight": "-12.62%",
-      "Market Value": "$-14590962.00",
+      "Weight": "-12.45%",
+      "Market Value": "$-14160131.94",
       "Shares Held": "-17,247",
       "Asset Category": "Option"
     },
@@ -53,8 +53,8 @@
       "Name": "United States Treasury Bill 11/05/2026",
       "Ticker": "912797UM7",
       "Identifier": "912797UM7",
-      "Weight": "85.63%",
-      "Market Value": "$98974955.42",
+      "Weight": "87.03%",
+      "Market Value": "$98985954.57",
       "Shares Held": "99,145,000",
       "Asset Category": "Treasury"
     },
@@ -62,8 +62,8 @@
       "Name": "iShares Ethereum Trust ETF",
       "Ticker": "ETHA",
       "Identifier": "46438R204",
-      "Weight": "18.83%",
-      "Market Value": "$21759723.27",
+      "Weight": "19.47%",
+      "Market Value": "$22145776.39",
       "Shares Held": "402,139",
       "Asset Category": "Fund"
     },
@@ -71,9 +71,9 @@
       "Name": "Cash & Other",
       "Ticker": "Cash&Other",
       "Identifier": "Cash&Other",
-      "Weight": "3.39%",
-      "Market Value": "$3922834.99",
-      "Shares Held": "3,922,835",
+      "Weight": "0.91%",
+      "Market Value": "$1030678.97",
+      "Shares Held": "1,030,679",
       "Asset Category": "Cash"
     }
   ]

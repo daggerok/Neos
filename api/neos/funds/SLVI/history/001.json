@@ -2,7 +2,7 @@
   "ticker": "SLVI",
   "page": 1,
   "pageSize": 1000,
-  "totalRows": 9,
+  "totalRows": 10,
   "headers": [
     "Date",
     "Close",
@@ -11,10 +11,16 @@
   ],
   "rows": [
     {
+      "Date": "2026-10-20",
+      "Close": "47.49",
+      "Adj Close": "47.49",
+      "Volume": "8300"
+    },
+    {
       "Date": "2026-10-19",
       "Close": "47.07",
       "Adj Close": "47.07",
-      "Volume": "7550"
+      "Volume": "7600"
     },
     {
       "Date": "2026-10-16",

@@ -2,7 +2,7 @@
   "ticker": "BNDI",
   "page": 1,
   "pageSize": 1000,
-  "totalRows": 1038,
+  "totalRows": 1039,
   "headers": [
     "Date",
     "Close",
@@ -10,6 +10,12 @@
     "Volume"
   ],
   "rows": [
+    {
+      "Date": "2026-10-20",
+      "Close": "45.21",
+      "Adj Close": "45.21",
+      "Volume": "16800"
+    },
     {
       "Date": "2026-10-19",
       "Close": "45.11",
@@ -6002,12 +6008,6 @@
       "Date": "2022-10-25",
       "Close": "46.71",
       "Adj Close": "37.45",
-      "Volume": "100"
-    },
-    {
-      "Date": "2022-10-24",
-      "Close": "46.26",
-      "Adj Close": "37.09",
       "Volume": "100"
     }
   ]
