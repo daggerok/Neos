@@ -34,6 +34,7 @@ import {
   formatMoneyText,
   formatNeosDate,
   formatPercentText,
+  holdingsGuard,
   inferDistributionFrequency,
   installSystemCa,
   isCertError,
@@ -257,15 +258,15 @@ const DOCUMENTS_HTML = `<table><thead><tr><th>Documents</th><th></th></tr></thea
 )}</tbody></table>
 <div id="tab-form-8937"><p>Form 8937</p>${a("NEOS-Form-8937-12.31.25.pdf")}</div><div id="tab-19a1-notices">${a("SPYI-Prospectus.pdf")}</div>`;
 
-// Official daily CSV: an equity row, a written SPXW call (OCC symbol as Cusip), the cash line.
+// Official daily CSV: an equity row, a written SPXW call (OCC symbol as Cusip), the cash line (weights add up to 100).
 const HOLDINGS_CSV = [
   "Date,Account,StockTicker,Cusip,SecurityName,Shares,Price,MarketValue,Weightings,NetAssets,SharesOutstanding,CreationUnits,MoneyMarketFlag",
   '09/21/2026,NEOS,AAPL,037833100,APPLE INC,"1,331,939","255.46","$340,237,157.22","2.79%","$12,192,173,280.00","229,600,000","22,960","N"',
   '09/21/2026,NEOS,"SPXW  261001P07075000",SPXW  261001P07075000,"CBOE S&P 500 INDEX PUT 10/01/2026 70.750","-1,200","2.50","$-3,000.00","-0.00%","$12,192,173,280.00","229,600,000","22,960","N"',
-  '09/21/2026,NEOS,Cash&Other,Cash&Other,Cash&Other,"162,387,743","1.00","$162,387,742.50","1.33%","$12,192,173,280.00","229,600,000","22,960","Y"',
+  '09/21/2026,NEOS,Cash&Other,Cash&Other,Cash&Other,"162,387,743","1.00","$162,387,742.50","97.21%","$12,192,173,280.00","229,600,000","22,960","Y"',
 ].join("\n");
 
-const nport = (series: string, repPdDate: string, positions = `<invstOrSec><name>X CORP</name><cusip>123456789</cusip><balance>10</balance><valUSD>500</valUSD><pctVal>1.5</pctVal><assetCat>EC</assetCat></invstOrSec>`) =>
+const nport = (series: string, repPdDate: string, positions = `<invstOrSec><name>X CORP</name><cusip>123456789</cusip><balance>10</balance><valUSD>500</valUSD><pctVal>100</pctVal><assetCat>EC</assetCat></invstOrSec>`) =>
   `<repPdDate>${repPdDate}</repPdDate><seriesName>${series}</seriesName>${positions}`;
 const NPORT_XML = nport(
   "NEOS S&amp;P 500 High Income ETF",
@@ -558,6 +559,21 @@ describe("parsing", () => {
     for (const [ticker, name, flag, expected] of categories) expect(neosAssetCategory(ticker, name, flag)).toBe(expected);
   });
 
+  test('holdings guard: header-only, renamed weight column, broken weights, a bad weight sum and a halved sheet are rejected', () => {
+    const headers = ['Name', 'Ticker', 'Weight'];
+    const rows = [{ Name: 'A', Ticker: 'A', Weight: '60%' }, { Name: 'B', Ticker: 'B', Weight: '40%' }];
+    expect(holdingsGuard(headers, rows, 2)).toBeNull();
+    expect(holdingsGuard(headers, [['A', 'A', '60'], ['B', 'B', '40']], null)).toBeNull();
+    expect(holdingsGuard([], [], 0)).toBeNull(); // nothing published before: an empty sheet is honest
+    expect(holdingsGuard(headers, [], 505)).toContain('no holdings rows');
+    expect(holdingsGuard(['Name', 'Ticker', 'Wt'], rows, 2)).toContain('no weight column');
+    expect(holdingsGuard(headers, rows.map((row) => ({ ...row, Weight: '6​0' })), 2)).toContain('numeric weight');
+    const allocation = [{ Name: 'Cash&Collateral', Ticker: '-', Weight: '100' }, { Name: 'Equities', Ticker: '-', Weight: '476' }];
+    expect(holdingsGuard(headers, allocation, 2)).toContain('outside 50..150');
+    expect(holdingsGuard(headers, allocation, 2, ['sum'])).toBeNull();
+    expect(holdingsGuard(headers, rows, 5)).toContain('less than half');
+  });
+
   test("N-PORT fallback: filing header and positions fold onto the holdings contract; series identity and freshness guards", () => {
     const report = parseNportXml(NPORT_XML);
     expect(report).toMatchObject({ repPdDate: "2026-06-30", seriesName: "NEOS S&P 500 High Income ETF" });
@@ -771,6 +787,24 @@ describe("pipeline", () => {
         expect(readJson(dir, "meta.json").history.totalRows).toBe(3);
       });
     }
+  });
+
+  test("holdings that fail the guard keep the fund exactly as published and report it failed", async () => {
+    await inTempRoot(async (root) => {
+      mockFetch(site(RICH_PAGES));
+      await main(RUN_ENV);
+      const first = snapshot(root);
+      // NEOS renames its weight column in the SPYI download: every Weight cell comes out empty
+      const renamed = HOLDINGS_CSV.replace("Weightings", "Weighting %");
+      const good = site(RICH_PAGES);
+      mockFetch((url) => (url.includes("download_holdings_csv&ticker=SPYI") ? new Response(renamed) : good(url)));
+      const lines: string[] = [];
+      console.log = (...args: unknown[]) => { lines.push(args.join(" ")); };
+      await main(RUN_ENV);
+      expect(snapshot(root)).toEqual(first);
+      expect(lines.join("\n")).toMatch(/2 unchanged, 0 kept, 0 skipped, 1 failed/);
+      await expect(updateFund(FUND, quiet(), stats())).rejects.toThrow(/^holdings guard: only 0 of 3 rows have a numeric weight; kept the previous complete data/);
+    });
   });
 
   test("SKIP_NEOS never reads neosfunds.com and keeps the published fund data; Yahoo down returns the previous row", async () => {
