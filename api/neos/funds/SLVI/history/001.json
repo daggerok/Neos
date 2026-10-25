@@ -2,7 +2,7 @@
   "ticker": "SLVI",
   "page": 1,
   "pageSize": 1000,
-  "totalRows": 10,
+  "totalRows": 13,
   "headers": [
     "Date",
     "Close",
@@ -11,63 +11,81 @@
   ],
   "rows": [
     {
+      "Date": "2026-10-23",
+      "Close": "44.04",
+      "Adj Close": "44.04",
+      "Volume": "23300"
+    },
+    {
+      "Date": "2026-10-22",
+      "Close": "44.47",
+      "Adj Close": "44.47",
+      "Volume": "19800"
+    },
+    {
+      "Date": "2026-10-21",
+      "Close": "47.02",
+      "Adj Close": "47.02",
+      "Volume": "11200"
+    },
+    {
       "Date": "2026-10-20",
       "Close": "47.49",
-      "Adj Close": "47.49",
+      "Adj Close": "46.97",
       "Volume": "8300"
     },
     {
       "Date": "2026-10-19",
       "Close": "47.07",
-      "Adj Close": "47.07",
+      "Adj Close": "46.56",
       "Volume": "7600"
     },
     {
       "Date": "2026-10-16",
       "Close": "46.93",
-      "Adj Close": "46.93",
+      "Adj Close": "46.42",
       "Volume": "7400"
     },
     {
       "Date": "2026-10-15",
       "Close": "47.22",
-      "Adj Close": "47.22",
+      "Adj Close": "46.71",
       "Volume": "9000"
     },
     {
       "Date": "2026-10-14",
       "Close": "45.71",
-      "Adj Close": "45.71",
+      "Adj Close": "45.21",
       "Volume": "26300"
     },
     {
       "Date": "2026-10-13",
       "Close": "48.64",
-      "Adj Close": "48.64",
+      "Adj Close": "48.11",
       "Volume": "16200"
     },
     {
       "Date": "2026-10-12",
       "Close": "49.27",
-      "Adj Close": "49.27",
+      "Adj Close": "48.73",
       "Volume": "12400"
     },
     {
       "Date": "2026-10-09",
       "Close": "49.61",
-      "Adj Close": "49.61",
+      "Adj Close": "49.07",
       "Volume": "5700"
     },
     {
       "Date": "2026-10-08",
       "Close": "48.45",
-      "Adj Close": "48.45",
+      "Adj Close": "47.92",
       "Volume": "9900"
     },
     {
       "Date": "2026-10-07",
       "Close": "48.76",
-      "Adj Close": "48.76",
+      "Adj Close": "48.23",
       "Volume": "10100"
     }
   ]
