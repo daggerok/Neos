@@ -11,6 +11,7 @@ import { tmpdir } from "node:os";
 import path from "node:path";
 
 import {
+  CLOSED_FUNDS,
   CONTROL_NAMES,
   FETCH_TIMEOUT_MS,
   HISTORY_HEADERS,
@@ -21,6 +22,7 @@ import {
   adjCloseCell,
   annualizedFromCumulative,
   cleanText,
+  closedFund,
   compareDisplayDates,
   cumulativeFromAnnualized,
   decodeHtmlEntities,
@@ -489,7 +491,9 @@ describe("parsing", () => {
     expect(cards.get("SPYI")).toBe("Equity High Income");
     expect(cards.get("BTCI")).toBe("High Income Alternatives");
   });
+});
 
+describe("parsing 2", () => {
   test("fund details: identifiers, assets, the two Daily Change pairs, and a row that lost its <tr>", () => {
     const details = parseNeosFundDetails(FUND_DETAILS_HTML);
     expect(details).toMatchObject({
@@ -558,7 +562,9 @@ describe("parsing", () => {
     ];
     for (const [ticker, name, flag, expected] of categories) expect(neosAssetCategory(ticker, name, flag)).toBe(expected);
   });
+});
 
+describe("parsing 3", () => {
   test('holdings guard: header-only, renamed weight column, broken weights, a bad weight sum and a halved sheet are rejected', () => {
     const headers = ['Name', 'Ticker', 'Weight'];
     const rows = [{ Name: 'A', Ticker: 'A', Weight: '60%' }, { Name: 'B', Ticker: 'B', Weight: '40%' }];
@@ -788,7 +794,9 @@ describe("pipeline", () => {
       });
     }
   });
+});
 
+describe("pipeline 2", () => {
   test("holdings that fail the guard keep the fund exactly as published and report it failed", async () => {
     await inTempRoot(async (root) => {
       mockFetch(site(RICH_PAGES));
@@ -804,6 +812,43 @@ describe("pipeline", () => {
       expect(snapshot(root)).toEqual(first);
       expect(lines.join("\n")).toMatch(/2 unchanged, 0 kept, 0 skipped, 1 failed/);
       await expect(updateFund(FUND, quiet(), stats())).rejects.toThrow(/^holdings guard: only 0 of 3 rows have a numeric weight; kept the previous complete data/);
+    });
+  });
+
+  test("a closed fund is never fetched or reported failed: its files stay as published, its index row says closed, a rerun writes nothing", async () => {
+    const entry = { ticker: "SPYI", closed: "2026-10-01", source: "https://www.sec.gov/Archives/edgar/data/1/notice.htm" };
+    expect(() => closedFund([{ ...entry, closed: "soon" }], "SPYI")).toThrow("CLOSED_FUNDS");
+    expect(closedFund([entry], "spyi")).toEqual(entry);
+    await inTempRoot(async (root) => {
+      mockFetch(site(RICH_PAGES));
+      await main(RUN_ENV);
+      const first = snapshot(root);
+      // the guard would reject these holdings
+      const renamed = HOLDINGS_CSV.replace("Weightings", "Weighting %");
+      const good = site(RICH_PAGES);
+      CLOSED_FUNDS.push(entry);
+      try {
+        const urls = mockFetch((url) => (url.includes("download_holdings_csv&ticker=SPYI") ? new Response(renamed) : good(url)));
+        await main({ ...RUN_ENV, TICKERS: "SPYI" });
+        expect(urls.filter((url) => /spyi/i.test(url))).toEqual([]);
+        expect(process.exitCode).not.toBe(1);
+        const closed = snapshot(root);
+        for (const file of Object.keys(first)) if (file !== "index.json") expect([file, closed[file]]).toEqual([file, first[file]]);
+        const funds = readJson(root, "index.json").funds;
+        expect(funds.map((fund: { ticker: string }) => fund.ticker)).toEqual(["IWMI", "SPYI", "XSPI"]);
+        expect(funds.find((fund: { ticker: string }) => fund.ticker === "SPYI")).toMatchObject({ status: "closed", closedDate: "2026-10-01", closedSource: entry.source, dataFile: "./funds/SPYI/meta.json" });
+        expect(funds.filter((fund: { status?: string }) => fund.status === "closed")).toHaveLength(1);
+        await main(RUN_ENV);
+        expect(snapshot(root)).toEqual(closed);
+        // the live lineup dropped the closed fund: TICKERS still accepts it, its row and files survive
+        const dropped = LINEUP_HTML.replace(/<tr><td><span class="ticker ticker-equity-high-income">SPYI<\/span>.*\n/, "");
+        mockFetch((url) => (url === "https://neosfunds.com/" ? new Response(dropped) : good(url)));
+        await main({ ...RUN_ENV, TICKERS: "SPYI" });
+        await main(RUN_ENV);
+        expect(snapshot(root)).toEqual(closed);
+      } finally {
+        CLOSED_FUNDS.splice(CLOSED_FUNDS.indexOf(entry), 1);
+      }
     });
   });
 
@@ -846,7 +891,9 @@ describe("pipeline", () => {
       expect(readJson(dir, "holdings", "001.json").rows[0].Name).toBe("OLD");
     });
   });
+});
 
+describe("pipeline 3", () => {
   test("an unknown ticker is an error, and when every fund fails the run fails", async () => {
     await inTempRoot(async () => {
       mockFetch((url) => (url === "https://neosfunds.com/" ? new Response(LINEUP_HTML) : null));
@@ -952,7 +999,9 @@ describe("network", () => {
     }
     expect(peaks).toEqual([1, 3]);
   });
+});
 
+describe("network 2", () => {
   test("HISTORY_RANGE shrinks the Yahoo request with an explicit period1/period2, never `range`", async () => {
     const fixed = 1_700_000_000_000;
     expect(yahooChartUrl("SPYI", "max", fixed)).toContain("period1=0&period2=1700000000");
