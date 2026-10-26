@@ -2043,6 +2043,21 @@ export async function refreshHistoryOnly(
   return { ...previousEntry, history: fetched.rows.length };
 }
 
+/**
+ * Why a fetched fund page must not refresh a fund that is already published, or null when it may. A 200 page whose
+ * Fund Details panel or monthly performance table is missing (a partial page, a markup change) would otherwise publish
+ * null CUSIP, NAV, TER and returns next to fresh holdings. A fund that never had those values keeps its honest nulls.
+ */
+export function fundPageProblem(details: NeosFundDetails, monthly: NeosPerformance | null, previous: Record<string, any> | null): string | null {
+  if (!previous) return null;
+  const detailsFound = Boolean(details.ticker || details.cusip || details.isin || details.netAssetValue !== null || details.netAssets !== null || details.sharesOutstanding !== null);
+  // CUSIP and ISIN come only from the Fund Details panel (NAV can also be derived from the holdings CSV)
+  const hadDetails = Boolean(previous.cusip || previous.isin);
+  if (!detailsFound && hadDetails) return 'fund page has no Fund Details panel';
+  if (!monthly && previous.returns?.monthEnd?.raw) return 'fund page has no monthly performance table';
+  return null;
+}
+
 export async function updateFund(
   fund: LineupFund,
   config: UpdaterConfig,
@@ -2068,6 +2083,10 @@ export async function updateFund(
   const quarterly = parseNeosPerformanceSection(pageHtml, 'quarterly-performance');
   const navIndex = parseNeosNavIndex(pageHtml);
   const documents = parseNeosDocuments(pageHtml);
+  if (!config.skipNeos) {
+    const pageProblem = fundPageProblem(details, monthly, await readPreviousMeta(fundDir));
+    if (pageProblem) throw new Error(`${ticker}: ${pageProblem}; kept the previous complete data`);
+  }
 
   // --- holdings (official daily CSV) -------------------------------------
   let holdings = {

@@ -85,6 +85,7 @@ import {
   splitRowCells,
   tableById,
   toIsoDate,
+  fundPageProblem,
   updateFund,
   writeIfChanged,
   writeJsonIfContentChanged,
@@ -797,6 +798,25 @@ describe("pipeline", () => {
 });
 
 describe("pipeline 2", () => {
+  test("NEOS-2: a fund page without Fund Details or the monthly table keeps a published fund exactly as published", async () => {
+    await inTempRoot(async (root) => {
+      mockFetch(site(RICH_PAGES));
+      await main(RUN_ENV);
+      const first = snapshot(root);
+      for (const page of [FUND_DETAILS_HTML, MONTHLY_PERFORMANCE_HTML]) {
+        mockFetch(site({ SPYI: page }));
+        const lines: string[] = [];
+        console.log = (...args: unknown[]) => { lines.push(args.join(" ")); };
+        await main(RUN_ENV);
+        expect(snapshot(root)).toEqual(first);
+        expect(lines.join("\n")).toMatch(/1 failed/);
+      }
+      await expect(updateFund(FUND, quiet(), stats())).rejects.toThrow(/^SPYI: fund page has no Fund Details panel; kept the previous complete data/);
+    });
+    // a fund that never published those values keeps its honest nulls
+    expect(fundPageProblem(parseNeosFundDetails("<html></html>"), null, { cusip: null, navValue: null, returns: { monthEnd: { raw: "" } } })).toBeNull();
+    expect(fundPageProblem(parseNeosFundDetails("<html></html>"), null, null)).toBeNull();
+  });
   test("holdings that fail the guard keep the fund exactly as published and report it failed", async () => {
     await inTempRoot(async (root) => {
       mockFetch(site(RICH_PAGES));
