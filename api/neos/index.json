@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-26T08:01:29Z",
+  "generatedAt": "2026-10-26T19:34:24Z",
   "source": {
     "provider": "NEOS Investment Management LLC (NEOS ETFs)",
     "market": "us",
@@ -18,7 +18,7 @@
   "counts": {
     "funds": 20,
     "holdings": 2071,
-    "history": 10294
+    "history": 10295
   },
   "funds": [
     {
@@ -112,7 +112,7 @@
       "distributionFrequency": "01 - Monthly",
       "providerCategory": "Enhanced Fixed Income",
       "holdings": 9,
-      "history": 1042,
+      "history": 1043,
       "navKind": "official (fund page Fund Details)"
     },
     {

@@ -543,9 +543,9 @@
       "./history/002.json"
     ],
     "pageSize": 1000,
-    "totalRows": 1042,
-    "asOfDate": "Oct 23 2026",
-    "asOf": "2026-10-23",
+    "totalRows": 1043,
+    "asOfDate": "Oct 26 2026",
+    "asOf": "2026-10-26",
     "source": "https://query1.finance.yahoo.com/v8/finance/chart/BNDI?period1=0&period2=9999999999&interval=1d&events=div%7Csplit&includeAdjustedClose=true",
     "sourceKind": "Yahoo Finance public chart API (daily Close / Adj Close / Volume)"
   },
