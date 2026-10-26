@@ -16,6 +16,7 @@ import {
   FETCH_TIMEOUT_MS,
   HISTORY_HEADERS,
   HOLDINGS_HEADERS,
+  HOLDINGS_GUARD_RELAX,
   NEOS_CATEGORIES,
   NEOS_DISTRIBUTION_HEADERS,
   RETURNS_BASIS,
@@ -26,9 +27,7 @@ import {
   compareDisplayDates,
   cumulativeFromAnnualized,
   decodeHtmlEntities,
-  edgarPrimaryDocLinks,
   elementTextById,
-  fallbackIsStale,
   fetchRetried,
   filterScope,
   formatAumDisplay,
@@ -37,17 +36,19 @@ import {
   formatNeosDate,
   formatPercentText,
   holdingsGuard,
+  holdingsWeightCount,
   inferDistributionFrequency,
   installSystemCa,
   isCertError,
   isMissingCell,
   main,
   neosAssetCategory,
-  neosEdgarFilingsUrl,
   neosFundPageUrl,
   neosHoldingsCsvUrl,
   normalizeNumberText,
-  nportToHoldings,
+  nportHoldingsSheet,
+  nportIsFresh,
+  nportTickers,
   numberOrNull,
   pageFileName,
   parseAumRange,
@@ -62,7 +63,9 @@ import {
   parseNeosLineup,
   parseNeosNavIndex,
   parseNeosPerformanceSection,
-  parseNportXml,
+  parseNportFiling,
+  parseSecCompanyNames,
+  parseSecFundTickers,
   parseRange,
   parseYahooChart,
   parseYahooExchangeName,
@@ -75,11 +78,11 @@ import {
   readConfig,
   refreshHistoryOnly,
   reserveSlot,
+  resetSecState,
   resolveControls,
   runtimeControls,
   sanitizeTicker,
   selectBatch,
-  seriesNameMatches,
   setApiRootForTests,
   splitPages,
   splitRowCells,
@@ -113,6 +116,7 @@ beforeEach(() => {
   }
   process.env.TZ = "UTC";
   console.log = () => {};
+  resetSecState();
 });
 
 afterEach(() => {
@@ -269,14 +273,25 @@ const HOLDINGS_CSV = [
   '09/21/2026,NEOS,Cash&Other,Cash&Other,Cash&Other,"162,387,743","1.00","$162,387,742.50","97.21%","$12,192,173,280.00","229,600,000","22,960","Y"',
 ].join("\n");
 
-const nport = (series: string, repPdDate: string, positions = `<invstOrSec><name>X CORP</name><cusip>123456789</cusip><balance>10</balance><valUSD>500</valUSD><pctVal>100</pctVal><assetCat>EC</assetCat></invstOrSec>`) =>
-  `<repPdDate>${repPdDate}</repPdDate><seriesName>${series}</seriesName>${positions}`;
-const NPORT_XML = nport(
-  "NEOS S&amp;P 500 High Income ETF",
-  "2026-06-30",
-  `<invstOrSec><name>APPLE INC</name><identifiers><cusip value="037833100"/></identifiers><balance>1331939.00000000</balance><valUSD>340237157.22</valUSD><pctVal>2.79</pctVal><assetCat>EC</assetCat><ticker value="AAPL"/></invstOrSec>` +
-    `<invstOrSec><name>SPXW PUT</name><balance>-1200.0</balance><valUSD>-3000.0</valUSD><assetCat>OPT</assetCat></invstOrSec>`,
-);
+// N-PORT-P samples (shared nport-reader): a U.S. equity, a written SPY call whose reference instrument is SPY, a Treasury bill
+// with a filer ticker but no weight
+const NPORT_AAPL = '<invstOrSec><name>APPLE INC</name><cusip>037833100</cusip><identifiers><isin value="US0378331005"/></identifiers><balance>1331939.00000000</balance><curCd>USD</curCd><valUSD>340237157.22</valUSD><pctVal>102.79</pctVal><assetCat>EC</assetCat></invstOrSec>';
+const NPORT_OPTION = '<invstOrSec><name>SPDR S&amp;P 500 ETF TRUST</name><title>SPY US 10/16/26 C680</title><cusip>000000000</cusip><identifiers><other otherDesc="OCC" value="SPY   261016C00680000"/></identifiers><balance>-1200</balance><curCd>USD</curCd><valUSD>-3000</valUSD><pctVal>-2.79</pctVal><assetCat>DE</assetCat><derivativeInfo><optionSwaptionWarrantDeriv derivCat="OPT"><descRefInstrmnt><otherRefInst><identifiers><cusip value="78462F103"/><ticker value="SPY"/></identifiers></otherRefInst></descRefInstrmnt></optionSwaptionWarrantDeriv></derivativeInfo></invstOrSec>';
+const NPORT_BILL = '<invstOrSec><name>UNITED STATES TREASURY BILL</name><cusip>912797QX8</cusip><identifiers><ticker value="B"/></identifiers><balance>1000000</balance><curCd>USD</curCd><valUSD>990000</valUSD><assetCat>DBT</assetCat></invstOrSec>';
+const nportXml = (seriesId: string, period: string, positions: string[]) => `<edgarSubmission><genInfo><regName>NEOS ETF Trust</regName><regCik>0001848758</regCik><seriesName>NEOS S&amp;P 500 High Income ETF</seriesName><seriesId>${seriesId}</seriesId><repPdDate>${period}</repPdDate></genInfo><fundInfo><netAssets>12192173280</netAssets></fundInfo><invstOrSecs>${positions.join("")}</invstOrSecs></edgarSubmission>`;
+const NPORT_XML = nportXml("S000077194", "2026-09-30", [NPORT_AAPL, NPORT_OPTION, NPORT_BILL]);
+const NPORT_ACCESSION = "0000894189-26-023158";
+const NPORT_DOC = "https://www.sec.gov/Archives/edgar/data/1848758/000089418926023158/primary_doc.xml";
+
+/** SEC EDGAR: the fund and company ticker tables, the trust's submissions, one series feed for every series and one N-PORT document; null for other URLs. */
+const sec = (xml: string) => (url: string): Response | null => {
+  if (url === "https://www.sec.gov/files/company_tickers_mf.json") return new Response(JSON.stringify({ fields: ["cik", "seriesId", "classId", "symbol"], data: [[1848758, "S000077194", "C000237368", "SPYI"], [1848758, "S000085554", "C000250847", "IWMI"]] }));
+  if (url === "https://www.sec.gov/files/company_tickers.json") return new Response(JSON.stringify({ 0: { ticker: "AAPL", title: "Apple Inc." }, 1: { ticker: "SPY", title: "SPDR S&P 500 ETF TRUST" } }));
+  if (url === "https://data.sec.gov/submissions/CIK0001848758.json") return new Response(JSON.stringify({ cik: "1848758", filings: { recent: { form: ["NPORT-P"], accessionNumber: [NPORT_ACCESSION], filingDate: ["2026-10-20"], reportDate: ["2026-09-30"] } } }));
+  if (url.includes("browse-edgar")) return new Response(`<feed><entry><content><accession-number>${NPORT_ACCESSION}</accession-number><filing-date>2026-10-20</filing-date><filing-type>NPORT-P</filing-type><filing-href>https://www.sec.gov/Archives/edgar/data/1848758/000089418926023158/${NPORT_ACCESSION}-index.htm</filing-href><period>2026-09-30</period></content></entry></feed>`);
+  if (url === NPORT_DOC) return new Response(xml);
+  return null;
+};
 
 // 2022-08-31 has no close at all (dropped), 2022-09-01 only an adjusted close (kept with Close null).
 const YAHOO_JSON = {
@@ -458,11 +473,9 @@ describe("parsing", () => {
     expect(formatMoneyText(null)).toBe("—");
   });
 
-  test("source URLs: lowercase fund page, the one admin-ajax holdings action, trust-wide EDGAR, deterministic Yahoo provenance", () => {
+  test("source URLs: lowercase fund page, the one admin-ajax holdings action, deterministic Yahoo provenance", () => {
     expect(neosFundPageUrl(" SPYI ")).toBe("https://neosfunds.com/spyi/");
     expect(neosHoldingsCsvUrl("SPYI")).toBe("https://neosfunds.com/wp-admin/admin-ajax.php?action=download_holdings_csv&ticker=SPYI");
-    expect(neosEdgarFilingsUrl()).toContain("CIK=0001848758");
-    expect(neosEdgarFilingsUrl()).toContain("type=NPORT-P");
     expect(yahooChartProvenanceUrl("spyi")).toBe(yahooChartProvenanceUrl("SPYI"));
     expect(yahooChartProvenanceUrl("SPYI")).toContain("period1=0&period2=9999999999");
   });
@@ -581,25 +594,40 @@ describe("parsing 3", () => {
     expect(holdingsGuard(headers, rows, 5)).toContain('less than half');
   });
 
-  test("N-PORT fallback: filing header and positions fold onto the holdings contract; series identity and freshness guards", () => {
-    const report = parseNportXml(NPORT_XML);
-    expect(report).toMatchObject({ repPdDate: "2026-06-30", seriesName: "NEOS S&P 500 High Income ETF" });
-    expect(report.positions[0]).toMatchObject({ name: "APPLE INC", ticker: "AAPL", cusip: "037833100", valueUsd: 340_237_157.22, percent: 2.79 });
-    expect(report.positions[1].balance).toBe(-1200);
-    const holdings = nportToHoldings(report.positions, 12_192_173_280);
-    expect(Object.keys(holdings[0])).toEqual([...HOLDINGS_HEADERS]);
-    expect(holdings[0]).toMatchObject({ Weight: "2.79%", "Market Value": "$340237157.22", "Shares Held": "1331939", "Asset Category": "EC" });
-    // A published percent is kept as-is; only a missing one is derived.
-    expect(nportToHoldings([{ ...report.positions[1], percent: null }], 12_192_173_280)[0].Weight).toBe("0.00%");
+  test("N-PORT fallback (shared nport-reader): SEC ticker map, empty missing numbers, an option keeps its own identifier and no ticker, tickers only for U.S. equities", () => {
+    const map = parseSecFundTickers({ fields: ["cik", "seriesId", "classId", "symbol"], data: [[1848758, "S000077194", "C000237368", "SPYI"]] });
+    expect(map.get("SPYI")).toEqual({ cik: "0001848758", seriesId: "S000077194", classId: "C000237368" });
+    const filing = parseNportFiling(NPORT_XML);
+    expect([filing.seriesId, filing.repPdDate, filing.netAssets, filing.positions.length]).toEqual(["S000077194", "2026-09-30", 12_192_173_280, 3]);
+    const names = parseSecCompanyNames({ 0: { ticker: "AAPL", title: "Apple Inc." }, 1: { ticker: "SPY", title: "SPDR S&P 500 ETF TRUST" } });
+    const sheet = nportHoldingsSheet(filing, nportTickers(filing.positions, names));
+    expect(Object.keys(sheet[0])).toEqual([...HOLDINGS_HEADERS]);
+    expect(sheet[0]).toEqual({ Name: "APPLE INC", Ticker: "AAPL", Identifier: "037833100", Weight: "102.79%", "Market Value": "$340237157.22", "Shares Held": "1331939", "Asset Category": "EC" });
+    // the written SPY call keeps its OCC code (whitespace collapsed), never SPY's CUSIP or ticker; the bill keeps no ticker ("B") and an empty weight, never 0
+    expect(sheet.slice(1).map((row) => [row.Ticker, row.Identifier, row.Weight, row["Market Value"], row["Shares Held"], row["Asset Category"]])).toEqual([
+      ["-", "SPY 261016C00680000", "-2.79%", "$-3000.00", "-1200", "DE"],
+      ["-", "912797QX8", "", "$990000.00", "1000000", "DBT"],
+    ]);
+  });
 
-    const name = "NEOS S&P 500 High Income ETF";
-    expect(seriesNameMatches("NEOS S&P 500 High Income ETF", name)).toBe(true);
-    expect(seriesNameMatches("NEOS Nasdaq-100 High Income ETF", name)).toBe(false);
-    expect(seriesNameMatches(null, name)).toBe(false);
-    expect(edgarPrimaryDocLinks(`<a href="/Archives/a/primary_doc.xml"><a href='/Archives/b/primary_doc.xml'><a href="/Archives/a/primary_doc.xml">`)).toEqual(["/Archives/a/primary_doc.xml", "/Archives/b/primary_doc.xml"]);
-    expect(fallbackIsStale("2026-08-31", "Sep 21 2026")).toBe(true);
-    expect(fallbackIsStale("2026-09-30", "Sep 21 2026")).toBe(false);
-    expect(fallbackIsStale("2026-08-31", undefined)).toBe(false);
+  test("N-PORT freshness: a report replaces published holdings only when strictly newer; the issuer CSV's newer day always wins", () => {
+    expect(nportIsFresh("2026-09-30", "2026-10-26", 508)).toBe(false); // SPYI published from the 10-26 issuer CSV
+    expect(nportIsFresh("2026-09-30", "2026-09-30", 508)).toBe(false);
+    expect(nportIsFresh("2026-09-30", "2026-08-31", 100)).toBe(true);
+    expect(nportIsFresh("", "2026-08-31", 100)).toBe(false);
+    expect(nportIsFresh("2026-09-30", null, 0)).toBe(true);
+    expect(nportIsFresh("2026-09-30", null, 100)).toBe(false); // published rows without a date cannot be compared: keep them
+  });
+});
+
+describe("parsing 4", () => {
+  test("dates: month-name and U.S. dates are the same calendar day in every time zone", () => {
+    for (const tz of ["Asia/Tokyo", "America/Los_Angeles", "UTC"]) {
+      process.env.TZ = tz;
+      expect(["Oct 24, 2026", "October 24 2026", "Oct 24 2026", "24 Oct 2026", "10/24/2026", "10/24/26", "2026-10-24"].map((raw) => toIsoDate(raw))).toEqual(Array(7).fill("2026-10-24"));
+      expect([toIsoDate("not a date"), toIsoDate("02/30/2026")]).toEqual(["", ""]);
+      expect(formatNeosDate("24 Oct 2026")).toBe("Oct 24 2026");
+    }
   });
 
   test("Yahoo chart: newest first, a day without any close is dropped, an adjusted-only day keeps Close null, errors give empty series", () => {
@@ -650,6 +678,19 @@ describe("metrics", () => {
       expect(metrics).toMatchObject({ ytd: 10.72, tr1y: 17.65, cagr3y: 16.04, siAnn: 15.02, tr5y: null, tr10y: null, cagr5y: null, cagr10y: null });
       expect(metrics.tr3y).toBe(cumulativeFromAnnualized(16.04, 3));
       expect(Object.values(metrics).includes(0)).toBe(false);
+    });
+  });
+
+  test("a fund younger than a horizon publishes no return for it: calendar anniversaries, inclusive (3y from 2023-09-01 is null on 2026-08-31)", async () => {
+    await inTempRoot(async () => {
+      mockFetch(site(RICH_PAGES));
+      const at = async (inceptionDate: string) => rowOf(await updateFund({ ...FUND, inceptionDate }, quiet(), stats())).metrics;
+      const three = await at("2023-09-01");
+      expect([three.tr1y, three.cagr3y, three.tr3y, three.siAnn]).toEqual([17.65, null, null, 15.02]);
+      const young = await at("2025-09-01");
+      expect([young.ytd, young.tr1y, young.cagr3y, young.siAnn]).toEqual([10.72, null, null, null]);
+      const anniversary = await at("2023-08-31");
+      expect([anniversary.cagr3y, anniversary.tr3y]).toEqual([16.04, cumulativeFromAnnualized(16.04, 3)]);
     });
   });
 
@@ -831,7 +872,7 @@ describe("pipeline 2", () => {
       await main(RUN_ENV);
       expect(snapshot(root)).toEqual(first);
       expect(lines.join("\n")).toMatch(/2 unchanged, 0 kept, 0 skipped, 1 failed/);
-      await expect(updateFund(FUND, quiet(), stats())).rejects.toThrow(/^holdings guard: only 0 of 3 rows have a numeric weight; kept the previous complete data/);
+      await expect(updateFund(FUND, quiet(), stats())).rejects.toThrow(/^holdings guard: no row has a numeric weight, the published sheet had 3; kept the previous complete data/);
     });
   });
 
@@ -887,28 +928,34 @@ describe("pipeline 2", () => {
     });
   });
 
-  test("EDGAR fallback takes the filing of this series and never replaces fresher published holdings", async () => {
-    const listing = `<a href="/Archives/x/other/primary_doc.xml"><a href="/Archives/x/spyi/primary_doc.xml">`;
-    const routes = (period: string) => (url: string): Response | null => {
-      if (url.includes("neosfunds.com/spyi")) return new Response("<html></html>");
-      if (url.includes("browse-edgar")) return new Response(listing);
-      if (url.includes("/other/")) return new Response(nport("NEOS Nasdaq-100 High Income ETF", "2026-09-30"));
-      if (url.includes("/spyi/")) return new Response(nport("NEOS S&amp;P 500 High Income ETF", period));
-      return null;
-    };
+  test("EDGAR fallback: a fund without its CSV is rebuilt from its own series' N-PORT when strictly newer; another series' filing or a not newer report keeps the fund as published", async () => {
+    const page = (url: string): Response | null => (url.includes("neosfunds.com/") && !url.includes("download_holdings_csv") ? new Response("<html></html>") : null);
+    const world = (xml: string) => (url: string) => sec(xml)(url) ?? page(url);
     await inTempRoot(async (root) => {
-      const dir = seedFeed(root, "Aug 01 2026");
-      mockFetch(routes("2026-08-31"));
+      const dir = seedFeed(root, "Aug 31 2026");
+      mockFetch(world(nportXml("S000077194", "2026-09-30", [NPORT_AAPL, NPORT_OPTION])));
       const entry = await updateFund(FUND, quiet(), stats());
-      expect(entry!.holdings).toBe(1);
-      expect(readJson(dir, "holdings", "001.json").rows[0].Name).toBe("X CORP");
-      expect(readJson(dir, "meta.json").holdings.source).toContain("/spyi/");
+      expect(entry!.holdings).toBe(2);
+      expect(readJson(dir, "holdings", "001.json").rows.map((row: Record<string, string>) => [row.Ticker, row.Identifier, row.Weight])).toEqual([["AAPL", "037833100", "102.79%"], ["-", "SPY 261016C00680000", "-2.79%"]]);
+      const meta = readJson(dir, "meta.json");
+      expect([meta.holdings.asOf, meta.holdings.asOfDate, meta.holdings.source, meta.source.nportDoc]).toEqual(["2026-09-30", "Sep 30 2026", NPORT_DOC, NPORT_DOC]);
+      // the same report period again is not newer than the published holdings: failed, nothing written
+      const before = snapshot(root);
+      await expect(updateFund(FUND, quiet(), stats())).rejects.toThrow(/not newer than the published holdings \(2026-09-30\); kept the previous complete data/);
+      expect(snapshot(root)).toEqual(before);
+      // IWMI: SEC's table names series S000085554, the trust's only filing is S000077194's
+      await expect(updateFund({ ...FUND, ticker: "IWMI" }, quiet(), stats())).rejects.toThrow(/names series S000077194, not S000085554/);
     });
     await inTempRoot(async (root) => {
+      // published from the issuer CSV of Sep 21: the N-PORT report of Aug 31 is older and never replaces it; a CSV sheet has no nportDoc
       const dir = seedFeed(root, "Sep 21 2026");
-      mockFetch(routes("2026-08-31"));
-      await expect(updateFund(FUND, quiet(), stats())).rejects.toThrow(/older than the published holdings/);
+      resetSecState(); // a new run: the SEC tables and documents are read again
+      mockFetch(world(nportXml("S000077194", "2026-08-31", [NPORT_AAPL])));
+      await expect(updateFund(FUND, quiet(), stats())).rejects.toThrow(/not newer than the published holdings \(2026-09-21\)/);
       expect(readJson(dir, "holdings", "001.json").rows[0].Name).toBe("OLD");
+      mockFetch(site(RICH_PAGES));
+      await updateFund(FUND, quiet(), stats());
+      expect(readJson(dir, "meta.json").source.nportDoc).toBeUndefined();
     });
   });
 });
@@ -917,7 +964,7 @@ describe("pipeline 3", () => {
   test("an unknown ticker is an error, and when every fund fails the run fails", async () => {
     await inTempRoot(async () => {
       mockFetch((url) => (url === "https://neosfunds.com/" ? new Response(LINEUP_HTML) : null));
-      await expect(main({ ...RUN_ENV, TICKERS: "NOPE" })).rejects.toThrow(/not in the NEOS lineup: NOPE/);
+      await expect(main({ ...RUN_ENV, TICKERS: "NOPE" })).rejects.toThrow(/TICKERS: NOPE not in the NEOS lineup or published feed/);
       await expect(main({ ...RUN_ENV, EDGAR_FALLBACK: "false" })).rejects.toThrow(/every fund failed/);
     });
   });
@@ -959,6 +1006,96 @@ describe("pipeline 3", () => {
 // ---------------------------------------------------------------------------
 // network
 // ---------------------------------------------------------------------------
+
+describe("pipeline 4", () => {
+  test("a HISTORY_RANGE run after a full run keeps the older history and writes nothing, also with SKIP_NEOS (Q25)", async () => {
+    await inTempRoot(async (root) => {
+      mockFetch(site(RICH_PAGES));
+      await main(RUN_ENV);
+      const index = readJson(root, "index.json");
+      writeFileSync(path.join(root, "index.json"), JSON.stringify({ ...index, generatedAt: "2020-01-01T00:00:00Z" }, null, 2) + "\n");
+      const first = snapshot(root);
+      // a 1y window that holds only the newest day
+      const chart = JSON.parse(CHART);
+      const result = chart.chart.result[0];
+      result.timestamp = result.timestamp.slice(-1);
+      result.indicators.quote[0].close = result.indicators.quote[0].close.slice(-1);
+      result.indicators.quote[0].volume = result.indicators.quote[0].volume.slice(-1);
+      result.indicators.adjclose[0].adjclose = result.indicators.adjclose[0].adjclose.slice(-1);
+      mockFetch(site(RICH_PAGES, JSON.stringify(chart)));
+      await main({ ...RUN_ENV, HISTORY_RANGE: "1y" });
+      expect(snapshot(root)).toEqual(first);
+      await main({ ...RUN_ENV, HISTORY_RANGE: "1y", SKIP_NEOS: "true" });
+      expect(snapshot(root)).toEqual(first);
+      expect(readJson(root, "funds", "SPYI", "meta.json").history.totalRows).toBe(2);
+    });
+  });
+
+  test("a relaxed guard still keeps numeric published weights from an all-blank N-PORT sheet (Q24)", async () => {
+    await inTempRoot(async (root) => {
+      mockFetch(site(RICH_PAGES));
+      await main(RUN_ENV);
+      const first = snapshot(root);
+      const good = site(RICH_PAGES);
+      const blank = sec(nportXml("S000077194", "2026-09-30", [NPORT_AAPL, NPORT_OPTION].map((position) => position.replace(/<pctVal>[^<]*<\/pctVal>/, ""))));
+      mockFetch((url) => (url.includes("download_holdings_csv&ticker=SPYI") ? null : blank(url) ?? good(url)));
+      const lines: string[] = [];
+      console.log = (...args: unknown[]) => { lines.push(args.join(" ")); };
+      HOLDINGS_GUARD_RELAX.SPYI = ["numeric", "sum"];
+      try {
+        await expect(main({ ...RUN_ENV, TICKERS: "SPYI" })).rejects.toThrow("every fund failed (1 of 1)");
+      } finally {
+        delete HOLDINGS_GUARD_RELAX.SPYI;
+      }
+      expect(snapshot(root)).toEqual(first);
+      expect(lines.join("\n")).toMatch(/no row has a numeric weight, the published sheet had 3/);
+      expect(holdingsWeightCount(["Name", "Weight"], [["A", "-"], ["B", "2%"]])).toBe(1);
+    });
+  });
+
+  test("TICKERS outside the live lineup stops the run before any fund request; a stale catalog-only row is dropped (Q27)", async () => {
+    await inTempRoot(async (root) => {
+      mockFetch(site(RICH_PAGES));
+      await main(RUN_ENV);
+      const index = readJson(root, "index.json");
+      index.funds.push({ ticker: "NOPE", name: "Nope ETF", dataFile: null, holdings: 0, history: 0 });
+      writeFileSync(path.join(root, "index.json"), JSON.stringify(index));
+      const before = snapshot(root);
+      const urls = mockFetch(site(RICH_PAGES));
+      await expect(main({ ...RUN_ENV, TICKERS: "NOPE" })).rejects.toThrow("TICKERS: NOPE not in the NEOS lineup or published feed; nothing was fetched or written");
+      expect(urls).toEqual(["https://neosfunds.com/"]);
+      expect(snapshot(root)).toEqual(before);
+      await main(RUN_ENV);
+      expect(readJson(root, "index.json").funds.map((fund: { ticker: string }) => fund.ticker)).toEqual(["IWMI", "SPYI", "XSPI"]);
+    });
+  });
+
+  test("NEW FUNDS announces a fund on its first successful publish, a failed new fund as not published yet (Q28)", async () => {
+    await inTempRoot(async (root) => {
+      const lineup = (tickers: string[]) => LINEUP_HTML.split("\n").filter((line) => !line.startsWith('<tr><td><span class="ticker') || tickers.some((ticker) => line.includes(`>${ticker}</span>`))).join("\n");
+      const world = (tickers: string[], down: string[] = []) => {
+        const base = site(RICH_PAGES);
+        return (url: string): Response | null => (url === "https://neosfunds.com/" ? new Response(lineup(tickers)) : down.some((ticker) => url.includes(`/${ticker.toLowerCase()}/`)) ? null : base(url));
+      };
+      mockFetch(world(["SPYI"]));
+      await main(RUN_ENV);
+      const summary = path.join(root, "summary.md");
+      process.env.GITHUB_STEP_SUMMARY = summary;
+      const lines: string[] = [];
+      console.log = (...args: unknown[]) => { const line = args.join(" "); if (/^NEW FUNDS/.test(line)) lines.push(line); };
+      mockFetch(world(["SPYI", "XSPI", "IWMI"], ["IWMI"]));
+      await main(RUN_ENV);
+      expect(lines).toEqual(["NEW FUNDS: XSPI", "NEW FUNDS (not published yet): IWMI"]);
+      expect(readFileSync(summary, "utf8")).toContain("### NEW FUNDS\n\nNEW FUNDS: XSPI\nNEW FUNDS (not published yet): IWMI\n");
+      lines.length = 0;
+      await main(RUN_ENV);
+      expect(lines).toEqual([]);
+      mockFetch(world(["SPYI", "XSPI", "IWMI"]));
+      await main(RUN_ENV);
+      expect(lines).toEqual(["NEW FUNDS: IWMI"]);
+    });
+  });
+});
 
 describe("network", () => {
   /** A fetch that never answers: the headers never arrive, or the body never ends. Both honour the abort signal. */

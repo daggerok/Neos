@@ -58,7 +58,7 @@ The **Update NEOS ETF data** GitHub Actions workflow (`.github/workflows/update-
 | Growth-of-$10,000-at-NAV series since inception | The fund page `Growth of $10,000 at NAV Since Inception` chart (`const dates` / `const navValues` / `const indexValues2`) | Stored as series metadata (start, end, point count); the app plots its own charts |
 | Fund documents (prospectus, summary prospectus, SAI, annual and semi-annual report, fiscal Q1/Q3 portfolio holdings, tax insert, Form 8937) | The fund page `Documents` table and `Form 8937` tab | One row per published document; a document NEOS has not published yet stays `null` and the app prints `—` |
 | Daily price history (Date / Close / Adj Close / Volume) | Yahoo Finance public chart API | Used for the price-history sheets; the fund's own official NAV and market price are always preferred where NEOS publishes them |
-| Holdings fallback | SEC EDGAR Form **N-PORT-P**, NEOS ETF Trust **CIK 0001848758** (file 811-23645) | Used only when a holdings CSV is unavailable (`EDGAR_FALLBACK`); enabled in the config file, set `EDGAR_FALLBACK` to `false` to skip it (SEC EDGAR has answered GitHub runner IPs with `403`) |
+| Holdings fallback | SEC EDGAR Form **N-PORT-P** (`primary_doc.xml` in the trust's own EDGAR folder), NEOS ETF Trust **CIK 0001848758** (file 811-23645); the fund's series from SEC's [`company_tickers_mf.json`](https://www.sec.gov/files/company_tickers_mf.json) | Used only when a holdings CSV is unavailable (`EDGAR_FALLBACK`), only for a filing that names the fund's own series (its name only when SEC lists no series for the ticker) and only when its report period is strictly newer than the published holdings date (the issuer CSV's as-of day, or an earlier report period); the newest report period is read first. `meta.json` names the document in `source.nportDoc` (no key for a sheet from the issuer CSV). Enabled in the config file, set `EDGAR_FALLBACK` to `false` to skip it (SEC EDGAR has answered GitHub runner IPs with `403`) |
 | Dividend-history fallback | Yahoo Finance dividend events | Only for a fund with no published Distribution History rows; the feed marks those rows `distributions.fallback: true` |
 
 `neosfunds.com` throttles bursts (the TLS connection is reset), so requests are globally paced by `REQUEST_SLEEP` (config default `2s`) with bounded retries; every request has a 45 s budget (headers and body) per attempt.
@@ -73,9 +73,11 @@ NEOS publishes **no asset-class column**, so the Watchlist's `Asset Category` is
 
 `Cusip` is the identifier the CSV publishes, so it fills the shared `Identifier` column; option and T-bill rows key on it because they have no exchange ticker. The per-row `NetAssets`, `SharesOutstanding` and `CreationUnits` columns (identical on every row) are lifted to fund level.
 
+An N-PORT sheet (the EDGAR fallback) keeps the position's own identifiers (CUSIP, else ISIN, else the filing's other code such as an option's OCC symbol; a written option never takes its reference index's or ETF's CUSIP or ticker), uses the filing's asset category code (`EC`, `DE`, `DBT`, ...), sets a ticker only for a U.S. equity traded in USD and never on two different securities, and leaves a missing weight, value or balance empty, never `0`
+
 #### Return arithmetic
 
-The page publishes **annualized** 3 Yr / 5 Yr / 10 Yr figures and a **cumulative** Inception figure. The catalog carries both readings, computed from the published one with `(1 + r)^n - 1` or `(1 + TR)^(1/n) - 1`, and `returns.derivedFrom` records that the basis is NEOS's own NAV Performance table. Nothing is extrapolated past a tenor the fund has not lived through: a fund younger than its 5-year mark publishes `null`, and the app prints `—`.
+The page publishes **annualized** 3 Yr / 5 Yr / 10 Yr figures and a **cumulative** Inception figure. The catalog carries both readings, computed from the published one with `(1 + r)^n - 1` or `(1 + TR)^(1/n) - 1`, and `returns.derivedFrom` records that the basis is NEOS's own NAV Performance table. Nothing is extrapolated past a tenor the fund has not lived through: a fund younger than a horizon (calendar anniversary of its lineup inception date, inclusive, at the performance date) publishes `null` for it, also when the page prints a figure, and the app prints `—`: no 1-year or since-inception return before the first anniversary, no 3, 5 or 10-year one before those. Dates are read as plain calendar text (`2026-10-24`, `10/24/2026`, `10/24/26`, `Oct 24, 2026`, `24 Oct 2026`), never through the local time zone, so local runs match CI
 
 #### Returns basis and as-of date
 
@@ -91,8 +93,8 @@ Every `funds[].metrics` row in `api/neos/index.json` ends with two fields: `retu
 - A fund is either fully updated (pages, then `meta.json`, then its index row) or fully kept from before. Files are written through a temporary file and renamed; stale pages are removed only after the new `meta.json`.
 - A rerun with identical upstream data changes nothing, including `generatedAt`.
 - The run stops taking new funds after 25 minutes and still writes the index.
-- New lineup funds are printed as `NEW FUNDS: ...` (and appended to the step summary) and get an index row with `dataFile: null` and an all-`null` metrics object until their first successful update.
-- The run exits non-zero when every attempted fund failed or a requested ticker is not in the lineup.
+- `NEW FUNDS: A, B` is printed (and added to the workflow step summary) when a fund is published for the first time, also when its first read failed and a later run succeeds; `NEW FUNDS (not published yet): C` names new lineup funds whose first read failed. Such a fund has an index row with `dataFile: null` and an all-`null` metrics object until its first successful update; a catalog-only row that the lineup no longer lists (for example an old mistyped `TICKERS` entry) is dropped
+- The run exits non-zero when every attempted fund failed, or before any fund request when a requested ticker is neither in the lineup nor a published fund
 
 #### `dividendYieldBasis`
 
@@ -129,7 +131,7 @@ Defaults below are the values in `scripts/update-data.config.json`. Environment 
 | `REQUEST_SLEEP` | `2` | Seconds between request starts; `neosfunds.com` throttles bursts |
 | `CONCURRENCY` | `2` | Parallel fund workers |
 | `MAX_RETRIES` | `3` | Retries (integer >= 1) after the initial request for network errors and HTTP 408/425/429/5xx |
-| `TICKERS` | `""` | Space or comma separated ticker allowlist; ANDed with the other filters, never overriding them |
+| `TICKERS` | `""` | Space or comma separated ticker allowlist; ANDed with the other filters, never overriding them. A ticker that is neither in the live lineup nor a published fund (a closed fund keeps its data) is an error before any fund request (nothing is written) |
 | `CATEGORY` | `""` | Substring match on the NEOS asset-class group |
 | `AUM` | `:` | `min:max` dollars; also accepts K/M/B/T suffixes and `nano`, `micro`, `small`, `mid`, `large` |
 | `TER` | `:` | `min:max` expense ratio percent |
@@ -139,10 +141,10 @@ Defaults below are the values in `scripts/update-data.config.json`. Environment 
 | `TOTAL_RETURN_YTD` / `_1Y` / `_3Y` / `_5Y` / `_10Y` | `""` | `min:max` filters on the derived cumulative total return; a fund without that figure is excluded |
 | `HOLDINGS_PAGE_SIZE` | `250` | Rows per generated holdings JSON page |
 | `HISTORY_PAGE_SIZE` | `1000` | Rows per generated history JSON page |
-| `HISTORY_RANGE` | `max` | Yahoo history window: `max` or `Ny` (for example `5y`); sent as explicit period1/period2 because Yahoo ignores `range` when period1=0 |
+| `HISTORY_RANGE` | `max` | Yahoo history window: `max` or `Ny` (for example `5y`); sent as explicit period1/period2 because Yahoo ignores `range` when period1=0. A window keeps the older published history (Adj Close rescaled by the overlapping days), and a window that does not join it keeps the published history |
 | `STORE_RAW_DOWNLOADS` | `false` | Keep raw samples under `api/neos/raw` |
 | `SEC_UA` | `daggerok ETF feed daggerok@gmail.com` | Declared User-Agent for SEC EDGAR requests; redacted in config logs, the `SEC_UA` repository Actions variable overrides it |
-| `EDGAR_FALLBACK` | `true` | Use the fund's own N-PORT-P series (exact series name match, never older than the published holdings) when a holdings CSV is unavailable |
+| `EDGAR_FALLBACK` | `true` | Use the fund's own N-PORT-P filing (its series id from SEC's fund ticker table, the report period strictly newer than the published holdings) when a holdings CSV is unavailable |
 | `SKIP_YAHOO` | `false` | Do not call Yahoo; the previously published history pages and manifest stay untouched |
 | `SKIP_NEOS` | `false` | Do not read neosfunds.com; the published fund data stays as it is and only the Yahoo history is refreshed |
 | `VERBOSE` | `false` | Print per-fund retry and fallback notices |
