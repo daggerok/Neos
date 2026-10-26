@@ -13,39 +13,39 @@
   "managementFee": "0.68%",
   "managementFeeValue": 0.68,
   "nav": {
-    "display": "$52.87",
-    "value": 52.87,
-    "asOfDate": "Oct 22 2026",
-    "dailyChangeText": "$-0.52 (-0.98%)",
+    "display": "$52.65",
+    "value": 52.65,
+    "asOfDate": "Oct 23 2026",
+    "dailyChangeText": "$-0.22 (-0.42%)",
     "kind": "official (fund page Fund Details)"
   },
-  "navValue": 52.87,
+  "navValue": 52.65,
   "aum": {
     "display": "$12.54B",
     "value": 12538168830,
-    "asOfDate": "Oct 22 2026",
+    "asOfDate": "Oct 23 2026",
     "source": "official NEOS daily holdings CSV (download_holdings_csv)"
   },
   "aumValue": 12538168830,
-  "asOfDate": "Oct 22 2026",
+  "asOfDate": "Oct 23 2026",
   "inceptionDate": "Aug 29 2022",
   "inceptionDateFundPage": "Aug 29 2022",
   "exchange": "CBOE",
-  "closePrice": "$52.87",
-  "closePriceValue": 52.87,
+  "closePrice": "$52.64",
+  "closePriceValue": 52.64,
   "premiumDiscount": {
-    "display": "0.00%",
-    "value": 0,
-    "derivedValue": 0,
+    "display": "-0.02%",
+    "value": -0.02,
+    "derivedValue": -0.02,
     "kind": "official (fund page Fund Details \"Premium Discount (%)\")"
   },
-  "premiumDiscountValue": 0,
-  "premiumDiscountDerivedValue": 0,
+  "premiumDiscountValue": -0.02,
+  "premiumDiscountDerivedValue": -0.02,
   "premiumDiscountKind": "official (fund page Fund Details \"Premium Discount (%)\")",
   "bidAskSpread": {
     "display": "0.02%",
     "value": 0.02,
-    "asOfDate": "Oct 22 2026",
+    "asOfDate": "Oct 23 2026",
     "kind": "official (fund page Fund Details \"30-Day Median Bid-Ask Spread (%)\")"
   },
   "bidAskSpreadValue": 0.02,
@@ -56,7 +56,7 @@
     "value": 238150000,
     "asOfDate": "Oct 26 2026"
   },
-  "netAssetsAsOf": "Oct 22 2026",
+  "netAssetsAsOf": "Oct 23 2026",
   "secYieldAsOf": "Sep 30 2026",
   "distributions": {
     "frequency": "Monthly",
@@ -566,7 +566,6 @@
     "distributionInfoSource": "NEOS fund page Distribution Information block",
     "documentsSource": "NEOS fund page Documents table",
     "registrant": "NEOS ETF Trust (Investment Company Act file 811-23645)",
-    "nportDoc": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0001848758&type=NPORT-P&dateb=&owner=include&count=10",
     "exchangeSource": "NEOS fund page Fund Details \"Primary Exchange\"",
     "navSource": "NEOS fund page Fund Details \"Net Asset Value\" (official (fund page Fund Details))",
     "premiumDiscountSource": "official (fund page Fund Details \"Premium Discount (%)\")",
@@ -588,10 +587,10 @@
     "managementFeeValue": 0.68
   },
   "marketPrice": {
-    "display": "$52.87",
-    "value": 52.87,
-    "asOfDate": "Oct 22 2026",
-    "dailyChangeText": "$-0.54 (-1.01%)",
+    "display": "$52.64",
+    "value": 52.64,
+    "asOfDate": "Oct 23 2026",
+    "dailyChangeText": "$-0.23 (-0.44%)",
     "source": "NEOS fund page Fund Details \"Market Price\""
   },
   "yields": {
