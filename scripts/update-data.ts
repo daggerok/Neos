@@ -131,7 +131,7 @@ function outputFundLine(index: number, total: number, ticker: string, status: st
     field('sec', outputPercent(data.secYield ?? data.yields?.secYield ?? metrics.secYield)),
     field('wp', data.workplaceRaw),
   ].filter(part => part !== '').join(' ');
-  return `[ ${String(index).padStart(width)}/${String(total).padEnd(width)}  ] ${outputClean(ticker).padEnd(5)} ${status.padEnd(9)}${detail ? ` ${detail}` : ''}${reason ? ` reason=${outputClean(reason)}` : ''}`;
+  return `[ ${`${String(index).padStart(width)}/${total}`.padEnd(8)} ] ${outputClean(ticker).padEnd(5)} ${status.padEnd(9)}${detail ? ` ${detail}` : ''}${reason ? ` reason=${outputClean(reason)}` : ''}`;
 }
 function outputCreateReporter(root: URL | string, total: number) {
   let completed = 0;
@@ -1991,7 +1991,7 @@ async function fetchYahooHistory(
       exchange: parseYahooExchangeName(json),
     };
   } catch (error) {
-    outputNote(`[ ${'chart'.padEnd(9)}] ${ticker}: Yahoo chart unavailable (${errorMessage(error)}), keeping previous history`);
+    outputNote(`[ ${'chart'.padEnd(8)} ] ${ticker}: Yahoo chart unavailable (${errorMessage(error)}), keeping previous history`);
     return { rows: [], dividends: [], exchange: null };
   }
 }
@@ -2108,7 +2108,7 @@ export async function updateFund(
       }
     } catch (error) {
       if (!config.edgarFallback) throw error;
-      outputNote(`[ ${'holdings'.padEnd(9)}] ${ticker}: holdings CSV unavailable (${errorMessage(error)}), trying EDGAR`);
+      outputNote(`[ ${'holdings'.padEnd(8)} ] ${ticker}: holdings CSV unavailable (${errorMessage(error)}), trying EDGAR`);
       // The fund's own newest N-PORT-P filing (shared nport-reader block): identity by the series id of SEC's fund ticker table
       // (the fund name only when SEC lists no series for the ticker), read only when its report period is strictly newer than
       // the published holdings date (the issuer CSV's as-of day, or an earlier report period).
@@ -2122,7 +2122,7 @@ export async function updateFund(
       );
       if ('problem' in read) throw new Error(`${read.problem}; ${publishedMeta ? 'kept the previous complete data' : 'no data published for this fund yet'}`);
       const rows = nportHoldingsSheet(read.filing, nportTickers(read.filing.positions, await loadCompanyNames(config).catch(() => null), await loadUsListings((url, label) => fetchText(url, secHeaders(config), config, label))));
-      outputNote(`[ ${'nport'.padEnd(9)}] ${ticker}: N-PORT ${read.candidate.accession}, report period ${read.filing.repPdDate || 'n/a'}, ${rows.length} positions${read.loose ? ' (series name matched loosely)' : ''}`);
+      outputNote(`[ ${'nport'.padEnd(8)} ] ${ticker}: N-PORT ${read.candidate.accession}, report period ${read.filing.repPdDate || 'n/a'}, ${rows.length} positions${read.loose ? ' (series name matched loosely)' : ''}`);
       holdings = {
         ...holdings,
         headers: [...HOLDINGS_HEADERS],
