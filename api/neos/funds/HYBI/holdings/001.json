@@ -2,7 +2,7 @@
   "ticker": "HYBI",
   "page": 1,
   "pageSize": 250,
-  "totalRows": 9,
+  "totalRows": 10,
   "headers": [
     "Name",
     "Ticker",
@@ -17,17 +17,26 @@
       "Name": "United States Treasury Bill 12/01/2026",
       "Ticker": "912797VZ7",
       "Identifier": "912797VZ7",
-      "Weight": "71.02%",
-      "Market Value": "$154478116.44",
-      "Shares Held": "155,088,000",
+      "Weight": "45.87%",
+      "Market Value": "$100030913.07",
+      "Shares Held": "100,392,000",
       "Asset Category": "Treasury"
+    },
+    {
+      "Name": "State Street SPDR Portfolio High Yield Bond ETF",
+      "Ticker": "SPHY",
+      "Identifier": "78468R606",
+      "Weight": "25.03%",
+      "Market Value": "$54596614.40",
+      "Shares Held": "2,408,320",
+      "Asset Category": "Fund"
     },
     {
       "Name": "SPXW US 11/05/26 P6800",
       "Ticker": "SPXW 261105P06800000",
       "Identifier": "SPXW 261105P06800000",
-      "Weight": "0.02%",
-      "Market Value": "$51230.00",
+      "Weight": "0.00%",
+      "Market Value": "$6345.00",
       "Shares Held": "94",
       "Asset Category": "Option"
     },
@@ -35,8 +44,8 @@
       "Name": "SPXW US 11/05/26 P6900",
       "Ticker": "SPXW 261105P06900000",
       "Identifier": "SPXW 261105P06900000",
-      "Weight": "0.03%",
-      "Market Value": "$59220.00",
+      "Weight": "0.00%",
+      "Market Value": "$8695.00",
       "Shares Held": "94",
       "Asset Category": "Option"
     },
@@ -44,8 +53,8 @@
       "Name": "SPXW US 11/05/26 P6950",
       "Ticker": "SPXW 261105P06950000",
       "Identifier": "SPXW 261105P06950000",
-      "Weight": "0.03%",
-      "Market Value": "$67210.00",
+      "Weight": "0.00%",
+      "Market Value": "$8225.00",
       "Shares Held": "94",
       "Asset Category": "Option"
     },
@@ -53,8 +62,8 @@
       "Name": "SPXW US 11/05/26 P7125",
       "Ticker": "SPXW 261105P07125000",
       "Identifier": "SPXW 261105P07125000",
-      "Weight": "-0.05%",
-      "Market Value": "$-101520.00",
+      "Weight": "-0.01%",
+      "Market Value": "$-12220.00",
       "Shares Held": "-94",
       "Asset Category": "Option"
     },
@@ -62,8 +71,8 @@
       "Name": "SPXW US 11/05/26 P7200",
       "Ticker": "SPXW 261105P07200000",
       "Identifier": "SPXW 261105P07200000",
-      "Weight": "-0.06%",
-      "Market Value": "$-129250.00",
+      "Weight": "-0.01%",
+      "Market Value": "$-16450.00",
       "Shares Held": "-94",
       "Asset Category": "Option"
     },
@@ -71,8 +80,8 @@
       "Name": "SPXW US 11/05/26 P7250",
       "Ticker": "SPXW 261105P07250000",
       "Identifier": "SPXW 261105P07250000",
-      "Weight": "-0.07%",
-      "Market Value": "$-155570.00",
+      "Weight": "-0.01%",
+      "Market Value": "$-19505.00",
       "Shares Held": "-94",
       "Asset Category": "Option"
     },
@@ -80,8 +89,8 @@
       "Name": "iShares Broad USD High Yield Corporate Bond ETF",
       "Ticker": "USHY",
       "Identifier": "46435U853",
-      "Weight": "24.96%",
-      "Market Value": "$54295162.00",
+      "Weight": "25.07%",
+      "Market Value": "$54676448.25",
       "Shares Held": "1,525,145",
       "Asset Category": "Fund"
     },
@@ -89,9 +98,9 @@
       "Name": "Cash & Other",
       "Ticker": "Cash&Other",
       "Identifier": "Cash&Other",
-      "Weight": "4.11%",
-      "Market Value": "$8940648.62",
-      "Shares Held": "8,940,649",
+      "Weight": "4.04%",
+      "Market Value": "$8813755.00",
+      "Shares Held": "8,813,755",
       "Asset Category": "Cash"
     }
   ]

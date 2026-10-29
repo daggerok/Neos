@@ -2,7 +2,7 @@
   "ticker": "XQQI",
   "page": 1,
   "pageSize": 1000,
-  "totalRows": 183,
+  "totalRows": 187,
   "headers": [
     "Date",
     "Close",
@@ -10,6 +10,30 @@
     "Volume"
   ],
   "rows": [
+    {
+      "Date": "2026-10-29",
+      "Close": "47.72",
+      "Adj Close": "47.72",
+      "Volume": "414484"
+    },
+    {
+      "Date": "2026-10-28",
+      "Close": "48.69",
+      "Adj Close": "48.69",
+      "Volume": "297600"
+    },
+    {
+      "Date": "2026-10-27",
+      "Close": "48.29",
+      "Adj Close": "48.29",
+      "Volume": "290000"
+    },
+    {
+      "Date": "2026-10-26",
+      "Close": "47.40",
+      "Adj Close": "47.40",
+      "Volume": "381600"
+    },
     {
       "Date": "2026-10-23",
       "Close": "46.63",

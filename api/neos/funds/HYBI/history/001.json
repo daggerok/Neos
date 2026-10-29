@@ -2,7 +2,7 @@
   "ticker": "HYBI",
   "page": 1,
   "pageSize": 1000,
-  "totalRows": 519,
+  "totalRows": 523,
   "headers": [
     "Date",
     "Close",
@@ -10,6 +10,30 @@
     "Volume"
   ],
   "rows": [
+    {
+      "Date": "2026-10-29",
+      "Close": "48.07",
+      "Adj Close": "48.07",
+      "Volume": "34514"
+    },
+    {
+      "Date": "2026-10-28",
+      "Close": "48.09",
+      "Adj Close": "48.09",
+      "Volume": "20100"
+    },
+    {
+      "Date": "2026-10-27",
+      "Close": "48.10",
+      "Adj Close": "48.10",
+      "Volume": "20600"
+    },
+    {
+      "Date": "2026-10-26",
+      "Close": "48.01",
+      "Adj Close": "48.01",
+      "Volume": "16200"
+    },
     {
       "Date": "2026-10-23",
       "Close": "47.93",

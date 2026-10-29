@@ -13,50 +13,50 @@
   "managementFee": "0.98%",
   "managementFeeValue": 0.98,
   "nav": {
-    "display": "$46.62",
-    "value": 46.62,
-    "asOfDate": "Oct 22 2026",
-    "dailyChangeText": "$-1.96 (-4.03%)",
+    "display": "$48.68",
+    "value": 48.68,
+    "asOfDate": "Oct 28 2026",
+    "dailyChangeText": "$0.41 (0.85%)",
     "kind": "official (fund page Fund Details)"
   },
-  "navValue": 46.62,
+  "navValue": 48.68,
   "aum": {
-    "display": "$383.95M",
-    "value": 383947744,
-    "asOfDate": "Oct 22 2026",
+    "display": "$408.44M",
+    "value": 408441980,
+    "asOfDate": "Oct 28 2026",
     "source": "official NEOS daily holdings CSV (download_holdings_csv)"
   },
-  "aumValue": 383947744,
-  "asOfDate": "Oct 22 2026",
+  "aumValue": 408441980,
+  "asOfDate": "Oct 28 2026",
   "inceptionDate": "Feb 02 2026",
   "inceptionDateFundPage": "Feb 02 2026",
   "exchange": "NASDAQ",
-  "closePrice": "$46.60",
-  "closePriceValue": 46.6,
+  "closePrice": "$48.69",
+  "closePriceValue": 48.69,
   "premiumDiscount": {
-    "display": "-0.05%",
-    "value": -0.05,
-    "derivedValue": -0.04,
+    "display": "0.02%",
+    "value": 0.02,
+    "derivedValue": 0.02,
     "kind": "official (fund page Fund Details \"Premium Discount (%)\")"
   },
-  "premiumDiscountValue": -0.05,
-  "premiumDiscountDerivedValue": -0.04,
+  "premiumDiscountValue": 0.02,
+  "premiumDiscountDerivedValue": 0.02,
   "premiumDiscountKind": "official (fund page Fund Details \"Premium Discount (%)\")",
   "bidAskSpread": {
     "display": "0.10%",
     "value": 0.1,
-    "asOfDate": "Oct 22 2026",
+    "asOfDate": "Oct 28 2026",
     "kind": "official (fund page Fund Details \"30-Day Median Bid-Ask Spread (%)\")"
   },
   "bidAskSpreadValue": 0.1,
   "acquiredFundFeesText": null,
-  "totalNetAssets": 383947744,
+  "totalNetAssets": 408441980,
   "sharesOutstanding": {
-    "display": "8,240,000",
-    "value": 8240000,
-    "asOfDate": "Oct 26 2026"
+    "display": "8,390,000",
+    "value": 8390000,
+    "asOfDate": "Oct 29 2026"
   },
-  "netAssetsAsOf": "Oct 22 2026",
+  "netAssetsAsOf": "Oct 28 2026",
   "secYieldAsOf": "Sep 30 2026",
   "distributions": {
     "frequency": "Monthly",
@@ -245,8 +245,8 @@
     ],
     "pageSize": 250,
     "totalRows": 106,
-    "asOfDate": "Oct 26 2026",
-    "asOf": "2026-10-26",
+    "asOfDate": "Oct 29 2026",
+    "asOf": "2026-10-29",
     "source": "https://neosfunds.com/wp-admin/admin-ajax.php?action=download_holdings_csv&ticker=XQQI",
     "sourceKind": "official NEOS daily holdings CSV (download_holdings_csv)"
   },
@@ -255,9 +255,9 @@
       "./history/001.json"
     ],
     "pageSize": 1000,
-    "totalRows": 183,
-    "asOfDate": "Oct 23 2026",
-    "asOf": "2026-10-23",
+    "totalRows": 187,
+    "asOfDate": "Oct 29 2026",
+    "asOf": "2026-10-29",
     "source": "https://query1.finance.yahoo.com/v8/finance/chart/XQQI?period1=0&period2=9999999999&interval=1d&events=div%7Csplit&includeAdjustedClose=true",
     "sourceKind": "Yahoo Finance public chart API (daily Close / Adj Close / Volume)"
   },
@@ -276,7 +276,6 @@
     "distributionInfoSource": "NEOS fund page Distribution Information block",
     "documentsSource": "NEOS fund page Documents table",
     "registrant": "NEOS ETF Trust (Investment Company Act file 811-23645)",
-    "nportDoc": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0001848758&type=NPORT-P&dateb=&owner=include&count=10",
     "exchangeSource": "NEOS fund page Fund Details \"Primary Exchange\"",
     "navSource": "NEOS fund page Fund Details \"Net Asset Value\" (official (fund page Fund Details))",
     "premiumDiscountSource": "official (fund page Fund Details \"Premium Discount (%)\")",
@@ -298,10 +297,10 @@
     "managementFeeValue": 0.98
   },
   "marketPrice": {
-    "display": "$46.60",
-    "value": 46.6,
-    "asOfDate": "Oct 22 2026",
-    "dailyChangeText": "$-1.97 (-4.06%)",
+    "display": "$48.69",
+    "value": 48.69,
+    "asOfDate": "Oct 28 2026",
+    "dailyChangeText": "$0.40 (0.83%)",
     "source": "NEOS fund page Fund Details \"Market Price\""
   },
   "yields": {

@@ -13,50 +13,50 @@
   "managementFee": "0.98%",
   "managementFeeValue": 0.98,
   "nav": {
-    "display": "$38.20",
-    "value": 38.2,
-    "asOfDate": "Oct 22 2026",
-    "dailyChangeText": "$-1.99 (-4.94%)",
+    "display": "$38.25",
+    "value": 38.25,
+    "asOfDate": "Oct 28 2026",
+    "dailyChangeText": "$0.48 (1.27%)",
     "kind": "official (fund page Fund Details)"
   },
-  "navValue": 38.2,
+  "navValue": 38.25,
   "aum": {
-    "display": "$236.51M",
-    "value": 236509713,
-    "asOfDate": "Oct 22 2026",
+    "display": "$242.10M",
+    "value": 242095281,
+    "asOfDate": "Oct 28 2026",
     "source": "official NEOS daily holdings CSV (download_holdings_csv)"
   },
-  "aumValue": 236509713,
-  "asOfDate": "Oct 22 2026",
+  "aumValue": 242095281,
+  "asOfDate": "Oct 28 2026",
   "inceptionDate": "Feb 02 2026",
   "inceptionDateFundPage": "Feb 02 2026",
   "exchange": "NASDAQ",
-  "closePrice": "$38.22",
-  "closePriceValue": 38.22,
+  "closePrice": "$38.39",
+  "closePriceValue": 38.39,
   "premiumDiscount": {
-    "display": "0.05%",
-    "value": 0.05,
-    "derivedValue": 0.05,
+    "display": "0.38%",
+    "value": 0.38,
+    "derivedValue": 0.37,
     "kind": "official (fund page Fund Details \"Premium Discount (%)\")"
   },
-  "premiumDiscountValue": 0.05,
-  "premiumDiscountDerivedValue": 0.05,
+  "premiumDiscountValue": 0.38,
+  "premiumDiscountDerivedValue": 0.37,
   "premiumDiscountKind": "official (fund page Fund Details \"Premium Discount (%)\")",
   "bidAskSpread": {
-    "display": "0.26%",
-    "value": 0.26,
-    "asOfDate": "Oct 22 2026",
+    "display": "0.25%",
+    "value": 0.25,
+    "asOfDate": "Oct 28 2026",
     "kind": "official (fund page Fund Details \"30-Day Median Bid-Ask Spread (%)\")"
   },
-  "bidAskSpreadValue": 0.26,
+  "bidAskSpreadValue": 0.25,
   "acquiredFundFeesText": null,
-  "totalNetAssets": 236509713,
+  "totalNetAssets": 242095281,
   "sharesOutstanding": {
-    "display": "6,210,000",
-    "value": 6210000,
-    "asOfDate": "Oct 26 2026"
+    "display": "6,330,000",
+    "value": 6330000,
+    "asOfDate": "Oct 29 2026"
   },
-  "netAssetsAsOf": "Oct 22 2026",
+  "netAssetsAsOf": "Oct 28 2026",
   "secYieldAsOf": "Sep 30 2026",
   "distributions": {
     "frequency": "Monthly",
@@ -245,8 +245,8 @@
     ],
     "pageSize": 250,
     "totalRows": 8,
-    "asOfDate": "Oct 26 2026",
-    "asOf": "2026-10-26",
+    "asOfDate": "Oct 29 2026",
+    "asOf": "2026-10-29",
     "source": "https://neosfunds.com/wp-admin/admin-ajax.php?action=download_holdings_csv&ticker=XBCI",
     "sourceKind": "official NEOS daily holdings CSV (download_holdings_csv)"
   },
@@ -255,9 +255,9 @@
       "./history/001.json"
     ],
     "pageSize": 1000,
-    "totalRows": 183,
-    "asOfDate": "Oct 23 2026",
-    "asOf": "2026-10-23",
+    "totalRows": 187,
+    "asOfDate": "Oct 29 2026",
+    "asOf": "2026-10-29",
     "source": "https://query1.finance.yahoo.com/v8/finance/chart/XBCI?period1=0&period2=9999999999&interval=1d&events=div%7Csplit&includeAdjustedClose=true",
     "sourceKind": "Yahoo Finance public chart API (daily Close / Adj Close / Volume)"
   },
@@ -276,7 +276,6 @@
     "distributionInfoSource": "NEOS fund page Distribution Information block",
     "documentsSource": "NEOS fund page Documents table",
     "registrant": "NEOS ETF Trust (Investment Company Act file 811-23645)",
-    "nportDoc": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0001848758&type=NPORT-P&dateb=&owner=include&count=10",
     "exchangeSource": "NEOS fund page Fund Details \"Primary Exchange\"",
     "navSource": "NEOS fund page Fund Details \"Net Asset Value\" (official (fund page Fund Details))",
     "premiumDiscountSource": "official (fund page Fund Details \"Premium Discount (%)\")",
@@ -298,10 +297,10 @@
     "managementFeeValue": 0.98
   },
   "marketPrice": {
-    "display": "$38.22",
-    "value": 38.22,
-    "asOfDate": "Oct 22 2026",
-    "dailyChangeText": "$-2.00 (-4.97%)",
+    "display": "$38.39",
+    "value": 38.39,
+    "asOfDate": "Oct 28 2026",
+    "dailyChangeText": "$0.54 (1.42%)",
     "source": "NEOS fund page Fund Details \"Market Price\""
   },
   "yields": {
