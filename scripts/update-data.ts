@@ -1934,13 +1934,13 @@ function publishedYahooDividends(meta: Record<string, any> | null): unknown[] {
 }
 
 /**
- * A HISTORY_RANGE window (`Ny`) never shrinks the published history: the shared windowed-chart block puts the published days
+ * A fresh chart (a HISTORY_RANGE window or a truncated `max` answer) never shrinks the published history: the shared windowed-chart block puts the published days
  * older than the window behind the fresh ones (Adj Close rescaled by the overlapping days) and keeps the older published Yahoo
- * dividends. The older days keep their published row (only a rescaled Adj Close changes). Returns `parsed` unchanged for `max`
- * or with nothing published, null when the window does not join the published history (the caller keeps the published history).
+ * dividends. The older days keep their published row (only a rescaled Adj Close changes). Returns `parsed` unchanged
+ * or with nothing published (a full `max` answer starts at inception, so the merge finds nothing older), null when the chart does not join the published history (the caller keeps the published history).
  */
 export function windowedYahooChart(parsed: ReturnType<typeof parseYahooChart>, range: string, published: Array<Record<string, string>>, publishedDividends: unknown[] = []): { history: YahooHistoryRow[]; dividends: YahooDistribution[]; older: Array<Record<string, string>> } | null {
-  if (!/^\d+y$/i.test(range.trim()) || !published.length || !parsed.history.length) return { ...parsed, older: [] };
+  if (!published.length || !parsed.history.length) return { ...parsed, older: [] };
   const epoch = (iso: string): number => Date.UTC(Number(iso.slice(0, 4)), Number(iso.slice(5, 7)) - 1, Number(iso.slice(8, 10))) / 1000;
   const days: WindowedChartDay[] = [];
   for (let index = parsed.history.length - 1; index >= 0; index -= 1) {
@@ -1975,9 +1975,11 @@ async function fetchYahooHistory(
     const json = JSON.parse(await fetchText(yahooChartUrl(ticker, config.historyRange), yahooHeaders(), config, `${ticker} Yahoo chart`));
     const fundDir = path.join(API_ROOT, 'funds', ticker);
     const publishedRows = (await readPublishedRows(fundDir, 'history')).rows;
-    // A HISTORY_RANGE window never shrinks the published history (shared windowed-chart block)
-    const parsed = windowedYahooChart(parseYahooChart(json), config.historyRange, publishedRows, publishedYahooDividends(await readPreviousMeta(fundDir)));
-    if (!parsed) throw new Error(`the window (${config.historyRange}) does not join the published history`);
+    // A fresh chart never shrinks the published history, for a HISTORY_RANGE window and for a truncated `max` answer alike
+    // (2026-10-29: Yahoo served 2 bars for some funds); a full `max` answer starts at inception: nothing older, unchanged
+    const fetched = parseYahooChart(json);
+    const parsed = windowedYahooChart(fetched, config.historyRange, publishedRows, publishedYahooDividends(await readPreviousMeta(fundDir)));
+    if (!parsed) throw new Error(`chart does not join the published history (${config.historyRange}, ${fetched.history.length} days)`);
     const published = new Map<string, string>();
     for (const row of publishedRows) if (typeof row?.Date === 'string' && typeof row['Adj Close'] === 'string') published.set(row.Date, row['Adj Close']);
     return {
