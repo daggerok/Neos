@@ -919,10 +919,12 @@ describe("pipeline 2", () => {
     await inTempRoot(async (root) => {
       const dir = seedFeed(root);
       const previous = { ticker: "SPYI", holdings: 1, history: 3, metrics: { tr1y: 14.62 } };
-      const urls = mockFetch((url) => (url.includes("finance.yahoo.com") ? new Response(CHART) : null));
+      // the fresh chart joins the published days (2026-09-18 overlaps), so the older published days stay behind it
+      const joined = JSON.stringify({ chart: { result: [{ timestamp: [Date.UTC(2026, 8, 18) / 1000, Date.UTC(2026, 8, 19) / 1000], indicators: { quote: [{ close: [53.1, 54.3], volume: [5, 6] }], adjclose: [{ adjclose: [53.1, 54.3] }] }, meta: { exchangeName: "PCX" } }] } });
+      const urls = mockFetch((url) => (url.includes("finance.yahoo.com") ? new Response(joined) : null));
       const entry = await refreshHistoryOnly(FUND, previous as any, { ...quiet(), skipNeos: true }, stats());
       expect(urls.every((url) => !url.includes("neosfunds.com"))).toBe(true);
-      expect(entry.history).toBe(2);
+      expect(entry.history).toBe(4);
       expect((entry.metrics as { tr1y: number }).tr1y).toBe(14.62);
       expect(readJson(dir, "meta.json").holdings.totalRows).toBe(1);
       mockFetch(() => null);
@@ -1029,6 +1031,14 @@ describe("pipeline 4", () => {
       expect(snapshot(root)).toEqual(first);
       await main({ ...RUN_ENV, HISTORY_RANGE: "1y", SKIP_NEOS: "true" });
       expect(snapshot(root)).toEqual(first);
+      expect(readJson(root, "funds", "SPYI", "meta.json").history.totalRows).toBe(2);
+      // a truncated `max` answer (Yahoo served 2 bars for some funds on 2026-10-29) never shrinks the history either:
+      // one that joins the published days keeps them all, one that does not join keeps the fund as published
+      await main({ ...RUN_ENV, SKIP_NEOS: "true" });
+      expect(snapshot(root)).toEqual(first);
+      result.timestamp = [result.timestamp[0] + 30 * 86_400];
+      mockFetch(site(RICH_PAGES, JSON.stringify(chart)));
+      await main({ ...RUN_ENV, SKIP_NEOS: "true" });
       expect(readJson(root, "funds", "SPYI", "meta.json").history.totalRows).toBe(2);
     });
   });
