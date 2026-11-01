@@ -2,7 +2,7 @@
   "ticker": "XSPI",
   "page": 3,
   "pageSize": 250,
-  "totalRows": 509,
+  "totalRows": 508,
   "headers": [
     "Name",
     "Ticker",
@@ -14,20 +14,11 @@
   ],
   "rows": [
     {
-      "Name": "Xcel Energy Inc",
-      "Ticker": "XEL",
-      "Identifier": "98389B100",
-      "Weight": "0.07%",
-      "Market Value": "$91767.02",
-      "Shares Held": "1,189",
-      "Asset Category": "Equity"
-    },
-    {
       "Name": "ExxonMobil Holdings Corp",
       "Ticker": "XOM",
       "Identifier": "30233Q108",
-      "Weight": "1.18%",
-      "Market Value": "$1649647.26",
+      "Weight": "1.25%",
+      "Market Value": "$1697046.75",
       "Shares Held": "9,063",
       "Asset Category": "Equity"
     },
@@ -35,8 +26,8 @@
       "Name": "Xylem Inc/NY",
       "Ticker": "XYL",
       "Identifier": "98419M100",
-      "Weight": "0.02%",
-      "Market Value": "$33968.55",
+      "Weight": "0.03%",
+      "Market Value": "$35574.00",
       "Shares Held": "385",
       "Asset Category": "Equity"
     },
@@ -45,7 +36,7 @@
       "Ticker": "XYZ",
       "Identifier": "852234103",
       "Weight": "0.05%",
-      "Market Value": "$71975.97",
+      "Market Value": "$72942.54",
       "Shares Held": "957",
       "Asset Category": "Equity"
     },
@@ -54,7 +45,7 @@
       "Ticker": "YUM",
       "Identifier": "988498101",
       "Weight": "0.06%",
-      "Market Value": "$84690.24",
+      "Market Value": "$87645.60",
       "Shares Held": "564",
       "Asset Category": "Equity"
     },
@@ -63,7 +54,7 @@
       "Ticker": "ZBH",
       "Identifier": "98956P102",
       "Weight": "0.02%",
-      "Market Value": "$32579.82",
+      "Market Value": "$31947.76",
       "Shares Held": "338",
       "Asset Category": "Equity"
     },
@@ -72,7 +63,7 @@
       "Ticker": "ZBRA",
       "Identifier": "989207105",
       "Weight": "0.01%",
-      "Market Value": "$20773.80",
+      "Market Value": "$19508.04",
       "Shares Held": "54",
       "Asset Category": "Equity"
     },
@@ -81,7 +72,7 @@
       "Ticker": "ZTS",
       "Identifier": "98978V103",
       "Weight": "0.05%",
-      "Market Value": "$65896.60",
+      "Market Value": "$67522.84",
       "Shares Held": "847",
       "Asset Category": "Equity"
     },
@@ -89,9 +80,9 @@
       "Name": "Cash & Other",
       "Ticker": "Cash&Other",
       "Identifier": "Cash&Other",
-      "Weight": "2.53%",
-      "Market Value": "$3553169.32",
-      "Shares Held": "3,553,169",
+      "Weight": "3.67%",
+      "Market Value": "$4996428.71",
+      "Shares Held": "4,996,429",
       "Asset Category": "Cash"
     }
   ]

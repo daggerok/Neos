@@ -2,7 +2,7 @@
   "ticker": "XBCI",
   "page": 1,
   "pageSize": 1000,
-  "totalRows": 187,
+  "totalRows": 188,
   "headers": [
     "Date",
     "Close",
@@ -11,10 +11,16 @@
   ],
   "rows": [
     {
+      "Date": "2026-10-30",
+      "Close": "34.89",
+      "Adj Close": "34.89",
+      "Volume": "429300"
+    },
+    {
       "Date": "2026-10-29",
-      "Close": "37.87",
-      "Adj Close": "37.87",
-      "Volume": "149544"
+      "Close": "37.89",
+      "Adj Close": "37.89",
+      "Volume": "158300"
     },
     {
       "Date": "2026-10-28",

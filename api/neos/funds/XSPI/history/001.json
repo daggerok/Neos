@@ -2,7 +2,7 @@
   "ticker": "XSPI",
   "page": 1,
   "pageSize": 1000,
-  "totalRows": 187,
+  "totalRows": 188,
   "headers": [
     "Date",
     "Close",
@@ -11,10 +11,16 @@
   ],
   "rows": [
     {
+      "Date": "2026-10-30",
+      "Close": "48.34",
+      "Adj Close": "48.34",
+      "Volume": "144600"
+    },
+    {
       "Date": "2026-10-29",
       "Close": "49.59",
       "Adj Close": "49.59",
-      "Volume": "80397"
+      "Volume": "81800"
     },
     {
       "Date": "2026-10-28",

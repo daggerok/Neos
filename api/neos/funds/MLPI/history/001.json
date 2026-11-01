@@ -2,7 +2,7 @@
   "ticker": "MLPI",
   "page": 1,
   "pageSize": 1000,
-  "totalRows": 217,
+  "totalRows": 218,
   "headers": [
     "Date",
     "Close",
@@ -11,10 +11,16 @@
   ],
   "rows": [
     {
+      "Date": "2026-10-30",
+      "Close": "53.91",
+      "Adj Close": "53.91",
+      "Volume": "280900"
+    },
+    {
       "Date": "2026-10-29",
-      "Close": "54.03",
-      "Adj Close": "54.03",
-      "Volume": "264241"
+      "Close": "53.97",
+      "Adj Close": "53.97",
+      "Volume": "265400"
     },
     {
       "Date": "2026-10-28",

@@ -2,7 +2,7 @@
   "ticker": "HYBI",
   "page": 1,
   "pageSize": 1000,
-  "totalRows": 523,
+  "totalRows": 524,
   "headers": [
     "Date",
     "Close",
@@ -11,10 +11,16 @@
   ],
   "rows": [
     {
+      "Date": "2026-10-30",
+      "Close": "48.01",
+      "Adj Close": "48.01",
+      "Volume": "52900"
+    },
+    {
       "Date": "2026-10-29",
-      "Close": "48.07",
-      "Adj Close": "48.07",
-      "Volume": "34514"
+      "Close": "48.08",
+      "Adj Close": "48.08",
+      "Volume": "34500"
     },
     {
       "Date": "2026-10-28",

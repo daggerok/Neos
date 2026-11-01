@@ -2,7 +2,7 @@
   "ticker": "NEHI",
   "page": 1,
   "pageSize": 1000,
-  "totalRows": 228,
+  "totalRows": 229,
   "headers": [
     "Date",
     "Close",
@@ -11,10 +11,16 @@
   ],
   "rows": [
     {
+      "Date": "2026-10-30",
+      "Close": "27.52",
+      "Adj Close": "27.52",
+      "Volume": "88200"
+    },
+    {
       "Date": "2026-10-29",
-      "Close": "28.88",
-      "Adj Close": "28.88",
-      "Volume": "26121"
+      "Close": "28.83",
+      "Adj Close": "28.83",
+      "Volume": "34500"
     },
     {
       "Date": "2026-10-28",
