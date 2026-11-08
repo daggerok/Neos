@@ -2,7 +2,7 @@
   "ticker": "CSHI",
   "page": 2,
   "pageSize": 1000,
-  "totalRows": 1047,
+  "totalRows": 1052,
   "headers": [
     "Date",
     "Close",
@@ -10,6 +10,36 @@
     "Volume"
   ],
   "rows": [
+    {
+      "Date": "2022-11-10",
+      "Close": "50.12",
+      "Adj Close": "40.30",
+      "Volume": "100"
+    },
+    {
+      "Date": "2022-11-09",
+      "Close": "50.10",
+      "Adj Close": "40.29",
+      "Volume": "100"
+    },
+    {
+      "Date": "2022-11-08",
+      "Close": "50.11",
+      "Adj Close": "40.30",
+      "Volume": "100"
+    },
+    {
+      "Date": "2022-11-07",
+      "Close": "50.10",
+      "Adj Close": "40.29",
+      "Volume": "100"
+    },
+    {
+      "Date": "2022-11-04",
+      "Close": "50.08",
+      "Adj Close": "40.27",
+      "Volume": "100"
+    },
     {
       "Date": "2022-11-03",
       "Close": "50.06",

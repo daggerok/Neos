@@ -2,7 +2,7 @@
   "ticker": "BTCI",
   "page": 1,
   "pageSize": 250,
-  "totalRows": 9,
+  "totalRows": 8,
   "headers": [
     "Name",
     "Ticker",
@@ -14,74 +14,65 @@
   ],
   "rows": [
     {
-      "Name": "United States Treasury Bill 11/03/2026",
-      "Ticker": "912797VP9",
-      "Identifier": "912797VP9",
-      "Weight": "59.00%",
-      "Market Value": "$784293675.63",
-      "Shares Held": "784,377,000",
-      "Asset Category": "Treasury"
-    },
-    {
       "Name": "United States Treasury Bill 01/26/2027",
       "Ticker": "912797WR4",
       "Identifier": "912797WR4",
-      "Weight": "26.64%",
-      "Market Value": "$354172929.89",
-      "Shares Held": "357,533,000",
+      "Weight": "86.30%",
+      "Market Value": "$1132057747.14",
+      "Shares Held": "1,141,910,000",
       "Asset Category": "Treasury"
     },
     {
       "Name": "CBTX US 12/18/26 C1930",
       "Ticker": "CBTX 261218C01930000",
       "Identifier": "CBTX 261218C01930000",
-      "Weight": "-0.70%",
-      "Market Value": "$-9262400.00",
-      "Shares Held": "-1,654",
+      "Weight": "-0.53%",
+      "Market Value": "$-6896200.00",
+      "Shares Held": "-1,640",
       "Asset Category": "Option"
     },
     {
       "Name": "CBTX US 12/18/26 C2000",
       "Ticker": "CBTX 261218C02000000",
       "Identifier": "CBTX 261218C02000000",
-      "Weight": "-0.45%",
-      "Market Value": "$-5954400.00",
-      "Shares Held": "-1,654",
+      "Weight": "-0.33%",
+      "Market Value": "$-4346000.00",
+      "Shares Held": "-1,640",
       "Asset Category": "Option"
     },
     {
       "Name": "CBTX US 01/15/27 C1980",
       "Ticker": "CBTX 270115C01980000",
       "Identifier": "CBTX 270115C01980000",
-      "Weight": "3.12%",
-      "Market Value": "$41412000.00",
-      "Shares Held": "5,950",
+      "Weight": "2.54%",
+      "Market Value": "$33257770.00",
+      "Shares Held": "5,902",
       "Asset Category": "Option"
     },
     {
       "Name": "CBTX US 01/15/27 P1980",
       "Ticker": "CBTX 270115P01980000",
       "Identifier": "CBTX 270115P01980000",
-      "Weight": "-9.85%",
-      "Market Value": "$-130900000.00",
-      "Shares Held": "-5,950",
+      "Weight": "-10.37%",
+      "Market Value": "$-136011590.00",
+      "Shares Held": "-5,902",
       "Asset Category": "Option"
     },
     {
       "Name": "VanEck Bitcoin ETF/US",
       "Ticker": "HODL",
       "Identifier": "92189K105",
-      "Weight": "1.87%",
-      "Market Value": "$24849586.62",
-      "Shares Held": "1,147,257",
+      "Weight": "1.78%",
+      "Market Value": "$23352957.50",
+      "Shares Held": "1,090,750",
       "Asset Category": "Fund"
     },
     {
       "Name": "iShares Bitcoin Trust ETF",
       "Ticker": "IBIT",
       "Identifier": "46438F101",
-      "Weight": "17.05%",
-      "Market Value": "$226640118.40",
+      "Weight": "17.09%",
+      "Market Value": "$224131187.20",
       "Shares Held": "5,226,940",
       "Asset Category": "Fund"
     },
@@ -89,9 +80,9 @@
       "Name": "Cash & Other",
       "Ticker": "Cash&Other",
       "Identifier": "Cash&Other",
-      "Weight": "3.24%",
-      "Market Value": "$43070693.57",
-      "Shares Held": "43,070,694",
+      "Weight": "3.52%",
+      "Market Value": "$46131472.97",
+      "Shares Held": "46,131,473",
       "Asset Category": "Cash"
     }
   ]

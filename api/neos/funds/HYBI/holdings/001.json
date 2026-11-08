@@ -2,7 +2,7 @@
   "ticker": "HYBI",
   "page": 1,
   "pageSize": 250,
-  "totalRows": 9,
+  "totalRows": 10,
   "headers": [
     "Name",
     "Ticker",
@@ -17,72 +17,81 @@
       "Name": "United States Treasury Bill 12/01/2026",
       "Ticker": "912797VZ7",
       "Identifier": "912797VZ7",
-      "Weight": "71.23%",
-      "Market Value": "$153964550.63",
-      "Shares Held": "154,449,000",
+      "Weight": "46.05%",
+      "Market Value": "$98334669.75",
+      "Shares Held": "98,566,000",
       "Asset Category": "Treasury"
+    },
+    {
+      "Name": "Xtrackers USD High Yield Corporate Bond ETF",
+      "Ticker": "HYLB",
+      "Identifier": "233051432",
+      "Weight": "25.09%",
+      "Market Value": "$53577155.66",
+      "Shares Held": "1,521,646",
+      "Asset Category": "Fund"
     },
     {
       "Name": "State Street SPDR Portfolio High Yield Bond Index ETF",
       "Ticker": "SPHY",
       "Identifier": "78468R606",
-      "Weight": "24.86%",
-      "Market Value": "$53734704.43",
-      "Shares Held": "2,392,698",
+      "Weight": "25.02%",
+      "Market Value": "$53428836.09",
+      "Shares Held": "2,371,453",
       "Asset Category": "Fund"
     },
     {
-      "Name": "SPXW US 11/12/26 P6850",
-      "Ticker": "SPXW 261112P06850000",
-      "Identifier": "SPXW 261112P06850000",
-      "Weight": "0.03%",
-      "Market Value": "$60450.00",
-      "Shares Held": "93",
+      "Name": "SPXW US 11/19/26 P6600",
+      "Ticker": "SPXW 261119P06600000",
+      "Identifier": "SPXW 261119P06600000",
+      "Weight": "0.06%",
+      "Market Value": "$133920.00",
+      "Shares Held": "96",
       "Asset Category": "Option"
     },
     {
-      "Name": "SPXW US 11/12/26 P6950",
-      "Ticker": "SPXW 261112P06950000",
-      "Identifier": "SPXW 261112P06950000",
-      "Weight": "0.04%",
-      "Market Value": "$78120.00",
-      "Shares Held": "93",
+      "Name": "SPXW US 11/19/26 P6675",
+      "Ticker": "SPXW 261119P06675000",
+      "Identifier": "SPXW 261119P06675000",
+      "Weight": "0.07%",
+      "Market Value": "$154080.00",
+      "Shares Held": "96",
       "Asset Category": "Option"
     },
     {
-      "Name": "SPXW US 11/12/26 P7000",
-      "Ticker": "SPXW 261112P07000000",
-      "Identifier": "SPXW 261112P07000000",
-      "Weight": "0.04%",
-      "Market Value": "$88350.00",
-      "Shares Held": "93",
+      "Name": "SPXW US 11/19/26 P6725",
+      "Ticker": "SPXW 261119P06725000",
+      "Identifier": "SPXW 261119P06725000",
+      "Weight": "0.08%",
+      "Market Value": "$172320.00",
+      "Shares Held": "96",
       "Asset Category": "Option"
     },
     {
-      "Name": "SPXW US 11/12/26 P7175",
-      "Ticker": "SPXW 261112P07175000",
-      "Identifier": "SPXW 261112P07175000",
-      "Weight": "-0.07%",
-      "Market Value": "$-149265.00",
-      "Shares Held": "-93",
-      "Asset Category": "Option"
-    },
-    {
-      "Name": "SPXW US 11/12/26 P7250",
-      "Ticker": "SPXW 261112P07250000",
-      "Identifier": "SPXW 261112P07250000",
-      "Weight": "-0.09%",
-      "Market Value": "$-197625.00",
-      "Shares Held": "-93",
-      "Asset Category": "Option"
-    },
-    {
-      "Name": "SPXW US 11/12/26 P7310",
-      "Ticker": "SPXW 261112P07310000",
-      "Identifier": "SPXW 261112P07310000",
+      "Name": "SPXW US 11/19/26 P6900",
+      "Ticker": "SPXW 261119P06900000",
+      "Identifier": "SPXW 261119P06900000",
       "Weight": "-0.12%",
-      "Market Value": "$-249705.00",
-      "Shares Held": "-93",
+      "Market Value": "$-260160.00",
+      "Shares Held": "-96",
+      "Asset Category": "Option"
+    },
+    {
+      "Name": "SPXW US 11/19/26 P6975",
+      "Ticker": "SPXW 261119P06975000",
+      "Identifier": "SPXW 261119P06975000",
+      "Weight": "-0.15%",
+      "Market Value": "$-323040.00",
+      "Shares Held": "-96",
+      "Asset Category": "Option"
+    },
+    {
+      "Name": "SPXW US 11/19/26 P7050",
+      "Ticker": "SPXW 261119P07050000",
+      "Identifier": "SPXW 261119P07050000",
+      "Weight": "-0.19%",
+      "Market Value": "$-398880.00",
+      "Shares Held": "-96",
       "Asset Category": "Option"
     },
     {
@@ -90,8 +99,8 @@
       "Ticker": "Cash&Other",
       "Identifier": "Cash&Other",
       "Weight": "4.08%",
-      "Market Value": "$8810271.20",
-      "Shares Held": "8,810,271",
+      "Market Value": "$8719424.36",
+      "Shares Held": "8,719,424",
       "Asset Category": "Cash"
     }
   ]

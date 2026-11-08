@@ -17,8 +17,8 @@
       "Name": "GLD 12/18/2026 366 C",
       "Ticker": "2GLD 261218C00366000",
       "Identifier": "2GLD 261218C00366000",
-      "Weight": "-0.58%",
-      "Market Value": "$-3624213.12",
+      "Weight": "-1.11%",
+      "Market Value": "$-7168331.20",
       "Shares Held": "-4,372",
       "Asset Category": "Option"
     },
@@ -26,8 +26,8 @@
       "Name": "GLD 12/18/2026 375 C",
       "Ticker": "2GLD 261218C00375000",
       "Identifier": "2GLD 261218C00375000",
-      "Weight": "-0.38%",
-      "Market Value": "$-2339500.92",
+      "Weight": "-0.77%",
+      "Market Value": "$-4968952.88",
       "Shares Held": "-4,372",
       "Asset Category": "Option"
     },
@@ -35,8 +35,8 @@
       "Name": "GLD 01/15/2027 380 C",
       "Ticker": "2GLD 270115C00380000",
       "Identifier": "2GLD 270115C00380000",
-      "Weight": "1.56%",
-      "Market Value": "$9705009.35",
+      "Weight": "2.82%",
+      "Market Value": "$18213844.59",
       "Shares Held": "14,171",
       "Asset Category": "Option"
     },
@@ -44,8 +44,8 @@
       "Name": "GLD 01/15/2027 380 P",
       "Ticker": "2GLD 270115P00380000",
       "Identifier": "2GLD 270115P00380000",
-      "Weight": "-6.25%",
-      "Market Value": "$-38981161.67",
+      "Weight": "-3.77%",
+      "Market Value": "$-24356264.54",
       "Shares Held": "-14,171",
       "Asset Category": "Option"
     },
@@ -53,8 +53,8 @@
       "Name": "United States Treasury Bill 12/17/2026",
       "Ticker": "912797VH7",
       "Identifier": "912797VH7",
-      "Weight": "85.53%",
-      "Market Value": "$533487098.80",
+      "Weight": "82.57%",
+      "Market Value": "$533920115.87",
       "Shares Held": "536,125,000",
       "Asset Category": "Treasury"
     },
@@ -62,8 +62,8 @@
       "Name": "Goldman Sachs Physical Gold ETF",
       "Ticker": "AAAU",
       "Identifier": "38150K103",
-      "Weight": "18.95%",
-      "Market Value": "$118188934.84",
+      "Weight": "19.13%",
+      "Market Value": "$123701536.06",
       "Shares Held": "3,088,292",
       "Asset Category": "Fund"
     },
@@ -71,9 +71,9 @@
       "Name": "Cash & Other",
       "Ticker": "Cash&Other",
       "Identifier": "Cash&Other",
-      "Weight": "1.17%",
-      "Market Value": "$7283040.54",
-      "Shares Held": "7,283,041",
+      "Weight": "1.12%",
+      "Market Value": "$7247673.25",
+      "Shares Held": "7,247,673",
       "Asset Category": "Cash"
     }
   ]

@@ -2,7 +2,7 @@
   "ticker": "IYRI",
   "page": 1,
   "pageSize": 1000,
-  "totalRows": 451,
+  "totalRows": 456,
   "headers": [
     "Date",
     "Close",
@@ -10,6 +10,36 @@
     "Volume"
   ],
   "rows": [
+    {
+      "Date": "2026-11-06",
+      "Close": "47.09",
+      "Adj Close": "47.09",
+      "Volume": "49700"
+    },
+    {
+      "Date": "2026-11-05",
+      "Close": "47.23",
+      "Adj Close": "47.23",
+      "Volume": "77500"
+    },
+    {
+      "Date": "2026-11-04",
+      "Close": "47.88",
+      "Adj Close": "47.88",
+      "Volume": "61300"
+    },
+    {
+      "Date": "2026-11-03",
+      "Close": "46.81",
+      "Adj Close": "46.81",
+      "Volume": "38500"
+    },
+    {
+      "Date": "2026-11-02",
+      "Close": "47.01",
+      "Adj Close": "47.01",
+      "Volume": "66900"
+    },
     {
       "Date": "2026-10-30",
       "Close": "46.36",
