@@ -79,6 +79,16 @@ An N-PORT sheet (the EDGAR fallback) keeps the position's own identifiers (CUSIP
 
 The page publishes **annualized** 3 Yr / 5 Yr / 10 Yr figures and a **cumulative** Inception figure. The catalog carries both readings, computed from the published one with `(1 + r)^n - 1` or `(1 + TR)^(1/n) - 1`, and `returns.derivedFrom` records that the basis is NEOS's own NAV Performance table. Nothing is extrapolated past a tenor the fund has not lived through: a fund younger than a horizon (calendar anniversary of its lineup inception date, inclusive, at the performance date) publishes `null` for it, also when the page prints a figure, and the app prints `—`: no 1-year or since-inception return before the first anniversary, no 3, 5 or 10-year one before those. Dates are read as plain calendar text (`2026-10-24`, `10/24/2026`, `10/24/26`, `Oct 24, 2026`, `24 Oct 2026`), never through the local time zone, so local runs match CI
 
+#### Swing metrics
+
+- Swing metrics (shared `swing` block, the formulas of the Stocks feed) from the split-adjusted, not dividend-adjusted daily `Close` column of the published history, with the last close as the price; `null` (never `0`) when the history is too short:
+  - `pctFrom52wHigh` - last close against the highest close of the last 52 weeks, in percent
+  - `athPrice`, `athDate`, `athBasis` - highest close of the whole history, its date and the history it covers (`daily closes since <first date>`)
+  - `pctFromAth` - last close against `athPrice`, in percent
+  - `volatility1y` - annualized volatility of the last 252 daily log returns, in percent (needs 253 closes)
+  - `sigmaFromMean60d` - distance of the last close from the mean of the last 60 closes, in sample standard deviations
+  - `high60d`, `low60d` - highest and lowest of the last 60 closes
+
 #### Returns basis and as-of date
 
 Every `funds[].metrics` row in `api/neos/index.json` ends with two fields: `returnsBasis`, a non-empty label saying the returns are NEOS's official NAV total returns from the month-end Performance table (3/5/10 Yr cumulative derived from the published annualized figures), and `performanceAsOf`, the ISO `YYYY-MM-DD` date of that table (not the NAV date), `null` only when the page prints none. Unavailable numbers are `null`, never `0`.
