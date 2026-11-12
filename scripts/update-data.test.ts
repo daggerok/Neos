@@ -769,10 +769,11 @@ describe("pipeline", () => {
       expect(readdirSync(path.join(root, "funds")).sort()).toEqual(["IWMI", "SPYI", "XSPI"]);
       const keys = Object.keys(index.funds[0].metrics);
       expect(keys).toContain("dividendYieldBasis");
-      // the 52-week keys of the range-52w block sit in every row, in front of returnsBasis and performanceAsOf
-      expect(keys.slice(-9)).toEqual(["week52Low", "week52High", "range52w", "range52wClose", "range52wAsOf", "range52wSince", "range52wBasis", "returnsBasis", "performanceAsOf"]);
+      // the 52-week keys of the range-52w block and the swing keys of the swing block sit in every row, in front of returnsBasis and performanceAsOf
+      expect(keys.slice(-18)).toEqual(["week52Low", "week52High", "range52w", "range52wClose", "range52wAsOf", "range52wSince", "range52wBasis", "pctFrom52wHigh", "athPrice", "athDate", "athBasis", "pctFromAth", "volatility1y", "sigmaFromMean60d", "high60d", "low60d", "returnsBasis", "performanceAsOf"]);
       for (const fund of index.funds) {
         expect(Object.keys(fund.metrics)).toEqual(keys);
+        expect([typeof fund.metrics.athPrice, fund.metrics.athBasis]).toEqual(["number", expect.stringMatching(/^daily closes since \d{4}-\d{2}-\d{2}$/)]);
         expect(fund.dataFile).toBe(`./funds/${fund.ticker}/meta.json`);
       }
 
