@@ -2,7 +2,7 @@
   "ticker": "QQQI",
   "page": 1,
   "pageSize": 1000,
-  "totalRows": 697,
+  "totalRows": 702,
   "headers": [
     "Date",
     "Close",
@@ -11,10 +11,40 @@
   ],
   "rows": [
     {
+      "Date": "2026-11-13",
+      "Close": "51.13",
+      "Adj Close": "51.13",
+      "Volume": "4279300"
+    },
+    {
+      "Date": "2026-11-12",
+      "Close": "51.64",
+      "Adj Close": "51.64",
+      "Volume": "3404800"
+    },
+    {
+      "Date": "2026-11-11",
+      "Close": "51.77",
+      "Adj Close": "51.77",
+      "Volume": "3450800"
+    },
+    {
+      "Date": "2026-11-10",
+      "Close": "50.78",
+      "Adj Close": "50.78",
+      "Volume": "4238600"
+    },
+    {
+      "Date": "2026-11-09",
+      "Close": "51.02",
+      "Adj Close": "51.02",
+      "Volume": "6386200"
+    },
+    {
       "Date": "2026-11-06",
       "Close": "49.48",
       "Adj Close": "49.48",
-      "Volume": "7243900"
+      "Volume": "7282700"
     },
     {
       "Date": "2026-11-05",

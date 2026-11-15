@@ -2,7 +2,7 @@
   "ticker": "BNDI",
   "page": 2,
   "pageSize": 1000,
-  "totalRows": 1052,
+  "totalRows": 1057,
   "headers": [
     "Date",
     "Close",
@@ -11,315 +11,345 @@
   ],
   "rows": [
     {
+      "Date": "2022-11-17",
+      "Close": "47.97",
+      "Adj Close": "38.44",
+      "Volume": "100"
+    },
+    {
+      "Date": "2022-11-16",
+      "Close": "48.16",
+      "Adj Close": "38.59",
+      "Volume": "0"
+    },
+    {
+      "Date": "2022-11-15",
+      "Close": "47.87",
+      "Adj Close": "38.36",
+      "Volume": "100"
+    },
+    {
+      "Date": "2022-11-14",
+      "Close": "47.54",
+      "Adj Close": "38.09",
+      "Volume": "100"
+    },
+    {
+      "Date": "2022-11-11",
+      "Close": "47.67",
+      "Adj Close": "38.20",
+      "Volume": "0"
+    },
+    {
       "Date": "2022-11-10",
       "Close": "47.66",
-      "Adj Close": "38.38",
+      "Adj Close": "38.20",
       "Volume": "0"
     },
     {
       "Date": "2022-11-09",
       "Close": "46.67",
-      "Adj Close": "37.58",
+      "Adj Close": "37.40",
       "Volume": "100"
     },
     {
       "Date": "2022-11-08",
       "Close": "46.64",
-      "Adj Close": "37.55",
+      "Adj Close": "37.37",
       "Volume": "0"
     },
     {
       "Date": "2022-11-07",
       "Close": "46.45",
-      "Adj Close": "37.40",
+      "Adj Close": "37.22",
       "Volume": "100"
     },
     {
       "Date": "2022-11-04",
       "Close": "46.58",
-      "Adj Close": "37.50",
+      "Adj Close": "37.33",
       "Volume": "0"
     },
     {
       "Date": "2022-11-03",
       "Close": "46.53",
-      "Adj Close": "37.46",
+      "Adj Close": "37.28",
       "Volume": "100"
     },
     {
       "Date": "2022-11-02",
       "Close": "46.72",
-      "Adj Close": "37.62",
+      "Adj Close": "37.44",
       "Volume": "0"
     },
     {
       "Date": "2022-11-01",
       "Close": "46.84",
-      "Adj Close": "37.72",
+      "Adj Close": "37.54",
       "Volume": "100"
     },
     {
       "Date": "2022-10-31",
       "Close": "46.72",
-      "Adj Close": "37.62",
+      "Adj Close": "37.44",
       "Volume": "100"
     },
     {
       "Date": "2022-10-28",
       "Close": "46.93",
-      "Adj Close": "37.79",
+      "Adj Close": "37.61",
       "Volume": "100"
     },
     {
       "Date": "2022-10-27",
       "Close": "46.95",
-      "Adj Close": "37.80",
+      "Adj Close": "37.62",
       "Volume": "0"
     },
     {
       "Date": "2022-10-26",
       "Close": "46.69",
-      "Adj Close": "37.60",
+      "Adj Close": "37.42",
       "Volume": "0"
     },
     {
       "Date": "2022-10-25",
       "Close": "46.71",
-      "Adj Close": "37.45",
+      "Adj Close": "37.27",
       "Volume": "100"
     },
     {
       "Date": "2022-10-24",
       "Close": "46.26",
-      "Adj Close": "37.09",
+      "Adj Close": "36.92",
       "Volume": "100"
     },
     {
       "Date": "2022-10-21",
       "Close": "46.32",
-      "Adj Close": "37.14",
+      "Adj Close": "36.96",
       "Volume": "100"
     },
     {
       "Date": "2022-10-20",
       "Close": "46.17",
-      "Adj Close": "37.02",
+      "Adj Close": "36.84",
       "Volume": "0"
     },
     {
       "Date": "2022-10-19",
       "Close": "46.46",
-      "Adj Close": "37.26",
+      "Adj Close": "37.08",
       "Volume": "0"
     },
     {
       "Date": "2022-10-18",
       "Close": "46.84",
-      "Adj Close": "37.56",
+      "Adj Close": "37.38",
       "Volume": "100"
     },
     {
       "Date": "2022-10-17",
       "Close": "46.73",
-      "Adj Close": "37.47",
+      "Adj Close": "37.29",
       "Volume": "0"
     },
     {
       "Date": "2022-10-14",
       "Close": "46.54",
-      "Adj Close": "37.32",
+      "Adj Close": "37.14",
       "Volume": "100"
     },
     {
       "Date": "2022-10-13",
       "Close": "46.84",
-      "Adj Close": "37.56",
+      "Adj Close": "37.38",
       "Volume": "0"
     },
     {
       "Date": "2022-10-12",
       "Close": "46.78",
-      "Adj Close": "37.51",
+      "Adj Close": "37.33",
       "Volume": "0"
     },
     {
       "Date": "2022-10-11",
       "Close": "46.77",
-      "Adj Close": "37.50",
+      "Adj Close": "37.32",
       "Volume": "0"
     },
     {
       "Date": "2022-10-10",
       "Close": "46.79",
-      "Adj Close": "37.52",
+      "Adj Close": "37.34",
       "Volume": "0"
     },
     {
       "Date": "2022-10-07",
       "Close": "47.03",
-      "Adj Close": "37.71",
+      "Adj Close": "37.53",
       "Volume": "100"
     },
     {
       "Date": "2022-10-06",
       "Close": "47.39",
-      "Adj Close": "38.00",
+      "Adj Close": "37.82",
       "Volume": "100"
     },
     {
       "Date": "2022-10-05",
       "Close": "47.56",
-      "Adj Close": "38.13",
+      "Adj Close": "37.95",
       "Volume": "100"
     },
     {
       "Date": "2022-10-04",
       "Close": "47.82",
-      "Adj Close": "38.35",
+      "Adj Close": "38.16",
       "Volume": "0"
     },
     {
       "Date": "2022-10-03",
       "Close": "47.63",
-      "Adj Close": "38.20",
+      "Adj Close": "38.01",
       "Volume": "0"
     },
     {
       "Date": "2022-09-30",
       "Close": "47.15",
-      "Adj Close": "37.81",
+      "Adj Close": "37.63",
       "Volume": "0"
     },
     {
       "Date": "2022-09-29",
       "Close": "47.33",
-      "Adj Close": "37.95",
+      "Adj Close": "37.77",
       "Volume": "100"
     },
     {
       "Date": "2022-09-28",
       "Close": "47.64",
-      "Adj Close": "38.20",
+      "Adj Close": "38.02",
       "Volume": "0"
     },
     {
       "Date": "2022-09-27",
       "Close": "46.81",
-      "Adj Close": "37.53",
+      "Adj Close": "37.35",
       "Volume": "0"
     },
     {
       "Date": "2022-09-26",
       "Close": "47.02",
-      "Adj Close": "37.70",
+      "Adj Close": "37.52",
       "Volume": "100"
     },
     {
       "Date": "2022-09-23",
       "Close": "47.62",
-      "Adj Close": "38.18",
+      "Adj Close": "38.00",
       "Volume": "100"
     },
     {
       "Date": "2022-09-22",
       "Close": "47.85",
-      "Adj Close": "38.37",
+      "Adj Close": "38.19",
       "Volume": "100"
     },
     {
       "Date": "2022-09-21",
       "Close": "48.33",
-      "Adj Close": "38.75",
+      "Adj Close": "38.56",
       "Volume": "0"
     },
     {
       "Date": "2022-09-20",
       "Close": "48.47",
-      "Adj Close": "38.70",
+      "Adj Close": "38.52",
       "Volume": "0"
     },
     {
       "Date": "2022-09-19",
       "Close": "48.74",
-      "Adj Close": "38.92",
+      "Adj Close": "38.73",
       "Volume": "100"
     },
     {
       "Date": "2022-09-16",
       "Close": "48.80",
-      "Adj Close": "38.97",
+      "Adj Close": "38.78",
       "Volume": "0"
     },
     {
       "Date": "2022-09-15",
       "Close": "48.82",
-      "Adj Close": "38.98",
+      "Adj Close": "38.80",
       "Volume": "100"
     },
     {
       "Date": "2022-09-14",
       "Close": "48.98",
-      "Adj Close": "39.11",
+      "Adj Close": "38.92",
       "Volume": "0"
     },
     {
       "Date": "2022-09-13",
       "Close": "48.90",
-      "Adj Close": "39.04",
+      "Adj Close": "38.86",
       "Volume": "100"
     },
     {
       "Date": "2022-09-12",
       "Close": "49.25",
-      "Adj Close": "39.32",
+      "Adj Close": "39.14",
       "Volume": "0"
     },
     {
       "Date": "2022-09-09",
       "Close": "49.31",
-      "Adj Close": "39.38",
+      "Adj Close": "39.19",
       "Volume": "100"
     },
     {
       "Date": "2022-09-08",
       "Close": "49.30",
-      "Adj Close": "39.37",
+      "Adj Close": "39.18",
       "Volume": "0"
     },
     {
       "Date": "2022-09-07",
       "Close": "49.42",
-      "Adj Close": "39.46",
+      "Adj Close": "39.27",
       "Volume": "100"
     },
     {
       "Date": "2022-09-06",
       "Close": "49.04",
-      "Adj Close": "39.16",
+      "Adj Close": "38.97",
       "Volume": "0"
     },
     {
       "Date": "2022-09-02",
       "Close": "49.49",
-      "Adj Close": "39.52",
+      "Adj Close": "39.33",
       "Volume": "100"
     },
     {
       "Date": "2022-09-01",
       "Close": "49.38",
-      "Adj Close": "39.43",
+      "Adj Close": "39.24",
       "Volume": "0"
     },
     {
       "Date": "2022-08-31",
       "Close": "49.58",
-      "Adj Close": "39.59",
+      "Adj Close": "39.40",
       "Volume": "100"
     },
     {
       "Date": "2022-08-30",
       "Close": "49.84",
-      "Adj Close": "39.80",
+      "Adj Close": "39.61",
       "Volume": "1800"
     }
   ]

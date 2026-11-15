@@ -13,50 +13,50 @@
   "managementFee": "0.65%",
   "managementFeeValue": 0.65,
   "nav": {
-    "display": "$47.84",
-    "value": 47.84,
-    "asOfDate": "Nov 06 2026",
-    "dailyChangeText": "$0.06 (0.12%)",
+    "display": "$47.53",
+    "value": 47.53,
+    "asOfDate": "Nov 13 2026",
+    "dailyChangeText": "$-0.01 (-0.02%)",
     "kind": "official (fund page Fund Details)"
   },
-  "navValue": 47.84,
+  "navValue": 47.53,
   "aum": {
-    "display": "$213.54M",
-    "value": 213541099.69,
-    "asOfDate": "Nov 06 2026",
+    "display": "$212.19M",
+    "value": 212191187,
+    "asOfDate": "Nov 13 2026",
     "source": "official NEOS daily holdings CSV (download_holdings_csv)"
   },
-  "aumValue": 213541099.69,
-  "asOfDate": "Nov 06 2026",
+  "aumValue": 212191187,
+  "asOfDate": "Nov 13 2026",
   "inceptionDate": "Sep 30 2014",
   "inceptionDateFundPage": "Sep 30 2024",
   "exchange": "NASDAQ",
-  "closePrice": "$47.86",
-  "closePriceValue": 47.86,
+  "closePrice": "$47.52",
+  "closePriceValue": 47.52,
   "premiumDiscount": {
-    "display": "0.05%",
-    "value": 0.05,
-    "derivedValue": 0.04,
+    "display": "-0.03%",
+    "value": -0.03,
+    "derivedValue": -0.02,
     "kind": "official (fund page Fund Details \"Premium Discount (%)\")"
   },
-  "premiumDiscountValue": 0.05,
-  "premiumDiscountDerivedValue": 0.04,
+  "premiumDiscountValue": -0.03,
+  "premiumDiscountDerivedValue": -0.02,
   "premiumDiscountKind": "official (fund page Fund Details \"Premium Discount (%)\")",
   "bidAskSpread": {
-    "display": "0.02%",
-    "value": 0.02,
-    "asOfDate": "Nov 06 2026",
+    "display": "0.04%",
+    "value": 0.04,
+    "asOfDate": "Nov 13 2026",
     "kind": "official (fund page Fund Details \"30-Day Median Bid-Ask Spread (%)\")"
   },
-  "bidAskSpreadValue": 0.02,
+  "bidAskSpreadValue": 0.04,
   "acquiredFundFeesText": "0.07%",
-  "totalNetAssets": 213541099.69,
+  "totalNetAssets": 212191187,
   "sharesOutstanding": {
     "display": "4,463,997",
     "value": 4463997,
-    "asOfDate": "Nov 09 2026"
+    "asOfDate": "Nov 16 2026"
   },
-  "netAssetsAsOf": "Nov 06 2026",
+  "netAssetsAsOf": "Nov 13 2026",
   "secYieldAsOf": "Oct 31 2026",
   "distributions": {
     "frequency": "Monthly",
@@ -81,7 +81,7 @@
         "Ex-Div Date": "11/10/2026",
         "Record Date": "11/10/2026",
         "Payable Date": "11/13/2026",
-        "Amount ($)": ""
+        "Amount ($)": "$0.3205"
       },
       {
         "Declaration Date": "10/13/2026",
@@ -360,8 +360,8 @@
     ],
     "pageSize": 250,
     "totalRows": 10,
-    "asOfDate": "Nov 09 2026",
-    "asOf": "2026-11-09",
+    "asOfDate": "Nov 16 2026",
+    "asOf": "2026-11-16",
     "source": "https://neosfunds.com/wp-admin/admin-ajax.php?action=download_holdings_csv&ticker=HYBI",
     "sourceKind": "official NEOS daily holdings CSV (download_holdings_csv)"
   },
@@ -370,9 +370,9 @@
       "./history/001.json"
     ],
     "pageSize": 1000,
-    "totalRows": 529,
-    "asOfDate": "Nov 06 2026",
-    "asOf": "2026-11-06",
+    "totalRows": 534,
+    "asOfDate": "Nov 13 2026",
+    "asOf": "2026-11-13",
     "source": "https://query1.finance.yahoo.com/v8/finance/chart/HYBI?period1=0&period2=9999999999&interval=1d&events=div%7Csplit&includeAdjustedClose=true",
     "sourceKind": "Yahoo Finance public chart API (daily Close / Adj Close / Volume)"
   },
@@ -412,10 +412,10 @@
     "managementFeeValue": 0.65
   },
   "marketPrice": {
-    "display": "$47.86",
-    "value": 47.86,
-    "asOfDate": "Nov 06 2026",
-    "dailyChangeText": "$0.06 (0.13%)",
+    "display": "$47.52",
+    "value": 47.52,
+    "asOfDate": "Nov 13 2026",
+    "dailyChangeText": "$-0.02 (-0.04%)",
     "source": "NEOS fund page Fund Details \"Market Price\""
   },
   "yields": {
@@ -436,8 +436,8 @@
   },
   "navIndex": {
     "startDate": "2014-09-30",
-    "endDate": "2026-11-06",
-    "points": 4421,
+    "endDate": "2026-11-13",
+    "points": 4428,
     "benchmarkName": "Bloomberg U.S. Corporate High Yield Index",
     "source": "NEOS fund page \"Growth of $10,000 at NAV Since Inception\" chart series"
   },

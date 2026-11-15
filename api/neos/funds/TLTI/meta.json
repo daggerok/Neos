@@ -13,50 +13,50 @@
   "managementFee": "0.58%",
   "managementFeeValue": 0.58,
   "nav": {
-    "display": "$43.28",
-    "value": 43.28,
-    "asOfDate": "Nov 06 2026",
-    "dailyChangeText": "$0.06 (0.13%)",
+    "display": "$41.83",
+    "value": 41.83,
+    "asOfDate": "Nov 13 2026",
+    "dailyChangeText": "$-0.20 (-0.48%)",
     "kind": "official (fund page Fund Details)"
   },
-  "navValue": 43.28,
+  "navValue": 41.83,
   "aum": {
-    "display": "$21.64M",
-    "value": 21641600,
-    "asOfDate": "Nov 06 2026",
+    "display": "$20.91M",
+    "value": 20914200,
+    "asOfDate": "Nov 13 2026",
     "source": "official NEOS daily holdings CSV (download_holdings_csv)"
   },
-  "aumValue": 21641600,
-  "asOfDate": "Nov 06 2026",
+  "aumValue": 20914200,
+  "asOfDate": "Nov 13 2026",
   "inceptionDate": "Dec 10 2024",
   "inceptionDateFundPage": "Dec 10 2024",
   "exchange": "Cboe",
-  "closePrice": "$43.32",
-  "closePriceValue": 43.32,
+  "closePrice": "$41.82",
+  "closePriceValue": 41.82,
   "premiumDiscount": {
-    "display": "0.09%",
-    "value": 0.09,
-    "derivedValue": 0.09,
+    "display": "-0.01%",
+    "value": -0.01,
+    "derivedValue": -0.02,
     "kind": "official (fund page Fund Details \"Premium Discount (%)\")"
   },
-  "premiumDiscountValue": 0.09,
-  "premiumDiscountDerivedValue": 0.09,
+  "premiumDiscountValue": -0.01,
+  "premiumDiscountDerivedValue": -0.02,
   "premiumDiscountKind": "official (fund page Fund Details \"Premium Discount (%)\")",
   "bidAskSpread": {
-    "display": "0.12%",
-    "value": 0.12,
-    "asOfDate": "Nov 06 2026",
+    "display": "0.14%",
+    "value": 0.14,
+    "asOfDate": "Nov 13 2026",
     "kind": "official (fund page Fund Details \"30-Day Median Bid-Ask Spread (%)\")"
   },
-  "bidAskSpreadValue": 0.12,
+  "bidAskSpreadValue": 0.14,
   "acquiredFundFeesText": null,
-  "totalNetAssets": 21641600,
+  "totalNetAssets": 20914200,
   "sharesOutstanding": {
     "display": "500,000",
     "value": 500000,
-    "asOfDate": "Nov 09 2026"
+    "asOfDate": "Nov 16 2026"
   },
-  "netAssetsAsOf": "Nov 06 2026",
+  "netAssetsAsOf": "Nov 13 2026",
   "secYieldAsOf": "Oct 31 2026",
   "distributions": {
     "frequency": "Monthly",
@@ -81,7 +81,7 @@
         "Ex-Div Date": "11/10/2026",
         "Record Date": "11/10/2026",
         "Payable Date": "11/13/2026",
-        "Amount ($)": ""
+        "Amount ($)": "$0.2251"
       },
       {
         "Declaration Date": "10/13/2026",
@@ -343,8 +343,8 @@
     ],
     "pageSize": 250,
     "totalRows": 8,
-    "asOfDate": "Nov 09 2026",
-    "asOf": "2026-11-09",
+    "asOfDate": "Nov 16 2026",
+    "asOf": "2026-11-16",
     "source": "https://neosfunds.com/wp-admin/admin-ajax.php?action=download_holdings_csv&ticker=TLTI",
     "sourceKind": "official NEOS daily holdings CSV (download_holdings_csv)"
   },
@@ -353,9 +353,9 @@
       "./history/001.json"
     ],
     "pageSize": 1000,
-    "totalRows": 478,
-    "asOfDate": "Nov 06 2026",
-    "asOf": "2026-11-06",
+    "totalRows": 483,
+    "asOfDate": "Nov 13 2026",
+    "asOf": "2026-11-13",
     "source": "https://query1.finance.yahoo.com/v8/finance/chart/TLTI?period1=0&period2=9999999999&interval=1d&events=div%7Csplit&includeAdjustedClose=true",
     "sourceKind": "Yahoo Finance public chart API (daily Close / Adj Close / Volume)"
   },
@@ -395,10 +395,10 @@
     "managementFeeValue": 0.58
   },
   "marketPrice": {
-    "display": "$43.32",
-    "value": 43.32,
-    "asOfDate": "Nov 06 2026",
-    "dailyChangeText": "$0.07 (0.16%)",
+    "display": "$41.82",
+    "value": 41.82,
+    "asOfDate": "Nov 13 2026",
+    "dailyChangeText": "$-0.20 (-0.47%)",
     "source": "NEOS fund page Fund Details \"Market Price\""
   },
   "yields": {
@@ -419,8 +419,8 @@
   },
   "navIndex": {
     "startDate": "2024-12-10",
-    "endDate": "2026-11-06",
-    "points": 697,
+    "endDate": "2026-11-13",
+    "points": 704,
     "benchmarkName": "ICE US Treasury 20+ Year Bond Total Return Index",
     "source": "NEOS fund page \"Growth of $10,000 at NAV Since Inception\" chart series"
   },

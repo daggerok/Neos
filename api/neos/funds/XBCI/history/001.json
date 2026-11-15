@@ -2,7 +2,7 @@
   "ticker": "XBCI",
   "page": 1,
   "pageSize": 1000,
-  "totalRows": 193,
+  "totalRows": 198,
   "headers": [
     "Date",
     "Close",
@@ -10,6 +10,36 @@
     "Volume"
   ],
   "rows": [
+    {
+      "Date": "2026-11-13",
+      "Close": "29.01",
+      "Adj Close": "29.01",
+      "Volume": "458100"
+    },
+    {
+      "Date": "2026-11-12",
+      "Close": "30.64",
+      "Adj Close": "30.64",
+      "Volume": "286000"
+    },
+    {
+      "Date": "2026-11-11",
+      "Close": "32.65",
+      "Adj Close": "32.65",
+      "Volume": "77500"
+    },
+    {
+      "Date": "2026-11-10",
+      "Close": "32.00",
+      "Adj Close": "32.00",
+      "Volume": "162300"
+    },
+    {
+      "Date": "2026-11-09",
+      "Close": "32.71",
+      "Adj Close": "32.71",
+      "Volume": "208500"
+    },
     {
       "Date": "2026-11-06",
       "Close": "33.36",
