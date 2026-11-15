@@ -309,7 +309,7 @@ const YAHOO_JSON = {
     ],
   },
 };
-const CHART = JSON.stringify({ chart: { result: [{ timestamp: [1_790_000_000, 1_790_086_400], indicators: { quote: [{ close: [54.1, 54.3], volume: [5, 6] }], adjclose: [{ adjclose: [54.1, 54.3] }] }, meta: { exchangeName: "PCX" } }] } });
+const CHART = JSON.stringify({ chart: { result: [{ timestamp: [1_790_000_000, 1_790_086_400], indicators: { quote: [{ close: [54.1, 54.3], volume: [5, 6] }], adjclose: [{ adjclose: [54.1, 54.3] }] }, meta: { exchangeName: "PCX", dataGranularity: "1d", firstTradeDate: 1_790_000_000 }, events: { dividends: { "1790086400": { amount: 0.25, date: 1_790_086_400 } } } }] } });
 
 const FUND = {
   ticker: "SPYI", name: "NEOS S&P 500 High Income ETF", category: "Equity", categoryClass: "", frequency: "Monthly",
@@ -761,16 +761,24 @@ describe("metrics", () => {
 describe("pipeline", () => {
   test("a full run lists every fund; an identical second run writes nothing; a one-ticker run keeps all rows", async () => {
     await inTempRoot(async (root) => {
-      mockFetch(site(RICH_PAGES));
+      const urls = mockFetch(site(RICH_PAGES));
       await main(RUN_ENV);
       const index = readJson(root, "index.json");
+      // the dividends block reads the dividend events of each updated fund once from its own daily chart request (no pre/post): dividendRate 0.25, the five growth keys null (never 0)
+      for (const ticker of ["IWMI", "SPYI", "XSPI"]) expect(urls.filter((url) => new RegExp(`chart/${ticker}\\?period1=0&.*includePrePost=false`).test(url))).toHaveLength(1);
+      for (const fund of index.funds) {
+        const { dividendRate, dividendGrowth, dividendGrowth3y, dividendGrowth5y, dividendStreak, dividendCut10y } = fund.metrics;
+        expect([dividendRate, dividendGrowth, dividendGrowth3y, dividendGrowth5y, dividendStreak, dividendCut10y]).toEqual([0.25, null, null, null, null, null]);
+      }
       expect(index.funds.map((fund: { ticker: string }) => fund.ticker)).toEqual(["IWMI", "SPYI", "XSPI"]);
       expect(index.generatedAt).toMatch(/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}Z$/);
       expect(readdirSync(path.join(root, "funds")).sort()).toEqual(["IWMI", "SPYI", "XSPI"]);
       const keys = Object.keys(index.funds[0].metrics);
       expect(keys).toContain("dividendYieldBasis");
       // the 52-week keys of the range-52w block and the swing keys of the swing block sit in every row, in front of returnsBasis and performanceAsOf
-      expect(keys.slice(-18)).toEqual(["week52Low", "week52High", "range52w", "range52wClose", "range52wAsOf", "range52wSince", "range52wBasis", "pctFrom52wHigh", "athPrice", "athDate", "athBasis", "pctFromAth", "volatility1y", "sigmaFromMean60d", "high60d", "low60d", "returnsBasis", "performanceAsOf"]);
+      expect(keys.slice(-24, -8)).toEqual(["week52Low", "week52High", "range52w", "range52wClose", "range52wAsOf", "range52wSince", "range52wBasis", "pctFrom52wHigh", "athPrice", "athDate", "athBasis", "pctFromAth", "volatility1y", "sigmaFromMean60d", "high60d", "low60d"]);
+      expect(keys.slice(-8, -2)).toEqual(["dividendRate", "dividendGrowth", "dividendGrowth3y", "dividendGrowth5y", "dividendStreak", "dividendCut10y"]);
+      expect(keys.slice(-2)).toEqual(["returnsBasis", "performanceAsOf"]);
       for (const fund of index.funds) {
         expect(Object.keys(fund.metrics)).toEqual(keys);
         expect([typeof fund.metrics.athPrice, fund.metrics.athBasis]).toEqual(["number", expect.stringMatching(/^daily closes since \d{4}-\d{2}-\d{2}$/)]);
@@ -783,7 +791,12 @@ describe("pipeline", () => {
       await main(RUN_ENV);
       expect(snapshot(root)).toEqual(first);
 
+      const before = urls.length;
       await main({ ...RUN_ENV, TICKERS: "SPYI" });
+      // a one-ticker run asks for the dividend events of the selected fund only
+      const second = urls.slice(before);
+      expect(second.filter((url) => /chart\/SPYI\?period1=0&.*includePrePost=false/.test(url))).toHaveLength(1);
+      expect(second.some((url) => /chart\/(IWMI|XSPI)\?period1=0&.*includePrePost=false/.test(url))).toBe(false);
       const after = readJson(root, "index.json");
       expect(after.funds.map((fund: { ticker: string }) => fund.ticker)).toEqual(["IWMI", "SPYI", "XSPI"]);
       expect(readdirSync(path.join(root, "funds")).sort()).toEqual(["IWMI", "SPYI", "XSPI"]);
