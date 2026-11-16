@@ -309,6 +309,10 @@ const YAHOO_JSON = {
     ],
   },
 };
+// the 32 keys of the benchmark block, after the eight dividend keys and in front of returnsBasis and performanceAsOf
+const BENCHMARK_KEYS = ["perf1y", "perf3y", "perf5y", "perf10y", "perfSi", "maxDrawdown1y", "maxDrawdown3y", "maxDrawdown5y", "maxDrawdown10y",
+  "vsSpy1y", "vsSpy3y", "vsSpy5y", "vsSpy10y", "beta1ySpy", "corr1ySpy", "upCapture3ySpy", "downCapture3ySpy", "relStrength3mSpy", "stressReturnSpy", "stressBasisSpy",
+  "vsQqq1y", "vsQqq3y", "vsQqq5y", "vsQqq10y", "beta1yQqq", "corr1yQqq", "upCapture3yQqq", "downCapture3yQqq", "relStrength3mQqq", "stressReturnQqq", "stressBasisQqq", "benchmarkAsOf"];
 const CHART = JSON.stringify({ chart: { result: [{ timestamp: [1_790_000_000, 1_790_086_400], indicators: { quote: [{ close: [54.1, 54.3], volume: [5, 6] }], adjclose: [{ adjclose: [54.1, 54.3] }] }, meta: { exchangeName: "PCX", dataGranularity: "1d", firstTradeDate: 1_790_000_000 }, events: { dividends: { "1790086400": { amount: 0.25, date: 1_790_086_400 } } } }] } });
 
 const FUND = {
@@ -767,17 +771,22 @@ describe("pipeline", () => {
       // the dividends block reads the dividend events of each updated fund once from its own daily chart request (no pre/post): dividendRate 0.25, the five growth keys null (never 0)
       for (const ticker of ["IWMI", "SPYI", "XSPI"]) expect(urls.filter((url) => new RegExp(`chart/${ticker}\\?period1=0&.*includePrePost=false`).test(url))).toHaveLength(1);
       for (const fund of index.funds) {
-        const { dividendRate, dividendGrowth, dividendGrowth3y, dividendGrowth5y, dividendStreak, dividendCut10y } = fund.metrics;
-        expect([dividendRate, dividendGrowth, dividendGrowth3y, dividendGrowth5y, dividendStreak, dividendCut10y]).toEqual([0.25, null, null, null, null, null]);
+        const { dividendRate, dividendGrowth, dividendGrowth3y, dividendGrowth5y, dividendStreak, dividendCut10y, paymentsPerYear, payFrequency } = fund.metrics;
+        expect([dividendRate, dividendGrowth, dividendGrowth3y, dividendGrowth5y, dividendStreak, dividendCut10y, paymentsPerYear, payFrequency]).toEqual([0.25, null, null, null, null, null, 1, null]);
+        // the benchmark block shares that request (no extra one per fund); the mock's 2 bars give every statistic null and only benchmarkAsOf
+        expect(BENCHMARK_KEYS.filter((key) => fund.metrics[key] !== null)).toEqual(["benchmarkAsOf"]);
       }
+      // SPY and QQQ are read once as the benchmarks, before any fund chart
+      expect(urls.filter((url) => /chart\/[^?]+\?period1=0&.*includePrePost=false/.test(url)).map((url) => /chart\/([^?]+)/.exec(url)?.[1]).sort()).toEqual(["IWMI", "QQQ", "SPY", "SPYI", "XSPI"]);
       expect(index.funds.map((fund: { ticker: string }) => fund.ticker)).toEqual(["IWMI", "SPYI", "XSPI"]);
       expect(index.generatedAt).toMatch(/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}Z$/);
       expect(readdirSync(path.join(root, "funds")).sort()).toEqual(["IWMI", "SPYI", "XSPI"]);
       const keys = Object.keys(index.funds[0].metrics);
       expect(keys).toContain("dividendYieldBasis");
       // the 52-week keys of the range-52w block and the swing keys of the swing block sit in every row, in front of returnsBasis and performanceAsOf
-      expect(keys.slice(-24, -8)).toEqual(["week52Low", "week52High", "range52w", "range52wClose", "range52wAsOf", "range52wSince", "range52wBasis", "pctFrom52wHigh", "athPrice", "athDate", "athBasis", "pctFromAth", "volatility1y", "sigmaFromMean60d", "high60d", "low60d"]);
-      expect(keys.slice(-8, -2)).toEqual(["dividendRate", "dividendGrowth", "dividendGrowth3y", "dividendGrowth5y", "dividendStreak", "dividendCut10y"]);
+      expect(keys.slice(-58, -42)).toEqual(["week52Low", "week52High", "range52w", "range52wClose", "range52wAsOf", "range52wSince", "range52wBasis", "pctFrom52wHigh", "athPrice", "athDate", "athBasis", "pctFromAth", "volatility1y", "sigmaFromMean60d", "high60d", "low60d"]);
+      expect(keys.slice(-42, -34)).toEqual(["dividendRate", "dividendGrowth", "dividendGrowth3y", "dividendGrowth5y", "dividendStreak", "dividendCut10y", "paymentsPerYear", "payFrequency"]);
+      expect(keys.slice(-34, -2)).toEqual(BENCHMARK_KEYS);
       expect(keys.slice(-2)).toEqual(["returnsBasis", "performanceAsOf"]);
       for (const fund of index.funds) {
         expect(Object.keys(fund.metrics)).toEqual(keys);
@@ -796,6 +805,7 @@ describe("pipeline", () => {
       // a one-ticker run asks for the dividend events of the selected fund only
       const second = urls.slice(before);
       expect(second.filter((url) => /chart\/SPYI\?period1=0&.*includePrePost=false/.test(url))).toHaveLength(1);
+      expect(second.filter((url) => /period1=0&.*includePrePost=false/.test(url)).map((url) => /chart\/([^?]+)/.exec(url)?.[1]).sort()).toEqual(["QQQ", "SPY", "SPYI"]);
       expect(second.some((url) => /chart\/(IWMI|XSPI)\?period1=0&.*includePrePost=false/.test(url))).toBe(false);
       const after = readJson(root, "index.json");
       expect(after.funds.map((fund: { ticker: string }) => fund.ticker)).toEqual(["IWMI", "SPYI", "XSPI"]);
