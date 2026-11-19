@@ -17,17 +17,17 @@
       "Name": "United States Treasury Bill 01/26/2027",
       "Ticker": "912797WR4",
       "Identifier": "912797WR4",
-      "Weight": "107.69%",
-      "Market Value": "$229053939.64",
-      "Shares Held": "230,899,000",
+      "Weight": "125.36%",
+      "Market Value": "$232301357.08",
+      "Shares Held": "234,099,000",
       "Asset Category": "Treasury"
     },
     {
       "Name": "CBTX US 12/18/26 C1930",
       "Ticker": "CBTX 261218C01930000",
       "Identifier": "CBTX 261218C01930000",
-      "Weight": "-0.17%",
-      "Market Value": "$-366750.00",
+      "Weight": "-0.09%",
+      "Market Value": "$-173250.00",
       "Shares Held": "-450",
       "Asset Category": "Option"
     },
@@ -35,8 +35,8 @@
       "Name": "CBTX US 12/18/26 C2000",
       "Ticker": "CBTX 261218C02000000",
       "Identifier": "CBTX 261218C02000000",
-      "Weight": "-0.11%",
-      "Market Value": "$-231750.00",
+      "Weight": "-0.09%",
+      "Market Value": "$-159750.00",
       "Shares Held": "-450",
       "Asset Category": "Option"
     },
@@ -44,8 +44,8 @@
       "Name": "CBTX US 01/15/27 C1980",
       "Ticker": "CBTX 270115C01980000",
       "Identifier": "CBTX 270115C01980000",
-      "Weight": "1.49%",
-      "Market Value": "$3165690.00",
+      "Weight": "0.71%",
+      "Market Value": "$1320495.00",
       "Shares Held": "1,749",
       "Asset Category": "Option"
     },
@@ -53,8 +53,8 @@
       "Name": "CBTX US 01/15/27 P1980",
       "Ticker": "CBTX 270115P01980000",
       "Identifier": "CBTX 270115P01980000",
-      "Weight": "-29.30%",
-      "Market Value": "$-62325615.00",
+      "Weight": "-46.88%",
+      "Market Value": "$-86864085.00",
       "Shares Held": "-1,749",
       "Asset Category": "Option"
     },
@@ -62,18 +62,18 @@
       "Name": "iShares Bitcoin Trust ETF",
       "Ticker": "IBIT",
       "Identifier": "46438F101",
-      "Weight": "19.34%",
-      "Market Value": "$41130413.94",
-      "Shares Held": "1,056,251",
+      "Weight": "19.39%",
+      "Market Value": "$35934635.36",
+      "Shares Held": "1,016,251",
       "Asset Category": "Fund"
     },
     {
       "Name": "Cash & Other",
       "Ticker": "Cash&Other",
       "Identifier": "Cash&Other",
-      "Weight": "1.06%",
-      "Market Value": "$2261899.46",
-      "Shares Held": "2,261,899",
+      "Weight": "1.59%",
+      "Market Value": "$2943946.01",
+      "Shares Held": "2,943,946",
       "Asset Category": "Cash"
     }
   ]

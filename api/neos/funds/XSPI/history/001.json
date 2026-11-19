@@ -2,7 +2,7 @@
   "ticker": "XSPI",
   "page": 1,
   "pageSize": 1000,
-  "totalRows": 198,
+  "totalRows": 201,
   "headers": [
     "Date",
     "Close",
@@ -10,6 +10,24 @@
     "Volume"
   ],
   "rows": [
+    {
+      "Date": "2026-11-18",
+      "Close": "45.64",
+      "Adj Close": "45.64",
+      "Volume": "83400"
+    },
+    {
+      "Date": "2026-11-17",
+      "Close": "45.69",
+      "Adj Close": "45.69",
+      "Volume": "86100"
+    },
+    {
+      "Date": "2026-11-16",
+      "Close": "46.38",
+      "Adj Close": "46.38",
+      "Volume": "89100"
+    },
     {
       "Date": "2026-11-13",
       "Close": "47.60",
