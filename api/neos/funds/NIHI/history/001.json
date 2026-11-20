@@ -2,7 +2,7 @@
   "ticker": "NIHI",
   "page": 1,
   "pageSize": 1000,
-  "totalRows": 296,
+  "totalRows": 298,
   "headers": [
     "Date",
     "Close",
@@ -10,6 +10,18 @@
     "Volume"
   ],
   "rows": [
+    {
+      "Date": "2026-11-20",
+      "Close": "46.74",
+      "Adj Close": "46.74",
+      "Volume": "119092"
+    },
+    {
+      "Date": "2026-11-19",
+      "Close": "48.03",
+      "Adj Close": "48.03",
+      "Volume": "49400"
+    },
     {
       "Date": "2026-11-18",
       "Close": "48.72",

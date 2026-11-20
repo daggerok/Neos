@@ -17,8 +17,8 @@
       "Name": "United States Treasury Bill 01/26/2027",
       "Ticker": "912797WR4",
       "Identifier": "912797WR4",
-      "Weight": "106.84%",
-      "Market Value": "$1159619390.83",
+      "Weight": "107.88%",
+      "Market Value": "$1159705449.41",
       "Shares Held": "1,168,593,000",
       "Asset Category": "Treasury"
     },
@@ -26,8 +26,8 @@
       "Name": "CBTX US 12/18/26 C1930",
       "Ticker": "CBTX 261218C01930000",
       "Identifier": "CBTX 261218C01930000",
-      "Weight": "-0.06%",
-      "Market Value": "$-648340.01",
+      "Weight": "-0.16%",
+      "Market Value": "$-1684000.01",
       "Shares Held": "-1,684",
       "Asset Category": "Option"
     },
@@ -35,8 +35,8 @@
       "Name": "CBTX US 12/18/26 C2000",
       "Ticker": "CBTX 261218C02000000",
       "Identifier": "CBTX 261218C02000000",
-      "Weight": "-0.06%",
-      "Market Value": "$-597820.01",
+      "Weight": "-0.16%",
+      "Market Value": "$-1684000.01",
       "Shares Held": "-1,684",
       "Asset Category": "Option"
     },
@@ -44,8 +44,8 @@
       "Name": "CBTX US 01/15/27 C1980",
       "Ticker": "CBTX 270115C01980000",
       "Identifier": "CBTX 270115C01980000",
-      "Weight": "0.42%",
-      "Market Value": "$4600215.00",
+      "Weight": "0.57%",
+      "Market Value": "$6093000.03",
       "Shares Held": "6,093",
       "Asset Category": "Option"
     },
@@ -53,8 +53,8 @@
       "Name": "CBTX US 01/15/27 P1980",
       "Ticker": "CBTX 270115P01980000",
       "Identifier": "CBTX 270115P01980000",
-      "Weight": "-27.88%",
-      "Market Value": "$-302608845.00",
+      "Weight": "-28.91%",
+      "Market Value": "$-310743000.00",
       "Shares Held": "-6,093",
       "Asset Category": "Option"
     },
@@ -63,7 +63,7 @@
       "Ticker": "HODL",
       "Identifier": "92189K105",
       "Weight": "1.78%",
-      "Market Value": "$19284460.00",
+      "Market Value": "$19131755.00",
       "Shares Held": "1,090,750",
       "Asset Category": "Fund"
     },
@@ -71,8 +71,8 @@
       "Name": "iShares Bitcoin Trust ETF",
       "Ticker": "IBIT",
       "Identifier": "46438F101",
-      "Weight": "17.57%",
-      "Market Value": "$190717059.52",
+      "Weight": "17.60%",
+      "Market Value": "$189206856.56",
       "Shares Held": "5,393,582",
       "Asset Category": "Fund"
     },
@@ -80,9 +80,9 @@
       "Name": "Cash & Other",
       "Ticker": "Cash&Other",
       "Identifier": "Cash&Other",
-      "Weight": "1.38%",
-      "Market Value": "$14996820.36",
-      "Shares Held": "14,996,820",
+      "Weight": "1.39%",
+      "Market Value": "$14926719.91",
+      "Shares Held": "14,926,720",
       "Asset Category": "Cash"
     }
   ]

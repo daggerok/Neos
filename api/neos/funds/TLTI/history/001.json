@@ -2,7 +2,7 @@
   "ticker": "TLTI",
   "page": 1,
   "pageSize": 1000,
-  "totalRows": 486,
+  "totalRows": 488,
   "headers": [
     "Date",
     "Close",
@@ -10,6 +10,18 @@
     "Volume"
   ],
   "rows": [
+    {
+      "Date": "2026-11-20",
+      "Close": "42.36",
+      "Adj Close": "42.36",
+      "Volume": "5207"
+    },
+    {
+      "Date": "2026-11-19",
+      "Close": "42.12",
+      "Adj Close": "42.12",
+      "Volume": "122100"
+    },
     {
       "Date": "2026-11-18",
       "Close": "42.16",
