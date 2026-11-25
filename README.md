@@ -44,7 +44,7 @@ Run `bun scripts/update-data.ts --help` to print every control with its default 
 
 Every control is listed in [`scripts/update-data.config.json`](./scripts/update-data.config.json) (a flat object, all values strings). The updater and the workflow use the same resolver (`resolveControls` in `scripts/update-data.ts`), with this precedence: file defaults < `advanced` JSON < nonblank workflow inputs < protected Actions variable or environment variable. A blank input inherits the file value; `advanced` can set a key to an empty string on purpose. Unknown keys, non-scalar values and multiline values are rejected. All supplied filters use **AND** logic.
 
-The **Update NEOS ETF data** GitHub Actions workflow (`.github/workflows/update-data.yml`) runs every Sunday at 00:00 UTC and on `workflow_dispatch`. It exposes the most common controls as individual inputs plus an `advanced` JSON object for the rest, and commits `api/neos/**` and nothing else - a data run never rewrites app code or CI config. The `SEC_UA` repository Actions variable, when nonblank, wins over every other layer.
+The **Update NEOS ETF data** GitHub Actions workflow (`.github/workflows/update-data.yml`) runs every workday at 9:37 and 20:17 New York time and on `workflow_dispatch`. It exposes the most common controls as individual inputs plus an `advanced` JSON object for the rest, and commits `api/neos/**` and nothing else - a data run never rewrites app code or CI config. The `SEC_UA` repository Actions variable, when nonblank, wins over every other layer.
 
 ### Data sources
 
