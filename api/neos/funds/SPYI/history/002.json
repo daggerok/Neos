@@ -2,7 +2,7 @@
   "ticker": "SPYI",
   "page": 2,
   "pageSize": 1000,
-  "totalRows": 1062,
+  "totalRows": 1064,
   "headers": [
     "Date",
     "Close",
@@ -10,6 +10,18 @@
     "Volume"
   ],
   "rows": [
+    {
+      "Date": "2022-11-29",
+      "Close": "47.50",
+      "Adj Close": "29.59",
+      "Volume": "100"
+    },
+    {
+      "Date": "2022-11-28",
+      "Close": "47.54",
+      "Adj Close": "29.62",
+      "Volume": "2200"
+    },
     {
       "Date": "2022-11-25",
       "Close": "48.08",

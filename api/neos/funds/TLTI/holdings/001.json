@@ -17,8 +17,8 @@
       "Name": "United States Treasury Note/Bond 4.125% 08/15/2053",
       "Ticker": "912810TT5",
       "Identifier": "912810TT5",
-      "Weight": "98.63%",
-      "Market Value": "$24463631.56",
+      "Weight": "98.44%",
+      "Market Value": "$24794474.84",
       "Shares Held": "30,034,000",
       "Asset Category": "Treasury"
     },
@@ -26,8 +26,8 @@
       "Name": "SPXW US 12/03/26 P6400",
       "Ticker": "SPXW 261203P06400000",
       "Identifier": "SPXW 261203P06400000",
-      "Weight": "0.08%",
-      "Market Value": "$19140.00",
+      "Weight": "0.02%",
+      "Market Value": "$5995.00",
       "Shares Held": "11",
       "Asset Category": "Option"
     },
@@ -35,8 +35,8 @@
       "Name": "SPXW US 12/03/26 P6475",
       "Ticker": "SPXW 261203P06475000",
       "Identifier": "SPXW 261203P06475000",
-      "Weight": "0.09%",
-      "Market Value": "$22385.00",
+      "Weight": "0.03%",
+      "Market Value": "$7425.00",
       "Shares Held": "11",
       "Asset Category": "Option"
     },
@@ -44,8 +44,8 @@
       "Name": "SPXW US 12/03/26 P6525",
       "Ticker": "SPXW 261203P06525000",
       "Identifier": "SPXW 261203P06525000",
-      "Weight": "0.10%",
-      "Market Value": "$25025.00",
+      "Weight": "0.03%",
+      "Market Value": "$8250.00",
       "Shares Held": "11",
       "Asset Category": "Option"
     },
@@ -53,8 +53,8 @@
       "Name": "SPXW US 12/03/26 P6700",
       "Ticker": "SPXW 261203P06700000",
       "Identifier": "SPXW 261203P06700000",
-      "Weight": "-0.15%",
-      "Market Value": "$-38280.00",
+      "Weight": "-0.06%",
+      "Market Value": "$-14905.00",
       "Shares Held": "-11",
       "Asset Category": "Option"
     },
@@ -62,8 +62,8 @@
       "Name": "SPXW US 12/03/26 P6775",
       "Ticker": "SPXW 261203P06775000",
       "Identifier": "SPXW 261203P06775000",
-      "Weight": "-0.19%",
-      "Market Value": "$-46805.00",
+      "Weight": "-0.08%",
+      "Market Value": "$-19910.00",
       "Shares Held": "-11",
       "Asset Category": "Option"
     },
@@ -71,8 +71,8 @@
       "Name": "SPXW US 12/03/26 P6825",
       "Ticker": "SPXW 261203P06825000",
       "Identifier": "SPXW 261203P06825000",
-      "Weight": "-0.22%",
-      "Market Value": "$-53680.00",
+      "Weight": "-0.10%",
+      "Market Value": "$-24145.00",
       "Shares Held": "-11",
       "Asset Category": "Option"
     },
@@ -80,9 +80,9 @@
       "Name": "Cash & Other",
       "Ticker": "Cash&Other",
       "Identifier": "Cash&Other",
-      "Weight": "1.68%",
-      "Market Value": "$416682.33",
-      "Shares Held": "416,682",
+      "Weight": "1.72%",
+      "Market Value": "$431970.07",
+      "Shares Held": "431,970",
       "Asset Category": "Cash"
     }
   ]
