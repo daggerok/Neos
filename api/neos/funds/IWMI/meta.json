@@ -13,26 +13,26 @@
   "managementFee": "0.68%",
   "managementFeeValue": 0.68,
   "nav": {
-    "display": "$46.60",
-    "value": 46.6,
-    "asOfDate": "Nov 24 2026",
-    "dailyChangeText": "$0.25 (0.54%)",
+    "display": "$46.87",
+    "value": 46.87,
+    "asOfDate": "Nov 25 2026",
+    "dailyChangeText": "$0.27 (0.58%)",
     "kind": "official (fund page Fund Details)"
   },
-  "navValue": 46.6,
+  "navValue": 46.87,
   "aum": {
     "display": "$1.27B",
     "value": 1273046236,
-    "asOfDate": "Nov 24 2026",
+    "asOfDate": "Nov 25 2026",
     "source": "official NEOS daily holdings CSV (download_holdings_csv)"
   },
   "aumValue": 1273046236,
-  "asOfDate": "Nov 24 2026",
+  "asOfDate": "Nov 25 2026",
   "inceptionDate": "Jun 24 2024",
   "inceptionDateFundPage": "Jun 24 2024",
   "exchange": "CBOE",
-  "closePrice": "$46.62",
-  "closePriceValue": 46.62,
+  "closePrice": "$46.89",
+  "closePriceValue": 46.89,
   "premiumDiscount": {
     "display": "0.04%",
     "value": 0.04,
@@ -45,7 +45,7 @@
   "bidAskSpread": {
     "display": "0.02%",
     "value": 0.02,
-    "asOfDate": "Nov 24 2026",
+    "asOfDate": "Nov 25 2026",
     "kind": "official (fund page Fund Details \"30-Day Median Bid-Ask Spread (%)\")"
   },
   "bidAskSpreadValue": 0.02,
@@ -56,7 +56,7 @@
     "value": 27160000,
     "asOfDate": "Nov 27 2026"
   },
-  "netAssetsAsOf": "Nov 24 2026",
+  "netAssetsAsOf": "Nov 25 2026",
   "secYieldAsOf": "Oct 31 2026",
   "distributions": {
     "frequency": "Monthly",
@@ -437,10 +437,10 @@
     "managementFeeValue": 0.68
   },
   "marketPrice": {
-    "display": "$46.62",
-    "value": 46.62,
-    "asOfDate": "Nov 24 2026",
-    "dailyChangeText": "$0.30 (0.65%)",
+    "display": "$46.89",
+    "value": 46.89,
+    "asOfDate": "Nov 25 2026",
+    "dailyChangeText": "$0.27 (0.58%)",
     "source": "NEOS fund page Fund Details \"Market Price\""
   },
   "yields": {
