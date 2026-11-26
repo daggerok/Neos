@@ -18,7 +18,7 @@
       "Ticker": "XYL",
       "Identifier": "98419M100",
       "Weight": "0.03%",
-      "Market Value": "$4197818.72",
+      "Market Value": "$4252507.68",
       "Shares Held": "44,104",
       "Asset Category": "Equity"
     },
@@ -27,7 +27,7 @@
       "Ticker": "XYZ",
       "Identifier": "852234103",
       "Weight": "0.06%",
-      "Market Value": "$7678899.85",
+      "Market Value": "$7880839.90",
       "Shares Held": "103,559",
       "Asset Category": "Equity"
     },
@@ -36,7 +36,7 @@
       "Ticker": "YUM",
       "Identifier": "988498101",
       "Weight": "0.07%",
-      "Market Value": "$8870711.56",
+      "Market Value": "$8872844.84",
       "Shares Held": "53,332",
       "Asset Category": "Equity"
     },
@@ -45,7 +45,7 @@
       "Ticker": "ZBH",
       "Identifier": "98956P102",
       "Weight": "0.03%",
-      "Market Value": "$3958952.76",
+      "Market Value": "$3997819.44",
       "Shares Held": "36,324",
       "Asset Category": "Equity"
     },
@@ -54,7 +54,7 @@
       "Ticker": "ZBRA",
       "Identifier": "989207105",
       "Weight": "0.02%",
-      "Market Value": "$2494877.37",
+      "Market Value": "$2521808.77",
       "Shares Held": "7,921",
       "Asset Category": "Equity"
     },
@@ -63,7 +63,7 @@
       "Ticker": "ZTS",
       "Identifier": "98978V103",
       "Weight": "0.05%",
-      "Market Value": "$6622533.36",
+      "Market Value": "$6714388.80",
       "Shares Held": "81,288",
       "Asset Category": "Equity"
     },
@@ -72,8 +72,8 @@
       "Ticker": "Cash&Other",
       "Identifier": "Cash&Other",
       "Weight": "2.95%",
-      "Market Value": "$364601751.09",
-      "Shares Held": "364,601,751",
+      "Market Value": "$364345454.93",
+      "Shares Held": "364,345,455",
       "Asset Category": "Cash"
     }
   ]

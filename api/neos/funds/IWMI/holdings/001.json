@@ -17,9 +17,9 @@
       "Name": "RUT US 12/18/26 C2860",
       "Ticker": "RUT 261218C02860000",
       "Identifier": "RUT 261218C02860000",
-      "Weight": "-0.08%",
-      "Market Value": "$-1037820.00",
-      "Shares Held": "-1,412",
+      "Weight": "-0.10%",
+      "Market Value": "$-1302930.00",
+      "Shares Held": "-1,401",
       "Asset Category": "Option"
     },
     {
@@ -27,26 +27,26 @@
       "Ticker": "RUT 261218C02910000",
       "Identifier": "RUT 261218C02910000",
       "Weight": "-0.04%",
-      "Market Value": "$-451840.00",
-      "Shares Held": "-1,412",
+      "Market Value": "$-560400.00",
+      "Shares Held": "-1,401",
       "Asset Category": "Option"
     },
     {
       "Name": "Vanguard Russell 2000 ETF",
       "Ticker": "VTWO",
       "Identifier": "92206C664",
-      "Weight": "99.63%",
-      "Market Value": "$1271239062.80",
-      "Shares Held": "11,776,184",
+      "Weight": "99.67%",
+      "Market Value": "$1268851264.44",
+      "Shares Held": "11,681,562",
       "Asset Category": "Fund"
     },
     {
       "Name": "Cash & Other",
       "Ticker": "Cash&Other",
       "Identifier": "Cash&Other",
-      "Weight": "0.48%",
-      "Market Value": "$6107890.30",
-      "Shares Held": "6,107,890",
+      "Weight": "0.47%",
+      "Market Value": "$5994587.58",
+      "Shares Held": "5,994,588",
       "Asset Category": "Cash"
     }
   ]

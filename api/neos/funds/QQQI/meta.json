@@ -21,12 +21,12 @@
   },
   "navValue": 47.66,
   "aum": {
-    "display": "$14.26B",
-    "value": 14260611364,
+    "display": "$14.14B",
+    "value": 14141982006,
     "asOfDate": "Nov 24 2026",
     "source": "official NEOS daily holdings CSV (download_holdings_csv)"
   },
-  "aumValue": 14260611364,
+  "aumValue": 14141982006,
   "asOfDate": "Nov 24 2026",
   "inceptionDate": "Jan 29 2024",
   "inceptionDateFundPage": "Jan 29 2024",
@@ -50,11 +50,11 @@
   },
   "bidAskSpreadValue": 0.02,
   "acquiredFundFeesText": null,
-  "totalNetAssets": 14260611364,
+  "totalNetAssets": 14141982006,
   "sharesOutstanding": {
-    "display": "299,240,000",
-    "value": 299240000,
-    "asOfDate": "Nov 25 2026"
+    "display": "298,630,000",
+    "value": 298630000,
+    "asOfDate": "Nov 27 2026"
   },
   "netAssetsAsOf": "Nov 24 2026",
   "secYieldAsOf": "Oct 31 2026",
@@ -413,8 +413,8 @@
     ],
     "pageSize": 250,
     "totalRows": 104,
-    "asOfDate": "Nov 25 2026",
-    "asOf": "2026-11-25",
+    "asOfDate": "Nov 27 2026",
+    "asOf": "2026-11-27",
     "source": "https://neosfunds.com/wp-admin/admin-ajax.php?action=download_holdings_csv&ticker=QQQI",
     "sourceKind": "official NEOS daily holdings CSV (download_holdings_csv)"
   },
@@ -489,8 +489,8 @@
   },
   "navIndex": {
     "startDate": "2024-01-29",
-    "endDate": "2026-11-24",
-    "points": 1031,
+    "endDate": "2026-11-25",
+    "points": 1032,
     "benchmarkName": "Cboe Nasdaq-100 BuyWrite Monthly Index",
     "source": "NEOS fund page \"Growth of $10,000 at NAV Since Inception\" chart series"
   },

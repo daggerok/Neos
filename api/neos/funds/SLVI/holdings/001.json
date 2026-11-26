@@ -17,8 +17,8 @@
       "Name": "SLV 12/18/2026 47 C",
       "Ticker": "2SLV 261218C00047000",
       "Identifier": "2SLV 261218C00047000",
-      "Weight": "-0.07%",
-      "Market Value": "$-4201.75",
+      "Weight": "-0.10%",
+      "Market Value": "$-6225.45",
       "Shares Held": "-343",
       "Asset Category": "Option"
     },
@@ -26,8 +26,8 @@
       "Name": "SLV 12/18/2026 49 C",
       "Ticker": "2SLV 261218C00049000",
       "Identifier": "2SLV 261218C00049000",
-      "Weight": "-0.05%",
-      "Market Value": "$-2953.23",
+      "Weight": "-0.06%",
+      "Market Value": "$-4129.72",
       "Shares Held": "-343",
       "Asset Category": "Option"
     },
@@ -35,8 +35,8 @@
       "Name": "SLV 01/15/2027 55.5 C",
       "Ticker": "2SLV 270115C00055500",
       "Identifier": "2SLV 270115C00055500",
-      "Weight": "0.30%",
-      "Market Value": "$19348.77",
+      "Weight": "0.39%",
+      "Market Value": "$25182.57",
       "Shares Held": "1,389",
       "Asset Category": "Option"
     },
@@ -44,8 +44,8 @@
       "Name": "SLV 01/15/2027 55.5 P",
       "Ticker": "2SLV 270115P00055500",
       "Identifier": "2SLV 270115P00055500",
-      "Weight": "-40.36%",
-      "Market Value": "$-2561079.87",
+      "Weight": "-39.70%",
+      "Market Value": "$-2534244.39",
       "Shares Held": "-1,389",
       "Asset Category": "Option"
     },
@@ -53,8 +53,8 @@
       "Name": "United States Treasury Bill 12/15/2026",
       "Ticker": "912797WF0",
       "Identifier": "912797WF0",
-      "Weight": "121.06%",
-      "Market Value": "$7681075.07",
+      "Weight": "120.35%",
+      "Market Value": "$7682729.29",
       "Shares Held": "7,698,000",
       "Asset Category": "Treasury"
     },
@@ -62,8 +62,8 @@
       "Name": "iShares Silver Trust",
       "Ticker": "SLV",
       "Identifier": "46428Q109",
-      "Weight": "17.43%",
-      "Market Value": "$1105678.92",
+      "Weight": "17.44%",
+      "Market Value": "$1113482.30",
       "Shares Held": "30,013",
       "Asset Category": "Fund"
     },
@@ -71,9 +71,9 @@
       "Name": "Cash & Other",
       "Ticker": "Cash&Other",
       "Identifier": "Cash&Other",
-      "Weight": "1.68%",
-      "Market Value": "$106877.46",
-      "Shares Held": "106,877",
+      "Weight": "1.67%",
+      "Market Value": "$106508.61",
+      "Shares Held": "106,509",
       "Asset Category": "Cash"
     }
   ]

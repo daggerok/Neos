@@ -22,11 +22,11 @@
   "navValue": 23.37,
   "aum": {
     "display": "$1.03B",
-    "value": 1025268222,
+    "value": 1029933333,
     "asOfDate": "Nov 24 2026",
     "source": "official NEOS daily holdings CSV (download_holdings_csv)"
   },
-  "aumValue": 1025268222,
+  "aumValue": 1029933333,
   "asOfDate": "Nov 24 2026",
   "inceptionDate": "Oct 16 2024",
   "inceptionDateFundPage": "Oct 16 2024",
@@ -50,11 +50,11 @@
   },
   "bidAskSpreadValue": 0.1,
   "acquiredFundFeesText": "0.01%",
-  "totalNetAssets": 1025268222,
+  "totalNetAssets": 1029933333,
   "sharesOutstanding": {
-    "display": "43,870,000",
-    "value": 43870000,
-    "asOfDate": "Nov 25 2026"
+    "display": "43,730,000",
+    "value": 43730000,
+    "asOfDate": "Nov 27 2026"
   },
   "netAssetsAsOf": "Nov 24 2026",
   "secYieldAsOf": "Oct 31 2026",
@@ -357,8 +357,8 @@
     ],
     "pageSize": 250,
     "totalRows": 8,
-    "asOfDate": "Nov 25 2026",
-    "asOf": "2026-11-25",
+    "asOfDate": "Nov 27 2026",
+    "asOf": "2026-11-27",
     "source": "https://neosfunds.com/wp-admin/admin-ajax.php?action=download_holdings_csv&ticker=BTCI",
     "sourceKind": "official NEOS daily holdings CSV (download_holdings_csv)"
   },

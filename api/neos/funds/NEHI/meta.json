@@ -21,12 +21,12 @@
   },
   "navValue": 20.41,
   "aum": {
-    "display": "$79.00M",
-    "value": 78995601,
+    "display": "$79.78M",
+    "value": 79778889,
     "asOfDate": "Nov 24 2026",
     "source": "official NEOS daily holdings CSV (download_holdings_csv)"
   },
-  "aumValue": 78995601,
+  "aumValue": 79778889,
   "asOfDate": "Nov 24 2026",
   "inceptionDate": "Dec 02 2025",
   "inceptionDateFundPage": "Dec 02 2025",
@@ -50,11 +50,11 @@
   },
   "bidAskSpreadValue": 0.21,
   "acquiredFundFeesText": null,
-  "totalNetAssets": 78995601,
+  "totalNetAssets": 79778889,
   "sharesOutstanding": {
     "display": "3,870,000",
     "value": 3870000,
-    "asOfDate": "Nov 25 2026"
+    "asOfDate": "Nov 27 2026"
   },
   "netAssetsAsOf": "Nov 24 2026",
   "secYieldAsOf": "Oct 31 2026",
@@ -259,8 +259,8 @@
     ],
     "pageSize": 250,
     "totalRows": 7,
-    "asOfDate": "Nov 25 2026",
-    "asOf": "2026-11-25",
+    "asOfDate": "Nov 27 2026",
+    "asOf": "2026-11-27",
     "source": "https://neosfunds.com/wp-admin/admin-ajax.php?action=download_holdings_csv&ticker=NEHI",
     "sourceKind": "official NEOS daily holdings CSV (download_holdings_csv)"
   },

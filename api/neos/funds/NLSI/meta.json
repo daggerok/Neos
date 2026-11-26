@@ -22,11 +22,11 @@
   "navValue": 52.47,
   "aum": {
     "display": "$4.20M",
-    "value": 4197920,
+    "value": 4197520,
     "asOfDate": "Nov 24 2026",
     "source": "official NEOS daily holdings CSV (download_holdings_csv)"
   },
-  "aumValue": 4197920,
+  "aumValue": 4197520,
   "asOfDate": "Nov 24 2026",
   "inceptionDate": "Dec 09 2025",
   "inceptionDateFundPage": "Dec 09 2025",
@@ -50,11 +50,11 @@
   },
   "bidAskSpreadValue": 0.17,
   "acquiredFundFeesText": null,
-  "totalNetAssets": 4197920,
+  "totalNetAssets": 4197520,
   "sharesOutstanding": {
     "display": "80,000",
     "value": 80000,
-    "asOfDate": "Nov 25 2026"
+    "asOfDate": "Nov 27 2026"
   },
   "netAssetsAsOf": "Nov 24 2026",
   "secYieldAsOf": "Oct 31 2026",
@@ -249,8 +249,8 @@
     ],
     "pageSize": 250,
     "totalRows": 67,
-    "asOfDate": "Nov 25 2026",
-    "asOf": "2026-11-25",
+    "asOfDate": "Nov 27 2026",
+    "asOf": "2026-11-27",
     "source": "https://neosfunds.com/wp-admin/admin-ajax.php?action=download_holdings_csv&ticker=NLSI",
     "sourceKind": "official NEOS daily holdings CSV (download_holdings_csv)"
   },
