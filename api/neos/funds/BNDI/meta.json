@@ -43,12 +43,12 @@
   "premiumDiscountDerivedValue": 0.09,
   "premiumDiscountKind": "official (fund page Fund Details \"Premium Discount (%)\")",
   "bidAskSpread": {
-    "display": "%",
-    "value": null,
+    "display": "0.07%",
+    "value": 0.07,
     "asOfDate": "Nov 25 2026",
     "kind": "official (fund page Fund Details \"30-Day Median Bid-Ask Spread (%)\")"
   },
-  "bidAskSpreadValue": null,
+  "bidAskSpreadValue": 0.07,
   "acquiredFundFeesText": "0.03%",
   "totalNetAssets": 199040844,
   "sharesOutstanding": {
@@ -543,9 +543,9 @@
       "./history/002.json"
     ],
     "pageSize": 1000,
-    "totalRows": 1065,
-    "asOfDate": "Nov 25 2026",
-    "asOf": "2026-11-25",
+    "totalRows": 1066,
+    "asOfDate": "Nov 27 2026",
+    "asOf": "2026-11-27",
     "source": "https://query1.finance.yahoo.com/v8/finance/chart/BNDI?period1=0&period2=9999999999&interval=1d&events=div%7Csplit&includeAdjustedClose=true",
     "sourceKind": "Yahoo Finance public chart API (daily Close / Adj Close / Volume)"
   },

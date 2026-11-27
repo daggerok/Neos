@@ -2,7 +2,7 @@
   "ticker": "IWMI",
   "page": 1,
   "pageSize": 1000,
-  "totalRows": 609,
+  "totalRows": 610,
   "headers": [
     "Date",
     "Close",
@@ -10,6 +10,12 @@
     "Volume"
   ],
   "rows": [
+    {
+      "Date": "2026-11-27",
+      "Close": "47.70",
+      "Adj Close": "47.70",
+      "Volume": "167304"
+    },
     {
       "Date": "2026-11-25",
       "Close": "46.89",

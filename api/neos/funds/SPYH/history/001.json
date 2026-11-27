@@ -2,7 +2,7 @@
   "ticker": "SPYH",
   "page": 1,
   "pageSize": 1000,
-  "totalRows": 415,
+  "totalRows": 416,
   "headers": [
     "Date",
     "Close",
@@ -10,6 +10,12 @@
     "Volume"
   ],
   "rows": [
+    {
+      "Date": "2026-11-27",
+      "Close": "53.77",
+      "Adj Close": "53.77",
+      "Volume": "3848"
+    },
     {
       "Date": "2026-11-25",
       "Close": "53.34",
