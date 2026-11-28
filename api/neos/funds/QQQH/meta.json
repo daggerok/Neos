@@ -21,12 +21,12 @@
   },
   "navValue": 50.04,
   "aum": {
-    "display": "$340.99M",
-    "value": 340990981.83,
+    "display": "$346.39M",
+    "value": 346385039.29,
     "asOfDate": "Nov 25 2026",
     "source": "official NEOS daily holdings CSV (download_holdings_csv)"
   },
-  "aumValue": 340990981.83,
+  "aumValue": 346385039.29,
   "asOfDate": "Nov 25 2026",
   "inceptionDate": "Dec 19 2019",
   "inceptionDateFundPage": "Dec 19 2019",
@@ -50,11 +50,11 @@
   },
   "bidAskSpreadValue": 0.29,
   "acquiredFundFeesText": null,
-  "totalNetAssets": 340990981.83,
+  "totalNetAssets": 346385039.29,
   "sharesOutstanding": {
     "display": "6,814,981",
     "value": 6814981,
-    "asOfDate": "Nov 27 2026"
+    "asOfDate": "Nov 30 2026"
   },
   "netAssetsAsOf": "Nov 25 2026",
   "secYieldAsOf": "Oct 31 2026",
@@ -420,8 +420,8 @@
     ],
     "pageSize": 250,
     "totalRows": 105,
-    "asOfDate": "Nov 27 2026",
-    "asOf": "2026-11-27",
+    "asOfDate": "Nov 30 2026",
+    "asOf": "2026-11-30",
     "source": "https://neosfunds.com/wp-admin/admin-ajax.php?action=download_holdings_csv&ticker=QQQH",
     "sourceKind": "official NEOS daily holdings CSV (download_holdings_csv)"
   },

@@ -17,8 +17,8 @@
       "Name": "GLD 12/18/2026 366 C",
       "Ticker": "2GLD 261218C00366000",
       "Identifier": "2GLD 261218C00366000",
-      "Weight": "-0.09%",
-      "Market Value": "$-512820.60",
+      "Weight": "-0.08%",
+      "Market Value": "$-477473.88",
       "Shares Held": "-4,188",
       "Asset Category": "Option"
     },
@@ -27,7 +27,7 @@
       "Ticker": "2GLD 261218C00375000",
       "Identifier": "2GLD 261218C00375000",
       "Weight": "-0.05%",
-      "Market Value": "$-305975.28",
+      "Market Value": "$-269665.32",
       "Shares Held": "-4,188",
       "Asset Category": "Option"
     },
@@ -35,8 +35,8 @@
       "Name": "GLD 01/15/2027 380 C",
       "Ticker": "2GLD 270115C00380000",
       "Identifier": "2GLD 270115C00380000",
-      "Weight": "0.45%",
-      "Market Value": "$2558042.47",
+      "Weight": "0.43%",
+      "Market Value": "$2463151.15",
       "Shares Held": "13,873",
       "Asset Category": "Option"
     },
@@ -44,8 +44,8 @@
       "Name": "GLD 01/15/2027 380 P",
       "Ticker": "2GLD 270115P00380000",
       "Identifier": "2GLD 270115P00380000",
-      "Weight": "-12.82%",
-      "Market Value": "$-72096454.97",
+      "Weight": "-10.93%",
+      "Market Value": "$-62768527.23",
       "Shares Held": "-13,873",
       "Asset Category": "Option"
     },
@@ -53,8 +53,8 @@
       "Name": "United States Treasury Bill 12/17/2026",
       "Ticker": "912797VH7",
       "Identifier": "912797VH7",
-      "Weight": "92.13%",
-      "Market Value": "$518264968.46",
+      "Weight": "90.30%",
+      "Market Value": "$518439357.66",
       "Shares Held": "519,425,000",
       "Asset Category": "Treasury"
     },
@@ -63,7 +63,7 @@
       "Ticker": "AAAU",
       "Identifier": "38150K103",
       "Weight": "18.95%",
-      "Market Value": "$106619790.16",
+      "Market Value": "$108798792.40",
       "Shares Held": "3,026,392",
       "Asset Category": "Fund"
     },
@@ -71,9 +71,9 @@
       "Name": "Cash & Other",
       "Ticker": "Cash&Other",
       "Identifier": "Cash&Other",
-      "Weight": "1.42%",
-      "Market Value": "$7970007.83",
-      "Shares Held": "7,970,008",
+      "Weight": "1.39%",
+      "Market Value": "$7957776.35",
+      "Shares Held": "7,957,776",
       "Asset Category": "Cash"
     }
   ]

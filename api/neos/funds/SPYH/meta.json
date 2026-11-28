@@ -21,12 +21,12 @@
   },
   "navValue": 53.29,
   "aum": {
-    "display": "$36.24M",
-    "value": 36240124,
+    "display": "$36.62M",
+    "value": 36618340,
     "asOfDate": "Nov 25 2026",
     "source": "official NEOS daily holdings CSV (download_holdings_csv)"
   },
-  "aumValue": 36240124,
+  "aumValue": 36618340,
   "asOfDate": "Nov 25 2026",
   "inceptionDate": "Apr 02 2025",
   "inceptionDateFundPage": "Apr 02 2025",
@@ -50,11 +50,11 @@
   },
   "bidAskSpreadValue": 0.11,
   "acquiredFundFeesText": null,
-  "totalNetAssets": 36240124,
+  "totalNetAssets": 36618340,
   "sharesOutstanding": {
     "display": "680,000",
     "value": 680000,
-    "asOfDate": "Nov 27 2026"
+    "asOfDate": "Nov 30 2026"
   },
   "netAssetsAsOf": "Nov 25 2026",
   "secYieldAsOf": "Oct 31 2026",
@@ -306,8 +306,8 @@
     ],
     "pageSize": 250,
     "totalRows": 488,
-    "asOfDate": "Nov 27 2026",
-    "asOf": "2026-11-27",
+    "asOfDate": "Nov 30 2026",
+    "asOf": "2026-11-30",
     "source": "https://neosfunds.com/wp-admin/admin-ajax.php?action=download_holdings_csv&ticker=SPYH",
     "sourceKind": "official NEOS daily holdings CSV (download_holdings_csv)"
   },

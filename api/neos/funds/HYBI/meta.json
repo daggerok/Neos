@@ -21,12 +21,12 @@
   },
   "navValue": 47.17,
   "aum": {
-    "display": "$204.93M",
-    "value": 204927189.68,
+    "display": "$205.37M",
+    "value": 205372883.77,
     "asOfDate": "Nov 25 2026",
     "source": "official NEOS daily holdings CSV (download_holdings_csv)"
   },
-  "aumValue": 204927189.68,
+  "aumValue": 205372883.77,
   "asOfDate": "Nov 25 2026",
   "inceptionDate": "Sep 30 2014",
   "inceptionDateFundPage": "Sep 30 2024",
@@ -50,11 +50,11 @@
   },
   "bidAskSpreadValue": 0.04,
   "acquiredFundFeesText": "0.07%",
-  "totalNetAssets": 204927189.68,
+  "totalNetAssets": 205372883.77,
   "sharesOutstanding": {
     "display": "4,343,997",
     "value": 4343997,
-    "asOfDate": "Nov 27 2026"
+    "asOfDate": "Nov 30 2026"
   },
   "netAssetsAsOf": "Nov 25 2026",
   "secYieldAsOf": "Oct 31 2026",
@@ -360,8 +360,8 @@
     ],
     "pageSize": 250,
     "totalRows": 8,
-    "asOfDate": "Nov 27 2026",
-    "asOf": "2026-11-27",
+    "asOfDate": "Nov 30 2026",
+    "asOf": "2026-11-30",
     "source": "https://neosfunds.com/wp-admin/admin-ajax.php?action=download_holdings_csv&ticker=HYBI",
     "sourceKind": "official NEOS daily holdings CSV (download_holdings_csv)"
   },

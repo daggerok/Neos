@@ -21,12 +21,12 @@
   },
   "navValue": 23.52,
   "aum": {
-    "display": "$189.56M",
-    "value": 189560722,
+    "display": "$189.33M",
+    "value": 189326982,
     "asOfDate": "Nov 25 2026",
     "source": "official NEOS daily holdings CSV (download_holdings_csv)"
   },
-  "aumValue": 189560722,
+  "aumValue": 189326982,
   "asOfDate": "Nov 25 2026",
   "inceptionDate": "Feb 02 2026",
   "inceptionDateFundPage": "Feb 02 2026",
@@ -50,11 +50,11 @@
   },
   "bidAskSpreadValue": 0.25,
   "acquiredFundFeesText": null,
-  "totalNetAssets": 189560722,
+  "totalNetAssets": 189326982,
   "sharesOutstanding": {
     "display": "8,060,000",
     "value": 8060000,
-    "asOfDate": "Nov 27 2026"
+    "asOfDate": "Nov 30 2026"
   },
   "netAssetsAsOf": "Nov 25 2026",
   "secYieldAsOf": "Oct 31 2026",
@@ -245,8 +245,8 @@
     ],
     "pageSize": 250,
     "totalRows": 7,
-    "asOfDate": "Nov 27 2026",
-    "asOf": "2026-11-27",
+    "asOfDate": "Nov 30 2026",
+    "asOf": "2026-11-30",
     "source": "https://neosfunds.com/wp-admin/admin-ajax.php?action=download_holdings_csv&ticker=XBCI",
     "sourceKind": "official NEOS daily holdings CSV (download_holdings_csv)"
   },

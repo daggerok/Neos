@@ -22,11 +22,11 @@
   "navValue": 49.39,
   "aum": {
     "display": "$2.08B",
-    "value": 2079842377,
+    "value": 2083409094,
     "asOfDate": "Nov 25 2026",
     "source": "official NEOS daily holdings CSV (download_holdings_csv)"
   },
-  "aumValue": 2079842377,
+  "aumValue": 2083409094,
   "asOfDate": "Nov 25 2026",
   "inceptionDate": "Aug 29 2022",
   "inceptionDateFundPage": "Aug 29 2022",
@@ -50,11 +50,11 @@
   },
   "bidAskSpreadValue": 0.02,
   "acquiredFundFeesText": null,
-  "totalNetAssets": 2079842377,
+  "totalNetAssets": 2083409094,
   "sharesOutstanding": {
     "display": "42,110,000",
     "value": 42110000,
-    "asOfDate": "Nov 27 2026"
+    "asOfDate": "Nov 30 2026"
   },
   "netAssetsAsOf": "Nov 25 2026",
   "secYieldAsOf": "Oct 31 2026",
@@ -532,8 +532,8 @@
     ],
     "pageSize": 250,
     "totalRows": 24,
-    "asOfDate": "Nov 27 2026",
-    "asOf": "2026-11-27",
+    "asOfDate": "Nov 30 2026",
+    "asOf": "2026-11-30",
     "source": "https://neosfunds.com/wp-admin/admin-ajax.php?action=download_holdings_csv&ticker=CSHI",
     "sourceKind": "official NEOS daily holdings CSV (download_holdings_csv)"
   },
