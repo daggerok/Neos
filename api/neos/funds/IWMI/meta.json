@@ -461,8 +461,8 @@
   },
   "navIndex": {
     "startDate": "2024-06-24",
-    "endDate": "2026-11-25",
-    "points": 885,
+    "endDate": "2026-11-27",
+    "points": 887,
     "benchmarkName": "Cboe Russell 2000 BuyWrite Monthly Index",
     "source": "NEOS fund page \"Growth of $10,000 at NAV Since Inception\" chart series"
   },
